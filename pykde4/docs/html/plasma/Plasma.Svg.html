@@ -1,0 +1,1008 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <title>Plasma.Svg</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <link rel="stylesheet" type="text/css" href="../common/doxygen.css" />
+  <link rel="stylesheet" media="screen" type="text/css" title="KDE Colors" href="../common/kde.css" />
+</head>
+<body>
+<div id="container">
+<div id="header">
+  <div id="header_top">
+    <div>
+      <div>
+        <img alt ="" src="../common/top-kde.jpg"/>
+        KDE 4.9 PyKDE API Reference
+      </div>
+    </div>
+  </div>
+  <div id="header_bottom">
+    <div id="location">
+      <ul>
+        <li>KDE's Python API</li>
+      </ul>
+    </div>
+
+    <div id="menu">
+      <ul>
+        <li><a href="../modules.html">Overview</a></li>
+<li><a href="http://techbase.kde.org/Development/Languages/Python">PyKDE Home</a></li>
+<li><a href="http://kde.org/family/">Sitemap</a></li>
+<li><a href="http://kde.org/contact/">Contact Us</a></li>
+</ul>
+    </div>
+  </div>
+</div>
+
+<div id="body_wrapper">
+<div id="body">
+<div id="right">
+<div class="content">
+<div id="main">
+<div class="clearer">&nbsp;</div>
+
+<h1>Svg Class Reference</h1>
+<code>from PyKDE4.plasma import *</code>
+<p>
+Inherits: QObject<br />
+Subclasses: <a href="../plasma/Plasma.FrameSvg.html">Plasma.FrameSvg</a><br />
+Namespace: <a href="../plasma/Plasma.html">Plasma</a><br />
+<h2>Detailed Description</h2>
+
+<p>Svg plasma/svg.h &lt;Plasma/Svg&gt;
+</p>
+<p>
+A theme aware image-centric SVG class
+</p>
+<p>
+Plasma.Svg provides a class for rendering SVG images to a QPainter in a
+convenient manner. Unless an absolute path to a file is provided, it loads
+the SVG document using Plasma.Theme. It also provides a number of internal
+optimizations to help lower the cost of painting SVGs, such as caching.
+</p>
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd> Plasma.FrameSvg
+</dd></dl>
+</p>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td colspan="2"><br><h2>Signals</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#repaintNeeded">repaintNeeded</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#sizeChanged">sizeChanged</a> ()</td></tr>
+<tr><td colspan="2"><br><h2>Methods</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#Svg">__init__</a> (self, QObject parent=0)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#containsMultipleImages">containsMultipleImages</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#elementAtPoint">elementAtPoint</a> (self, QPoint point)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QRectF&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#elementRect">elementRect</a> (self, QString elementId)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QSize&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#elementSize">elementSize</a> (self, QString elementId)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#hasElement">hasElement</a> (self, QString elementId)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#imagePath">imagePath</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#isUsingRenderingCache">isUsingRenderingCache</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#isValid">isValid</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#paint">paint</a> (self, QPainter painter, QPointF point, QString elementID=QString())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#paint">paint</a> (self, QPainter painter, int x, int y, QString elementID=QString())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#paint">paint</a> (self, QPainter painter, QRectF rect, QString elementID=QString())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#paint">paint</a> (self, QPainter painter, int x, int y, int width, int height, QString elementID=QString())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QPixmap&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#pixmap">pixmap</a> (self, QString elementID=QString())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#resize">resize</a> (self, float width, float height)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#resize">resize</a> (self, QSizeF size)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#resize">resize</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setContainsMultipleImages">setContainsMultipleImages</a> (self, bool multiple)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setImagePath">setImagePath</a> (self, QString svgFilePath)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setTheme">setTheme</a> (self, <a href="../plasma/Plasma.Theme.html">Plasma.Theme</a> theme)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setUsingRenderingCache">setUsingRenderingCache</a> (self, bool useCache)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QSize&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#size">size</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a href="../plasma/Plasma.Theme.html">Plasma.Theme</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#theme">theme</a> (self)</td></tr>
+</table>
+<hr><h2>Signal Documentation</h2><a class="anchor" name="repaintNeeded"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> repaintNeeded</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname">)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Emitted whenever the SVG data has changed in such a way that a repaint is required.
+Any usage of an Svg object that does the painting itself must connect to this signal
+and respond by updating the painting. Note that connected to Theme.themeChanged is
+incorrect in such a use case as the Svg itself may not be updated yet nor may theme
+change be the only case when a repaint is needed. Also note that classes or QML code
+which take Svg objects as parameters for their own painting all respond to this signal
+so that in those cases manually responding to the signal is unnecessary; ONLY when
+direct, manual painting with an Svg object is done in application code is this signal
+used.
+</p><dl compact><dt><b>Signal syntax:</b></dt><dd><code>QObject.connect(source, SIGNAL("repaintNeeded()"), target_slot)</code></dd></dl></div></div><a class="anchor" name="sizeChanged"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> sizeChanged</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname">)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Emitted whenever the size of the Svg is changed. <dl class="see" compact><dt><b>See also:</b></dt><dd> resize()
+</dd></dl>
+</p><dl compact><dt><b>Signal syntax:</b></dt><dd><code>QObject.connect(source, SIGNAL("sizeChanged()"), target_slot)</code></dd></dl></div></div><hr><h2>Method Documentation</h2><a class="anchor" name="Svg"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">__init__</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QObject&nbsp;</td>
+<td class="paramname"><em>parent=0</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Constructs an SVG object that implicitly shares and caches rendering.
+</p>
+<p>
+Unlike QSvgRenderer, which this class uses internally,
+Plasma.Svg represents an image generated from an SVG. As such, it
+has a related size and transform matrix (the latter being provided
+by the painter used to paint the image).
+</p>
+<p>
+The size is initialized to be the SVG's native size.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>parent</em>&nbsp;</td><td> options QObject to parent this to
+</td></tr>
+</table></dl>
+<p> @related Plasma.Theme
+</p></div></div><a class="anchor" name="containsMultipleImages"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool containsMultipleImages</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Whether the SVG contains multiple images.
+</p>
+<p>
+If this is true, the SVG will be treated as a
+collection of related images, rather than a consistent
+drawing.
+</p>
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> true if the SVG will be treated as containing
+multiple images, false if it will be treated
+as a coherent image.
+</dd></dl>
+</p></div></div><a class="anchor" name="elementAtPoint"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QString elementAtPoint</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QPoint&nbsp;</td>
+<td class="paramname"><em>point</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Returns the element (by id) at the given point.
+</p>
+<p>
+An empty string is returned if there no element is at <b>point.</b>
+</p>
+<p>
+NOTE: not implemented! This will currently return an empty string!
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>point</em>&nbsp;</td><td> a point in SVG co-ordinates
+</td></tr> </table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> an empty string
+</dd></dl>
+</p></div></div><a class="anchor" name="elementRect"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QRectF elementRect</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementId</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>The bounding rect of a given element.
+</p>
+<p>
+This is the bounding rect of the element with ID <b>elementId</b> after
+the SVG has been scaled (see resize()). Note that this is
+unaffected by the containsMultipleImages property.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the id of the element to check
+</td></tr> </table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> the current rect of a given element, given the current size of the SVG
+</dd></dl>
+</p></div></div><a class="anchor" name="elementSize"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QSize elementSize</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementId</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Find the size of a given element.
+</p>
+<p>
+This is the size of the element with ID <b>elementId</b> after the SVG
+has been scaled (see resize()). Note that this is unaffected by
+the containsMultipleImages property.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the id of the element to check
+</td></tr> </table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> the size of a given element, given the current size of the SVG
+</dd></dl>
+</p></div></div><a class="anchor" name="hasElement"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool hasElement</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementId</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Check whether an element exists in the loaded SVG.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the id of the element to check for
+</td></tr> </table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> true if the element is defined in the SVG, otherwise false
+</dd></dl>
+</p></div></div><a class="anchor" name="imagePath"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QString imagePath</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>The SVG file to render.
+</p>
+<p>
+If this SVG is themed, this will be a relative path, and will not
+include a file extension.
+</p>
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> either an absolute path to an SVG file, or an image name
+</dd></dl> <dl class="see" compact><dt><b>See also:</b></dt><dd> Theme.imagePath()
+</dd></dl>
+</p></div></div><a class="anchor" name="isUsingRenderingCache"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool isUsingRenderingCache</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Whether the rendering cache is being used.
+</p>
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> true if the Svg object is using caching for rendering results
+</dd></dl> <dl class="since" compact><dt><b>Since:</b></dt><dd> 4.3
+</dd></dl>
+</p></div></div><a class="anchor" name="isValid"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool isValid</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Check whether this object is backed by a valid SVG file.
+</p>
+<p>
+This method can be expensive as it causes disk access.
+</p>
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> true if the SVG file exists and the document is valid,
+otherwise false.
+</dd></dl>
+</p></div></div><a class="anchor" name="paint"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> paint</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QPainter&nbsp;</td>
+<td class="paramname"><em>painter</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QPointF&nbsp;</td>
+<td class="paramname"><em>point</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementID=QString()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Paints all or part of the SVG represented by this object
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>painter</em>&nbsp;</td><td> the QPainter to use
+
+<tr><td></td><td valign="top"><em>x</em>&nbsp;</td><td> the horizontal coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>y</em>&nbsp;</td><td> the vertical coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>width</em>&nbsp;</td><td> the width of the element to draw
+
+<tr><td></td><td valign="top"><em>height</em>&nbsp;</td><td> the height of the element do draw
+
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the ID string of the element to render, or an empty
+string for the whole SVG (the default)
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="paint"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> paint</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QPainter&nbsp;</td>
+<td class="paramname"><em>painter</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>x</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>y</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementID=QString()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Paints all or part of the SVG represented by this object
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>painter</em>&nbsp;</td><td> the QPainter to use
+
+<tr><td></td><td valign="top"><em>x</em>&nbsp;</td><td> the horizontal coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>y</em>&nbsp;</td><td> the vertical coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>width</em>&nbsp;</td><td> the width of the element to draw
+
+<tr><td></td><td valign="top"><em>height</em>&nbsp;</td><td> the height of the element do draw
+
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the ID string of the element to render, or an empty
+string for the whole SVG (the default)
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="paint"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> paint</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QPainter&nbsp;</td>
+<td class="paramname"><em>painter</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QRectF&nbsp;</td>
+<td class="paramname"><em>rect</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementID=QString()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Paints all or part of the SVG represented by this object
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>painter</em>&nbsp;</td><td> the QPainter to use
+
+<tr><td></td><td valign="top"><em>x</em>&nbsp;</td><td> the horizontal coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>y</em>&nbsp;</td><td> the vertical coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>width</em>&nbsp;</td><td> the width of the element to draw
+
+<tr><td></td><td valign="top"><em>height</em>&nbsp;</td><td> the height of the element do draw
+
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the ID string of the element to render, or an empty
+string for the whole SVG (the default)
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="paint"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> paint</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QPainter&nbsp;</td>
+<td class="paramname"><em>painter</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>x</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>y</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>width</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>height</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementID=QString()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Paints all or part of the SVG represented by this object
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>painter</em>&nbsp;</td><td> the QPainter to use
+
+<tr><td></td><td valign="top"><em>x</em>&nbsp;</td><td> the horizontal coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>y</em>&nbsp;</td><td> the vertical coordinate to start painting from
+
+<tr><td></td><td valign="top"><em>width</em>&nbsp;</td><td> the width of the element to draw
+
+<tr><td></td><td valign="top"><em>height</em>&nbsp;</td><td> the height of the element do draw
+
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the ID string of the element to render, or an empty
+string for the whole SVG (the default)
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="pixmap"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QPixmap pixmap</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>elementID=QString()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Returns a pixmap of the SVG represented by this object.
+</p>
+<p>
+The size of the pixmap will be the size of this Svg object (size())
+if containsMultipleImages is true; otherwise, it will be the
+size of the requested element after the whole SVG has been scaled
+to size().
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>elementId</em>&nbsp;</td><td> the ID string of the element to render, or an empty
+string for the whole SVG (the default)
+</td></tr> </table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> a QPixmap of the rendered SVG
+</dd></dl>
+</p></div></div><a class="anchor" name="resize"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> resize</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">float&nbsp;</td>
+<td class="paramname"><em>width</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">float&nbsp;</td>
+<td class="paramname"><em>height</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Resizes the rendered image to the natural size of the SVG.
+</p>
+<p>
+Rendering will actually take place on the next call to paint.
+</p></div></div><a class="anchor" name="resize"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> resize</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QSizeF&nbsp;</td>
+<td class="paramname"><em>size</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Resizes the rendered image to the natural size of the SVG.
+</p>
+<p>
+Rendering will actually take place on the next call to paint.
+</p></div></div><a class="anchor" name="resize"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> resize</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Resizes the rendered image to the natural size of the SVG.
+</p>
+<p>
+Rendering will actually take place on the next call to paint.
+</p></div></div><a class="anchor" name="setContainsMultipleImages"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setContainsMultipleImages</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>multiple</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Set whether the SVG contains a single image or multiple ones.
+</p>
+<p>
+If this is set to true, the SVG will be treated as a
+collection of related images, rather than a consistent
+drawing.
+</p>
+<p>
+In particular, when individual elements are rendered, this
+affects whether the elements are resized to size() by default.
+See paint() and pixmap().
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>multiple</em>&nbsp;</td><td> true if the svg contains multiple images
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="setImagePath"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setImagePath</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>svgFilePath</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Set the SVG file to render.
+</p>
+<p>
+Relative paths are looked for in the current Plasma theme,
+and should not include the file extension (.svg and .svgz
+files will be searched for). See Theme.imagePath().
+</p>
+<p>
+If the parent object of this Svg is a Plasma.Applet,
+relative paths will be searched for in the applet's package
+first.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>svgFilePath</em>&nbsp;</td><td> either an absolute path to an SVG file, or
+an image name
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="setTheme"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setTheme</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../plasma/Plasma.Theme.html">Plasma.Theme</a>&nbsp;</td>
+<td class="paramname"><em>theme</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Sets the Plasma.Theme to use with this Svg object.
+</p>
+<p>
+By default, Svg objects use Plasma.Theme.default().
+</p>
+<p>
+This determines how relative image paths are interpreted.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>theme</em>&nbsp;</td><td> the theme object to use
+</td></tr> </table></dl>
+<p> <dl class="since" compact><dt><b>Since:</b></dt><dd> 4.3
+</dd></dl>
+</p></div></div><a class="anchor" name="setUsingRenderingCache"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setUsingRenderingCache</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>useCache</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Sets whether or not to cache the results of rendering to pixmaps.
+</p>
+<p>
+If the SVG is resized and re-rendered often (and does not keep using the
+same small set of pixmap dimensions), then it may be less efficient to do
+disk caching. A good example might be a progress meter that uses an Svg
+object to paint itself: the meter will be changing often enough, with
+enough unpredictability and without re-use of the previous pixmaps to
+not get a gain from caching.
+</p>
+<p>
+Most Svg objects should use the caching feature, however.
+Therefore, the default is to use the render cache.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>useCache</em>&nbsp;</td><td> true to cache rendered pixmaps
+</td></tr> </table></dl>
+<p> <dl class="since" compact><dt><b>Since:</b></dt><dd> 4.3
+</dd></dl>
+</p></div></div><a class="anchor" name="size"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QSize size</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>The size of the SVG.
+</p>
+<p>
+If the SVG has been resized with resize(), that size will be
+returned; otherwise, the natural size of the SVG will be returned.
+</p>
+<p>
+If containsMultipleImages is true, each element of the SVG
+will be rendered at this size by default.
+</p>
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> the current size of the SVG
+</dd></dl>
+</p></div></div><a class="anchor" name="theme"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"><a href="../plasma/Plasma.Theme.html">Plasma.Theme</a> theme</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>The Plasma.Theme used by this Svg object.
+</p>
+<p>
+This determines how relative image paths are interpreted.
+</p>
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> the theme used by this Svg
+</dd></dl>
+</p></div></div>
+</div>
+</div>
+</div>
+
+<div id="left">
+
+<div class="menu_box">
+<div class="nav_list">
+<ul>
+<li><a href="../allclasses.html">Full Index</a></li>
+</ul>
+</div>
+
+<a name="cp-menu" /><div class="menutitle"><div>
+  <h2 id="cp-menu-project">Modules</h2>
+</div></div>
+<div class="nav_list">
+<ul><li><a href="../akonadi/index.html">akonadi</a></li>
+<li><a href="../dnssd/index.html">dnssd</a></li>
+<li><a href="../kdecore/index.html">kdecore</a></li>
+<li><a href="../kdeui/index.html">kdeui</a></li>
+<li><a href="../khtml/index.html">khtml</a></li>
+<li><a href="../kio/index.html">kio</a></li>
+<li><a href="../knewstuff/index.html">knewstuff</a></li>
+<li><a href="../kparts/index.html">kparts</a></li>
+<li><a href="../kutils/index.html">kutils</a></li>
+<li><a href="../nepomuk/index.html">nepomuk</a></li>
+<li><a href="../phonon/index.html">phonon</a></li>
+<li><a href="../plasma/index.html">plasma</a></li>
+<li><a href="../polkitqt/index.html">polkitqt</a></li>
+<li><a href="../solid/index.html">solid</a></li>
+<li><a href="../soprano/index.html">soprano</a></li>
+</ul></div></div>
+
+</div>
+
+</div>
+  <div class="clearer"/>
+</div>
+
+<div id="end_body"></div>
+</div>
+<div id="footer"><div id="footer_text">
+This documentation is maintained by <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;simon&#64;simonzone&#46;com">Simon Edwards</a>.<br />
+        KDE<sup>&#174;</sup> and <a href="../images/kde_gear_black.png">the K Desktop Environment<sup>&#174;</sup> logo</a> are registered trademarks of <a href="http://ev.kde.org/" title="Homepage of the KDE non-profit Organization">KDE e.V.</a> |
+        <a href="http://www.kde.org/contact/impressum.php">Legal</a>
+    </div></div>
+</body>
+</html>

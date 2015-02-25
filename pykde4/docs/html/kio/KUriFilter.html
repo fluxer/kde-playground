@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <title>KUriFilter</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <link rel="stylesheet" type="text/css" href="../common/doxygen.css" />
+  <link rel="stylesheet" media="screen" type="text/css" title="KDE Colors" href="../common/kde.css" />
+</head>
+<body>
+<div id="container">
+<div id="header">
+  <div id="header_top">
+    <div>
+      <div>
+        <img alt ="" src="../common/top-kde.jpg"/>
+        KDE 4.9 PyKDE API Reference
+      </div>
+    </div>
+  </div>
+  <div id="header_bottom">
+    <div id="location">
+      <ul>
+        <li>KDE's Python API</li>
+      </ul>
+    </div>
+
+    <div id="menu">
+      <ul>
+        <li><a href="../modules.html">Overview</a></li>
+<li><a href="http://techbase.kde.org/Development/Languages/Python">PyKDE Home</a></li>
+<li><a href="http://kde.org/family/">Sitemap</a></li>
+<li><a href="http://kde.org/contact/">Contact Us</a></li>
+</ul>
+    </div>
+  </div>
+</div>
+
+<div id="body_wrapper">
+<div id="body">
+<div id="right">
+<div class="content">
+<div id="main">
+<div class="clearer">&nbsp;</div>
+
+<h1>KUriFilter Class Reference</h1>
+<code>from PyKDE4.kio import *</code>
+<p>
+
+
+
+<h2>Detailed Description</h2>
+
+<p>KUriFilter applies a number of filters to a URI and returns a filtered version if any
+filter matches.
+A simple example is "kde.org" to "http://www.kde.org", which is commonplace in web browsers.
+</p>
+<p>
+The filters are implemented as plugins in KUriFilterPlugin subclasses.
+</p>
+<p>
+KUriFilter is a singleton object: obtain the instance by calling
+<b>KUriFilter.self()</b> and use the public member functions to
+perform the filtering.
+</p>
+<p>
+<b>Example</b>
+</p>
+<p>
+To simply filter a given string:
+</p>
+<p>
+<pre class="fragment">
+ QString url("kde.org");
+ bool filtered = KUriFilter.self()-&gt;filteredUri( url );
+</pre>
+</p>
+<p>
+You can alternatively use a KUrl:
+</p>
+<p>
+<pre class="fragment">
+ KUrl url("kde.org");
+ bool filtered = KUriFilter.self()-&gt;filterUri( url );
+</pre>
+</p>
+<p>
+If you have a constant string or a constant URL, simply invoke the
+corresponding function to obtain the filtered string or URL instead
+of a boolean flag:
+</p>
+<p>
+<pre class="fragment">
+ QString filteredText = KUriFilter.self()-&gt;filteredUri( "kde.org" );
+</pre>
+</p>
+<p>
+All of the above examples should result in "kde.org" being filtered into
+"http://kde.org".
+</p>
+<p>
+You can also restrict the filters to be used by supplying the name of the
+filters you want to use. By defualt all available filters are used.
+</p>
+<p>
+To use specific filters, add the names of the filters you want to use to a
+QStringList and invoke the appropriate filtering function.
+</p>
+<p>
+The examples below show the use of specific filters. KDE ships with the
+following filter plugins by default:
+</p>
+<p>
+kshorturifilter:
+This is used for filtering potentially valid url inputs such as "kde.org"
+Additionally it filters shell variables and shortcuts such as $HOME and
+~ as well as man and info page shortcuts, # and ## respectively.
+</p>
+<p>
+kuriikwsfilter:
+This is used for filtering normal input text into a web search url using the
+configured fallback search engine selected by the user.
+</p>
+<p>
+kurisearchfilter:
+This is used for filtering KDE webshortcuts. For example "gg:KDE" will be
+converted to a url for searching the work "KDE" using the Google search
+engine.
+</p>
+<p>
+localdomainfilter:
+This is used for doing a DNS lookup to determine whether the input is a valid
+local address.
+</p>
+<p>
+fixuphosturifilter:
+This is used to append "www." to the host name of a pre filtered http url
+if the original url cannot be resolved.
+</p>
+<p>
+<pre class="fragment">
+ QString text ("kde.org");
+ bool filtered = KUriFilter.self()-&gt;filterUri(text, QLatin1String("kshorturifilter"));
+</pre>
+</p>
+<p>
+The above code should result in "kde.org" being filtered into "http://kde.org".
+</p>
+<p>
+<pre class="fragment">
+ QStringList list;
+ list &lt;&lt; QLatin1String("kshorturifilter") &lt;&lt; QLatin1String("localdomainfilter");
+ bool filtered = KUriFilter.self()-&gt;filterUri( text, list );
+</pre>
+</p>
+<p>
+Additionally if you only want to do search related filtering, you can use the
+search specific function, filterSearchUri, that is available in KDE
+4.5 and higher. For example, to search for a given input on the web you
+can do the following:
+</p>
+<p>
+KUriFilterData filterData ("foo");
+bool filtered = KUriFilter.self()-&gt;filterSearchUri(filterData, KUriFilterData.NormalTextFilter);
+</p>
+<p>
+KUriFilter converts all filtering requests to use KUriFilterData
+internally. The use of this bi-directional class allows you to send specific
+instructions to the filter plugins as well as receive detailed information
+about the filtered request from them. See the documentation of KUriFilterData
+class for more examples and details.
+</p>
+<p>
+All functions in this class are thread safe and reentrant.
+</p>
+<p>
+Filters the given input into a valid url whenever possible.
+</p>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td colspan="2"><br><h2>Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="#SearchFilterType">SearchFilterType</a>&nbsp;</td><td class="memItemRight" valign="bottom">{&nbsp;NormalTextFilter, WebShortcutFilter&nbsp;}</td></tr>
+<tr><td colspan="2"><br><h2>Methods</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#KUriFilter">__init__</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#KUriFilter">__init__</a> (self, <a href="../kio/KUriFilter.html">KUriFilter</a> other)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#filterSearchUri">filterSearchUri</a> (self, <a href="../kio/KUriFilterData.html">KUriFilterData</a> data)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#filterSearchUri">filterSearchUri</a> (self, <a href="../kio/KUriFilterData.html">KUriFilterData</a> data, <a href="../kio/KUriFilter.html">KUriFilter.SearchFilterTypes</a> types)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#filterUri">filterUri</a> (self, <a href="../kio/KUriFilterData.html">KUriFilterData</a> data, QStringList filters=QStringList())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#filterUri">filterUri</a> (self, <a href="../kdecore/KUrl.html">KUrl</a> uri, QStringList filters=QStringList())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#filterUri">filterUri</a> (self, QString uri, QStringList filters=QStringList())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a href="../kdecore/KUrl.html">KUrl</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#filteredUri">filteredUri</a> (self, <a href="../kdecore/KUrl.html">KUrl</a> uri, QStringList filters=QStringList())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QString&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#filteredUri">filteredUri</a> (self, QString uri, QStringList filters=QStringList())</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#loadPlugins">loadPlugins</a> (self)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">QStringList&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#pluginNames">pluginNames</a> (self)</td></tr>
+<tr><td colspan="2"><br><h2>Static Methods</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a href="../kio/KUriFilter.html">KUriFilter</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#self">self</a> ()</td></tr>
+</table>
+<hr><h2>Method Documentation</h2><a class="anchor" name="KUriFilter"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">__init__</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Constructor.
+</p>
+<p>
+Creates a KUriFilter object and calls loadPlugins to load all
+available URI filter plugins.
+</p></div></div><a class="anchor" name="KUriFilter"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">__init__</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../kio/KUriFilter.html">KUriFilter</a>&nbsp;</td>
+<td class="paramname"><em>other</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"></div></div><a class="anchor" name="filterSearchUri"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool filterSearchUri</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../kio/KUriFilterData.html">KUriFilterData</a>&nbsp;</td>
+<td class="paramname"><em>data</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Filter <b>data</b> using the criteria specified by <b>types.</b>
+</p>
+<p>
+The search filter type can be individual value of SearchFilterTypes
+or a combination of those types using the bitwise OR operator.
+</p>
+<p>
+You can also use the flags from KUriFilterData.SearchFilterOption
+to alter the filtering mechanisms of the search filter providers.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>data</em>&nbsp;</td><td> object that contains the URI to be filtered.
+
+<tr><td></td><td valign="top"><em>types</em>&nbsp;</td><td> the search filters used to filter the request.
+</td></tr> </table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> true if the specified <b>data</b> was successfully filtered.
+</dd></dl> </p>
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd> KUriFilterData.setSearchFilteringOptions
+</dd></dl> <dl class="since" compact><dt><b>Since:</b></dt><dd> 4.6
+</dd></dl>
+</p></div></div><a class="anchor" name="filterSearchUri"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool filterSearchUri</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../kio/KUriFilterData.html">KUriFilterData</a>&nbsp;</td>
+<td class="paramname"><em>data</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../kio/KUriFilter.html">KUriFilter.SearchFilterTypes</a>&nbsp;</td>
+<td class="paramname"><em>types</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Filter <b>data</b> using the criteria specified by <b>types.</b>
+</p>
+<p>
+The search filter type can be individual value of SearchFilterTypes
+or a combination of those types using the bitwise OR operator.
+</p>
+<p>
+You can also use the flags from KUriFilterData.SearchFilterOption
+to alter the filtering mechanisms of the search filter providers.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>data</em>&nbsp;</td><td> object that contains the URI to be filtered.
+
+<tr><td></td><td valign="top"><em>types</em>&nbsp;</td><td> the search filters used to filter the request.
+</td></tr> </table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> true if the specified <b>data</b> was successfully filtered.
+</dd></dl> </p>
+<p>
+<dl class="see" compact><dt><b>See also:</b></dt><dd> KUriFilterData.setSearchFilteringOptions
+</dd></dl> <dl class="since" compact><dt><b>Since:</b></dt><dd> 4.6
+</dd></dl>
+</p></div></div><a class="anchor" name="filterUri"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool filterUri</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../kio/KUriFilterData.html">KUriFilterData</a>&nbsp;</td>
+<td class="paramname"><em>data</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QStringList&nbsp;</td>
+<td class="paramname"><em>filters=QStringList()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Filters a string representing a URI.
+</p>
+<p>
+The given URL is filtered based on the specified list of filters.
+If the list is empty all available filters would be used.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>uri</em>&nbsp;</td><td> The URI to filter.
+
+<tr><td></td><td valign="top"><em>filters</em>&nbsp;</td><td> specify the list of filters to be used.
+</td></tr>
+</table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> a boolean indicating whether the URI has been changed
+</dd></dl>
+</p></div></div><a class="anchor" name="filterUri"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool filterUri</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../kdecore/KUrl.html">KUrl</a>&nbsp;</td>
+<td class="paramname"><em>uri</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QStringList&nbsp;</td>
+<td class="paramname"><em>filters=QStringList()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Filters a string representing a URI.
+</p>
+<p>
+The given URL is filtered based on the specified list of filters.
+If the list is empty all available filters would be used.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>uri</em>&nbsp;</td><td> The URI to filter.
+
+<tr><td></td><td valign="top"><em>filters</em>&nbsp;</td><td> specify the list of filters to be used.
+</td></tr>
+</table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> a boolean indicating whether the URI has been changed
+</dd></dl>
+</p></div></div><a class="anchor" name="filterUri"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool filterUri</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>uri</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QStringList&nbsp;</td>
+<td class="paramname"><em>filters=QStringList()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Filters a string representing a URI.
+</p>
+<p>
+The given URL is filtered based on the specified list of filters.
+If the list is empty all available filters would be used.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>uri</em>&nbsp;</td><td> The URI to filter.
+
+<tr><td></td><td valign="top"><em>filters</em>&nbsp;</td><td> specify the list of filters to be used.
+</td></tr>
+</table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> a boolean indicating whether the URI has been changed
+</dd></dl>
+</p></div></div><a class="anchor" name="filteredUri"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"><a href="../kdecore/KUrl.html">KUrl</a> filteredUri</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype"><a href="../kdecore/KUrl.html">KUrl</a>&nbsp;</td>
+<td class="paramname"><em>uri</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QStringList&nbsp;</td>
+<td class="paramname"><em>filters=QStringList()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Return a filtered string representation of a URI.
+</p>
+<p>
+The given URL is filtered based on the specified list of filters.
+If the list is empty all available filters would be used.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>uri</em>&nbsp;</td><td> the URI to filter.
+
+<tr><td></td><td valign="top"><em>filters</em>&nbsp;</td><td> specify the list of filters to be used.
+</td></tr>
+</table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> the filtered URI or null if it cannot be filtered
+</dd></dl>
+</p></div></div><a class="anchor" name="filteredUri"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QString filteredUri</td>
+<td>(</td>
+<td class="paramtype">&nbsp;<em>self</em>, </td>
+<td class="paramname"></td>
+</tr><tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>uri</em>, </td>
+</tr>
+<tr>
+<td class="memname"></td>
+<td></td>
+<td class="paramtype">QStringList&nbsp;</td>
+<td class="paramname"><em>filters=QStringList()</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Return a filtered string representation of a URI.
+</p>
+<p>
+The given URL is filtered based on the specified list of filters.
+If the list is empty all available filters would be used.
+</p>
+<p>
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>uri</em>&nbsp;</td><td> the URI to filter.
+
+<tr><td></td><td valign="top"><em>filters</em>&nbsp;</td><td> specify the list of filters to be used.
+</td></tr>
+</table></dl>
+<p> <dl class="return" compact><dt><b>Returns:</b></dt><dd> the filtered URI or null if it cannot be filtered
+</dd></dl>
+</p></div></div><a class="anchor" name="loadPlugins"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> loadPlugins</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Loads all allowed plugins.
+</p>
+<p>
+This function only loads URI filter plugins that have not been disabled.
+</p></div></div><a class="anchor" name="pluginNames"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">QStringList pluginNames</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname"><em>self</em>&nbsp;)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Return a list of the names of all loaded plugins.
+</p>
+<p>
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> a QStringList of plugin names
+</dd></dl>
+</p></div></div><hr><h2>Static Method Documentation</h2><a class="anchor" name="self"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"><a href="../kio/KUriFilter.html">KUriFilter</a> self</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname">)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Returns an instance of KUriFilter.
+</p></div></div><hr><h2>Enumeration Documentation</h2><a class="anchor" name="SearchFilterType"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tr><td class="memname">SearchFilterType</td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>This enum describes the types of search plugin filters available.
+</p>
+<p>
+<li> NormalTextFilter The plugin used to filter normal text, e.g. "some term to search". </li>
+<li> WebShortcutFilter The plugin used to filter web shortcuts, e.g. gg:KDE. </li>
+</p><dl compact><dt><b>Enumerator: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0"><tr><td valign="top"><em>NormalTextFilter</em>&nbsp;=&nbsp;0x01</td><td><tr><td valign="top"><em>WebShortcutFilter</em>&nbsp;=&nbsp;0x02</td><td></table>
+</dl>
+</div></div><p>
+</div>
+</div>
+</div>
+
+<div id="left">
+
+<div class="menu_box">
+<div class="nav_list">
+<ul>
+<li><a href="../allclasses.html">Full Index</a></li>
+</ul>
+</div>
+
+<a name="cp-menu" /><div class="menutitle"><div>
+  <h2 id="cp-menu-project">Modules</h2>
+</div></div>
+<div class="nav_list">
+<ul><li><a href="../akonadi/index.html">akonadi</a></li>
+<li><a href="../dnssd/index.html">dnssd</a></li>
+<li><a href="../kdecore/index.html">kdecore</a></li>
+<li><a href="../kdeui/index.html">kdeui</a></li>
+<li><a href="../khtml/index.html">khtml</a></li>
+<li><a href="../kio/index.html">kio</a></li>
+<li><a href="../knewstuff/index.html">knewstuff</a></li>
+<li><a href="../kparts/index.html">kparts</a></li>
+<li><a href="../kutils/index.html">kutils</a></li>
+<li><a href="../nepomuk/index.html">nepomuk</a></li>
+<li><a href="../phonon/index.html">phonon</a></li>
+<li><a href="../plasma/index.html">plasma</a></li>
+<li><a href="../polkitqt/index.html">polkitqt</a></li>
+<li><a href="../solid/index.html">solid</a></li>
+<li><a href="../soprano/index.html">soprano</a></li>
+</ul></div></div>
+
+</div>
+
+</div>
+  <div class="clearer"/>
+</div>
+
+<div id="end_body"></div>
+</div>
+<div id="footer"><div id="footer_text">
+This documentation is maintained by <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;simon&#64;simonzone&#46;com">Simon Edwards</a>.<br />
+        KDE<sup>&#174;</sup> and <a href="../images/kde_gear_black.png">the K Desktop Environment<sup>&#174;</sup> logo</a> are registered trademarks of <a href="http://ev.kde.org/" title="Homepage of the KDE non-profit Organization">KDE e.V.</a> |
+        <a href="http://www.kde.org/contact/impressum.php">Legal</a>
+    </div></div>
+</body>
+</html>

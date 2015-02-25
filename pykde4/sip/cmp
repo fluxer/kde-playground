@@ -1,0 +1,104 @@
+./akonadi/entity.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./akonadi/entity.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./akonadi/entity.sip:        if ((pobj = PyLong_FromLongLong (sipCpp->value(i))) == NULL)
+./akonadi/entity.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./akonadi/entity.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./akonadi/entity.sip:        if ((pobj = PyLong_FromLongLong (sipCpp->value(i))) == NULL)
+./phonon/objectdescription.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./phonon/objectdescription.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./phonon/objectdescription.sip:        DNSSD::RemoteService::Ptr *t = new Phonon::ObjectDescription (sipCpp->at(i));
+./phonon/abstractvideodataoutput.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./phonon/abstractaudiodataoutput.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kio/kfileitem.sip:        len = sipCpp->count();
+./kio/kfileitem.sip:        len = sipCpp->count();
+./kio/kservicegroup.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kio/kservicegroup.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kio/kservicegroup.sip:        KServiceGroup::SPtr *t = new KServiceGroup::SPtr (sipCpp->at(i));
+./solid/predicate.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./solid/powermanagement.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./soprano/pluginmanager.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./soprano/pluginmanager.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./soprano/pluginmanager.sip:        Soprano::Backend* t = const_cast<Soprano::Backend*>(sipCpp->at(i));
+./soprano/pluginmanager.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./soprano/pluginmanager.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./soprano/pluginmanager.sip:        Soprano::Parser* t = const_cast<Soprano::Parser*>(sipCpp->at(i));
+./soprano/pluginmanager.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./soprano/pluginmanager.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./soprano/pluginmanager.sip:        Soprano::Serializer* t = const_cast<Soprano::Serializer*>(sipCpp->at(i));
+./ktexteditor/movingrange.sip:    const KTextEditor::MovingCursor& cursor = sipCpp->start();
+./ktexteditor/movingrange.sip:    const KTextEditor::MovingCursor& cursor = sipCpp->end();
+./ktexteditor/markinterface.sip:    QHash<int, KTextEditor::Mark*>::const_iterator i = sipCpp->constBegin();
+./ktexteditor/markinterface.sip:    while (i != sipCpp->constEnd())
+./plasma/packagestructure.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./plasma/packagestructure.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./plasma/packagestructure.sip:        if ((pobj = sipBuildResult(&iserr,"s",sipCpp->value(i))) == NULL)
+./kdeui/kxmlguibuilder.sip:    res = sipSelfWasArg ? sipCpp->KXMLGUIBuilder::createContainer (a0, a1, *a2, containerAction) : sipCpp->createContainer (a0, a1, *a2, containerAction);
+./kdeui/kstandardaction.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdeui/kstandardaction.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kdeui/kstandardaction.sip:        if ((pobj = PyLong_FromLong ((long)sipCpp->value(i))) == NULL) {
+./kdeui/kstandardaction.sip:        if ((pobj = PyInt_FromLong ((long)sipCpp->value(i))) == NULL) {
+./kdeui/kcompletion.sip:    QMap<KCompletionBase::KeyBindingType, KShortcut>::const_iterator i = sipCpp->constBegin();
+./kdeui/kcompletion.sip:    while (i != sipCpp->constEnd())
+./kdeui/kwindowsystem.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdeui/kwindowsystem.sip:    for (int i = 0; i < sipCpp->size(); ++i) {
+./kdeui/kwindowsystem.sip:        if ((pobj = PyLong_FromLong ((long)sipCpp->value(i))) == NULL) {
+./kdeui/kwindowsystem.sip:        if ((pobj = PyInt_FromLong ((long)sipCpp->value(i))) == NULL) {
+./kdeui/kwidgetitemdelegate.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdeui/kwidgetitemdelegate.sip:    for (int i = 0; i < sipCpp->size(); ++i) {
+./kdeui/kwidgetitemdelegate.sip:        if ((pobj = PyLong_FromLong ((long)sipCpp->value(i))) == NULL) {
+./kdeui/kwidgetitemdelegate.sip:        if ((pobj = PyInt_FromLong ((long)sipCpp->value(i))) == NULL) {
+./dnssd/remoteservice.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./dnssd/remoteservice.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./dnssd/remoteservice.sip:        DNSSD::RemoteService::Ptr *t = new DNSSD::RemoteService::Ptr (sipCpp->at(i));
+./kdecore/ksycocaentry.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdecore/ksycocaentry.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kdecore/ksycocaentry.sip:        KSycocaEntry::Ptr *t = new KSycocaEntry::Ptr (sipCpp->at(i));
+./kdecore/typedefs.sip:    QMap<TYPE1, TYPE2>::const_iterator i = sipCpp->constBegin();
+./kdecore/typedefs.sip:    while (i != sipCpp->constEnd())
+./kdecore/typedefs.sip:    QMap<TYPE1, int>::const_iterator i = sipCpp->constBegin();
+./kdecore/typedefs.sip:    while (i != sipCpp->constEnd())
+./kdecore/typedefs.sip:    QHash<TYPE1, TYPE2>::const_iterator i = sipCpp->constBegin();
+./kdecore/typedefs.sip:    while (i != sipCpp->constEnd())
+./kdecore/typedefs.sip:    QHash<TYPE1, TYPE2*>::const_iterator i = sipCpp->constBegin();
+./kdecore/typedefs.sip:    while (i != sipCpp->constEnd())
+./kdecore/typedefs.sip:    TYPE1 *t1 = new TYPE1(sipCpp->first);
+./kdecore/typedefs.sip:    TYPE2 *t2 = new TYPE2(sipCpp->second);
+./kdecore/typedefs.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdecore/typedefs.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kdecore/typedefs.sip:        TYPE *t = (TYPE *)(sipCpp->at(i));
+./kdecore/typedefs.sip:    QHash<int, int>::const_iterator i = sipCpp->constBegin();
+./kdecore/typedefs.sip:    while (i != sipCpp->constEnd())
+./kdecore/typedefs.sip:    QHash<TYPE1, bool>::const_iterator i = sipCpp->constBegin();
+./kdecore/typedefs.sip:    while (i != sipCpp->constEnd())
+./kdecore/typedefs.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdecore/typedefs.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kdecore/typedefs.sip:        int t = (sipCpp->at(i));
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemBool (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemInt (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemUInt (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemLongLong (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemLongLong (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemULongLong (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemULongLong (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kcoreconfigskeleton.sip:    sipRes = new PyItemDouble (sipCpp->currentGroup(), a3->isNull() ? *a0 : *a3, a1, a2);
+./kdecore/kcoreconfigskeleton.sip:    sipCpp->addItem(sipRes, *a0);
+./kdecore/kservicetype.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdecore/kservicetype.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kdecore/kservicetype.sip:        KServiceType::Ptr *t = new KServiceType::Ptr (sipCpp->at(i));
+./kdecore/kservicetype.sip:    QMap<QString, QVariant::Type>::const_iterator i = sipCpp->constBegin();
+./kdecore/kservicetype.sip:    while (i != sipCpp->constEnd())
+./kdecore/kurl.sip:        sipRes = bool(sipCpp->contains(*a0));
+./kdecore/kmimetype.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdecore/kmimetype.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kdecore/kmimetype.sip:        KMimeType::Ptr *t = new KMimeType::Ptr (sipCpp->at(i));
+./kdecore/kservice.sip:    if ((l = PyList_New(sipCpp->size())) == NULL)
+./kdecore/kservice.sip:    for (int i = 0; i < sipCpp->size(); ++i)
+./kdecore/kservice.sip:        KService::Ptr *t = new KService::Ptr (sipCpp->at(i));
+./kparts/browserextension.sip:    sipCpp->KParts::BrowserExtension::createNewWindow (*a0, *a1, *a2, *a3, &a4);

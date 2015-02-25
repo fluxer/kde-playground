@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+
+<head>
+  <title>KCrash</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <link rel="stylesheet" type="text/css" href="../common/doxygen.css" />
+  <link rel="stylesheet" media="screen" type="text/css" title="KDE Colors" href="../common/kde.css" />
+</head>
+<body>
+<div id="container">
+<div id="header">
+  <div id="header_top">
+    <div>
+      <div>
+        <img alt ="" src="../common/top-kde.jpg"/>
+        KDE 4.9 PyKDE API Reference
+      </div>
+    </div>
+  </div>
+  <div id="header_bottom">
+    <div id="location">
+      <ul>
+        <li>KDE's Python API</li>
+      </ul>
+    </div>
+
+    <div id="menu">
+      <ul>
+        <li><a href="../modules.html">Overview</a></li>
+<li><a href="http://techbase.kde.org/Development/Languages/Python">PyKDE Home</a></li>
+<li><a href="http://kde.org/family/">Sitemap</a></li>
+<li><a href="http://kde.org/contact/">Contact Us</a></li>
+</ul>
+    </div>
+  </div>
+</div>
+
+<div id="body_wrapper">
+<div id="body">
+<div id="right">
+<div class="content">
+<div id="main">
+<div class="clearer">&nbsp;</div>
+
+<h1>KCrash Namespace Reference</h1>
+<code>from PyKDE4.kdeui.KCrash import *</code>
+<p>
+<h2>Detailed Description</h2>
+<p>This namespace contains functions to handle crashes.
+It allows you to set a crash handler function that will be called
+when your application crashes and also provides a default crash
+handler that implements the following functionality:
+<li> Launches the KDE crash display application (DrKonqi) to let </li>
+the user report the bug and/or debug it.
+<li> Calls an emergency save function that you can set with </li>
+setEmergencySaveFunction() to attempt to save the application's data.
+<li> Autorestarts your application. </li>
+</p>
+<p>
+<dl class="note" compact><dt><b>Note:</b></dt><dd> All the above features are optional and you need to enable them
+explicitly. By default, the defaultCrashHandler() will not do anything.
+However, if you are using KApplication, it will by default enable launching
+DrKonqi on crashes, unless the --nocrashhandler argument was passed on
+the command line or the environment variable KDE_DEBUG is set to any value.
+</dd></dl>
+</p>
+<table border="0" cellpadding="0" cellspacing="0"><tr><td colspan="2"><br><h2>Enumerations</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a class="el" href="#CrashFlag">CrashFlag</a>&nbsp;</td><td class="memItemRight" valign="bottom">{&nbsp;KeepFDs, SaferDialog, AlwaysDirectly, AutoRestart&nbsp;}</td></tr>
+<tr><td colspan="2"><br><h2>Functions</h2></td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a href="../kdeui/KCrash.html">KCrash.HandlerType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#crashHandler">crashHandler</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#defaultCrashHandler">defaultCrashHandler</a> (int signal)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top"><a href="../kdeui/KCrash.html">KCrash.HandlerType</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#emergencySaveFunction">emergencySaveFunction</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#isDrKonqiEnabled">isDrKonqiEnabled</a> ()</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setApplicationName">setApplicationName</a> (QString name)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setApplicationPath">setApplicationPath</a> (QString path)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setCrashHandler">setCrashHandler</a> (<a href="../kdeui/KCrash.html">KCrash.HandlerType</a> handler=defaultCrashHandler)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setDrKonqiEnabled">setDrKonqiEnabled</a> (bool enabled)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setEmergencySaveFunction">setEmergencySaveFunction</a> (<a href="../kdeui/KCrash.html">KCrash.HandlerType</a> saveFunction=0)</td></tr>
+<tr><td class="memItemLeft" nowrap align="right" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="#setFlags">setFlags</a> (<a href="../kdeui/KCrash.html">KCrash.CrashFlags</a> flags)</td></tr>
+</table>
+<hr><h2>Enumeration Documentation</h2><a class="anchor" name="CrashFlag"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tr><td class="memname">CrashFlag</td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Options to determine how the default crash handler should behave.
+</p><dl compact><dt><b>Enumerator: </b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0"><tr><td valign="top"><em>KeepFDs</em>&nbsp;=&nbsp;1</td><td><tr><td valign="top"><em>SaferDialog</em>&nbsp;=&nbsp;2</td><td><tr><td valign="top"><em>AlwaysDirectly</em>&nbsp;=&nbsp;4</td><td><tr><td valign="top"><em>AutoRestart</em>&nbsp;=&nbsp;8</td><td></table>
+</dl>
+</div></div><p><hr><h2>Function Documentation</h2><a class="anchor" name="crashHandler"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"><a href="../kdeui/KCrash.html">KCrash.HandlerType</a> crashHandler</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname">)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Returns the installed crash handler.
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> the crash handler
+</dd></dl>
+</p></div></div><a class="anchor" name="defaultCrashHandler"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> defaultCrashHandler</td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>signal</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>The default crash handler.
+Do not call this function directly. Instead, use
+setCrashHandler() to set it as your application's crash handler.
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>signal</em>&nbsp;</td><td> the signal number
+</td></tr> </table></dl>
+<p> <dl class="note" compact><dt><b>Note:</b></dt><dd> If you implement your own crash handler, you will have to
+call this function from your implementation if you want to use the
+features of this namespace.
+</dd></dl>
+</p></div></div><a class="anchor" name="emergencySaveFunction"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"><a href="../kdeui/KCrash.html">KCrash.HandlerType</a> emergencySaveFunction</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname">)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Returns the currently set emergency save function.
+<dl class="return" compact><dt><b>Returns:</b></dt><dd> the emergency save function
+</dd></dl>
+</p></div></div><a class="anchor" name="isDrKonqiEnabled"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname">bool isDrKonqiEnabled</td>
+<td>(</td>
+<td class="paramtype">&nbsp;</td>
+<td class="paramname">)</td>
+<td width="100%"> </td>
+</tr>
+</table>
+</div>
+<div class="memdoc"><p>Returns true if DrKonqi is set to be launched from the crash handler or false otherwise.
+<dl class="since" compact><dt><b>Since:</b></dt><dd> 4.5
+</dd></dl>
+</p></div></div><a class="anchor" name="setApplicationName"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setApplicationName</td>
+<td>(</td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>name</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Sets the application <b>name</b> which should be passed to
+DrKonqi, our nice crash display application.
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>name</em>&nbsp;</td><td> the name of the application, as shown in DrKonqi
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="setApplicationPath"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setApplicationPath</td>
+<td>(</td>
+<td class="paramtype">QString&nbsp;</td>
+<td class="paramname"><em>path</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Sets the application <b>path</b> which should be passed to
+DrKonqi, our nice crash display application.
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>path</em>&nbsp;</td><td> the application path
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="setCrashHandler"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setCrashHandler</td>
+<td>(</td>
+<td class="paramtype"><a href="../kdeui/KCrash.html">KCrash.HandlerType</a>&nbsp;</td>
+<td class="paramname"><em>handler=defaultCrashHandler</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Install a function to be called when a crash occurs.
+A crash occurs when one of the following signals is
+caught: SIGSEGV, SIGBUS, SIGFPE, SIGILL, SIGABRT.
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>handler</em>&nbsp;</td><td> this can be one of:
+</td></tr> </table></dl>
+<p> <li> null, in which case signal catching is disabled </li>
+(by setting the signal handler for the crash signals to SIG_DFL)
+<li> a user defined function in the form: </li>
+static (if in a class) void myCrashHandler(int);
+<li> if handler is omitted, the default crash handler is installed </li>
+<dl class="note" compact><dt><b>Note:</b></dt><dd> If you use setDrKonqiEnabled(true), setEmergencySaveFunction(myfunc)
+or setFlags(AutoRestart), you do not need to call this function
+explicitly. The default crash handler is automatically installed by
+those functions if needed. However, if you set a custom crash handler,
+those functions will not change it.
+</dd></dl>
+</p></div></div><a class="anchor" name="setDrKonqiEnabled"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setDrKonqiEnabled</td>
+<td>(</td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>enabled</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Enables or disables launching DrKonqi from the crash handler.
+By default, launching DrKonqi is disabled. However, KApplication
+will enable it in its constructor, so you don't need to call this
+function if you are using KApplication.
+<dl class="note" compact><dt><b>Note:</b></dt><dd> It is the crash handler's responsibility to launch DrKonqi.
+Therefore, if no crash handler is set, this method also installs
+the default crash handler to ensure that DrKonqi will be launched.
+</dd></dl> <dl class="since" compact><dt><b>Since:</b></dt><dd> 4.5
+</dd></dl>
+</p></div></div><a class="anchor" name="setEmergencySaveFunction"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setEmergencySaveFunction</td>
+<td>(</td>
+<td class="paramtype"><a href="../kdeui/KCrash.html">KCrash.HandlerType</a>&nbsp;</td>
+<td class="paramname"><em>saveFunction=0</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Installs a function which should try to save the application's data.
+<dl class="note" compact><dt><b>Note:</b></dt><dd> It is the crash handler's responsibility to call this function.
+Therefore, if no crash handler is set, the default crash handler
+is installed to ensure the save function will be called.
+</dd></dl> </p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>saveFunction</em>&nbsp;</td><td> the handler to install
+</td></tr>
+</table></dl>
+<p>
+</p></div></div><a class="anchor" name="setFlags"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="memname"><tr>
+<td class="memname"> setFlags</td>
+<td>(</td>
+<td class="paramtype"><a href="../kdeui/KCrash.html">KCrash.CrashFlags</a>&nbsp;</td>
+<td class="paramname"><em>flags</em></td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td>
+<td></td>
+<td width="100%"> </td>
+</tr></table>
+</div>
+<div class="memdoc"><p>Set options to determine how the default crash handler should behave.
+</p><dl compact><dt><b>Parameters:</b></dt><dd>
+<table border="0" cellspacing="2" cellpadding="0">
+<tr><td></td><td valign="top"><em>flags</em>&nbsp;</td><td> ORed together CrashFlags
+</td></tr>
+</table></dl>
+<p>
+</p></div></div>
+</div>
+</div>
+</div>
+
+<div id="left">
+
+<div class="menu_box">
+<div class="nav_list">
+<ul>
+<li><a href="../allclasses.html">Full Index</a></li>
+</ul>
+</div>
+
+<a name="cp-menu" /><div class="menutitle"><div>
+  <h2 id="cp-menu-project">Modules</h2>
+</div></div>
+<div class="nav_list">
+<ul><li><a href="../akonadi/index.html">akonadi</a></li>
+<li><a href="../dnssd/index.html">dnssd</a></li>
+<li><a href="../kdecore/index.html">kdecore</a></li>
+<li><a href="../kdeui/index.html">kdeui</a></li>
+<li><a href="../khtml/index.html">khtml</a></li>
+<li><a href="../kio/index.html">kio</a></li>
+<li><a href="../knewstuff/index.html">knewstuff</a></li>
+<li><a href="../kparts/index.html">kparts</a></li>
+<li><a href="../kutils/index.html">kutils</a></li>
+<li><a href="../nepomuk/index.html">nepomuk</a></li>
+<li><a href="../phonon/index.html">phonon</a></li>
+<li><a href="../plasma/index.html">plasma</a></li>
+<li><a href="../polkitqt/index.html">polkitqt</a></li>
+<li><a href="../solid/index.html">solid</a></li>
+<li><a href="../soprano/index.html">soprano</a></li>
+</ul></div></div>
+
+</div>
+
+</div>
+  <div class="clearer"/>
+</div>
+
+<div id="end_body"></div>
+</div>
+<div id="footer"><div id="footer_text">
+This documentation is maintained by <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;simon&#64;simonzone&#46;com">Simon Edwards</a>.<br />
+        KDE<sup>&#174;</sup> and <a href="../images/kde_gear_black.png">the K Desktop Environment<sup>&#174;</sup> logo</a> are registered trademarks of <a href="http://ev.kde.org/" title="Homepage of the KDE non-profit Organization">KDE e.V.</a> |
+        <a href="http://www.kde.org/contact/impressum.php">Legal</a>
+    </div></div>
+</body>
+</html>
