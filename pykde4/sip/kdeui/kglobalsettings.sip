@@ -43,7 +43,6 @@ public:
     static KGlobalSettings::TearOffHandle  insertTearOffHandle ();
     static bool             changeCursorOverIcon ();
     static int              autoSelectDelay ();
-    static int              contextMenuKey ();
     static bool             showContextMenusOnPress ();
 
     enum Completion

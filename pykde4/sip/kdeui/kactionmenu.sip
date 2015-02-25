@@ -31,13 +31,11 @@ public:
     explicit                KActionMenu (QObject* parent /TransferThis/);
                             KActionMenu (const QString& text, QObject* parent /TransferThis/);
                             KActionMenu (const KIcon& icon, const QString& text, QObject* parent /TransferThis/);
-    void                    remove (KAction*);
     void                    addAction (QAction* action);
     QAction*                addSeparator ();
     void                    insertAction (QAction* before, QAction* action);
     QAction*                insertSeparator (QAction* before);
     void                    removeAction (QAction* action);
-    KMenu*                  popupMenu ();
     KMenu*                  menu ();
     void                    setMenu (KMenu* menu);
     bool                    delayed () const;

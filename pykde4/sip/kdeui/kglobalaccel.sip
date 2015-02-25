@@ -47,13 +47,6 @@ public:
     static QList<KGlobalShortcutInfo>  getGlobalShortcutsByKey (const QKeySequence& seq);
     static bool             isGlobalShortcutAvailable (const QKeySequence& seq, const QString& component = QString());
     static bool             promptStealShortcutSystemwide (QWidget* parent /Transfer/, const QList<KGlobalShortcutInfo>& shortcuts, const QKeySequence& seq);
-    bool                    isEnabled () const;
-    void                    setEnabled (bool enabled);
-    void                    overrideMainComponentData (const KComponentData& componentData);
-    QList<QStringList>      allMainComponents ();
-    QList<QStringList>      allActionsForComponent (const QStringList& actionId);
-    static QStringList      findActionNameSystemwide (const QKeySequence& seq);
-    static bool             promptStealShortcutSystemwide (QWidget* parent /Transfer/, const QStringList& actionIdentifier, const QKeySequence& seq);
 
 private:
                             KGlobalAccel ();

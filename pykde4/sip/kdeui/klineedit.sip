@@ -33,8 +33,6 @@ public:
     void                    setUrl (const KUrl& url);
     virtual void            setCompletionMode (KGlobalSettings::Completion mode);
     void                    setCompletionModeDisabled (KGlobalSettings::Completion mode, bool disable = 1);
-    virtual void            setContextMenuEnabled (bool showMenu);
-    bool                    isContextMenuEnabled () const;
     void                    setUrlDropsEnabled (bool enable);
     bool                    urlDropsEnabled () const;
     void                    setTrapReturnKey (bool trap);

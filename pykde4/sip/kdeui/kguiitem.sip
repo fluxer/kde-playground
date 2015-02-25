@@ -41,7 +41,6 @@ public:
     QString                 whatsThis () const;
     bool                    isEnabled () const;
     bool                    hasIcon () const;
-    bool                    hasIconSet () const;
     void                    setText (const QString& text);
     void                    setIcon (const KIcon& iconset);
     void                    setIconName (const QString& iconName);

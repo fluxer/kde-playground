@@ -129,7 +129,6 @@ public:
     void                    saveState (QSessionManager& sm);
     bool                    sessionSaving () const;
     void                    setTopWidget (QWidget* topWidget);
-    static QString          tempSaveName (const QString& pFilename);
     static QString          checkRecoverFile (const QString& pFilename, bool& bRecover /Out/);
 //ig    static Display*         getDisplay ();
     void                    installX11EventFilter (QWidget* filter);

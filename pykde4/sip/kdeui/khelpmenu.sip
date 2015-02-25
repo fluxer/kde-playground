@@ -34,7 +34,6 @@ public:
 
     enum MenuId
     {
-        menuHelpContents,
         menuWhatsThis,
         menuAboutApp,
         menuAboutKDE,

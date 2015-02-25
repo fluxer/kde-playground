@@ -33,11 +33,8 @@ public:
     KMainWindow*            mainWindow () const;
     void                    setIconDimensions (int size);
     int                     iconSizeDefault () const;
-    void                    setContextMenuEnabled (bool enable = 1);
-    bool                    contextMenuEnabled () const;
     void                    saveSettings (KConfigGroup& cg);
     void                    applySettings (const KConfigGroup& cg, bool forceGlobal = 0);
-    void                    setXMLGUIClient (KXMLGUIClient* client);
     void                    loadState (const QDomElement& element);
     void                    saveState (QDomElement& element) const;
     bool                    eventFilter (QObject* watched, QEvent* event);

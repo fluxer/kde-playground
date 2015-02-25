@@ -41,7 +41,6 @@
 %Include kactionselector.sip
 %Include kanimatedbutton.sip
 %Include kapplication.sip
-%Include karrowbutton.sip
 %Include kassistantdialog.sip
 %Include kbreadcrumbselectionmodel.sip
 %Include kbugreport.sip
@@ -83,7 +82,6 @@
 %Include kdialogbuttonbox.sip
 %Include kdialogjobuidelegate.sip
 %Include kdualaction.sip
-%Include keditlistbox.sip
 %Include keditlistwidget.sip
 %Include kedittoolbar.sip
 %Include kextendableitemdelegate.sip

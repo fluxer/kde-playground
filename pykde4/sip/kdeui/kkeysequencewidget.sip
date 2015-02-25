@@ -58,7 +58,6 @@ public:
     bool                    isKeySequenceAvailable (const QKeySequence& seq) const;
     QKeySequence            keySequence () const;
     void                    setCheckActionCollections (const QList<KActionCollection*>& actionCollections);
-    void                    setCheckActionList (const QList<QAction*>& checkList);
     void                    setComponentName (const QString& componentName);
 
 signals:

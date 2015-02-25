@@ -30,10 +30,6 @@ class KComboBox : QComboBox, KCompletionBase
 public:
     explicit                KComboBox (QWidget* parent /TransferThis/ = 0);
     explicit                KComboBox (bool rw, QWidget* parent /TransferThis/ = 0);
-    void                    insertURL (const KUrl& url, int index = -1);
-    void                    insertURL (const QPixmap& pixmap, const KUrl& url, int index = -1);
-    void                    changeURL (const KUrl& url, int index);
-    void                    changeURL (const QPixmap& pixmap, const KUrl& url, int index);
     void                    setEditUrl (const KUrl& url);
     void                    addUrl (const KUrl& url);
     void                    addUrl (const QIcon& icon, const KUrl& url);
@@ -44,7 +40,6 @@ public:
     int                     cursorPosition () const;
     virtual void            setAutoCompletion (bool autocomplete);
     bool                    autoCompletion () const;
-    virtual void            setContextMenuEnabled (bool showMenu);
     void                    setUrlDropsEnabled (bool enable);
     bool                    urlDropsEnabled () const;
     bool                    contains (const QString& text) const;

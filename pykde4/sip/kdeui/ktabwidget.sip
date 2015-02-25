@@ -32,11 +32,6 @@ public:
     explicit                KTabWidget (QWidget* parent /TransferThis/ = 0, Qt::WFlags flags = 0);
     void                    setTabTextColor (int index, const QColor& color);
     QColor                  tabTextColor (int index) const;
-    bool                    isTabReorderingEnabled () const;
-    bool                    hoverCloseButton () const;
-    bool                    hoverCloseButtonDelayed () const;
-    bool                    isCloseButtonEnabled () const;
-    bool                    tabCloseActivatePrevious () const;
     bool                    automaticResizeTabs () const;
     void                    setTabBarHidden (bool hide);
     bool                    isTabBarHidden () const;
@@ -45,11 +40,6 @@ public:
     virtual void            moveTab (int, int);
     virtual void            removePage (QWidget* w);
     virtual void            removeTab (int index);
-    void                    setTabReorderingEnabled (bool enable);
-    void                    setHoverCloseButton (bool enable);
-    void                    setHoverCloseButtonDelayed (bool delayed);
-    void                    setCloseButtonEnabled (bool);
-    void                    setTabCloseActivatePrevious (bool previous);
     void                    setAutomaticResizeTabs (bool enable);
 
 signals:

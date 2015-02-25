@@ -29,7 +29,6 @@ class KToolBarPopupAction : KAction
 
 public:
                             KToolBarPopupAction (const KIcon& icon, const QString& text, QObject* parent /TransferThis/);
-    KMenu*                  popupMenu () const;
     bool                    delayed () const;
     void                    setDelayed (bool delayed);
     bool                    stickyMenu () const;

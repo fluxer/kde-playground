@@ -318,7 +318,6 @@ public:
         WM2FullPlacement,
         WM2FullscreenMonitors,
         WM2FrameOverlap,
-        WM2Activities,
         WM2BlockCompositing,
         WM2KDEShadow
     };

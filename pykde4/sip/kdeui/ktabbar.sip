@@ -29,18 +29,7 @@ class KTabBar : QTabBar
 
 public:
     explicit                KTabBar (QWidget* parent /TransferThis/ = 0);
-    void                    setTabReorderingEnabled (bool enable);
-    bool                    isTabReorderingEnabled () const;
-    void                    setHoverCloseButton (bool);
-    bool                    hoverCloseButton () const;
-    void                    setHoverCloseButtonDelayed (bool);
-    bool                    hoverCloseButtonDelayed () const;
 
-    void                    setCloseButtonEnabled (bool);
-    bool                    isCloseButtonEnabled () const;
-
-    void                    setTabCloseActivatePrevious (bool);
-    bool                    tabCloseActivatePrevious () const;
     int                     selectTab (const QPoint& position) const;
 
 signals:
@@ -71,8 +60,6 @@ protected:
     virtual void            leaveEvent (QEvent* event);
     virtual QSize           tabSizeHint (int index) const;
 
-    void                    closeButtonClicked ();
-    void                    enableCloseButton ();
     virtual void            activateDragSwitchTab ();
     virtual void            tabLayoutChange ();
 public:

@@ -461,8 +461,6 @@ signals:
         if (dynamic_cast<KHueSaturationSelector*>(sipCpp))
             sipType = sipType_KHueSaturationSelector;
         }
-    else if (dynamic_cast<KArrowButton*>(sipCpp))
-        sipType = sipType_KArrowButton;
     else if (dynamic_cast<KColorButton*>(sipCpp))
         sipType = sipType_KColorButton;
     else if (dynamic_cast<KMultiTabBarButton*>(sipCpp))
@@ -601,8 +599,6 @@ signals:
         sipType = sipType_KUrlLabel;
     else if (dynamic_cast<KButtonGroup*>(sipCpp))
         sipType = sipType_KButtonGroup;
-    else if (dynamic_cast<KEditListBox*>(sipCpp))
-        sipType = sipType_KEditListBox;
     else if (dynamic_cast<KLineEdit*>(sipCpp))
         {
         sipType = sipType_KLineEdit;

@@ -29,7 +29,7 @@ class KNumInput : QWidget
 
 public:
     explicit                KNumInput (QWidget* parent /TransferThis/ = 0);
-                            KNumInput (QWidget* parent /TransferThis/, KNumInput* below);
+
     virtual void            setLabel (const QString& label, Qt::Alignment a = Qt::AlignLeft|Qt::AlignTop);
     QString                 label () const;
     bool                    showSlider () const;
@@ -61,15 +61,12 @@ class KIntNumInput : KNumInput
 public:
     explicit                KIntNumInput (QWidget* parent /TransferThis/ = 0);
     explicit                KIntNumInput (int value, QWidget* parent /TransferThis/ = 0, int base = 10);
-                            KIntNumInput (KNumInput* below, int value, QWidget* parent /TransferThis/, int base = 10);
     int                     value () const;
     double                  relativeValue () const;
     int                     referencePoint () const;
     QString                 suffix () const;
     QString                 prefix () const;
     QString                 specialValueText () const;
-    void                    setRange (int min, int max, int singleStep = 1);
-    void                    setRange (int min, int max, int singleStep, bool slider);
     void                    setSliderEnabled (bool enabled = 1);
     void                    setMinimum (int min);
     int                     minimum () const;
@@ -117,7 +114,6 @@ class KDoubleNumInput : KNumInput
 public:
     explicit                KDoubleNumInput (QWidget* parent /TransferThis/ = 0);
                             KDoubleNumInput (double lower, double upper, double value, QWidget* parent /TransferThis/ = 0, double singleStep = 0.01, int precision = 2);
-                            KDoubleNumInput (KNumInput* below, double lower, double upper, double value, QWidget* parent /TransferThis/ = 0, double singleStep = 0.02, int precision = 2);
     double                  value () const;
     QString                 suffix () const;
     QString                 prefix () const;
@@ -132,7 +128,6 @@ public:
     double                  singleStep () const;
     void                    setSingleStep (double singleStep);
     void                    setDecimals (int decimals);
-    void                    setPrecision (int precision);
     double                  referencePoint () const;
     double                  relativeValue () const;
     void                    setSpecialValueText (const QString& text);

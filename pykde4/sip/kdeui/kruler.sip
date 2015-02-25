@@ -42,10 +42,6 @@ public:
     explicit                KRuler (QWidget* parent /TransferThis/ = 0);
     explicit                KRuler (Qt::Orientation orient, QWidget* parent /TransferThis/ = 0, Qt::WFlags f = 0);
                             KRuler (Qt::Orientation orient, int widgetWidth, QWidget* parent /TransferThis/ = 0, Qt::WFlags f = 0);
-    void                    setMinValue (int);
-    int                     minValue () const;
-    void                    setMaxValue (int);
-    int                     maxValue () const;
     void                    setTinyMarkDistance (int);
     int                     tinyMarkDistance () const;
     void                    setLittleMarkDistance (int);

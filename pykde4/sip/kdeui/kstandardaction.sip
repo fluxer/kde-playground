@@ -98,7 +98,6 @@ enum StandardAction
 
 KAction*                create (KStandardAction::StandardAction id, SIP_RXOBJ_CON, SIP_SLOT_CON (), QObject* parent /Transfer/);
 const char*             name (KStandardAction::StandardAction id);
-const char*             stdName (KStandardAction::StandardAction act_enum);
 QStringList             stdNames ();
 QList<KStandardAction::StandardAction>  actionIds ();
 KStandardShortcut::StandardShortcut  shortcutForActionId (KStandardAction::StandardAction id);

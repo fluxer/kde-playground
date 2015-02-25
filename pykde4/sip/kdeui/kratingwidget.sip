@@ -214,13 +214,11 @@ public:
     void                    setMaxRating (int max);
 //ig    void                    setMaxRating (unsigned int max);
     void                    setHalfStepsEnabled (bool enabled);
-    void                    setOnlyPaintFullSteps (bool);
     void                    setSpacing (int);
     void                    setAlignment (Qt::Alignment align);
     void                    setLayoutDirection (Qt::LayoutDirection direction);
     void                    setIcon (const QIcon& icon);
     void                    setCustomPixmap (const QPixmap& pixmap);
-    void                    setPixmap (const QPixmap&);
     void                    setPixmapSize (int size);
 
 protected:
@@ -473,8 +471,6 @@ protected:
         if (dynamic_cast<KHueSaturationSelector*>(sipCpp))
             sipType = sipType_KHueSaturationSelector;
         }
-    else if (dynamic_cast<KArrowButton*>(sipCpp))
-        sipType = sipType_KArrowButton;
     else if (dynamic_cast<KColorButton*>(sipCpp))
         sipType = sipType_KColorButton;
     else if (dynamic_cast<KMultiTabBarButton*>(sipCpp))
@@ -613,8 +609,6 @@ protected:
         sipType = sipType_KUrlLabel;
     else if (dynamic_cast<KButtonGroup*>(sipCpp))
         sipType = sipType_KButtonGroup;
-    else if (dynamic_cast<KEditListBox*>(sipCpp))
-        sipType = sipType_KEditListBox;
     else if (dynamic_cast<KLineEdit*>(sipCpp))
         {
         sipType = sipType_KLineEdit;

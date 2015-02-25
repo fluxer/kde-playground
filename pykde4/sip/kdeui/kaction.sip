@@ -57,8 +57,6 @@ public:
     void                    setShortcutConfigurable (bool configurable);
     const KShortcut&        globalShortcut (KAction::ShortcutTypes type = KAction::ActiveShortcut) const;
     void                    setGlobalShortcut (const KShortcut& shortcut, KAction::ShortcutTypes type = KAction::ShortcutTypes(KAction::ActiveShortcut|KAction::DefaultShortcut), KAction::GlobalShortcutLoading loading = KAction::Autoloading);
-    bool                    globalShortcutAllowed () const;
-    void                    setGlobalShortcutAllowed (bool allowed, KAction::GlobalShortcutLoading loading = KAction::Autoloading);
     bool                    isGlobalShortcutEnabled () const;
     void                    forgetGlobalShortcut ();
     KShapeGesture           shapeGesture (KAction::ShortcutTypes type = KAction::ActiveShortcut) const;

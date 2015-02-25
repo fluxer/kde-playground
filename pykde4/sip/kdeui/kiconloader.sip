@@ -129,15 +129,10 @@ public:
 // KIconLoader
 
 QPixmap                 DesktopIcon (const QString& name, int size = 0, int state = KIconLoader::DefaultState, const QStringList& overlays = QStringList());
-QIcon                   DesktopIconSet (const QString& name, int size = 0);
 QPixmap                 BarIcon (const QString& name, int size = 0, int state = KIconLoader::DefaultState, const QStringList& overlays = QStringList());
-QIcon                   BarIconSet (const QString& name, int size = 0);
 QPixmap                 SmallIcon (const QString& name, int size = 0, int state = KIconLoader::DefaultState, const QStringList& overlays = QStringList());
-QIcon                   SmallIconSet (const QString& name, int size = 0);
 QPixmap                 MainBarIcon (const QString& name, int size = 0, int state = KIconLoader::DefaultState, const QStringList& overlays = QStringList());
-QIcon                   MainBarIconSet (const QString& name, int size = 0);
 QPixmap                 UserIcon (const QString& name, int state = KIconLoader::DefaultState, const QStringList& overlays = QStringList());
-QIcon                   UserIconSet (const QString& name);
 //ig int                     IconSize (KIconLoader::Group group);
 %ModuleHeaderCode
 #include <kiconloader.h>
