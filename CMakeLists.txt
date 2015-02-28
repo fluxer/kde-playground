@@ -11,9 +11,6 @@ include(GenerateExportHeader)
 # shared libs
 set (LIBRARY_TYPE SHARED)
 
-# enforce build of tests
-set (KDE4_BUILD_TESTS "ON" CACHE "BOOL" "Enable building of tests" FORCE)
-
 # KDE/QT definitions we want
 add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 add_definitions (-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS -DKTEXTEDITOR_NO_DEPRECATED)
@@ -23,3 +20,5 @@ include_directories (${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${K
 
 macro_optional_add_subdirectory (kdbg)
 macro_optional_add_subdirectory (pykde4)
+macro_optional_add_subdirectory (libkdcraw)
+macro_optional_add_subdirectory (libkexiv2)
