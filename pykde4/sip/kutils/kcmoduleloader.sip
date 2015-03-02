@@ -37,7 +37,6 @@ enum ErrorReporting
 KCModule*               loadModule (const KCModuleInfo& module, KCModuleLoader::ErrorReporting report, QWidget* parent /Transfer/ = 0, const QStringList& args = QStringList());
 KCModule*               loadModule (const QString& module, KCModuleLoader::ErrorReporting report, QWidget* parent /Transfer/ = 0, const QStringList& args = QStringList());
 void                    unloadModule (const KCModuleInfo& mod);
-void                    showLastLoaderError (QWidget* parent /Transfer/);
 KCModule*               reportError (KCModuleLoader::ErrorReporting report, const QString& text, const QString& details, QWidget* parent /Transfer/);
 };
 // KCModuleLoader
