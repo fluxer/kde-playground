@@ -22,12 +22,12 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QSet>
-#include <klibloader.h>
 #include <kstandarddirs.h>
 #include <kcmodule.h>
-#include <Python.h>
 #include <kcomponentdata.h>
 #include <kdebug.h>
+#include <kpluginfactory.h>
+#include <Python.h>
 
 /*
 This implements a plugin factory for running Python plugins. It also
