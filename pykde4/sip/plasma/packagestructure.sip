@@ -54,7 +54,6 @@ public:
     void                    write (KConfigBase* config) const;
     virtual bool            installPackage (const QString& archivePath, const QString& packageRoot);
     virtual bool            uninstallPackage (const QString& packageName, const QString& packageRoot);
-    virtual void            createNewWidgetBrowser (QWidget* parent /Transfer/ = 0);
     QString                 contentsPrefix () const;
     QString                 defaultPackageRoot () const;
     QString                 servicePrefix () const;

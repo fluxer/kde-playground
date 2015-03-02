@@ -88,7 +88,6 @@ public:
     void                    updateConstraints (Plasma::Constraints constraints = Plasma::AllConstraints);
     virtual Plasma::FormFactor  formFactor () const;
     virtual Plasma::Location  location () const;
-    Plasma::Context*        context () const;
     Plasma::AspectRatioMode  aspectRatioMode () const;
     void                    setAspectRatioMode (Plasma::AspectRatioMode);
     static KPluginInfo::List  listAppletInfo (const QString& category = QString(), const QString& parentApp = QString());
@@ -211,8 +210,6 @@ public:
     Plasma::ItemStatus      status () const;
     void                    setStatus (const Plasma::ItemStatus stat);
 //ig    void                    publish (Plasma::AnnouncementMethods methods, const QString& resourceName);
-    void                    unpublish ();
-    bool                    isPublished () const;
     void                    runAssociatedApplication ();
     void                    showConfigurationInterface (QWidget* widget);
     bool                    isUserConfiguring () const;

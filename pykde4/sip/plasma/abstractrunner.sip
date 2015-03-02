@@ -25,23 +25,16 @@
 #include <plasma/abstractdialogmanager.h>
 #include <plasma/abstractrunner.h>
 #include <plasma/abstracttoolbox.h>
-#include <plasma/accessappletjob.h>
-#include <plasma/accessmanager.h>
 #include <plasma/animation.h>
-#include <plasma/animationdriver.h>
 #include <plasma/animator.h>
 #include <plasma/applet.h>
 #include <plasma/scripting/appletscript.h>
-#include <plasma/authorizationmanager.h>
-#include <plasma/authorizationrule.h>
 #include <plasma/widgets/busywidget.h>
 #include <plasma/widgets/checkbox.h>
-#include <plasma/clientpinrequest.h>
 #include <plasma/widgets/combobox.h>
 #include <plasma/configloader.h>
 #include <plasma/containment.h>
 #include <plasma/containmentactions.h>
-#include <plasma/context.h>
 #include <plasma/corona.h>
 #include <plasma/datacontainer.h>
 #include <plasma/dataengine.h>
@@ -76,7 +69,6 @@
 #include <plasma/widgets/scrollwidget.h>
 #include <plasma/widgets/separator.h>
 #include <plasma/service.h>
-#include <plasma/serviceaccessjob.h>
 #include <plasma/servicejob.h>
 #include <plasma/widgets/signalplotter.h>
 #include <plasma/widgets/slider.h>
@@ -172,32 +164,16 @@ protected:
 
     if (dynamic_cast<Plasma::ConfigLoader*>(sipCpp))
         sipType = sipType_Plasma_ConfigLoader;
-    else if (dynamic_cast<Plasma::AccessAppletJob*>(sipCpp))
-        sipType = sipType_Plasma_AccessAppletJob;
-    else if (dynamic_cast<Plasma::ServiceAccessJob*>(sipCpp))
-        sipType = sipType_Plasma_ServiceAccessJob;
     else if (dynamic_cast<Plasma::ServiceJob*>(sipCpp))
         sipType = sipType_Plasma_ServiceJob;
     else if (dynamic_cast<Plasma::AbstractDialogManager*>(sipCpp))
         sipType = sipType_Plasma_AbstractDialogManager;
     else if (dynamic_cast<Plasma::AbstractRunner*>(sipCpp))
         sipType = sipType_Plasma_AbstractRunner;
-    else if (dynamic_cast<Plasma::AccessManager*>(sipCpp))
-        sipType = sipType_Plasma_AccessManager;
-    else if (dynamic_cast<Plasma::AnimationDriver*>(sipCpp))
-        sipType = sipType_Plasma_AnimationDriver;
     else if (dynamic_cast<Plasma::Animator*>(sipCpp))
         sipType = sipType_Plasma_Animator;
-    else if (dynamic_cast<Plasma::AuthorizationManager*>(sipCpp))
-        sipType = sipType_Plasma_AuthorizationManager;
-    else if (dynamic_cast<Plasma::AuthorizationRule*>(sipCpp))
-        sipType = sipType_Plasma_AuthorizationRule;
-    else if (dynamic_cast<Plasma::ClientPinRequest*>(sipCpp))
-        sipType = sipType_Plasma_ClientPinRequest;
     else if (dynamic_cast<Plasma::ContainmentActions*>(sipCpp))
         sipType = sipType_Plasma_ContainmentActions;
-    else if (dynamic_cast<Plasma::Context*>(sipCpp))
-        sipType = sipType_Plasma_Context;
     else if (dynamic_cast<Plasma::DataContainer*>(sipCpp))
         sipType = sipType_Plasma_DataContainer;
     else if (dynamic_cast<Plasma::DataEngine*>(sipCpp))

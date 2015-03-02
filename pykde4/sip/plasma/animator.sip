@@ -66,19 +66,6 @@ public:
         FastSlideOutMovement
     };
 
-    static Plasma::Animator*  self ();
-    int                     animateItem (QGraphicsItem* item, Plasma::Animator::Animation anim);
-    void                    stopItemAnimation (int id);
-    int                     moveItem (QGraphicsItem* item, Plasma::Animator::Movement movement, const QPoint& destination);
-    void                    stopItemMovement (int id);
-    int                     customAnimation (int frames, int duration, Plasma::Animator::CurveShape curve, QObject* receiver, const char* method);
-    void                    stopCustomAnimation (int id);
-    int                     animateElement (QGraphicsItem* obj, Plasma::Animator::Animation);
-    void                    stopElementAnimation (int id);
-    void                    setInitialPixmap (int id, const QPixmap& pixmap);
-    QPixmap                 currentPixmap (int id);
-    bool                    isAnimating () const;
-
 signals:
     void                    animationFinished (QGraphicsItem* item, Plasma::Animator::Animation anim);
     void                    movementFinished (QGraphicsItem* item);
@@ -93,8 +80,6 @@ private:
     ~Animator ();
 public:
 //ig    static AbstractAnimation*  create (Plasma::Animator::Animation type, QObject* parent /Transfer/ = 0);
-    void                    registerScrollingManager (QGraphicsWidget* widget);
-    void                    unregisterScrollingManager (QGraphicsWidget* widget);
 signals:
     void                    scrollStateChanged (QGraphicsWidget* widget, QAbstractAnimation::State newState, QAbstractAnimation::State oldState);
 public:

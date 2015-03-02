@@ -54,7 +54,6 @@ protected:
     void                    setOperationEnabled (const QString& operation, bool enable);
 public:
     ~Service ();
-    static Plasma::Service*  access (const KUrl& url, QObject* parent /Transfer/ = 0);
     QMap<QString,QVariant>  parametersFromDescription (const KConfigGroup& description);
 signals:
     void                    serviceReady (Plasma::Service* service);

@@ -93,8 +93,6 @@ public:
     bool                    drawWallpaper ();
     void                    setWallpaper (const QString& pluginName, const QString& mode = QString());
     Plasma::Wallpaper*      wallpaper () const;
-    void                    setActivity (const QString& activity);
-    QString                 activity () const;
     void                    showContextMenu (const QPointF& containmentPos, const QPoint& screenPos);
     virtual void            showDropZone (const QPoint pos);
 
@@ -108,7 +106,6 @@ signals:
     void                    showAddWidgetsInterface (const QPointF& pos);
     void                    screenChanged (int wasScreen, int isScreen, Plasma::Containment* containment);
     void                    configureRequested (Plasma::Containment* containment);
-    void                    contextChanged (Plasma::Context* context);
 
 public:
     void                    setLocation (Plasma::Location location);
@@ -136,7 +133,6 @@ protected:
     void                    dragMoveEvent (QGraphicsSceneDragDropEvent* event);
     void                    dropEvent (QGraphicsSceneDragDropEvent* event);
     void                    resizeEvent (QGraphicsSceneResizeEvent* event);
-    const QGraphicsItem*    toolBoxItem () const;
 
 
 public:
@@ -154,7 +150,6 @@ protected:
 private:
                             Containment (const QString& packagePath, uint appletId, const QVariantList& args);
 public:
-    Plasma::Context*        context () const;
     int                     lastScreen () const;
     int                     lastDesktop () const;
     bool                    isToolBoxOpen () const;

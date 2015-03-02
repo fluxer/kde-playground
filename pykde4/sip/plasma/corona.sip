@@ -82,7 +82,6 @@ public:
     Plasma::ContainmentActionsPluginsConfig  containmentActionsDefaults (Plasma::Containment::Type containmentType);
     void                    setDialogManager (Plasma::AbstractDialogManager* manager);
     Plasma::AbstractDialogManager*  dialogManager ();
-    QList<Plasma::Containment*>  importLayout (const KConfigBase& config);
     void                    layoutContainments ();
 protected:
     void                    mapAnimation (Plasma::Animator::Animation from, Plasma::Animator::Animation to);
