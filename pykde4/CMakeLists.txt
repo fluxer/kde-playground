@@ -164,14 +164,6 @@ file(GLOB ktexteditor_files_sip sip/ktexteditor/*.sip)
 set(SIP_EXTRA_FILES_DEPEND ${ktexteditor_files_sip})
 add_sip_python_module(PyKDE4.ktexteditor sip/ktexteditor/ktexteditormod.sip ${KDE4_KTEXTEDITOR_LIBS} ${KDE4_KPARTS_LIBS} ${KDE4_KDEUI_LIBS} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY})
 
-file(GLOB khtml_files_sip sip/khtml/*.sip)
-set(SIP_EXTRA_FILES_DEPEND ${khtml_files_sip})
-add_sip_python_module(PyKDE4.khtml sip/khtml/khtmlmod.sip ${KDE4_KHTML_LIBS})
-
-file(GLOB knewstuff_files_sip sip/knewstuff/*.sip)
-set(SIP_EXTRA_FILES_DEPEND ${knewstuff_files_sip})
-add_sip_python_module(PyKDE4.knewstuff sip/knewstuff/knewstuffmod.sip ${KDE4_KNEWSTUFF2_LIBS} ${KDE4_KNEWSTUFF3_LIBS} ${QT_QTCORE_LIBRARY})
-
 file(GLOB dnssd_files_sip sip/dnssd/*.sip)
 set(SIP_EXTRA_FILES_DEPEND ${dnssd_files_sip})
 add_sip_python_module(PyKDE4.dnssd sip/dnssd/dnssdmod.sip ${KDE4_KDNSSD_LIBS} ${QT_QTCORE_LIBRARY})

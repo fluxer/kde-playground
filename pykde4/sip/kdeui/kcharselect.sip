@@ -45,7 +45,6 @@ public:
 
     typedef QFlags<KCharSelect::Control> Controls;
 
-    explicit                KCharSelect (QWidget* parent /TransferThis/, const KCharSelect::Controls controls = KCharSelect::AllGuiElements);
     explicit                KCharSelect (QWidget* parent /TransferThis/, KActionCollection* collection, const KCharSelect::Controls controls = KCharSelect::AllGuiElements);
     virtual QSize           sizeHint () const;
     QChar                   currentChar () const;

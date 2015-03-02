@@ -37,7 +37,6 @@
 #include <kjob.h>
 #include <kjobtrackerinterface.h>
 #include <kjobuidelegate.h>
-#include <klibloader.h>
 #include <klibrary.h>
 #include <klocalsocket.h>
 #include <kpluginfactory.h>

@@ -35,7 +35,6 @@ public:
         Action,
         Application,
         Device,
-        FileSystem,
         MimeType,
         Animation,
         Category,

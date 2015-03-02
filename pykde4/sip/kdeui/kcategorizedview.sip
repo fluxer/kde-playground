@@ -49,8 +49,6 @@ protected:
     virtual void            dropEvent (QDropEvent* event);
     virtual QModelIndex     moveCursor (QAbstractItemView::CursorAction cursorAction, Qt::KeyboardModifiers modifiers);
     virtual void            rowsInserted (const QModelIndex& parent, int start, int end);
-    virtual void            rowsInsertedArtifficial (const QModelIndex& parent, int start, int end);
-    virtual void            rowsRemoved (const QModelIndex& parent, int start, int end);
     virtual void            updateGeometries ();
     virtual void            slotLayoutChanged ();
     virtual void            currentChanged (const QModelIndex& current, const QModelIndex& previous);

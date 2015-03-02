@@ -43,7 +43,6 @@ public:
     Qt::SortOrder           sortOrder () const;
     void                    setSortCategoriesByNaturalComparison (bool sortCategoriesByNaturalComparison);
     bool                    sortCategoriesByNaturalComparison () const;
-    static int              naturalCompare (const QString& a, const QString& b);
 
 protected:
     virtual bool            lessThan (const QModelIndex& left, const QModelIndex& right) const;
