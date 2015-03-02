@@ -31,7 +31,6 @@ class MainWindow : KXmlGuiWindow, KParts::PartBase
 
 public:
     explicit                MainWindow (QWidget* parent /TransferThis/ = 0, Qt::WindowFlags f = 0);
-    explicit                MainWindow (QWidget* parent /TransferThis/, const char* name = 0, Qt::WindowFlags f = 0);
     virtual void            configureToolbars ();
 
 protected:

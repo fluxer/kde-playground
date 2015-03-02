@@ -168,8 +168,6 @@ protected:
     virtual bool            openFile ()=0;
     void                    abortLoad ();
     virtual void            guiActivateEvent (KParts::GUIActivateEvent* event);
-    bool                    isLocalFileTemporary () const;
-    void                    setLocalFileTemporary (bool temp);
     void                    setUrl (const KUrl& url);
     QString                 localFilePath () const;
     void                    setLocalFilePath (const QString& localFilePath);

@@ -46,7 +46,6 @@ public:
         Cancel
     };
 
-    static KParts::BrowserRun::AskSaveResult  askSave (const KUrl& url, KService::Ptr offer, const QString& mimeType, const QString& suggestedFileName = QString());
 
     enum AskEmbedOrSaveFlags
     {
@@ -54,7 +53,6 @@ public:
         AttachmentDisposition
     };
 
-    static KParts::BrowserRun::AskSaveResult  askEmbedOrSave (const KUrl& url, const QString& mimeType, const QString& suggestedFileName = QString(), int flags = 0);
     virtual void            save (const KUrl& url, const QString& suggestedFileName);
     static void             simpleSave (const KUrl& url, const QString& suggestedFileName, QWidget* window = 0);
     static bool             allowExecution (const QString& mimeType, const KUrl& url);
