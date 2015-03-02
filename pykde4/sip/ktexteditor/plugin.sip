@@ -47,9 +47,6 @@ public:
 // class Plugin
 
 
-KTextEditor::Plugin*    createPlugin (KService::Ptr service, QObject* parent /Transfer/);
-
-
 
 };
 // namespace KTextEditor
