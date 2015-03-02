@@ -41,7 +41,6 @@
 #include <kbookmarkdialog.h>
 #include <kbookmarkdombuilder.h>
 #include <kbookmarkimporter.h>
-#include <kbookmarkimporter_crash.h>
 #include <kbookmarkimporter_ie.h>
 #include <kbookmarkimporter_ns.h>
 #include <kbookmarkimporter_opera.h>
@@ -56,7 +55,6 @@
 #include <kdirselectdialog.h>
 #include <kdirsortfilterproxymodel.h>
 #include <kdirwatch.h>
-#include <kdiskfreespace.h>
 #include <kencodingfiledialog.h>
 #include <kfiledialog.h>
 #include <kfilefiltercombo.h>
@@ -94,7 +92,6 @@
 #include <kurlrequesterdialog.h>
 #include <metainfojob.h>
 #include <netaccess.h>
-#include <passworddialog.h>
 #include <previewjob.h>
 #include <qobject.h>
 #include <renamedialog.h>
@@ -141,9 +138,7 @@ public:
     else if (dynamic_cast<KBookmarkImporterBase*>(sipCpp))
         {
         sipType = sipType_KBookmarkImporterBase;
-        if (dynamic_cast<KCrashBookmarkImporterImpl*>(sipCpp))
-            sipType = sipType_KCrashBookmarkImporterImpl;
-        else if (dynamic_cast<KIEBookmarkImporterImpl*>(sipCpp))
+        if (dynamic_cast<KIEBookmarkImporterImpl*>(sipCpp))
             sipType = sipType_KIEBookmarkImporterImpl;
         else if (dynamic_cast<KNSBookmarkImporterImpl*>(sipCpp))
             {
@@ -170,16 +165,12 @@ public:
         if (dynamic_cast<KShellCompletion*>(sipCpp))
             sipType = sipType_KShellCompletion;
         }
-    else if (dynamic_cast<KCrashBookmarkImporter*>(sipCpp))
-        sipType = sipType_KCrashBookmarkImporter;
     else if (dynamic_cast<KDataTool*>(sipCpp))
         sipType = sipType_KDataTool;
     else if (dynamic_cast<KDirLister*>(sipCpp))
         sipType = sipType_KDirLister;
     else if (dynamic_cast<KDirWatch*>(sipCpp))
         sipType = sipType_KDirWatch;
-    else if (dynamic_cast<KDiskFreeSpace*>(sipCpp))
-        sipType = sipType_KDiskFreeSpace;
     else if (dynamic_cast<KFileItemActionPlugin*>(sipCpp))
         sipType = sipType_KFileItemActionPlugin;
     else if (dynamic_cast<KFileItemActions*>(sipCpp))
@@ -338,8 +329,6 @@ public:
         sipType = sipType_KPropertiesDialog;
     else if (dynamic_cast<KScanDialog*>(sipCpp))
         sipType = sipType_KScanDialog;
-    else if (dynamic_cast<KIO::PasswordDialog*>(sipCpp))
-        sipType = sipType_KIO_PasswordDialog;
     else if (dynamic_cast<KUrlRequesterDialog*>(sipCpp))
         sipType = sipType_KUrlRequesterDialog;
     else if (dynamic_cast<KIO::RenameDialog*>(sipCpp))

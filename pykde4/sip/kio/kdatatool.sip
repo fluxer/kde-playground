@@ -34,8 +34,6 @@ public:
     QString                 dataType () const;
     QStringList             mimeTypes () const;
     bool                    isReadOnly () const;
-    QPixmap                 icon () const;
-    QPixmap                 miniIcon () const;
     QString                 iconName () const;
     QStringList             userCommands () const;
     QStringList             commands () const;

@@ -56,7 +56,6 @@
 %Include kbookmarkdombuilder.sip
 %Include kbookmarkexporter.sip
 %Include kbookmarkimporter.sip
-%Include kbookmarkimporter_crash.sip
 %Include kbookmarkimporter_ie.sip
 %Include kbookmarkimporter_ns.sip
 %Include kbookmarkimporter_opera.sip
@@ -73,7 +72,6 @@
 %Include kdirselectdialog.sip
 %Include kdirsortfilterproxymodel.sip
 %Include kdirwatch.sip
-%Include kdiskfreespace.sip
 %Include kdiskfreespaceinfo.sip
 %Include kemailsettings.sip
 %Include kencodingfiledialog.sip
@@ -131,7 +129,6 @@
 %Include kzip.sip
 %Include metainfojob.sip
 %Include netaccess.sip
-%Include passworddialog.sip
 %Include paste.sip
 %Include predicateproperties.sip
 %Include previewjob.sip

@@ -30,9 +30,7 @@ class KUrlNavigator : QWidget
 
 public:
                             KUrlNavigator (KFilePlacesModel* placesModel, const KUrl& url, QWidget* parent /TransferThis/);
-    const KUrl&             url () const;
     KUrl                    uncommittedUrl () const;
-    KUrl                    url (int index) const;
     bool                    goBack ();
     bool                    goForward ();
     bool                    goUp ();
@@ -48,16 +46,10 @@ public:
     bool                    isPlacesSelectorVisible () const;
     int                     historySize () const;
     int                     historyIndex () const;
-    KUrl                    historyUrl (int historyIndex) const;
-    const KUrl&             savedRootUrl () const;
-    QPoint                  savedPosition () const;
     KUrlComboBox*           editor () const;
     void                    setCustomProtocols (const QStringList& protocols);
     QStringList             customProtocols () const;
-    void                    setUrl (const KUrl& url);
     void                    requestActivation ();
-    void                    saveRootUrl (const KUrl& url);
-    void                    savePosition (int x, int y);
     void                    setFocus ();
 
 signals:

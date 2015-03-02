@@ -48,8 +48,6 @@ protected:
         sipType = sipType_KIO_AccessManager;
 %End
 public:
-    void                    setCookieJarWindowId (WId id);
-    WId                     cookieJarWindowid () const;
     KIO::MetaData&          requestMetaData ();
     KIO::MetaData&          sessionMetaData ();
     void                    setWindow (QWidget* widget);

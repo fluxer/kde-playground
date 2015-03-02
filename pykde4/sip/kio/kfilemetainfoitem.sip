@@ -38,7 +38,6 @@ public:
     bool                    setValue (const QVariant& value);
     bool                    addValue (const QVariant&);
     bool                    isValid () const;
-    const PredicateProperties&  properties () const;
     const QString&          name () const;
     QString                 suffix () const;
     QString                 prefix () const;

@@ -46,7 +46,6 @@ public:
     static bool             runCommand (const QString& cmd, QWidget* window);
     static bool             runCommand (const QString& cmd, const QString& execName, const QString& icon, QWidget* window, const QByteArray& asn = QByteArray());
     static bool             displayOpenWithDialog (const KUrl::List& lst, QWidget* window, bool tempFiles = 0, const QString& suggestedFileName = QString(), const QByteArray& asn = QByteArray());
-    static void             shellQuote (QString& str);
     static QStringList      processDesktopExec (const KService& _service, const KUrl::List& _urls, bool tempFiles = 0, const QString& suggestedFileName = QString());
     static QString          binaryName (const QString& execLine, bool removePath);
     static bool             isExecutable (const QString& serviceType);
@@ -75,13 +74,7 @@ protected:
     void                    setFinished (bool finished);
     void                    setJob (KIO::Job* job);
     KIO::Job*               job ();
-    QTimer&                 timer ();
-    void                    setDoScanFile (bool scanFile);
-    bool                    doScanFile () const;
-    void                    setIsDirecory (bool isDirectory);
     bool                    isDirectory () const;
-    void                    setInitializeNextAction (bool initialize);
-    bool                    initializeNextAction () const;
     void                    setIsLocalFile (bool isLocalFile);
     bool                    isLocalFile () const;
     void                    setMode (mode_t mode);

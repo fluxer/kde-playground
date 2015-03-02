@@ -73,9 +73,7 @@ public:
     QString                 localPath () const;
     KIO::filesize_t         size () const;
     KDateTime               time (KFileItem::FileTimes which /Constrained/) const;
-    time_t                  time (unsigned int which /Constrained/) const;
     QString                 timeString (KFileItem::FileTimes which = KFileItem::ModificationTime) const;
-    QString                 timeString (unsigned int which) const;
     bool                    isLocalFile () const;
     QString                 text () const;
     QString                 name (bool lowerCase = 0) const;
@@ -88,8 +86,6 @@ public:
     QPixmap                 pixmap (int _size, int _state = 0) const;
     QStringList             overlays () const;
     QString                 getStatusBarInfo () const;
-    QString                 getToolTipText (int maxcount = 6) const;
-    bool                    acceptsDrops () const;
     void                    run (QWidget* parentWidget = 0) const;
     KIO::UDSEntry           entry () const;
     bool                    isMarked () const;
@@ -104,13 +100,10 @@ public:
 //ig    void                    removeExtraData (const void* key);
     void                    setMetaInfo (const KFileMetaInfo& info) const;
     KFileMetaInfo           metaInfo (bool autoget = 1, int what = KFileMetaInfo::Fastest) const;
-    void                    assign (const KFileItem& item);
-    void                    setUDSEntry (const KIO::UDSEntry& entry, const KUrl& url, bool delayedMimeTypes = 0, bool urlIsDirectory = 0);
     KUrl                    mostLocalUrl (bool& local /Out/) const;
     bool                    isNull () const;
     ~KFileItem ();
 //ig    QVariant                operator QVariant () const;
-    KUrl                    nepomukUri () const;
     QString                 comment () const;
 //ig    KUrl                    mostLocalUrl () const;
     bool                    isSlow () const;

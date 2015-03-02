@@ -36,7 +36,6 @@ public:
     void                    setDirLister (KDirLister* dirLister);
     KDirLister*             dirLister () const;
     KFileItem               itemForIndex (const QModelIndex& index) const;
-    QModelIndex             indexForItem (const KFileItem*) const;
     QModelIndex             indexForItem (const KFileItem&) const;
     QModelIndex             indexForUrl (const KUrl& url) const;
     void                    expandToUrl (const KUrl& url);

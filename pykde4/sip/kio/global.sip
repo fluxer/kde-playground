@@ -34,7 +34,6 @@ QString                 number (KIO::filesize_t size);
 QString                 convertSizeFromKiB (KIO::filesize_t kibSize);
 unsigned int            calculateRemainingSeconds (KIO::filesize_t totalSize, KIO::filesize_t processedSize, KIO::filesize_t speed);
 QString                 convertSeconds (unsigned int seconds);
-QTime                   calculateRemaining (KIO::filesize_t totalSize, KIO::filesize_t processedSize, KIO::filesize_t speed);
 QString                 itemsSummaryString (uint items, uint files, uint dirs, KIO::filesize_t size, bool showSize);
 QString                 encodeFileName (const QString& str);
 QString                 decodeFileName (const QString& str);

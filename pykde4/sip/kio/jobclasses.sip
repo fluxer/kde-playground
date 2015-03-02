@@ -60,7 +60,6 @@ protected:
 public:
     QString                 errorString () const;
     QStringList             detailedErrorStrings (const KUrl* reqUrl = 0, int method = -1) const;
-    void                    showErrorDialog (QWidget* parent /Transfer/ = 0);
     bool                    isInteractive () const;
     void                    setParentJob (KIO::Job* parentJob);
     KIO::Job*               parentJob () const;
@@ -140,7 +139,6 @@ public:
     };
 
     void                    setSide (KIO::StatJob::StatSide side);
-    void                    setSide (bool source /Constrained/);
     void                    setDetails (short details);
     const KIO::UDSEntry&    statResult () const;
 
@@ -178,8 +176,6 @@ public:
     bool                    isErrorPage () const;
     void                    setAsyncDataEnabled (bool enabled);
     void                    sendAsyncData (const QByteArray& data);
-    void                    setReportDataSent (bool enabled);
-    bool                    reportDataSent () const;
     QString                 mimetype () const;
     void                    setTotalSize (KIO::filesize_t bytes);
 

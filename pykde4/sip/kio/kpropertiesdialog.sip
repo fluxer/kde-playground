@@ -79,7 +79,6 @@ class KPropertiesDialogPlugin : QObject
 public:
                             KPropertiesDialogPlugin (KPropertiesDialog* _props);
     virtual void            applyChanges ();
-    static bool             isDesktopFile (const KFileItem& _item);
     void                    setDirty (bool b);
     bool                    isDirty () const;
     void                    setDirty ();

@@ -44,12 +44,10 @@ public:
     KComboBox*              comboBox () const;
     KPushButton*            button () const;
     KUrlCompletion*         completionObject () const;
-    const KEditListBox::CustomEditor&  customEditor ();
     QString                 clickMessage () const;
     void                    setClickMessage (const QString& msg);
     void                    setUrl (const KUrl& url);
     void                    setStartDir (const KUrl& startDir);
-    void                    setPath (const QString& path);
     void                    setText (const QString& text);
     void                    clear ();
 

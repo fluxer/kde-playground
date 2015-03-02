@@ -44,7 +44,6 @@ public:
         void                    populateMimeData (QMimeData* mimeData) const;
         static bool             canDecode (const QMimeData* mimeData);
         static QStringList      mimeDataTypes ();
-        static KBookmark::List  fromMimeData (const QMimeData* mimeData);
         static KBookmark::List  fromMimeData (const QMimeData* mimeData, QDomDocument& parentDocument);
     };
 // List
@@ -114,7 +113,6 @@ public:
     KBookmark               addBookmark (const KBookmark& bm);
     KBookmark               addBookmark (const QString& text, const KUrl& url, const QString& icon = QString());
     bool                    moveBookmark (const KBookmark& bookmark, const KBookmark& after);
-    bool                    moveItem (const KBookmark& item, const KBookmark& after);
     void                    deleteBookmark (const KBookmark& bk);
     bool                    isToolbarGroup () const;
     QDomElement             findToolbar () const;

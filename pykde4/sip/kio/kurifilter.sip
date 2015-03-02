@@ -149,7 +149,6 @@ private:
 //end
 public:
     ~KUriFilter ();
-    bool                    filterSearchUri (KUriFilterData& data);
     enum SearchFilterType
     {
         NormalTextFilter,

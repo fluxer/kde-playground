@@ -31,7 +31,6 @@ class Scheduler : QObject
 
 public:
     static void             doJob (KIO::SimpleJob* job);
-    static void             scheduleJob (KIO::SimpleJob* job);
     static void             cancelJob (KIO::SimpleJob* job);
     static void             jobFinished (KIO::SimpleJob* job, KIO::Slave* slave);
     static void             putSlaveOnHold (KIO::SimpleJob* job, const KUrl& url);

@@ -34,16 +34,12 @@ class PreviewJob : KIO::Job
 
 
 public:
-                            PreviewJob (const KFileItemList& items, int width, int height, int iconSize, int iconAlpha, bool scale, bool save, const QStringList* enabledPlugins);
     void                    removeItem (const KUrl& url);
     void                    setIgnoreMaximumSize (bool ignoreSize = 1);
     void                    setSequenceIndex (int index);
     int                     sequenceIndex () const;
     static QStringList      availablePlugins ();
     static QStringList      supportedMimeTypes ();
-
-    static KIO::filesize_t  maximumFileSize ();
-
 
 signals:
     void                    gotPreview (const KFileItem& item, const QPixmap& preview);
@@ -76,8 +72,6 @@ public:
 };
 // PreviewJob
 
-KIO::PreviewJob*        filePreview (const KFileItemList& items, int width, int height = 0, int iconSize = 0, int iconAlpha = 70, bool scale = 1, bool save = 1, const QStringList* enabledPlugins = 0);
-KIO::PreviewJob*        filePreview (const KUrl::List& items, int width, int height = 0, int iconSize = 0, int iconAlpha = 70, bool scale = 1, bool save = 1, const QStringList* enabledPlugins = 0);
 KIO::PreviewJob*        filePreview (const KFileItemList& items, const QSize& size, const QStringList* enabledPlugins = 0);
 };
 // KIO
