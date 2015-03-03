@@ -91,4 +91,4 @@ Name[x-test]=xx(9) Kernelxx
 Name[zh_CN]=(9) 内核
 Name[zh_TW]=(9) 核心
 
-X-DocPath=man:/(9)
+X-DocPath=man:/9

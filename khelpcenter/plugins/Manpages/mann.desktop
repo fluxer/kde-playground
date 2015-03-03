@@ -91,4 +91,4 @@ Name[x-test]=xx(n) Newxx
 Name[zh_CN]=(n) 新建
 Name[zh_TW]=(n) 新
 
-X-DocPath=man:/(n)
+X-DocPath=man:/n

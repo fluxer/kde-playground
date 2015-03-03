@@ -153,8 +153,7 @@ void Glossary::rebuildGlossaryCache()
     
     *meinproc << KStandardDirs::locate( "exe", QLatin1String( "xsltproc" ) );
     *meinproc << QLatin1String( "--output" ) << m_cacheFile;
-    *meinproc << QLatin1String( "--stylesheet" )
-              << KStandardDirs::locate( "data", QLatin1String( "khelpcenter/glossary.xslt" ) );
+    *meinproc << KStandardDirs::locate( "data", QLatin1String( "khelpcenter/glossary.xslt" ) );
     *meinproc << m_sourceFile;
 
     meinproc->setOutputChannelMode(KProcess::OnlyStderrChannel);

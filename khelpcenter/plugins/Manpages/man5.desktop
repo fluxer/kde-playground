@@ -92,4 +92,4 @@ Name[x-test]=xx(5) File Formatsxx
 Name[zh_CN]=(5) 文件格式
 Name[zh_TW]=(5) 檔案格式
 
-X-DocPath=man:/(5)
+X-DocPath=man:/5
