@@ -1,0 +1,71 @@
+===============
+About this file
+===============
+
+This file covers various topics relevant to Kaffeine development.
+
+---------
+dtvdaemon
+---------
+
+dtvdaemon is intended as a small, standalone daemon to communicate with the digital TV devices
+(supported by linuxtv.org or other projects). It provides a convenience layer (channels, epg, etc)
+and should only depend on QtCore and QtNetwork. Currently the focus lies on a local daemon, which
+runs only on demand, but it should be easy to make it accessible through TCP/IP.
+
+One advantage is the possibility to run multiple instances of Kaffeine at the same time. While
+implementing it, enhancements (e.g. support for new delivery systems) are also tried to achieve.
+
+------------------------
+DVB-T channel allocation
+------------------------
+
+Geneva 2006 Agreement (GE06) - http://www.itu.int/ITU-R/terrestrial/broadcast/plans/ge06/index.html
+
+- VHF: channels  5 - 12 ; center frequency = 142.5 + 7 * channel number MHz ; bandwidth = 7 MHz
+- UHF: channels 21 - 69 ; center frequency = 306   + 8 * channel number MHz ; bandwidth = 8 MHz
+
+Australia: 177.5 - 226.5 and 529.5 (?) - 816.5 (?) MHz ; bandwidth = 7 MHz
+Italy VHF band: 177.5, 186, 194.5, 203.5, 212.5, 219.5 and 226.5 MHz ; bandwidth = 7 or 8 (?) MHz
+
+-----------------
+SQL table formats
+-----------------
+
+- table "Channels"
+  - column "Id"
+    - INTEGER PRIMARY KEY
+  - column "Name"
+    - string; not empty
+  - column "Number"
+    - int; Number >= 1
+  - column "Source"
+    - string; not empty
+  - column "Transponder"
+    - string; linuxtv format
+  - column "NetworkId"
+    - int; -1 <= NetworkId <= 0xffff; from SDT
+  - column "TransportStreamId"
+    - int; 0 <= TransportStreamId <= 0xffff; from PAT
+  - column "PmtPid"
+    - int; 0 <= PmtPid <= 0x1fff; from PAT
+  - column "PmtSection"
+    - byte array; not empty; from PMT
+  - column "AudioPid"
+    - int; -1 <= AudioPid <= 0x1fff; from PMT
+  - column "Flags"
+    - int; (1 << 0) = has video (from PMT), (1 << 1) = is scrambled (from SDT or VCT)
+
+- table "RecordingSchedule"
+  - column "Id"
+    - INTEGER PRIMARY KEY
+  - column "Name"
+    - string; not empty
+  - column "Channel"
+    - string; not empty
+  - column "Begin"
+    - string; ISO 8601 encoded date and time; UTC (ends with 'Z') or local time (older versions)
+  - column "Duration"
+    - string; ISO 8601 encoded time
+  - column "Repeat"
+    - int; (1 << 0) = on Mondays ... (1 << 6) = on Sundays

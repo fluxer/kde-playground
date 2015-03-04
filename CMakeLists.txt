@@ -24,4 +24,7 @@ macro_optional_add_subdirectory (libkdcraw)
 macro_optional_add_subdirectory (libkexiv2)
 macro_optional_add_subdirectory (kamera)
 macro_optional_add_subdirectory (kfilereplace)
+# NOTE: you will need kdoctools from kdelibs ported for the help KIO slave
 macro_optional_add_subdirectory (khelpcenter)
+macro_optional_add_subdirectory (kaffeine)
+macro_optional_add_subdirectory (kamoso)
