@@ -20,7 +20,6 @@
 
 #include "kamoso.h"
 #include "thumbnailview.h"
-#include "whitewidget.h"
 #include "webcamwidget.h"
 #include "countdownwidget.h"
 #include "settings.h"
@@ -28,7 +27,6 @@
 #include "ui_pictureConfig.h"
 #include "ui_mainWidget.h"
 #include "ui_videoConfig.h"
-#include "whitewidgetmanager.h"
 #include "devicemanager.h"
 #include "kipiinterface.h"
 #include "kamosoplugin.h"
@@ -158,7 +156,6 @@ Kamoso::Kamoso(QWidget* parent)
     connect(mainWidgetUi->scrollLeft, SIGNAL(clicked(bool)), SLOT(slotScrollLeft()));
     connect(mainWidgetUi->scrollRight, SIGNAL(clicked(bool)), SLOT(slotScrollRight()));
 
-    whiteWidgetManager = new WhiteWidgetManager(this);
     mainWidgetUi->thirdRow->addWidget(m_countdown);
 
     connect(m_countdown, SIGNAL(finished()), SLOT(takePhoto()));
@@ -437,7 +434,6 @@ void Kamoso::takePhoto()
         org::kde::Solid::PowerManagement power("org.kde.Solid.PowerManagement", "/org/kde/Solid/PowerManagement", QDBusConnection::sessionBus());
         brightBack = power.brightness().value();
         power.setBrightness(100);
-        whiteWidgetManager->showAll();
     }
     QTimer::singleShot(1000, this, SLOT(restore()));
 
@@ -468,7 +464,6 @@ void Kamoso::stopCountdown()
 */
 void Kamoso::restore()
 {
-    whiteWidgetManager->hideAll();
     if(m_flashEnabled) {
         org::kde::Solid::PowerManagement power("org.kde.Solid.PowerManagement", "/org/kde/Solid/PowerManagement", QDBusConnection::sessionBus());
         power.setBrightness(brightBack);

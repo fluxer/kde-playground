@@ -14,8 +14,6 @@ set(kamoso_SRCS
 	thumbnailview.cpp
 	kamoso.cpp
 	main.cpp
-	whitewidget.cpp
-	whitewidgetmanager.cpp
 	countdownwidget.cpp
 	webcamwidget.cpp
 	customDelegate.cpp
