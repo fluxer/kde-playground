@@ -107,12 +107,7 @@ Q_OBJECT
     private:
         QPointer<QMenu> exportKIPIMenu();
 
-        #if KDE_IS_VERSION(4,5,85)
-            int brightBack;
-        #else
-            float brightBack;
-        #endif
-
+        int brightBack;
         int m_webcamId;
         KDirModel *dirModel;
         WhiteWidgetManager *whiteWidgetManager;

@@ -3,10 +3,6 @@ include_directories(${KDE4_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT
 add_definitions(-DGST_DISABLE_DEPRECATED)
 add_definitions(-fexceptions)
 
-if (NEPOMUK_FOUND)
-	include_directories(${NEPOMUK_INCLUDE_DIRS})
-endif(NEPOMUK_FOUND)
-
 add_subdirectory(plugins)
 add_subdirectory(pluginTester)
 
@@ -45,10 +41,6 @@ kde4_add_executable(kamoso ${kamoso_SRCS})
 
 target_link_libraries(kamoso ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS}
         ${KDE4_SOLID_LIBS} ${KDE4_PHONON_LIBS} ${KDE4_KUTILS_LIBS} ${KIPI_LIBRARIES} ${SolidControl} ${QTGSTREAMER_LIBRARY} ${QTGSTREAMER_UI_LIBRARY})
-
-if(HAVE_NEPOMUK)
-	target_link_libraries(kamoso ${NEPOMUK_LIBRARIES})
-endif(HAVE_NEPOMUK)
 
 install(TARGETS kamoso ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(PROGRAMS kamoso.desktop DESTINATION ${XDG_APPS_INSTALL_DIR} )

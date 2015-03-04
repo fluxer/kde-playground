@@ -39,11 +39,7 @@
 #include "kipiaction.h"
 #include "webcamdialog.h"
 #include "pagewebcamconfigmanager.h"
-#if KDE_IS_VERSION(4,5,85)
-    #include "brightness_interface.h"
-#else
-    #include <solid/control/powermanager.h>
-#endif
+#include "brightness_interface.h"
 
 #include <QItemSelection>
 #include <QLayout>
@@ -438,14 +434,9 @@ void Kamoso::takePhoto()
     stopCountdown();
 
     if(m_flashEnabled){
-        #if KDE_IS_VERSION(4,5,85)
-            org::kde::Solid::PowerManagement power("org.kde.Solid.PowerManagement", "/org/kde/Solid/PowerManagement", QDBusConnection::sessionBus());
-            brightBack = power.brightness().value();
-            power.setBrightness(100);
-        #else
-            brightBack = Solid::Control::PowerManager::brightness();
-            Solid::Control::PowerManager::setBrightness(100);
-        #endif
+        org::kde::Solid::PowerManagement power("org.kde.Solid.PowerManagement", "/org/kde/Solid/PowerManagement", QDBusConnection::sessionBus());
+        brightBack = power.brightness().value();
+        power.setBrightness(100);
         whiteWidgetManager->showAll();
     }
     QTimer::singleShot(1000, this, SLOT(restore()));
@@ -479,12 +470,8 @@ void Kamoso::restore()
 {
     whiteWidgetManager->hideAll();
     if(m_flashEnabled) {
-        #if KDE_IS_VERSION(4,5,85)
-            org::kde::Solid::PowerManagement power("org.kde.Solid.PowerManagement", "/org/kde/Solid/PowerManagement", QDBusConnection::sessionBus());
-            power.setBrightness(brightBack);
-        #else
-            Solid::Control::PowerManager::setBrightness(brightBack);
-        #endif
+        org::kde::Solid::PowerManagement power("org.kde.Solid.PowerManagement", "/org/kde/Solid/PowerManagement", QDBusConnection::sessionBus());
+        power.setBrightness(brightBack);
     }
 }
 
