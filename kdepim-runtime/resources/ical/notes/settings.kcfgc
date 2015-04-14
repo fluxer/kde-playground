@@ -1,0 +1,9 @@
+File=notesresource.kcfg
+ClassName=Settings
+Mutators=true
+ItemAccessors=true
+SetUserTexts=true
+Singleton=false
+#IncludeFiles=
+GlobalEnums=true
+Namespace=Akonadi_Aknotes_Resource
