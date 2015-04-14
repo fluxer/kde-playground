@@ -1,0 +1,2 @@
+SKIP /tests/
+EXTRA kdebug,tipsandthis,defines,qenums,null
