@@ -187,7 +187,6 @@ public:
         ToolbarMask,
         MenuMask,
         DialogMask,
-        OverrideMask,
         TopMenuMask,
         UtilityMask,
         SplashMask,
