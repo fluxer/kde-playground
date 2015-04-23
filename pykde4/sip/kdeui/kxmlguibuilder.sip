@@ -65,7 +65,6 @@ QAction *containerAction;
     virtual void            finalizeGUI (KXMLGUIClient* client);
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 public:
     ~KXMLGUIBuilder ();
 //ig    virtual QWidget*        createContainer (QWidget* parent /Transfer/, int index, const QDomElement& element, QAction*& containerAction);

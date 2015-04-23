@@ -41,7 +41,6 @@ public:
     virtual QPixmap         pixmapFor (const QString& url, int size = 0);
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force

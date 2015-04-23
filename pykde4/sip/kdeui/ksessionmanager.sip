@@ -34,7 +34,6 @@ public:
     static QList<KSessionManager*>&  sessionClients ();
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force

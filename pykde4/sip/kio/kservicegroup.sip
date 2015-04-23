@@ -80,7 +80,6 @@ protected:
 //ig     void                 addEntry (const KSycocaEntry::Ptr&);
 
 protected:
-//igx     virtual void         virtual_hook (int, void*);
 
 public:
 //force

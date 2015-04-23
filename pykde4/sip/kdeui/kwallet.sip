@@ -103,7 +103,6 @@ signals:
     void                    walletOpened (bool success);
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 public:
     ~Wallet ();
     static bool             isUsingKSecretsService ();

@@ -64,7 +64,6 @@ protected:
     bool                    waitForResponse (int t);
     void                    setBlocking (bool b);
     QIODevice*              socket () const;
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force

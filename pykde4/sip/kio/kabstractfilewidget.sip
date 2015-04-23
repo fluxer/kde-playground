@@ -69,7 +69,6 @@ public:
     virtual void            slotOk ()=0;
     virtual void            accept ()=0;
     virtual void            slotCancel ()=0;
-    virtual void            virtual_hook (int id, void* data /In/)=0;
     void                    setConfirmOverwrite (bool enable);
     void                    setInlinePreviewShown (bool show);
     ~KAbstractFileWidget ();

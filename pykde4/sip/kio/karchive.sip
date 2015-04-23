@@ -75,7 +75,6 @@ protected:
     virtual bool            createDevice (QIODevice::OpenMode mode);
     void                    setDevice (QIODevice* dev);
     void                    setRootDir (KArchiveDirectory* rootDir);
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force
@@ -108,7 +107,6 @@ public:
 
 protected:
     KArchive*               archive () const;
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force
@@ -138,7 +136,6 @@ public:
     void                    copyTo (const QString& dest) const;
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force
@@ -166,7 +163,6 @@ public:
     void                    copyTo (const QString& dest, bool recursive = 1) const;
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force

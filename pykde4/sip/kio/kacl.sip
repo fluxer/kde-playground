@@ -77,7 +77,6 @@ public:
     QString                 asString () const;
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 public:
     ~KACL ();
 };

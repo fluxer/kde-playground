@@ -46,7 +46,6 @@ private:
 public:
     ~ServiceBase ();
 protected:
-//ig    virtual void            virtual_hook (int, void*);
 %ConvertToSubClassCode
     // CTSCC for subclasses of 'ServiceBase'
     sipType = NULL;

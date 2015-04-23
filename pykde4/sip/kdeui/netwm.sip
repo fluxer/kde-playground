@@ -151,7 +151,6 @@ protected:
     virtual void            restackWindow (Window window, NET::RequestSource source, Window above, int detail, Time timestamp);
     virtual void            gotTakeActivity (Window window, Time timestamp, long flags);
     virtual void            changeShowingDesktop (bool showing);
-//ig    virtual void            virtual_hook (int id, void* data);
 public:
 //ig                            NETRootInfo (Display* display, Window supportWindow, const char* wmName, const unsigned long properties [], int properties_size, int screen = -1, bool doActivate = 1);
 //ig                            NETRootInfo (Display* display, const unsigned long properties [], int properties_size, int screen = -1, bool doActivate = 1);
@@ -263,7 +262,6 @@ int count   = PyList_Size (a3);
 protected:
     virtual void            changeDesktop (int desktop);
     virtual void            changeState (unsigned long state, unsigned long mask);
-//ig    virtual void            virtual_hook (int id, void* data);
 
 public:
 //force

@@ -54,7 +54,6 @@ signals:
 public:
     ~ServiceBrowser ();
 protected:
-    virtual void            virtual_hook (int, void*);
 };
 // ServiceBrowser
 

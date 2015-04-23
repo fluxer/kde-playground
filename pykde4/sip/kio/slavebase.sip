@@ -127,7 +127,6 @@ public:
     int                     waitForHostInfo (QHostInfo& info);
 
 protected:
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force

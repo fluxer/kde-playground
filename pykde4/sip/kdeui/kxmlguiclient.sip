@@ -85,7 +85,6 @@ protected:
     virtual void            setXML (const QString& document, bool merge = 0);
     virtual void            setDOMDocument (const QDomDocument& document, bool merge = 0);
     virtual void            stateChanged (const QString& newstate, KXMLGUIClient::ReverseStateChange reverse = KXMLGUIClient::StateNoReverse);
-//ig    virtual void            virtual_hook (int id, void* data);
 public:
     ~KXMLGUIClient ();
     void                    replaceXMLFile (const QString& xmlfile, const QString& localxmlfile, bool merge = 0);

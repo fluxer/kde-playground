@@ -47,11 +47,9 @@ public:
 
 
 //io ambiguous symbol: void* data -- specify In, Out or both
-//io         virtual void       virtual_hook (int id, void* data);
 
 
         ~UiInterface ();
-        virtual void            virtual_hook (int id, void* data);
     };
 // UiInterface
 

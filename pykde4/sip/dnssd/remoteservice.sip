@@ -41,7 +41,6 @@ signals:
 public:
     ~RemoteService ();
 protected:
-    virtual void            virtual_hook (int id, void* data);
 };
 // RemoteService
 };

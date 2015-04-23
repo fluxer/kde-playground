@@ -48,7 +48,6 @@ signals:
 public:
     ~PublicService ();
 protected:
-    virtual void            virtual_hook (int, void*);
 };
 // PublicService
 

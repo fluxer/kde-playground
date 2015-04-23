@@ -47,7 +47,6 @@ protected:
     virtual bool            doWriteSymLink (const QString& name, const QString& target, const QString& user, const QString& group, mode_t perm, time_t atime, time_t mtime, time_t ctime);
     virtual bool            openArchive (QIODevice::OpenMode mode);
     virtual bool            closeArchive ();
-//ig    virtual void            virtual_hook (int id, void* data);
 private:
 //force
                             KAr (const KAr& other);

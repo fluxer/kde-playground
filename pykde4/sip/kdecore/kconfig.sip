@@ -79,7 +79,6 @@ protected:
 //ig    virtual const KConfigGroup  groupImpl (const QByteArray& b) const;
     virtual void            deleteGroupImpl (const QByteArray& group, KConfigBase::WriteConfigFlags flags = KConfigBase::Normal);
     virtual bool            isGroupImmutableImpl (const QByteArray& aGroup) const;
-//ig    virtual void            virtual_hook (int id, void* data);
 //ig                            KConfig (KConfigPrivate& d);
 
 private:

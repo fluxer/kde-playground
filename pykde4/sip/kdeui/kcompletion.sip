@@ -138,7 +138,6 @@ protected:
     KCompletionBase::KeyBindingMap  getKeyBindings () const;
     void                    setDelegate (KCompletionBase* delegate);
     KCompletionBase*        delegate () const;
-//ig    virtual void            virtual_hook (int id, void* data);
 
 private:
 //force

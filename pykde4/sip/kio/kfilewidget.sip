@@ -62,7 +62,6 @@ public:
     static void             setStartDir (const KUrl& directory);
     virtual void            setCustomWidget (QWidget* widget);
     virtual void            setCustomWidget (const QString& text, QWidget* widget);
-//ig    virtual void            virtual_hook (int id, void* data);
     virtual void            slotOk ();
     virtual void            accept ();
     virtual void            slotCancel ();
