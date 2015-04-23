@@ -166,7 +166,6 @@ public:
         Toolbar,
         Menu,
         Dialog,
-        Override,
         TopMenu,
         Utility,
         Splash,
