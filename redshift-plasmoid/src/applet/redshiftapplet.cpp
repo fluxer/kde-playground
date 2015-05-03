@@ -141,50 +141,8 @@ void RedshiftApplet::createConfigurationInterface(KConfigDialog *parent)
     parent->addPage(redshiftInterface, RedshiftSettings::self(),
                     i18nc("Redshift main configuration page. Title Capitalization.","General"), "redshift");
 
-    //Create the activities configuration page
-    QWidget *activitiesInterface = new QWidget(parent);
-    m_activitiesUi = new Ui::ActivitiesConfig();
-    m_activitiesUi->setupUi(activitiesInterface);
-
-    //Get the list of KDE activities
-    Plasma::DataEngine *activities_engine = dataEngine("org.kde.activities");
-    QStringList activities = activities_engine->sources();
-    //The last source is not an activity, but is the Status source
-    activities.removeLast();
-
     //Get the redshift-plasmoid activities configuration
     RedshiftSettings::self()->readConfig();
-    const QStringList alwaysOnActivities = RedshiftSettings::alwaysOnActivities();
-    const QStringList alwaysOffActivities = RedshiftSettings::alwaysOffActivities();
-
-    QString act;
-    foreach(act, activities) {
-        Plasma::DataEngine::Data data = activities_engine->query(act);
-        QTreeWidgetItem *listItem = new QTreeWidgetItem(m_activitiesUi->activities);
-        KComboBox *itemCombo = new KComboBox(m_activitiesUi->activities);
-        listItem->setText(0, data["Name"].toString());
-        listItem->setIcon(0, KIcon(data["Icon"].toString()));
-        listItem->setFlags(Qt::ItemIsEnabled);
-        listItem->setData(0, Qt::UserRole, act);
-
-        itemCombo->addItem(i18nc("Redshift state is set to «Auto» mode in this activity. Title Capitalization.", "Auto"));
-        itemCombo->addItem(i18nc("Redshift is forced to be enabled in this activity. Title Capitalization.", "Always Enabled"));
-        itemCombo->addItem(i18nc("Redshift is forced to be disabled in this activity. Title Capitalization.", "Always Disabled"));
-
-        if (alwaysOnActivities.contains(act)) {
-            itemCombo->setCurrentIndex(1);
-        } else if (alwaysOffActivities.contains(act)) {
-            itemCombo->setCurrentIndex(2);
-        } else {
-            itemCombo->setCurrentIndex(0);
-        }
-
-        m_activitiesUi->activities->setItemWidget(listItem, 1, itemCombo);
-        connect(itemCombo, SIGNAL(currentIndexChanged(int)), parent, SLOT(settingsModified()));
-    }
-    m_activitiesUi->activities->resizeColumnToContents(0);
-    parent->addPage(activitiesInterface, i18nc("Redshift activities behaviour configuration page. Title Capitalization.", "Activities"),
-                    "preferences-activities");
 
     connect(parent, SIGNAL(applyClicked()), this, SLOT(configAccepted()));
     connect(parent, SIGNAL(okClicked()), this, SLOT(configAccepted()));
@@ -210,22 +168,6 @@ void RedshiftApplet::wheelEvent(QGraphicsSceneWheelEvent *e)
 
 void RedshiftApplet::configAccepted()
 {
-    QStringList alwaysOnActivities;
-    QStringList alwaysOffActivities;
-
-    QTreeWidget *activitiesList = m_activitiesUi->activities;
-    for (int i = 0; i < activitiesList->topLevelItemCount(); ++i) {
-        QTreeWidgetItem *item = activitiesList->topLevelItem(i);
-        KComboBox *itemCombo = static_cast<KComboBox *>(activitiesList->itemWidget(item, 1));
-        const QString act = item->data(0, Qt::UserRole).toString();
-        if (itemCombo->currentIndex() == 1) {
-            alwaysOnActivities << act;
-        } else if (itemCombo->currentIndex() == 2) {
-            alwaysOffActivities << act;
-        }
-    }
-    RedshiftSettings::setAlwaysOnActivities(alwaysOnActivities);
-    RedshiftSettings::setAlwaysOffActivities(alwaysOffActivities);
     RedshiftSettings::self()->writeConfig();
 }
 
