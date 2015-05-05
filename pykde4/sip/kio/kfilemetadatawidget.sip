@@ -28,8 +28,6 @@ public:
     virtual ~KFileMetaDataWidget ();
     void                    setItems (const KFileItemList& items);
     KFileItemList           items () const;
-    void                    setReadOnly (bool readOnly);
-    bool                    isReadOnly () const;
     virtual QSize           sizeHint () const;
 signals:
     void                    urlActivated (const KUrl& url);
