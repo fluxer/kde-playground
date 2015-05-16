@@ -154,7 +154,6 @@
 #include <kstatusnotifieritem.h>
 #include <kstringvalidator.h>
 #include <kstyle.h>
-#include <ksvgrenderer.h>
 #include <ksystemtrayicon.h>
 #include <ktabbar.h>
 #include <ktabwidget.h>
@@ -373,8 +372,6 @@ signals:
         sipType = sipType_KLinkItemSelectionModel;
     else if (dynamic_cast<KStyle*>(sipCpp))
         sipType = sipType_KStyle;
-    else if (dynamic_cast<KSvgRenderer*>(sipCpp))
-        sipType = sipType_KSvgRenderer;
     else if (dynamic_cast<Sonnet::Highlighter*>(sipCpp))
         sipType = sipType_Sonnet_Highlighter;
     else if (dynamic_cast<KSystemTrayIcon*>(sipCpp))

@@ -186,7 +186,6 @@
 %Include kstatusnotifieritem.sip
 %Include kstringvalidator.sip
 %Include kstyle.sip
-%Include ksvgrenderer.sip
 %Include ksystemeventfilter.sip
 %Include ksystemtrayicon.sip
 %Include ktabbar.sip
