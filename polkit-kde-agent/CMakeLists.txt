@@ -2,7 +2,8 @@ project(polkit-kde-agent-1)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
-find_package(KDE4 REQUIRED)
+find_package(KDE4 REQUIRED 4.14.3)
+include(KDE4Defaults)
 
 set(POLKITQT-1_MIN_VERSION "0.99.0")
 find_package(PolkitQt-1 REQUIRED)

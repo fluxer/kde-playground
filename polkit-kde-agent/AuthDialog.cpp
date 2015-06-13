@@ -364,4 +364,4 @@ void AuthDetails::openAction(const QString &url)
     QProcess::startDetached("polkit-kde-authorization", QStringList() << url);
 }
 
-#include "AuthDialog.moc"
+#include "moc_AuthDialog.cpp"
