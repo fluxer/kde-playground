@@ -1,0 +1,159 @@
+# Copyright (C) YEAR This_file_is_part_of_KDE
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Yuri Efremov <yur.arh@gmail.com>, 2010.
+# Alexander Potashev <aspotashev@gmail.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: http://bugs.kde.org\n"
+"POT-Creation-Date: 2010-11-07 06:15+0100\n"
+"PO-Revision-Date: 2010-11-25 22:37+0300\n"
+"Last-Translator: Yuri Efremov <yur.arh@gmail.com>\n"
+"Language-Team: Russian <kde-russian@lists.kde.ru>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n%"
+"10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 1.1\n"
+"X-Environment: kde\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+
+#: AuthDialog.cpp:151
+msgid "Password for root:"
+msgstr "Пароль для root:"
+
+#: AuthDialog.cpp:153
+#, kde-format
+msgid "Password for %1:"
+msgstr "Пароль для %1:"
+
+#. i18n: file: AuthDialog.ui:100
+#. i18n: ectx: property (text), widget (QLabel, lblPassword)
+#: AuthDialog.cpp:157 rc.cpp:26
+msgid "Password:"
+msgstr "Пароль:"
+
+#: AuthDialog.cpp:163
+msgid "Password or swipe finger for root:"
+msgstr "Введите пароль или приложите палец для root:"
+
+#: AuthDialog.cpp:165
+#, kde-format
+msgid "Password or swipe finger for %1:"
+msgstr "Введите пароль или приложите палец для %1:"
+
+#: AuthDialog.cpp:169
+msgid "Password or swipe finger:"
+msgstr "Введите пароль или приложите палец:"
+
+#: AuthDialog.cpp:179
+msgid ""
+"An application is attempting to perform an action that requires privileges. "
+"Authentication is required to perform this action."
+msgstr ""
+"Приложение пытается выполнить действие, которое требует дополнительных "
+"привилегий. Для этого требуется аутентификация."
+
+#: AuthDialog.cpp:194
+msgid "Select User"
+msgstr "Выберите пользователя"
+
+#: AuthDialog.cpp:269
+msgid "Authentication failure, please try again."
+msgstr "Сбой при проверке подлинности, попробуйте ещё раз."
+
+#: AuthDialog.cpp:292
+msgid "Switch to dialog"
+msgstr "Переключиться на диалоговое окно"
+
+#: AuthDialog.cpp:292
+msgid "Cancel"
+msgstr "Отмена"
+
+#: AuthDialog.cpp:324
+#, kde-format
+msgctxt ""
+"%1 is the name of a detail about the current action provided by polkit"
+msgid "%1:"
+msgstr "%1:"
+
+#: AuthDialog.cpp:334
+#, kde-format
+msgid "Click to edit %1"
+msgstr "Нажмите, чтобы изменить %1"
+
+#: AuthDialog.cpp:342 AuthDialog.cpp:346
+#, kde-format
+msgid "Click to open %1"
+msgstr "Нажмите, чтобы открыть %1"
+
+#: main.cpp:29 main.cpp:30
+msgid "PolicyKit1-KDE"
+msgstr "PolicyKit1-KDE"
+
+#: main.cpp:31
+msgid "(c) 2009 Red Hat, Inc."
+msgstr "© Red Hat, Inc., 2009"
+
+#: main.cpp:32
+msgid "Jaroslav Reznik"
+msgstr "Jaroslav Reznik"
+
+#: main.cpp:32
+msgid "Maintainer"
+msgstr "Сопровождающий"
+
+#: policykitlistener.cpp:73
+msgid "Another client is already authenticating, please try again later."
+msgstr ""
+"Аутентификация уже выполняется другим процессом, повторите попытку позже."
+
+#: rc.cpp:1
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Александр Мелентьев,Николай Шафоростов,Юрий Ефремов"
+
+#: rc.cpp:2
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "alex239@gmail.com,shaforostoff@kde.ru,yur.arh@gmail.com"
+
+#. i18n: file: authdetails.ui:22
+#. i18n: ectx: property (text), widget (QLabel, label)
+#. i18n: file: authdetails.ui:76
+#. i18n: ectx: property (text), widget (QLabel, app_label)
+#: rc.cpp:5 rc.cpp:20
+msgid "Application:"
+msgstr "Приложение:"
+
+#. i18n: file: authdetails.ui:29
+#. i18n: ectx: property (text), widget (QLabel, label_3)
+#. i18n: file: authdetails.ui:56
+#. i18n: ectx: property (text), widget (KUrlLabel, action_label)
+#: rc.cpp:8 rc.cpp:17
+msgid "Action:"
+msgstr "Действие:"
+
+#. i18n: file: authdetails.ui:36
+#. i18n: ectx: property (text), widget (QLabel, vendorL)
+#. i18n: file: authdetails.ui:43
+#. i18n: ectx: property (text), widget (KUrlLabel, vendorUL)
+#: rc.cpp:11 rc.cpp:14
+msgid "Vendor:"
+msgstr "Поставщик:"
+
+#. i18n: file: AuthDialog.ui:120
+#. i18n: ectx: property (text), widget (QCheckBox, cbRemember)
+#: rc.cpp:29
+msgid "Remember authorization"
+msgstr "Запомнить данные авторизации"
+
+#. i18n: file: AuthDialog.ui:130
+#. i18n: ectx: property (text), widget (QCheckBox, cbSessionOnly)
+#: rc.cpp:32
+msgid "For this session only"
+msgstr "Только для данного сеанса"
