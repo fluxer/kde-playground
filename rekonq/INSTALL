@@ -1,0 +1,66 @@
+===== Building rekonq from source =====
+
+
+=== Prerequisites ===
+
+To build, rekonq needs at least:
+
+- Qt 4.8.x:
+- QtWebkit 2.2.x
+- kdelibs 4.8.4
+
+This software should be prepackaged for all major Linux distributions.
+Please see http://techbase.kde.org/Getting_Started#Building_and_Running_KDE_Software_From_Source
+for instructions on how to build and setup a KDE4 environment to work in.
+
+The build system, as every KDE4 software is based on cmake. Actual minimum dependency about is:
+
+- cmake 2.8.9
+
+=== Optional dependencies ===
+
+Since 1.0, Rekonq can use optional libraries to provide extra features. These are:
+
+- Nepomuk (www.kde.org) & soprano (soprano.sf.net) libraries: 
+needed to provide nepomuk bookmarks tagging
+
+- QtOAuth (github.com/ayoy/qoauth) & QCA2 (delta.affinix.com/qca/) libraries:
+needed to provide Opera Link sync handler
+
+NOTE: to let Opera sync handler work, you need also qca2-ossl package as runtime dep.
+
+
+=== WebKit ===
+
+Actual minimum required version is 2.2.0 depending on (at least) Qt 4.7. But actually quite all distros
+have Qt 4.8.x + QtWebKit 2.3.x. Recommended release for the 2.3.x QtWebKit release is the LAST ONE
+(2.3.1 at the time of writing this).
+
+
+=== Building rekonq ===
+
+To build it perform the following commands after switching into the rekonq directory
+(for example ~/mainline or ~/0.4):
+
+    mkdir build && cd build
+    cmake ..
+    make && sudo make install
+
+If you want to install rekonq locally, do not run the "make install" command. rekonq can
+then be found in build/src and is executed with ./rekonq.
+
+=== Getting Help ===
+
+If you need help with rekonq, you can find it in the IRC channel #rekonq on irc.freenode.net 
+or by viewing the handbook that comes with rekonq.
+You can also view the rekonq handbook by pressing F1 after starting rekonq.
+
+
+=== rekonq useful links ===
+
+rekonq site:        http://rekonq.kde.org
+Techbase page :     http://techbase.kde.org/Projects/rekonq
+KDE Projects page:  http://projects.kde.org/rekonq
+
+Enjoy rekonq :D
+
