@@ -20,8 +20,6 @@ include_directories (${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${K
 
 macro_optional_add_subdirectory (kdbg)
 macro_optional_add_subdirectory (pykde4)
-macro_optional_add_subdirectory (libkdcraw)
-macro_optional_add_subdirectory (libkexiv2)
 macro_optional_add_subdirectory (kamera)
 macro_optional_add_subdirectory (kfilereplace)
 # NOTE: you will need kdoctools from kdelibs ported for the help KIO slave
