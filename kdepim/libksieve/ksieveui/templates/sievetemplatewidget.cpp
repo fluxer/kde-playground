@@ -32,7 +32,6 @@ SieveTemplateListWidget::SieveTemplateListWidget(const QString &configName, QWid
     : PimCommon::TemplateListWidget(configName, parent),
       mTemplateManager(0)
 {
-    setKNewStuffConfigFile(QLatin1String("ksieve_script.knsrc"));
     loadTemplates();
     mTemplateManager = new PimCommon::TemplateManager(QLatin1String("sieve/scripts"), this);
 }
