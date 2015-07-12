@@ -54,10 +54,6 @@ private:
 //end
 public:
 //ig    void                    publish (Plasma::AnnouncementMethods methods, const QString& name);
-//FIXME missing implementation
-//ig    void                    unpublish (const QString& name = QString());
-//ig    bool                    isPublished () const;
-    QString                 contentsHash () const;
     explicit                Package ();
 };
 // Package

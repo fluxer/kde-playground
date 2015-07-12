@@ -56,7 +56,6 @@
 %Include extendergroup.sip
 %Include extenderitem.sip
 %Include framesvg.sip
-%Include glapplet.sip
 %Include package.sip
 %Include packagemetadata.sip
 %Include packagestructure.sip

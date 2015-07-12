@@ -49,7 +49,6 @@
 #include <plasma/widgets/flashinglabel.h>
 #include <plasma/widgets/frame.h>
 #include <plasma/framesvg.h>
-#include <plasma/glapplet.h>
 #include <plasma/widgets/groupbox.h>
 #include <plasma/widgets/iconwidget.h>
 #include <plasma/widgets/itembackground.h>
@@ -227,8 +226,6 @@ protected:
             sipType = sipType_Plasma_AppletProtectedThunk;
         else if (dynamic_cast<Plasma::Containment*>(sipCpp))
             sipType = sipType_Plasma_Containment;
-        else if (dynamic_cast<Plasma::GLApplet*>(sipCpp))
-            sipType = sipType_Plasma_GLApplet;
         else if (dynamic_cast<Plasma::PopupApplet*>(sipCpp))
             sipType = sipType_Plasma_PopupApplet;
         }

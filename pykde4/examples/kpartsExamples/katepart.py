@@ -14,7 +14,7 @@ class MainWindow (KMainWindow):
 
         self.resize(640, 480)
 
-        factory = KLibLoader.self().factory("katepart")
+        factory = KLibrary("katepart").factory()
         part = factory.create(self, "KatePart")
         self.setCentralWidget(part.widget())
 
