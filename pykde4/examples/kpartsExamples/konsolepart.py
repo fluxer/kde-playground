@@ -23,13 +23,9 @@
 # and send it some things to do.
  
 import sys
-# Uncomment this if you are doing development, and installing the 
-# work-in-progress here.
-sys.path.insert(1,'/usr/local/lib/python2.7/site-packages')
 from PyKDE4.kterminal import KTerminal
 from PyQt4.QtCore import QStringList
 from PyKDE4.kdecore import ki18n, KAboutData, KCmdLineArgs, KPluginLoader, KService
-from PyKDE4.kparts import KParts
 from PyKDE4.kdeui import *
 
 class MainWindow (KMainWindow):
