@@ -144,5 +144,5 @@ void AreaWalkerTest::toolViewWalkerModes()
 }
 
 QTEST_KDEMAIN(AreaWalkerTest, GUI)
-#include "areawalkertest.moc"
+#include "moc_areawalkertest.cpp"
 

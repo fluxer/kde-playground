@@ -414,4 +414,4 @@ bool Controller::arrangeBuddies() const
 
 }
 
-#include "controller.moc"
+#include "moc_controller.cpp"

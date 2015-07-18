@@ -215,4 +215,4 @@ QString IBreakpointController::breakpointErrorText(const KDevelop::Breakpoint* b
 
 }
 
-#include "ibreakpointcontroller.moc"
+#include "moc_ibreakpointcontroller.cpp"

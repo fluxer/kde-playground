@@ -65,4 +65,4 @@ void WorkingSetFileLabel::emitClicked()
   emit clicked();
 }
 
-#include "workingsetfilelabel.moc"
+#include "moc_workingsetfilelabel.cpp"

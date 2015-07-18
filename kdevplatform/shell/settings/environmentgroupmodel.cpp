@@ -203,4 +203,4 @@ void EnvironmentGroupModel::saveToConfig( KConfig* cfg )
 
 }
 
-#include "environmentgroupmodel.moc"
+#include "moc_environmentgroupmodel.cpp"

@@ -156,4 +156,4 @@ void LaunchConfiguration::setLauncherForMode(const QString& mode, const QString&
 
 }
 
-#include "launchconfiguration.moc"
+#include "moc_launchconfiguration.cpp"

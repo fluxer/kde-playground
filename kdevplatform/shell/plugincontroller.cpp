@@ -29,7 +29,7 @@ Boston, MA 02110-1301, USA.
 #include <QtGui/QAction>
 
 #include <kcmdlineargs.h>
-#include <klibloader.h>
+#include <kpluginloader.h>
 #include <kservice.h>
 #include <kservicetypetrader.h>
 #include <kmessagebox.h>
@@ -721,5 +721,5 @@ void PluginController::resetToDefaults()
 }
 
 }
-#include "plugincontroller.moc"
+#include "moc_plugincontroller.cpp"
 

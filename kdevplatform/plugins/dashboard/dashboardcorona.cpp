@@ -19,7 +19,6 @@
 
 #include "dashboardcorona.h"
 #include <QAction>
-#include <plasma/context.h>
 #include <interfaces/iproject.h>
 #include "dashboarddataengine.h"
 #include "dashboardpluginloader.h"
@@ -47,7 +46,6 @@ KDevelop::IProject* DashboardCorona::project() const
 void DashboardCorona::loadDefaultLayout()
 {
     Plasma::Containment* c=addContainment("newspaper");
-    c->context()->setCurrentActivity(m_project->name());
     
     c->init();
     

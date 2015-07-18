@@ -114,4 +114,4 @@ void FileManagerListJob::abort()
     m_aborted = true;
 }
 
-#include "filemanagerlistjob.moc"
+#include "moc_filemanagerlistjob.cpp"

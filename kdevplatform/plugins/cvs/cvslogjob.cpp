@@ -90,4 +90,4 @@ void CvsLogJob::parseOutput(const QString& jobOutput, QList<QVariant>& events)
     }
 }
 
-#include "cvslogjob.moc"
+#include "moc_cvslogjob.cpp"

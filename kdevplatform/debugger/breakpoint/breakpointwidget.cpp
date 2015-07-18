@@ -319,4 +319,4 @@ void BreakpointWidget::slotEnableAllBreakpoints()
 }
 
 
-#include "breakpointwidget.moc"
+#include "moc_breakpointwidget.cpp"

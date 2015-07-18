@@ -141,4 +141,4 @@ void ShellDocumentOperationTest::testKateDocumentAndViewCreation()
 
 QTEST_KDEMAIN(ShellDocumentOperationTest, GUI)
 
-#include "shelldocumentoperationtest.moc"
+#include "moc_shelldocumentoperationtest.cpp"

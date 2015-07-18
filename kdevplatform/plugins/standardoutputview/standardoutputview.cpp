@@ -338,4 +338,4 @@ void StandardOutputView::setTitle(int outputId, const QString& title)
     outputWidgetForId(outputId)->setTitle(outputId, title);
 }
 
-#include "standardoutputview.moc"
+#include "moc_standardoutputview.cpp"

@@ -20,4 +20,4 @@
 
 #include "iframestackmodel.h"
 
-#include "iframestackmodel.moc"
+#include "moc_iframestackmodel.cpp"

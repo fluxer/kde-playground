@@ -498,5 +498,5 @@ void GrepDialog::performAction(KDialog::ButtonCode button)
     close();
 }
 
-#include "grepdialog.moc"
+#include "moc_grepdialog.cpp"
 

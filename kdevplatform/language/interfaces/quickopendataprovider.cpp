@@ -78,4 +78,4 @@ namespace KDevelop {
   }
 }
 
-#include "quickopendataprovider.moc"
+#include "moc_quickopendataprovider.cpp"

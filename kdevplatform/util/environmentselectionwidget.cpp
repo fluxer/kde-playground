@@ -102,4 +102,4 @@ EnvironmentGroupList EnvironmentSelectionWidget::environment() const
 
 }
 
-#include "environmentselectionwidget.moc"
+#include "moc_environmentselectionwidget.cpp"

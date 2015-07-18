@@ -118,5 +118,5 @@ KDevCategoryItem* KDevDocumentModel::category( const QString& category ) const
     return 0;
 }
 
-#include "kdevdocumentmodel.moc"
+#include "moc_kdevdocumentmodel.cpp"
 

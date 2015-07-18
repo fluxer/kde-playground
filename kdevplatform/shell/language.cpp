@@ -71,5 +71,5 @@ QReadWriteLock *Language::parseLock() const
 
 }
 
-#include "language.moc"
+#include "moc_language.cpp"
 

@@ -54,4 +54,4 @@ void TestHighlighting::testInitialization()
 }
 
 
-#include "test_highlighting.moc"
+#include "moc_test_highlighting.cpp"

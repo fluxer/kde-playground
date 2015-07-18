@@ -413,4 +413,4 @@ void AssistantPopup::updateState()
     show();
 }
 
-#include "assistantpopup.moc"
+#include "moc_assistantpopup.cpp"

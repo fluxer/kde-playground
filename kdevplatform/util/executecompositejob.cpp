@@ -97,4 +97,4 @@ const QList< KJob* >& ExecuteCompositeJob::subjobs() const
 
 }
 
-#include "executecompositejob.moc"
+#include "moc_executecompositejob.cpp"

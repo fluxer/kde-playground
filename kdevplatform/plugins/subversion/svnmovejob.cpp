@@ -141,6 +141,6 @@ void SvnMoveJob::setForce( bool force )
         m_job->setForce( force );
 }
 
-#include "svnmovejob.moc"
-#include "svnmovejob_p.moc"
+#include "moc_svnmovejob.cpp"
+#include "moc_svnmovejob_p.cpp"
 

@@ -95,5 +95,5 @@ void EnvironmentPreferences::settingsChanged()
 }
 
 }
-#include "environmentpreferences.moc"
+#include "moc_environmentpreferences.cpp"
 

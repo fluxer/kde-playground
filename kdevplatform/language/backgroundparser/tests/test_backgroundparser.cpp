@@ -292,4 +292,4 @@ void TestBackgroundparser::benchmarkDocumentChanges()
     doc->save();
 }
 
-#include "test_backgroundparser.moc"
+#include "moc_test_backgroundparser.cpp"

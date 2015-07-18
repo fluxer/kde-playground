@@ -83,4 +83,4 @@ void CvsMainView::slotTabClose()
         m_closeButton->setEnabled(false);
 }
 
-#include "cvsmainview.moc"
+#include "moc_cvsmainview.cpp"

@@ -515,4 +515,4 @@ void SourceFormatterSettings::somethingChanged()
     unmanagedWidgetChangeState(true);
 }
 
-#include "sourceformattersettings.moc"
+#include "moc_sourceformattersettings.cpp"

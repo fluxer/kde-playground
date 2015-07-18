@@ -242,4 +242,4 @@ void DocumentationController::changedDocumentationProviders()
     emit providersChanged();
 }
 
-#include "documentationcontroller.moc"
+#include "moc_documentationcontroller.cpp"

@@ -286,4 +286,4 @@ bool FilterModel::setItemData(const QModelIndex& index, const QMap< int, QVarian
     return true;
 }
 
-#include "filtermodel.moc"
+#include "moc_filtermodel.cpp"

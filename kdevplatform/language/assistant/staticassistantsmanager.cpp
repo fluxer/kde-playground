@@ -306,4 +306,4 @@ void StaticAssistantsManager::Private::timeout()
     }
 }
 
-#include "staticassistantsmanager.moc"
+#include "moc_staticassistantsmanager.cpp"

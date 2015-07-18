@@ -32,5 +32,5 @@ ISession::~ISession()
 }
 
 }
-#include "isession.moc"
+#include "moc_isession.cpp"
 

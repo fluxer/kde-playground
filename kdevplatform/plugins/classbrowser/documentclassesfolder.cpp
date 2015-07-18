@@ -29,7 +29,10 @@
 #include <QTimer>
 #include <KIcon>
 
+// https://bugreports.qt.io/browse/QTBUG-22829
+#ifndef Q_MOC_RUN
 #include <boost/foreach.hpp>
+#endif
 
 using namespace KDevelop;
 using namespace ClassModelNodes;
@@ -446,7 +449,7 @@ StaticNamespaceFolderNode* DocumentClassesFolder::getNamespaceFolder(const KDeve
     return *iter;
 }
 
-#include "documentclassesfolder.moc"
+#include "moc_documentclassesfolder.cpp"
 
 
 // kate: space-indent on; indent-width 2; tab-width 4; replace-tabs on; auto-insert-doxygen on

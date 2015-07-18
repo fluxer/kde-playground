@@ -59,7 +59,7 @@ bool SvnUpdateOptionDlg::ignoreExternal()
 }
 
 
-#include "svnupdatewidget.moc"
+#include "moc_svnupdatewidget.cpp"
 
 
 

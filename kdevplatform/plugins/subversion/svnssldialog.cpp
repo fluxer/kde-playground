@@ -80,5 +80,5 @@ void SvnSSLTrustDialog::permanentlyClicked()
     accept();
 }
 
-#include "svnssldialog.moc"
+#include "moc_svnssldialog.cpp"
 

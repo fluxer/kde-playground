@@ -169,5 +169,5 @@ ProjectConfigSkeleton::~ProjectConfigSkeleton()
 }
 
 }
-#include "projectconfigskeleton.moc"
+#include "moc_projectconfigskeleton.cpp"
 

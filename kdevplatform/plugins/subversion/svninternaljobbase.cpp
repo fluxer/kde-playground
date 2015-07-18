@@ -374,4 +374,4 @@ void SvnInternalJobBase::kill()
 
 
 
-#include "svninternaljobbase.moc"
+#include "moc_svninternaljobbase.cpp"

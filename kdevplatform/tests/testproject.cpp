@@ -183,4 +183,4 @@ void TestProjectController::initialize()
 {
 }
 
-#include "testproject.moc"
+#include "moc_testproject.cpp"

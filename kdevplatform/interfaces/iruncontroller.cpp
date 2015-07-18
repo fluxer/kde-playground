@@ -26,4 +26,4 @@ IRunController::IRunController(QObject * parent)
 {
 }
 
-#include "iruncontroller.moc"
+#include "moc_iruncontroller.cpp"

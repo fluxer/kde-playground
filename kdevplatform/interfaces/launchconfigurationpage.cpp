@@ -28,4 +28,4 @@ LaunchConfigurationPage::LaunchConfigurationPage( QWidget* parent ) : QWidget( p
 
 }
 
-#include "launchconfigurationpage.moc"
+#include "moc_launchconfigurationpage.cpp"

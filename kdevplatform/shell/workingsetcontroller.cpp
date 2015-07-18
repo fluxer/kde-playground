@@ -321,4 +321,4 @@ void WorkingSetController::viewAdded( Sublime::AreaIndex* , Sublime::View* )
 }
 
 
-#include "workingsetcontroller.moc"
+#include "moc_workingsetcontroller.cpp"

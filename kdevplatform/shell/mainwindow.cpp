@@ -383,4 +383,4 @@ void MainWindow::dockBarContextMenuRequested(Qt::DockWidgetArea area, const QPoi
 
 }
 
-#include "mainwindow.moc"
+#include "moc_mainwindow.cpp"

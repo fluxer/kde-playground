@@ -62,4 +62,4 @@ void VcsJob::setType( VcsJob::JobType t )
 
 }
 
-#include "vcsjob.moc"
+#include "moc_vcsjob.cpp"

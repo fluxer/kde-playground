@@ -84,4 +84,4 @@ void AsyncTreeView::slotExpandedDataReady()
     resizeColumns();
 }
 
-#include "treeview.moc"
+#include "moc_treeview.cpp"

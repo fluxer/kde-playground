@@ -158,4 +158,4 @@ void ProjectFilterProvider::projectClosing(IProject* project)
     m_filters.remove(project);
 }
 
-#include "projectfilterprovider.moc"
+#include "moc_projectfilterprovider.cpp"

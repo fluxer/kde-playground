@@ -446,5 +446,5 @@ bool MainWindowPrivate::changingActiveView() const
 }
 
 #include "mainwindow_actions.cpp"
-#include "mainwindow_p.moc"
+#include "moc_mainwindow_p.cpp"
 

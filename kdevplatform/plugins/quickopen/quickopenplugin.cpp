@@ -1545,6 +1545,6 @@ IQuickOpenLine* QuickOpenPlugin::createQuickOpenLine(const QStringList& scopes, 
     return new QuickOpenLineEdit(new StandardQuickOpenWidgetCreator(scopes, type));
 }
 
-#include "quickopenplugin.moc"
+#include "moc_quickopenplugin.cpp"
 
 // kate: space-indent on; indent-width 2; tab-width 4; replace-tabs on; auto-insert-doxygen on

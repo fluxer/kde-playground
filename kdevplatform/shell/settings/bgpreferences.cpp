@@ -21,7 +21,7 @@
 
 #include <QVBoxLayout>
 
-#include <kgenericfactory.h>
+#include <kpluginfactory.h>
 #include <kaboutdata.h>
 
 #include <interfaces/ilanguagecontroller.h>
@@ -93,5 +93,5 @@ void BGPreferences::save()
 
 }
 
-#include "bgpreferences.moc"
+#include "moc_bgpreferences.cpp"
 

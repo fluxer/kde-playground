@@ -34,4 +34,4 @@ IDebugController::~IDebugController()
 
 }
 
-#include "idebugcontroller.moc"
+#include "moc_idebugcontroller.cpp"

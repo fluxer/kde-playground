@@ -24,7 +24,7 @@
 
 #include <QVBoxLayout>
 
-#include <kgenericfactory.h>
+#include <kpluginfactory.h>
 #include <kaboutdata.h>
 
 #include <ktexteditor/view.h>
@@ -93,5 +93,5 @@ void CCPreferences::save()
 
 }
 
-#include "ccpreferences.moc"
+#include "moc_ccpreferences.cpp"
 

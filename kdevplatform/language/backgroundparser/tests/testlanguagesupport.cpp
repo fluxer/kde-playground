@@ -40,4 +40,4 @@ QString TestLanguageSupport::name() const
     return "TestLanguageSupport";
 }
 
-#include "testlanguagesupport.moc"
+#include "moc_testlanguagesupport.cpp"

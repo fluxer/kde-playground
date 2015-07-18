@@ -511,4 +511,4 @@ void AppWizardPlugin::reload()
 }
 
 
-#include "appwizardplugin.moc"
+#include "moc_appwizardplugin.cpp"

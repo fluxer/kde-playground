@@ -124,5 +124,5 @@ void SvnCopyJob::setSourceLocation( const KUrl& url )
 }
 
 
-#include "svncopyjob.moc"
-#include "svncopyjob_p.moc"
+#include "moc_svncopyjob.cpp"
+#include "moc_svncopyjob_p.cpp"

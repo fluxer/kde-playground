@@ -93,6 +93,6 @@ bool FilteredProjectFolder::isClassFiltered(const KDevelop::QualifiedIdentifier&
   return !a_id.last().toString().contains(m_filterString, Qt::CaseInsensitive);
 }
 
-#include "projectfolder.moc"
+#include "moc_projectfolder.cpp"
 
 // kate: space-indent on; indent-width 2; tab-width 4; replace-tabs on; auto-insert-doxygen on

@@ -228,4 +228,4 @@ void ViewActivationTest::activationAfterRemovalSimplestCase()
 }
 
 QTEST_KDEMAIN(ViewActivationTest, GUI)
-#include "viewactivationtest.moc"
+#include "moc_viewactivationtest.cpp"

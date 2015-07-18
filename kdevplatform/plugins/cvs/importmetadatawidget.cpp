@@ -75,4 +75,4 @@ bool ImportMetadataWidget::hasValidData() const
     && !m_ui->module->text().isEmpty() && !m_ui->repository->text().isEmpty();
 }
 
-#include "importmetadatawidget.moc"
+#include "moc_importmetadatawidget.cpp"

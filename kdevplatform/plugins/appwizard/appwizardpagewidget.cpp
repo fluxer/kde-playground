@@ -33,5 +33,5 @@ bool AppWizardPageWidget::shouldContinue()
     return true;
 }
 
-#include "appwizardpagewidget.moc"
+#include "moc_appwizardpagewidget.cpp"
 

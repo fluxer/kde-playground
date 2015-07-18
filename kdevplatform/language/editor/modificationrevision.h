@@ -77,6 +77,6 @@ private:
 
 }
 
-KDEVPLATFORMLANGUAGE_EXPORT kdbgstream& operator<< (kdbgstream& s, const KDevelop::ModificationRevision& rev);
+// KDEVPLATFORMLANGUAGE_EXPORT kdbgstream& operator<< (kdbgstream& s, const KDevelop::ModificationRevision& rev);
 
 #endif

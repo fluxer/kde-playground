@@ -46,4 +46,4 @@ void CvsGenericOutputView::slotJobFinished(KJob * job)
     }
 }
 
-#include "cvsgenericoutputview.moc"
+#include "moc_cvsgenericoutputview.cpp"

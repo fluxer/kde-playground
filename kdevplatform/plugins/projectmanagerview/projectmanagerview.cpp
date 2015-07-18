@@ -265,4 +265,4 @@ QModelIndex ProjectManagerView::indexToView(const QModelIndex& index) const
     return m_overlayProxy->mapFromSource( m_modelFilter->mapFromSource(index) );
 }
 
-#include "projectmanagerview.moc"
+#include "moc_projectmanagerview.cpp"

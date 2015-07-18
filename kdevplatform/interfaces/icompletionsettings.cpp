@@ -26,4 +26,4 @@ ICompletionSettings::~ICompletionSettings() {
 }
 }
 
-#include "icompletionsettings.moc"
+#include "moc_icompletionsettings.cpp"

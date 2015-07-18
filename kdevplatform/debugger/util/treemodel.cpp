@@ -203,4 +203,4 @@ KDevelop::TreeItem* KDevelop::TreeModel::root() const
 }
 
 
-#include "treemodel.moc"
+#include "moc_treemodel.cpp"

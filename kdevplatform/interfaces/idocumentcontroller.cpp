@@ -35,5 +35,5 @@ KDevelop::IDocument* IDocumentController::openDocument( const KUrl &url,
 
 }
 
-#include "idocumentcontroller.moc"
+#include "moc_idocumentcontroller.cpp"
 

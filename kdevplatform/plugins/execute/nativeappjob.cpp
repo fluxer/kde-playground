@@ -218,4 +218,4 @@ KDevelop::OutputModel* NativeAppJob::model()
 }
 
 
-#include "nativeappjob.moc"
+#include "moc_nativeappjob.cpp"

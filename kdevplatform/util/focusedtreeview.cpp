@@ -60,4 +60,4 @@ void FocusedTreeView::rowsInserted(const QModelIndex& parent, int start, int end
 
 }
 
-#include "focusedtreeview.moc"
+#include "moc_focusedtreeview.cpp"

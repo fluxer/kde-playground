@@ -11,7 +11,7 @@
 
 #include "kdevkonsoleviewplugin.h"
 
-#include <kgenericfactory.h>
+#include <kpluginfactory.h>
 #include <kaboutdata.h>
 
 #include <interfaces/iuicontroller.h>
@@ -75,5 +75,5 @@ KDevKonsoleViewPlugin::~KDevKonsoleViewPlugin()
 {
 }
 
-#include "kdevkonsoleviewplugin.moc"
+#include "moc_kdevkonsoleviewplugin.cpp"
 

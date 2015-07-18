@@ -1016,4 +1016,4 @@ void LaunchConfigurationDialog::launchModeChanged(int item)
 
 }
 
-#include "launchconfigurationdialog.moc"
+#include "moc_launchconfigurationdialog.cpp"

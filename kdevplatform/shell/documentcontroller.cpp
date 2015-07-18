@@ -1232,4 +1232,4 @@ void DocumentController::vcsAnnotateCurrentDocument()
 
 }
 
-#include "documentcontroller.moc"
+#include "moc_documentcontroller.cpp"

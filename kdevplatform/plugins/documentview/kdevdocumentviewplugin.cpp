@@ -30,7 +30,7 @@
 #include <klocale.h>
 #include <kmimetype.h>
 #include <kaboutdata.h>
-#include <kgenericfactory.h>
+#include <kpluginfactory.h>
 
 #include <interfaces/icore.h>
 #include <interfaces/iuicontroller.h>
@@ -105,5 +105,5 @@ void KDevDocumentViewPlugin::unload()
     core()->uiController()->removeToolView( factory );
 }
 
-#include "kdevdocumentviewplugin.moc"
+#include "moc_kdevdocumentviewplugin.cpp"
 

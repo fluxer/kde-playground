@@ -484,4 +484,4 @@ KDevelop::VcsLocationWidget* CvsPlugin::vcsLocation(QWidget* parent) const
 
 // End:  KDevelop::IBasicVersionControl
 
-#include "cvsplugin.moc"
+#include "moc_cvsplugin.cpp"

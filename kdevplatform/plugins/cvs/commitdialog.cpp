@@ -20,4 +20,4 @@ CommitDialog::~CommitDialog()
 {
 }
 
-#include "commitdialog.moc"
+#include "moc_commitdialog.cpp"

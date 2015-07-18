@@ -164,4 +164,4 @@ void BreakpointDetails::showExplanation(const QString& link)
     }
 }
 
-#include "breakpointdetails.moc"
+#include "moc_breakpointdetails.cpp"

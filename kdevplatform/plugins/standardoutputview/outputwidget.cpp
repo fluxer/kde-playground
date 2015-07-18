@@ -706,4 +706,4 @@ void OutputWidget::setTitle(int outputId, const QString& title)
     }
 }
 
-#include "outputwidget.moc"
+#include "moc_outputwidget.cpp"

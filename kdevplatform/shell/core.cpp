@@ -573,4 +573,4 @@ QString Core::version()
 
 }
 
-#include "core.moc"
+#include "moc_core.cpp"

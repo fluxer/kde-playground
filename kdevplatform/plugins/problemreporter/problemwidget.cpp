@@ -260,4 +260,4 @@ void ProblemWidget::showEvent(QShowEvent * event)
         resizeColumnToContents(i);
 }
 
-#include "problemwidget.moc"
+#include "moc_problemwidget.cpp"

@@ -281,5 +281,5 @@ void KompareProcess::slotFinished( int exitCode, QProcess::ExitStatus exitStatus
 	emit diffHasFinished( exitStatus == NormalExit && exitCode != 0 );
 }
 
-#include "kompareprocess.moc"
+#include "moc_kompareprocess.cpp"
 

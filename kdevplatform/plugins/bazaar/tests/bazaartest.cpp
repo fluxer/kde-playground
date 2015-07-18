@@ -355,4 +355,4 @@ void BazaarTest::removeTempDirs()
 
 QTEST_KDEMAIN(BazaarTest, GUI)
 
-#include "bazaartest.moc"
+#include "moc_bazaartest.cpp"

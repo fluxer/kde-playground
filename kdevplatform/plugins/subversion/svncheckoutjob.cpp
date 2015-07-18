@@ -135,5 +135,5 @@ void SvnCheckoutJob::setMapping( const KDevelop::VcsLocation & sourceRepository,
 }
 
 
-#include "svncheckoutjob.moc"
-#include "svncheckoutjob_p.moc"
+#include "moc_svncheckoutjob.cpp"
+#include "moc_svncheckoutjob_p.cpp"

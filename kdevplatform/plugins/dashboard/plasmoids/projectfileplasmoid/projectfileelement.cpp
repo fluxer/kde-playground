@@ -18,7 +18,6 @@
 
 #include "projectfileelement.h"
 
-#include <plasma/context.h>
 #include <plasma/datacontainer.h>
 #include <plasma/dataenginemanager.h>
 #include <QFile>
@@ -62,7 +61,7 @@ void ProjectFileItem::reloadData()
 {
     DataEngine* thedata = dataEngine("org.kdevelop.projects");
     
-    DataContainer* projectUrl=thedata->containerForSource(context()->currentActivity());
+    DataContainer* projectUrl=thedata->containerForSource("");
     
     KUrl url=projectUrl->data().value("projectFileUrl").value<KUrl>();
     url=url.upUrl();
@@ -105,4 +104,4 @@ void ProjectFileItem::configAccepted()
     reloadData();
 }
 
-#include "projectfileelement.moc"
+#include "moc_projectfileelement.cpp"

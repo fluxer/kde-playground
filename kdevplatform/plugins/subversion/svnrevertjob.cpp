@@ -129,6 +129,6 @@ void SvnRevertJob::setRecursive( bool recursive )
 }
 
 
-#include "svnrevertjob.moc"
-#include "svnrevertjob_p.moc"
+#include "moc_svnrevertjob.cpp"
+#include "moc_svnrevertjob_p.cpp"
 

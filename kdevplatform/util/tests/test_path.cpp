@@ -534,4 +534,4 @@ void TestPath::testPathCd_data()
     }
 }
 
-#include "test_path.moc"
+#include "moc_test_path.cpp"

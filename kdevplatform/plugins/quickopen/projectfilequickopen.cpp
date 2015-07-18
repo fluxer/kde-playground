@@ -358,4 +358,4 @@ QSet<IndexedString> OpenFilesDataProvider::files() const
     return openFiles();
 }
 
-#include "projectfilequickopen.moc"
+#include "moc_projectfilequickopen.cpp"

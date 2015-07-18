@@ -206,4 +206,4 @@ KDevFileManagerPlugin* FileManager::plugin() const
 
 
 
-#include "filemanager.moc"
+#include "moc_filemanager.cpp"

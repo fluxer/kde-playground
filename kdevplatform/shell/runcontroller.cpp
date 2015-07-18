@@ -996,4 +996,4 @@ void RunDelegate::paint( QPainter* painter, const QStyleOptionViewItem& option, 
 }
 
 
-#include "runcontroller.moc"
+#include "moc_runcontroller.cpp"

@@ -96,4 +96,4 @@ void CopyJob::finish(KJob*)
 }
 
 
-#include "copyjob.moc"
+#include "moc_copyjob.cpp"

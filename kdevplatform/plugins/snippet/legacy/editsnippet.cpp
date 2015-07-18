@@ -213,4 +213,4 @@ void EditSnippet::topBoxModified()
     m_topBoxModified = true;
 }
 
-#include "editsnippet.moc"
+#include "moc_editsnippet.cpp"

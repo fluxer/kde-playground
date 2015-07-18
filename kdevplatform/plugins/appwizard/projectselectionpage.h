@@ -12,7 +12,6 @@
 
 #include "appwizardpagewidget.h"
 #include "appwizarddialog.h"
-#include <knewstuff3/entry.h>
 #include <QRegExpValidator>
 
 namespace KDevelop
@@ -53,8 +52,6 @@ private slots:
     void templateChanged(int);
 
     void loadFileClicked();
-    void templatesDownloaded (const KNS3::Entry::List& entries);
-
 
 private:
     inline QByteArray encodedAppName();

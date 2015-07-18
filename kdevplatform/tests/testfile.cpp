@@ -176,4 +176,4 @@ QString TestFile::fileContents() const
     return QString::fromUtf8(file.readAll());
 }
 
-#include "testfile.moc"
+#include "moc_testfile.cpp"

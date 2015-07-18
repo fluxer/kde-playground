@@ -222,4 +222,4 @@ void CodeCompletionWorker::updateContextRange(Range& contextRange, View* view, D
   Q_UNUSED(context);
 }
 
-#include "codecompletionworker.moc"
+#include "moc_codecompletionworker.cpp"

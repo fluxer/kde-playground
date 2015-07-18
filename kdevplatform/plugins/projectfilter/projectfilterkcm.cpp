@@ -22,7 +22,7 @@
 #include <QStandardItemModel>
 #include <QKeyEvent>
 
-#include <kgenericfactory.h>
+#include <kpluginfactory.h>
 #include <KConfigDialogManager>
 #include <KSettings/Dispatcher>
 #include <KMessageWidget>
@@ -203,4 +203,4 @@ void ProjectFilterKCM::emitChanged()
     emit changed(true);
 }
 
-#include "projectfilterkcm.moc"
+#include "moc_projectfilterkcm.cpp"

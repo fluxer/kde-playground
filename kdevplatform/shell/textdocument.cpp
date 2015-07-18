@@ -913,4 +913,4 @@ void KDevelop::TextEditorWidget::showEvent(QShowEvent* event)
     QWidget::showEvent(event);
 }
 
-#include "textdocument.moc"
+#include "moc_textdocument.cpp"

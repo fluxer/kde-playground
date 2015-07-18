@@ -264,4 +264,4 @@ int main(int argc, char** argv)
     return ret;
 }
 
-#include "main.moc"
+#include "moc_main.cpp"

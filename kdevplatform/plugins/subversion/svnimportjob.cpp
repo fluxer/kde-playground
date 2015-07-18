@@ -138,5 +138,5 @@ void SvnImportJob::setMessage( const QString& msg )
 }
 
 
-#include "svnimportjob.moc"
-#include "svnimportjob_p.moc"
+#include "moc_svnimportjob.cpp"
+#include "moc_svnimportjob_p.cpp"

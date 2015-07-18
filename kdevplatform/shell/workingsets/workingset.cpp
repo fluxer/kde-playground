@@ -565,4 +565,4 @@ void WorkingSet::changed( Sublime::Area* area )
   emit setChangedSignificantly();
 }
 
-#include "workingset.moc"
+#include "moc_workingset.cpp"

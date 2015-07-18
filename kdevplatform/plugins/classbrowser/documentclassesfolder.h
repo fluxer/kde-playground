@@ -23,9 +23,12 @@
 #define KDEVPLATFORM_PLUGIN_DOCUMENTCLASSESFOLDER_H
 
 #include "classmodelnode.h"
+// https://bugreports.qt.io/browse/QTBUG-22829
+#ifndef Q_MOC_RUN
 #include <boost/multi_index_container.hpp>
 #include <boost/multi_index/member.hpp>
 #include <boost/multi_index/ordered_index.hpp>
+#endif
 
 namespace ClassModelNodes
 {

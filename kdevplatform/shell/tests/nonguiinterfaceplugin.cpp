@@ -35,5 +35,5 @@ NonGuiInterfacePlugin::NonGuiInterfacePlugin( QObject* parent, const QVariantLis
     KDEV_USE_EXTENSION_INTERFACE( ITestNonGuiInterface )
 }
 
-#include "nonguiinterfaceplugin.moc"
+#include "moc_nonguiinterfaceplugin.cpp"
 

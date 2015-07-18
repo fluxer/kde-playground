@@ -113,4 +113,4 @@ void GitMessageHighlighter::highlightBlock(const QString& text)
     setCurrentBlockState(blockState);
 }
 
-#include "gitmessagehighlighter.moc"
+#include "moc_gitmessagehighlighter.cpp"

@@ -264,4 +264,4 @@ QHash< QString, SimpleCursor > OutputPage::filePositions() const
 
 }
 
-#include "outputpage.moc"
+#include "moc_outputpage.cpp"

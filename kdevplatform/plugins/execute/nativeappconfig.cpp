@@ -516,4 +516,4 @@ void NativeAppConfigType::suggestionTriggered()
     }
 }
 
-#include "nativeappconfig.moc"
+#include "moc_nativeappconfig.cpp"

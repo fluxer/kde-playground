@@ -229,5 +229,5 @@ void SnippetPlugin::createSnippetFromSelection()
     }
 }
 
-#include "snippetplugin.moc"
+#include "moc_snippetplugin.cpp"
 

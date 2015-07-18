@@ -397,4 +397,4 @@ void TestProjectFilter::bench_data()
     }
 }
 
-#include "test_projectfilter.moc"
+#include "moc_test_projectfilter.cpp"

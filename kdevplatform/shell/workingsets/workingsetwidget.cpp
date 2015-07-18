@@ -88,4 +88,4 @@ void WorkingSetWidget::setChangedSignificantly()
     setVisible(!workingSet()->isEmpty());
 }
 
-#include "workingsetwidget.moc"
+#include "moc_workingsetwidget.cpp"

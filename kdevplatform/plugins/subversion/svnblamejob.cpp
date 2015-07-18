@@ -200,5 +200,5 @@ void SvnBlameJob::blameLineReceived( const KDevelop::VcsAnnotationLine& line )
     emit resultsReady( this );
 }
 
-#include "svnblamejob.moc"
-#include "svnblamejob_p.moc"
+#include "moc_svnblamejob.cpp"
+#include "moc_svnblamejob_p.cpp"

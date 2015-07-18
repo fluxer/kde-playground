@@ -331,4 +331,4 @@ void GrepJob::setPatternString(const QString& patternString)
     setObjectName(i18n("Grep: %1", m_patternString));
 }
 
-#include "grepjob.moc"
+#include "moc_grepjob.cpp"

@@ -365,6 +365,6 @@ void ExternalScriptPlugin::saveItemForRow( int row )
   config.sync();
 }
 
-#include "externalscriptplugin.moc"
+#include "moc_externalscriptplugin.cpp"
 
 // kate: indent-mode cstyle; space-indent on; indent-width 2; replace-tabs on; 

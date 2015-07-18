@@ -21,7 +21,7 @@
 
 #include <QVBoxLayout>
 
-#include <kgenericfactory.h>
+#include <kpluginfactory.h>
 #include <kaboutdata.h>
 
 #include "projectconfig.h"
@@ -69,5 +69,5 @@ void ProjectPreferences::slotSettingsChanged()
 }
 
 }
-#include "projectpreferences.moc"
+#include "moc_projectpreferences.cpp"
 

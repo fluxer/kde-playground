@@ -21,11 +21,12 @@
 
 #include <QtGui/QVBoxLayout>
 
-#include <kgenericfactory.h>
+#include <kpluginfactory.h>
 #include <kaboutdata.h>
 #include <kpluginselector.h>
 #include <kplugininfo.h>
 #include <ksettings/dispatcher.h>
+#include <kdebug.h>
 
 #include <interfaces/isession.h>
 
@@ -114,5 +115,5 @@ void PluginPreferences::load()
 
 }
 
-#include "pluginpreferences.moc"
+#include "moc_pluginpreferences.cpp"
 

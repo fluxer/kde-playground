@@ -204,4 +204,4 @@ int main( int argc, char** argv )
     return a.exec();
 }
 
-#include "projectmodelperformancetest.moc"
+#include "moc_projectmodelperformancetest.cpp"

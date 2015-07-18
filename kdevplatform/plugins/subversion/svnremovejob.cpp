@@ -132,7 +132,7 @@ void SvnRemoveJob::setForce( bool force )
         m_job->setForce( force );
 }
 
-#include "svnremovejob.moc"
-#include "svnremovejob_p.moc"
+#include "moc_svnremovejob.cpp"
+#include "moc_svnremovejob_p.cpp"
 
 

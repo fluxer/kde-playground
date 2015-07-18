@@ -270,4 +270,4 @@ QString LicensePage::license() const
 
 Q_DECLARE_TYPEINFO(KDevelop::LicensePagePrivate::LicenseInfo, Q_MOVABLE_TYPE);
 
-#include "licensepage.moc"
+#include "moc_licensepage.cpp"

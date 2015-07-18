@@ -1468,6 +1468,6 @@ void KompareModelList::slotActionUnapplyAllDifferences()
 	updateModelListActions();
 }
 
-#include "komparemodellist.moc"
+#include "moc_komparemodellist.cpp"
 
 /* vim: set ts=4 sw=4 noet: */

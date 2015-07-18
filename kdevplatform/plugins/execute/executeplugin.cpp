@@ -250,4 +250,4 @@ QString ExecutePlugin::nativeAppConfigTypeId() const
 }
 
 
-#include "executeplugin.moc"
+#include "moc_executeplugin.cpp"

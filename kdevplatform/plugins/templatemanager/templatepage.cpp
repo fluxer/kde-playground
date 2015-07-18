@@ -23,11 +23,9 @@
 #include <interfaces/itemplateprovider.h>
 #include <language/codegen/templatesmodel.h>
 #include <KFileDialog>
-#include <KNS3/DownloadDialog>
 #include <KArchive>
 #include <KZip>
 #include <KTar>
-#include <knewstuff3/uploaddialog.h>
 
 TemplatePage::TemplatePage (KDevelop::ITemplateProvider* provider, QWidget* parent) : QWidget (parent),
 m_provider(provider)
@@ -73,23 +71,6 @@ void TemplatePage::loadFromFile()
     }
 
     m_provider->reload();
-}
-
-void TemplatePage::getMoreTemplates()
-{
-    KNS3::DownloadDialog dialog(m_provider->knsConfigurationFile(), this);
-    dialog.exec();
-
-    if (!dialog.changedEntries().isEmpty())
-    {
-        m_provider->reload();
-    }
-}
-
-void TemplatePage::shareTemplates()
-{
-    KNS3::UploadDialog dialog(m_provider->knsConfigurationFile(), this);
-    dialog.exec();
 }
 
 void TemplatePage::currentIndexChanged(const QModelIndex& index)

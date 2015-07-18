@@ -104,4 +104,4 @@ void SvnRevisionWidget::enableType( SvnRevision::Type type )
     }
 }
 
-#include "svnrevisionwidget.moc"
+#include "moc_svnrevisionwidget.cpp"

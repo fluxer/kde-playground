@@ -83,5 +83,5 @@ void SvnCopyOptionDlg::srcAsPathClicked()
     ui.revisionWidget->installKeys( keylist );
 }
 
-#include "svncopywidgets.moc"
+#include "moc_svncopywidgets.cpp"
 

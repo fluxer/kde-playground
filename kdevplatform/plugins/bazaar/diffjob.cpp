@@ -92,4 +92,4 @@ void DiffJob::prepareResult(KJob*)
 }
 
 
-#include "diffjob.moc"
+#include "moc_diffjob.cpp"

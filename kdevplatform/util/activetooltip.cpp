@@ -354,4 +354,4 @@ void ActiveToolTip::closeEvent(QCloseEvent* event)
 
 
 
-#include "activetooltip.moc"
+#include "moc_activetooltip.cpp"

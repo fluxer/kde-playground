@@ -143,4 +143,4 @@ void ParseProjectJob::start() {
     }
 }
 
-#include "parseprojectjob.moc"
+#include "moc_parseprojectjob.cpp"

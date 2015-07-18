@@ -425,4 +425,4 @@ void ShellBuddyTest::testsplitViewBuddies()
 
 QTEST_KDEMAIN(ShellBuddyTest, GUI)
 
-#include "shellbuddytest.moc"
+#include "moc_shellbuddytest.cpp"

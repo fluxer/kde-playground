@@ -17,7 +17,7 @@
  *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 #include "ipartcontroller.h"
-#include <klibloader.h>
+#include <kpluginloader.h>
 #include <QFile>
 #include <kservice.h>
 #include <kmimetypetrader.h>
@@ -95,5 +95,5 @@ KParts::Part* IPartController::createPart ( const QString& mimetype, const QStri
 
 }
 
-#include "ipartcontroller.moc"
+#include "moc_ipartcontroller.cpp"
 

@@ -193,4 +193,4 @@ KDevelop::IPlugin* BzrAnnotateJob::vcsPlugin() const
     return m_vcsPlugin;
 }
 
-#include "bzrannotatejob.moc"
+#include "moc_bzrannotatejob.cpp"

@@ -96,5 +96,5 @@ void KDevFileManagerPlugin::unload()
     core()->uiController()->removeToolView(m_factory);
 }
 
-#include "kdevfilemanagerplugin.moc"
+#include "moc_kdevfilemanagerplugin.cpp"
 

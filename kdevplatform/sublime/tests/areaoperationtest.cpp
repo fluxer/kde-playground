@@ -726,5 +726,5 @@ View *AreaOperationTest::findNamedView(Area *area, const QString &name)
 
 ///////////
 QTEST_KDEMAIN(AreaOperationTest, GUI)
-#include "areaoperationtest.moc"
+#include "moc_areaoperationtest.cpp"
 

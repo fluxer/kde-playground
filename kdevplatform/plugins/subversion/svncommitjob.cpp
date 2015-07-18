@@ -184,5 +184,5 @@ void SvnCommitJob::setRecursive( bool recursive )
 
 
 
-#include "svncommitjob.moc"
-#include "svncommitjob_p.moc"
+#include "moc_svncommitjob.cpp"
+#include "moc_svncommitjob_p.cpp"

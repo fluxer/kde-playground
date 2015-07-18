@@ -55,4 +55,4 @@ void TestStringHandler::testHtmlToPlainText_data()
         << KDevelop::CompleteMode << "bar() \na\nfoo";
 }
 
-#include "test_stringhandler.moc"
+#include "moc_test_stringhandler.cpp"

@@ -24,7 +24,7 @@
 #include <kicon.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <klibloader.h>
+#include <kpluginfactory.h>
 #include <kde_terminal_interface.h>
 #include <kparts/part.h>
 
@@ -148,5 +148,5 @@ bool KDevKonsoleView::eventFilter( QObject* obj, QEvent *e )
     return QWidget::eventFilter( obj, e );
 }
 
-#include "kdevkonsoleview.moc"
+#include "moc_kdevkonsoleview.cpp"
 

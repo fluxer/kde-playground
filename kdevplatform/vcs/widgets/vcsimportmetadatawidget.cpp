@@ -34,5 +34,5 @@ VcsImportMetadataWidget::~VcsImportMetadataWidget()
 
 }
 
-#include "vcsimportmetadatawidget.moc"
+#include "moc_vcsimportmetadatawidget.cpp"
 

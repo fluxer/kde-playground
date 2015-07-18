@@ -525,4 +525,4 @@ textHintRequested(const KTextEditor::Cursor& cursor, QString&)
 
 }
 
-#include "variablecollection.moc"
+#include "moc_variablecollection.cpp"

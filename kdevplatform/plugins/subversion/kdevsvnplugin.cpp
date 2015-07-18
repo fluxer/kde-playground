@@ -517,4 +517,4 @@ KDevelop::VcsLocationWidget* KDevSvnPlugin::vcsLocation(QWidget* parent) const
     return new SvnLocationWidget(parent);
 }
 
-#include "kdevsvnplugin.moc"
+#include "moc_kdevsvnplugin.cpp"

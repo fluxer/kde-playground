@@ -140,4 +140,4 @@ void IDebugSession::slotStateChanged(IDebugSession::DebuggerState state)
 
 }
 
-#include "idebugsession.moc"
+#include "moc_idebugsession.cpp"

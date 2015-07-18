@@ -510,4 +510,4 @@ void VariableTree::showEvent(QShowEvent * event)
 
 }
 
-#include "variablewidget.moc"
+#include "moc_variablewidget.cpp"

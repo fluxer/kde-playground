@@ -175,7 +175,7 @@ void SvnUpdateJob::setIgnoreExternals( bool ignore )
         m_job->setIgnoreExternals( ignore );
 }
 
-#include "svnupdatejob.moc"
-#include "svnupdatejob_p.moc"
+#include "moc_svnupdatejob.cpp"
+#include "moc_svnupdatejob_p.cpp"
 
 

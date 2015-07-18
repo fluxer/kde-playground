@@ -177,6 +177,6 @@ void SvnLogJob::logEventReceived( const KDevelop::VcsEvent& ev )
     emit resultsReady( this );
 }
 
-#include "svnlogjob.moc"
-#include "svnlogjob_p.moc"
+#include "moc_svnlogjob.cpp"
+#include "moc_svnlogjob_p.cpp"
 

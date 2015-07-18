@@ -37,13 +37,12 @@
 
 #include "ui_templateselection.h"
 
-#include <KNS3/DownloadDialog>
-#include <KNS3/KNewStuffButton>
 #include <KLocalizedString>
 #include <KComponentData>
 #include <KFileDialog>
 #include <KTempDir>
 #include <KTextEditor/Document>
+#include <KPushButton>
 
 using namespace KDevelop;
 
@@ -225,10 +224,6 @@ TemplateSelectionPage::TemplateSelectionPage(TemplateClassAssistant* parent, Qt:
 
     d->ui->view->setCurrentIndex(templateIndex);
 
-    KNS3::Button* getMoreButton = new KNS3::Button(i18n("Get More Templates..."), "kdevfiletemplates.knsrc", d->ui->view);
-    connect (getMoreButton, SIGNAL(dialogFinished(KNS3::Entry::List)), SLOT(getMoreClicked()));
-    d->ui->view->addWidget(0, getMoreButton);
-
     KPushButton* loadButton = new KPushButton(KIcon("application-x-archive"), i18n("Load Template From File"), d->ui->view);
     connect (loadButton, SIGNAL(clicked(bool)), SLOT(loadFileClicked()));
     d->ui->view->addWidget(0, loadButton);
@@ -252,4 +247,4 @@ QString TemplateSelectionPage::selectedTemplate() const
     return d->selectedTemplate;
 }
 
-#include "templateselectionpage.moc"
+#include "moc_templateselectionpage.cpp"

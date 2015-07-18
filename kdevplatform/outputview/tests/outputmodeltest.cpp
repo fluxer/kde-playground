@@ -123,4 +123,4 @@ void OutputModelTest::bench_data()
 }
 
 }
-#include "outputmodeltest.moc"
+#include "moc_outputmodeltest.cpp"

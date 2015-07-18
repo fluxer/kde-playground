@@ -349,4 +349,4 @@ void FrameStackModel::fetchMoreFrames()
 
 }
 
-#include "framestackmodel.moc"
+#include "moc_framestackmodel.cpp"

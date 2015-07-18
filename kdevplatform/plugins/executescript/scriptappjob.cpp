@@ -253,4 +253,4 @@ KDevelop::OutputModel* ScriptAppJob::model()
 }
 
 
-#include "scriptappjob.moc"
+#include "moc_scriptappjob.cpp"

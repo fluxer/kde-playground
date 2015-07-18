@@ -520,4 +520,4 @@ bool ParseJob::hasTracker() const
 
 }
 
-#include "parsejob.moc"
+#include "moc_parsejob.cpp"

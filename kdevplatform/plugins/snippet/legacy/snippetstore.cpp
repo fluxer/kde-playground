@@ -130,4 +130,4 @@ KTextEditor::TemplateScript* SnippetStore::registerScript(const QString& script)
 }
 
 
-#include "snippetstore.moc"
+#include "moc_snippetstore.cpp"

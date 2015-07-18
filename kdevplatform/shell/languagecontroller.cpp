@@ -385,5 +385,5 @@ void LanguageController::addLanguageSupport(ILanguageSupport* languageSupport, c
 
 }
 
-#include "languagecontroller.moc"
+#include "moc_languagecontroller.cpp"
 

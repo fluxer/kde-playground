@@ -126,5 +126,5 @@ void CodeCompletion::checkDocument(Document* textDocument)
 }
 
 
-#include "codecompletion.moc"
+#include "moc_codecompletion.cpp"
 

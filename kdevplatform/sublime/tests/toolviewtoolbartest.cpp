@@ -135,4 +135,4 @@ void ToolViewToolBarTest::toolViewMove()
 }
 
 QTEST_KDEMAIN(ToolViewToolBarTest, GUI)
-#include "toolviewtoolbartest.moc"
+#include "moc_toolviewtoolbartest.cpp"

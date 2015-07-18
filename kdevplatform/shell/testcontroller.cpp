@@ -119,4 +119,4 @@ void TestController::notifyTestRunStarted(ITestSuite* suite, const QStringList& 
 }
 
 
-#include "testcontroller.moc"
+#include "moc_testcontroller.cpp"

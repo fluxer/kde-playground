@@ -268,4 +268,4 @@ void SessionControllerTest::tryLockSession()
 }
 
 QTEST_KDEMAIN( SessionControllerTest, GUI)
-#include "sessioncontrollertest.moc"
+#include "moc_sessioncontrollertest.cpp"

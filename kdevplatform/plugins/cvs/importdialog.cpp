@@ -87,4 +87,4 @@ void ImportDialog::jobFinished(KJob * job)
     }
 }
 
-#include "importdialog.moc"
+#include "moc_importdialog.cpp"

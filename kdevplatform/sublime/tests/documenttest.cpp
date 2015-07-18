@@ -44,6 +44,6 @@ void DocumentTest::viewDeletion()
     QCOMPARE(doc->views().count(), 0);
 }
 
-#include "documenttest.moc"
+#include "moc_documenttest.cpp"
 QTEST_KDEMAIN(DocumentTest, GUI)
 

@@ -78,4 +78,4 @@ OutputData* ToolViewData::addOutput( int id, const QString& title,
     return d;
 }
 
-#include "toolviewdata.moc"
+#include "moc_toolviewdata.cpp"

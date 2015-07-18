@@ -234,4 +234,4 @@ void GrepViewPlugin::jobFinished(KJob* job)
     }
 }
 
-#include "grepviewplugin.moc"
+#include "moc_grepviewplugin.cpp"

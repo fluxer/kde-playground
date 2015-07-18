@@ -148,8 +148,10 @@ QString ModificationRevision::toString() const
 
 }
 
+/*
 kdbgstream& operator<< (kdbgstream& s, const KDevelop::ModificationRevision& rev)
 {
   s << rev.toString();
   return s;
 }
+*/

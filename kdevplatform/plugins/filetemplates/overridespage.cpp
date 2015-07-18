@@ -265,4 +265,4 @@ void OverridesPage::addCustomDeclarations (const QString& category, const QList<
 }
 
 
-#include "overridespage.moc"
+#include "moc_overridespage.cpp"

@@ -100,4 +100,4 @@ void AppWizardDialog::next()
     }
 }
 
-#include "appwizarddialog.moc"
+#include "moc_appwizarddialog.cpp"

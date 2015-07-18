@@ -433,4 +433,4 @@ void MainWindow::setBackgroundCentralWidget(QWidget* w)
 
 }
 
-#include "mainwindow.moc"
+#include "moc_mainwindow.cpp"

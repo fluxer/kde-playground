@@ -73,4 +73,4 @@ void ClassModelNodesController::updateChangedFiles()
   m_updatedFiles.clear();
 }
 
-#include "classmodelnodescontroller.moc"
+#include "moc_classmodelnodescontroller.cpp"

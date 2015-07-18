@@ -88,4 +88,4 @@ void CvsAnnotateJob::parseOutput(const QString& jobOutput, const QString& workin
     }
 }
 
-#include "cvsannotatejob.moc"
+#include "moc_cvsannotatejob.cpp"

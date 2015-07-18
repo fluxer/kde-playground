@@ -385,5 +385,5 @@ void DocumentSwitcherPlugin::removeView( Sublime::View* view )
     enableActions();
 }
 
-#include "documentswitcherplugin.moc"
+#include "moc_documentswitcherplugin.cpp"
 

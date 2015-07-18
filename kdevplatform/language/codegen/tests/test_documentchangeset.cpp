@@ -73,4 +73,4 @@ void TestDocumentchangeset::testReplaceSameLine()
     QVERIFY(result);
 }
 
-#include "test_documentchangeset.moc"
+#include "moc_test_documentchangeset.cpp"

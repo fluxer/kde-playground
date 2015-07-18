@@ -114,5 +114,5 @@ QString EditStyleDialog::content()
 	return QString();
 }
 
-#include "editstyledialog.moc"
+#include "moc_editstyledialog.cpp"
 // kate: indent-mode cstyle; space-indent off; tab-width 4;

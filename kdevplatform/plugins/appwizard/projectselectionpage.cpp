@@ -27,7 +27,6 @@
 #include "projecttemplatesmodel.h"
 #include <KColorScheme>
 #include <KFileDialog>
-#include <KNS3/KNewStuffButton>
 #include <KTar>
 #include <KZip>
 
@@ -64,11 +63,6 @@ ProjectSelectionPage::ProjectSelectionPage(ProjectTemplatesModel *templatesModel
     
     connect( ui->templateType, SIGNAL(currentIndexChanged(int)),
              this, SLOT(templateChanged(int)) );
-    
-    KNS3::Button* knsButton = new KNS3::Button(i18n("Get More Templates"), "kdevappwizard.knsrc", m_listView);
-    connect (knsButton, SIGNAL(dialogFinished(KNS3::Entry::List)), 
-             this, SLOT(templatesDownloaded(KNS3::Entry::List)));
-    m_listView->addWidget(0, knsButton);
     
     KPushButton* loadButton = new KPushButton(m_listView);
     loadButton->setText(i18n("Load Template From File"));
@@ -327,31 +321,6 @@ void ProjectSelectionPage::loadFileClicked()
     }
 }
 
-void ProjectSelectionPage::templatesDownloaded (const KNS3::Entry::List& entries)
-{
-    if (entries.isEmpty()) {
-        return;
-    }
-
-    m_templatesModel->refresh();
-    bool updated = false;
-
-    foreach (const KNS3::Entry& entry, entries)
-    {
-        if (!entry.installedFiles().isEmpty())
-        {
-            updated = true;
-            setCurrentTemplate(entry.installedFiles().first());
-            break;
-        }
-    }
-
-    if (!updated)
-    {
-        m_listView->setCurrentIndex(QModelIndex());
-    }
-}
-
 void ProjectSelectionPage::setCurrentTemplate (const QString& fileName)
 {
     QModelIndexList indexes = m_templatesModel->templateIndexes(fileName);
@@ -365,4 +334,4 @@ void ProjectSelectionPage::setCurrentTemplate (const QString& fileName)
     }
 }
 
-#include "projectselectionpage.moc"
+#include "moc_projectselectionpage.cpp"

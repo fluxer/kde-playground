@@ -115,5 +115,5 @@ void ImportProjectJob::importCanceled()
 
 }
 
-#include "importprojectjob.moc"
+#include "moc_importprojectjob.cpp"
 

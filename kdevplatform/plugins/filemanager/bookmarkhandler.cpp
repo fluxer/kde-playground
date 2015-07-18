@@ -21,7 +21,7 @@
 */
 
 #include "bookmarkhandler.h"
-#include "bookmarkhandler.moc"
+#include "moc_bookmarkhandler.cpp"
 #include "filemanager.h"
 #include "kdevfilemanagerplugin.h"
 #include <interfaces/icore.h>

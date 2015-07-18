@@ -211,4 +211,4 @@ void VariableToolTip::slotRangeChanged(int min, int max)
 
 }
 
-#include "variabletooltip.moc"
+#include "moc_variabletooltip.cpp"
