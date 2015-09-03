@@ -14,9 +14,8 @@
 #include <kglobal.h>
 #include <kxmlguiwindow.h>
 #include <kxmlguifactory.h>
-#include <klocale.h>			/* i18n */
+#include <klocale.h>
 #include "mydebug.h"
-
 
 
 WinStack::WinStack(QWidget* parent) :
@@ -366,7 +365,7 @@ void WinStack::slotClose()
     if (!w)
 	return;
 
-    removePage(w);
+    removeTab(indexOf(w));
     delete w;
 }
 
