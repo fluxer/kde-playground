@@ -24,12 +24,10 @@
 %Import QtGui/QtGuimod.sip
 
 %Include terminal_interface.sip
-%Include terminal_interface_v2.sip
 
 %ModuleHeaderCode
 #pragma GCC visibility push(default)
 #include <kde_terminal_interface.h>
-#include <kde_terminal_interface_v2.h>
 #include <kparts/part.h>
 
 /**
@@ -50,7 +48,6 @@ public:
    */
   KTerminal(KParts::Part* part): m_part(part) {}
   TerminalInterface* terminalInterface() { return qobject_cast<TerminalInterface*>(m_part); }
-  TerminalInterfaceV2* terminalInterfaceV2() { return qobject_cast<TerminalInterfaceV2*>(m_part); }
 protected:
   KParts::Part *m_part;
 };
@@ -60,12 +57,25 @@ class KTerminal
 {
 %TypeHeaderCode
 #include <kde_terminal_interface.h>
-#include <kde_terminal_interface_v2.h>
 #include <kparts/part.h>
 %End
 
 public:
   KTerminal(KParts::Part* part);
   TerminalInterface* terminalInterface();
-  TerminalInterfaceV2* terminalInterfaceV2();
+
+  /**
+   * Return terminal PID
+   */
+  virtual int terminalProcessId() = 0;
+
+  /**
+   * Return foregound PID, If there is no foreground process running, returns -1
+   */
+  virtual int foregroundProcessId() = 0;
+
+  /**
+   * Returns sub process name. If there is no sub process running, returns empty QString
+   */
+  virtual QString foregroundProcessName() = 0;
 };

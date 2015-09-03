@@ -1,13 +1,15 @@
 add_subdirectory( plugins )
 add_subdirectory( searchhandlers )
-add_subdirectory( tests )
+if(ENABLE_TESTING)
+    add_subdirectory( tests )
+endif()
 
 ########### next target ###############
 
 set(khc_indexbuilder_SRCS khc_indexbuilder.cpp )
 
 
-kde4_add_executable(khc_indexbuilder NOGUI ${khc_indexbuilder_SRCS})
+add_executable(khc_indexbuilder ${khc_indexbuilder_SRCS})
 
 target_link_libraries(khc_indexbuilder ${KDE4_KDECORE_LIBS} )
 
@@ -16,7 +18,7 @@ install(TARGETS khc_indexbuilder DESTINATION ${LIBEXEC_INSTALL_DIR})
 
 ########### next target ###############
 
-set(khelpcenter_KDEINIT_SRCS 
+set(khelpcenter_SRCS 
    navigator.cpp 
    navigatoritem.cpp 
    navigatorappitem.cpp 
@@ -42,14 +44,12 @@ set(khelpcenter_KDEINIT_SRCS
    scrollkeepertreebuilder.cpp 
    searchhandler.cpp )
 
-qt4_add_dbus_adaptor( khelpcenter_KDEINIT_SRCS org.kde.khelpcenter.kcmhelpcenter.xml kcmhelpcenter.h KCMHelpCenter )
+qt4_add_dbus_adaptor( khelpcenter_SRCS org.kde.khelpcenter.kcmhelpcenter.xml kcmhelpcenter.h KCMHelpCenter )
 
-kde4_add_kcfg_files(khelpcenter_KDEINIT_SRCS prefs.kcfgc )
-kde4_add_app_icon(khelpcenter_KDEINIT_SRCS "${KDE4_INSTALL_DIR}/share/icons/oxygen/*/apps/help-browser.png")
+kde4_add_kcfg_files(khelpcenter_SRCS prefs.kcfgc )
 
-kde4_add_kdeinit_executable( khelpcenter ${khelpcenter_KDEINIT_SRCS})
-target_link_libraries(kdeinit_khelpcenter  ${KDE4_KPARTS_LIBS} ${KDE4_KDEWEBKIT_LIBS} ${QT_QTXML_LIBRARY} ${KDE4_KCMUTILS_LIBS} )
-install(TARGETS kdeinit_khelpcenter  ${INSTALL_TARGETS_DEFAULT_ARGS} )
+add_executable( khelpcenter ${khelpcenter_SRCS})
+target_link_libraries(khelpcenter  ${KDE4_KPARTS_LIBS} ${KDE4_KDEWEBKIT_LIBS} ${QT_QTXML_LIBRARY} ${KDE4_KCMUTILS_LIBS} )
 install(TARGETS khelpcenter ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 ########### install files ###############

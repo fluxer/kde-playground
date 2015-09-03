@@ -220,4 +220,4 @@ void PgmArgs::on_insertDir_clicked()
     }
 }
 
-#include "pgmargs.moc"
+#include "moc_pgmargs.cpp"

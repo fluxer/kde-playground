@@ -105,7 +105,6 @@ signals:
 protected:
 public:
     ~Wallet ();
-    static bool             isUsingKSecretsService ();
 };
 // Wallet
 

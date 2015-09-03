@@ -4,6 +4,6 @@ set(dtvdaemon_SRCS
     log.cpp
     main.cpp)
 
-kde4_add_executable(dtvdaemon ${dtvdaemon_SRCS})
+add_executable(dtvdaemon ${dtvdaemon_SRCS})
 target_link_libraries(dtvdaemon ${QT_QTCORE_LIBRARY} ${QT_QTNETWORK_LIBRARY})
 install(TARGETS dtvdaemon ${INSTALL_TARGETS_DEFAULT_ARGS})

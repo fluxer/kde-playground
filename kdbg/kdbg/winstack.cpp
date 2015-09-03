@@ -422,4 +422,4 @@ void FindDialog::done(int result)
     emit closed();
 }
 
-#include "winstack.moc"
+#include "moc_winstack.cpp"

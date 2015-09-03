@@ -1391,4 +1391,4 @@ XsldbgDriver::parseSetVariable(const char */*output*/)
 }
 
 
-#include "xsldbgdriver.moc"
+#include "moc_xsldbgdriver.cpp"

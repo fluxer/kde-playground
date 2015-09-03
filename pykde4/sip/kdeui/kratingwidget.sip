@@ -238,12 +238,8 @@ protected:
         sipType = sipType_KActionCategory;
     else if (dynamic_cast<KActionCollection*>(sipCpp))
         sipType = sipType_KActionCollection;
-    else if (dynamic_cast<KCategoryDrawerV2*>(sipCpp))
-        {
-        sipType = sipType_KCategoryDrawerV2;
-        if (dynamic_cast<KCategoryDrawerV3*>(sipCpp))
-            sipType = sipType_KCategoryDrawerV3;
-        }
+    else if (dynamic_cast<KCategoryDrawer*>(sipCpp))
+        sipType = sipType_KCategoryDrawer;
     else if (dynamic_cast<KCompletion*>(sipCpp))
         sipType = sipType_KCompletion;
     else if (dynamic_cast<KConfigDialogManager*>(sipCpp))
@@ -390,8 +386,6 @@ protected:
         sipType = sipType_KUndoStack;
     else if (dynamic_cast<KDateValidator*>(sipCpp))
         sipType = sipType_KDateValidator;
-    else if (dynamic_cast<KFloatValidator*>(sipCpp))
-        sipType = sipType_KFloatValidator;
     else if (dynamic_cast<KIntValidator*>(sipCpp))
         sipType = sipType_KIntValidator;
     else if (dynamic_cast<KMimeTypeValidator*>(sipCpp))

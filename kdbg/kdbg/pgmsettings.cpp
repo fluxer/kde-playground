@@ -108,4 +108,4 @@ ProgramSettings::ProgramSettings(QWidget* parent, QString exeName) :
     addPage(&m_output, i18n("Output"));
 }
 
-#include "pgmsettings.moc"
+#include "moc_pgmsettings.cpp"

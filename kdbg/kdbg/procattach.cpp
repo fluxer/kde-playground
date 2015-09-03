@@ -327,4 +327,4 @@ ProcAttach::~ProcAttach()
 }
 
 
-#include "procattach.moc"
+#include "moc_procattach.cpp"

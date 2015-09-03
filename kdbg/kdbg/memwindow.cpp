@@ -283,4 +283,4 @@ void MemoryWindow::restoreProgramSpecific(KConfigBase* config)
 }
 
 
-#include "memwindow.moc"
+#include "moc_memwindow.cpp"

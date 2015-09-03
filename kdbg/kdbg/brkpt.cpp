@@ -369,4 +369,4 @@ ConditionalDlg::~ConditionalDlg()
 }
 
 
-#include "brkpt.moc"
+#include "moc_brkpt.cpp"

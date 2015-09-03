@@ -1255,4 +1255,4 @@ void DebuggerMainWnd::slotConfigureKeys()
     KShortcutsDialog::configure(actionCollection());
 }
 
-#include "dbgmainwnd.moc"
+#include "moc_dbgmainwnd.cpp"

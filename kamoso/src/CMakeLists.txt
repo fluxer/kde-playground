@@ -26,16 +26,19 @@ set(kamoso_SRCS
 	kipiaction.cpp
 	webcamdialog.cpp
 	pagewebcamconfigmanager.cpp
+	mainWidget.ui
+	generalConfig.ui
+	pictureConfig.ui
+	videoConfig.ui
 )
 qt4_add_dbus_interface(kamoso_SRCS
     org.kde.Solid.PowerManagement.xml
     brightness_interface)
 
-set(kamoso_UI mainWidget.ui generalConfig.ui pictureConfig.ui videoConfig.ui)
+set(kamoso_UI )
 
 kde4_add_kcfg_files(kamoso_SRCS settings.kcfgc)
-kde4_add_ui_files(kamoso_SRCS ${kamoso_UI})
-kde4_add_executable(kamoso ${kamoso_SRCS})
+add_executable(kamoso ${kamoso_SRCS})
 
 target_link_libraries(kamoso ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS}
         ${KDE4_SOLID_LIBS} ${KDE4_PHONON_LIBS} ${KDE4_KUTILS_LIBS} ${KIPI_LIBRARIES} ${SolidControl} ${QTGSTREAMER_LIBRARY} ${QTGSTREAMER_UI_LIBRARY})

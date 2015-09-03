@@ -2790,4 +2790,4 @@ QString GdbDriver::parseSetVariable(const char* output)
 }
 
 
-#include "gdbdriver.moc"
+#include "moc_gdbdriver.cpp"

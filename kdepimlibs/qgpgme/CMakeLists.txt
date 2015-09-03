@@ -34,7 +34,9 @@ if ( _any_gpgme_found )
 
    include_directories( ${CMAKE_CURRENT_BINARY_DIR} ${GPGME_INCLUDES} ${CMAKE_SOURCE_DIR}/gpgme++ ${Boost_INCLUDE_DIR} )
 
-   add_subdirectory( tests )
+   if(ENABLE_TESTING)
+        add_subdirectory( tests )
+   endif()
 
    set( qgpgme_LIB_SRCS
         dataprovider.cpp

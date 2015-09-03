@@ -38,7 +38,6 @@ public:
     QString                 tabText (int) const;
     void                    setTabText (int, const QString&);
     virtual void            moveTab (int, int);
-    virtual void            removePage (QWidget* w);
     virtual void            removeTab (int index);
     void                    setAutomaticResizeTabs (bool enable);
 

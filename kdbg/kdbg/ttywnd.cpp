@@ -222,4 +222,4 @@ void TTYWindow::slotClear()
     m_pos.movePosition(QTextCursor::End);
 }
 
-#include "ttywnd.moc"
+#include "moc_ttywnd.cpp"

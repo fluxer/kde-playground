@@ -609,4 +609,4 @@ void RegisterView::paletteChange(const QPalette&)
     setFont(KGlobalSettings::fixedFont());
 }
 
-#include "regwnd.moc"
+#include "moc_regwnd.cpp"

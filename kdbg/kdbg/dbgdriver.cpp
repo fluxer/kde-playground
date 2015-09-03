@@ -457,4 +457,4 @@ Breakpoint::Breakpoint() :
 	lineNo(0)
 { }
 
-#include "dbgdriver.moc"
+#include "moc_dbgdriver.cpp"

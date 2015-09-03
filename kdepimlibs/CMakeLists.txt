@@ -1,7 +1,7 @@
 project(kdepimlibs)
 
 # where to look first for cmake modules. This line must be the first one or cmake will use the system's FindFoo.cmake
-set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 
 
 ############### The kdepimlibs version (used e.g. in KdepimLibsConfig.cmake) ###############
@@ -61,7 +61,7 @@ endif()
 
 # CTestCustom.cmake has to be in the CTEST_BINARY_DIR.
 # in the KDE build system, this is the same as CMAKE_BINARY_DIR.
-configure_file(${CMAKE_SOURCE_DIR}/CTestCustom.cmake ${CMAKE_BINARY_DIR}/CTestCustom.cmake)
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/CTestCustom.cmake ${CMAKE_CURRENT_BINARY_DIR}/CTestCustom.cmake)
 
 
 ############### Find the stuff we need ###############
@@ -246,23 +246,14 @@ write_basic_config_version_file(${CMAKE_CURRENT_BINARY_DIR}/KdepimLibsConfigVers
                                   VERSION ${KDEPIMLIBS_VERSION_MAJOR}.${KDEPIMLIBS_VERSION_MINOR}.${KDEPIMLIBS_VERSION_PATCH}
                                   COMPATIBILITY SameMajorVersion)
 
-set(_KdepimLibsConfig_INSTALL_DIR ${LIB_INSTALL_DIR}/KdepimLibs/cmake)
-# places where find_package() looks for FooConfig.cmake files:
-# CMake >= 2.6.0 looks in lib/Foo*/cmake/, CMake >= 2.6.3 also looks in
-# lib/cmake/Foo*/, which packagers prefer. So they can set the KDE4_USE_COMMON_CMAKE_PACKAGE_CONFIG_DIR
-# option to have kdepimlibs install its Config file there. Alex
-if(KDE4_USE_COMMON_CMAKE_PACKAGE_CONFIG_DIR)
-   set(_KdepimLibsConfig_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/KdepimLibs)
-endif()
-
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/KdepimLibsConfigVersion.cmake
               ${CMAKE_CURRENT_BINARY_DIR}/KdepimLibsConfig.cmake
-        DESTINATION ${_KdepimLibsConfig_INSTALL_DIR} )
+        DESTINATION ${LIB_INSTALL_DIR}/cmake/KdepimLibs)
 
 # Install the file with the exported targets, use ${KDEPIMLIBS_TARGET_PREFIX} as prefix for the names of these targets, Alex
 install(EXPORT kdepimlibsLibraryTargets
         NAMESPACE ${KDEPIMLIBS_TARGET_PREFIX}
-        DESTINATION ${_KdepimLibsConfig_INSTALL_DIR}
+        DESTINATION ${LIB_INSTALL_DIR}/cmake/KdepimLibs
         FILE KDEPimLibsLibraryTargetsWithPrefix.cmake )
 
 # Install a KDEPimLibsDependencies.cmake so people using kdepimlibs 4.2 with kdelibs < 4.2 get a useful error message, Alex

@@ -128,4 +128,4 @@ void ThreadList::slotCurrentChanged(QTreeWidgetItem* newItem)
 }
 
 
-#include "threadlist.moc"
+#include "moc_threadlist.cpp"

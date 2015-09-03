@@ -91,4 +91,4 @@ void WatchWindow::slotWatchHighlighted()
     m_watchEdit.setText(text);
 }
 
-#include "watchwindow.moc"
+#include "moc_watchwindow.cpp"

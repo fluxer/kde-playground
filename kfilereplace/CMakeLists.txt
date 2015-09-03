@@ -21,20 +21,15 @@ set(kfilereplacepart_PART_SRCS
    kfilereplacelib.cpp 
    report.cpp 
    commandengine.cpp 
-   configurationclasses.cpp )
-
-qt4_add_dbus_adaptor( kfilereplacepart_PART_SRCS org.kde.kfilereplace.xml kfilereplacepart.h KFileReplacePart )
-
-
-kde4_add_ui_files(kfilereplacepart_PART_SRCS 
+   configurationclasses.cpp
    kfilereplaceviewwdg.ui 
    kaddstringdlgs.ui 
    knewprojectdlgs.ui 
    koptionsdlgs.ui )
 
+qt4_add_dbus_adaptor( kfilereplacepart_PART_SRCS org.kde.kfilereplace.xml kfilereplacepart.h KFileReplacePart )
+
 kde4_add_plugin(kfilereplacepart WITH_PREFIX ${kfilereplacepart_PART_SRCS})
-
-
 
 target_link_libraries(kfilereplacepart  ${KDE4_KDECORE_LIBS} ${KDE4_KPARTS_LIBS} )
 
@@ -46,7 +41,7 @@ install(TARGETS kfilereplacepart  DESTINATION ${PLUGIN_INSTALL_DIR})
 set(kfilereplace_SRCS kfilereplace.cpp main.cpp )
 
 
-kde4_add_executable(kfilereplace ${kfilereplace_SRCS})
+add_executable(kfilereplace ${kfilereplace_SRCS})
 
 target_link_libraries(kfilereplace  ${KDE4_KPARTS_LIBS} )
 

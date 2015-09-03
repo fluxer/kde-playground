@@ -960,4 +960,4 @@ int HighlightCpp::highlight(const QString& text, int state)
     return state;
 }
 
-#include "sourcewnd.moc"
+#include "moc_sourcewnd.cpp"

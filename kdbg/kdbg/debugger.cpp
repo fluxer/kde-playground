@@ -2194,4 +2194,4 @@ void KDebugger::handleSetVariable(CmdQueueItem* cmd, const char* output)
 }
 
 
-#include "debugger.moc"
+#include "moc_debugger.cpp"
