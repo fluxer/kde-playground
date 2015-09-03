@@ -43,7 +43,7 @@ public:
         PROPERTIES_SIZE
     };
 //force
-                            NETRootInfo (Display* display, Window supportWindow, const char* wmName, SIP_PYLIST properties, int screen = -1, bool doACtivate = 1) [(Display*, Window, const char*, const unsigned long*, int, int = -1, bool = 1)];
+                            NETRootInfo (Display* display, xcb_window_t supportWindow, const char* wmName, SIP_PYLIST properties, int screen = -1, bool doACtivate = 1) [(Display*, xcb_window_t, const char*, const unsigned long*, int, int = -1, bool = 1)];
 %MethodCode
 int count   = PyList_Size (a3);
     unsigned long *list = new unsigned long [count];
@@ -84,8 +84,8 @@ int count   = PyList_Size (a1);
                             NETRootInfo (Display* display, unsigned long properties, int screen = -1, bool doActivate = 1);
                             NETRootInfo (const NETRootInfo& rootinfo);
     Display*                x11Display () const;
-    Window                  rootWindow () const;
-    Window                  supportWindow () const;
+    xcb_window_t                  rootWindow () const;
+    xcb_window_t                  supportWindow () const;
     const char*             wmName () const;
     int                     screenNumber () const;
     bool                    isSupported (NET::Property property) const;
@@ -111,48 +111,48 @@ int count   = PyList_Size (a1);
     NET::DesktopLayoutCorner  desktopLayoutCorner () const;
     int                     numberOfDesktops (bool ignore_viewport = 0) const;
     int                     currentDesktop (bool ignore_viewport = 0) const;
-    Window                  activeWindow () const;
+    xcb_window_t                  activeWindow () const;
     void                    activate ();
-    void                    setClientList (const Window* windows, unsigned int count);
-    void                    setClientListStacking (const Window* windows, unsigned int count);
+    void                    setClientList (const xcb_window_t* windows, unsigned int count);
+    void                    setClientListStacking (const xcb_window_t* windows, unsigned int count);
     void                    setCurrentDesktop (int desktop, bool ignore_viewport = 0);
     void                    setDesktopGeometry (int desktop, const NETSize& geometry);
     void                    setDesktopViewport (int desktop, const NETPoint& viewport);
     void                    setNumberOfDesktops (int numberOfDesktops);
     void                    setDesktopName (int desktop, const char* desktopName);
-    void                    setActiveWindow (Window window, NET::RequestSource src, Time timestamp, Window active_window);
-    void                    setActiveWindow (Window window);
+    void                    setActiveWindow (xcb_window_t window, NET::RequestSource src, Time timestamp, xcb_window_t active_window);
+    void                    setActiveWindow (xcb_window_t window);
     void                    setWorkArea (int desktop, const NETRect& workArea);
-    void                    setVirtualRoots (const Window* windows, unsigned int count);
+    void                    setVirtualRoots (const xcb_window_t* windows, unsigned int count);
     void                    setDesktopLayout (NET::Orientation orientation, int columns, int rows, NET::DesktopLayoutCorner corner);
     void                    setShowingDesktop (bool showing);
     bool                    showingDesktop () const;
-    void                    closeWindowRequest (Window window);
-    void                    moveResizeRequest (Window window, int x_root, int y_root, NET::Direction direction);
-    void                    moveResizeWindowRequest (Window window, int flags, int x, int y, int width, int height);
-    void                    restackRequest (Window window, NET::RequestSource source, Window above, int detail, Time timestamp);
-    void                    sendPing (Window window, Time timestamp);
-    void                    takeActivity (Window window, Time timestamp, long flags);
+    void                    closeWindowRequest (xcb_window_t window);
+    void                    moveResizeRequest (xcb_window_t window, int x_root, int y_root, NET::Direction direction);
+    void                    moveResizeWindowRequest (xcb_window_t window, int flags, int x, int y, int width, int height);
+    void                    restackRequest (xcb_window_t window, NET::RequestSource source, xcb_window_t above, int detail, Time timestamp);
+    void                    sendPing (xcb_window_t window, Time timestamp);
+    void                    takeActivity (xcb_window_t window, Time timestamp, long flags);
 //ig    void                    event (XEvent* event, unsigned long* properties, int properties_size);
 //ig    unsigned long           event (XEvent* event);
 
 protected:
-    virtual void            addClient (Window window);
-    virtual void            removeClient (Window window);
+    virtual void            addClient (xcb_window_t window);
+    virtual void            removeClient (xcb_window_t window);
     virtual void            changeNumberOfDesktops (int numberOfDesktops);
     virtual void            changeDesktopGeometry (int desktop, const NETSize& geom);
     virtual void            changeDesktopViewport (int desktop, const NETPoint& viewport);
     virtual void            changeCurrentDesktop (int desktop);
-    virtual void            closeWindow (Window window);
-    virtual void            moveResize (Window window, int x_root, int y_root, unsigned long direction);
-    virtual void            gotPing (Window window, Time timestamp);
-    virtual void            changeActiveWindow (Window window, NET::RequestSource src, Time timestamp, Window active_window);
-    virtual void            moveResizeWindow (Window window, int flags, int x, int y, int width, int height);
-    virtual void            restackWindow (Window window, NET::RequestSource source, Window above, int detail, Time timestamp);
-    virtual void            gotTakeActivity (Window window, Time timestamp, long flags);
+    virtual void            closeWindow (xcb_window_t window);
+    virtual void            moveResize (xcb_window_t window, int x_root, int y_root, unsigned long direction);
+    virtual void            gotPing (xcb_window_t window, Time timestamp);
+    virtual void            changeActiveWindow (xcb_window_t window, NET::RequestSource src, Time timestamp, xcb_window_t active_window);
+    virtual void            moveResizeWindow (xcb_window_t window, int flags, int x, int y, int width, int height);
+    virtual void            restackWindow (xcb_window_t window, NET::RequestSource source, xcb_window_t above, int detail, Time timestamp);
+    virtual void            gotTakeActivity (xcb_window_t window, Time timestamp, long flags);
     virtual void            changeShowingDesktop (bool showing);
 public:
-//ig                            NETRootInfo (Display* display, Window supportWindow, const char* wmName, const unsigned long properties [], int properties_size, int screen = -1, bool doActivate = 1);
+//ig                            NETRootInfo (Display* display, xcb_window_t supportWindow, const char* wmName, const unsigned long properties [], int properties_size, int screen = -1, bool doActivate = 1);
 //ig                            NETRootInfo (Display* display, const unsigned long properties [], int properties_size, int screen = -1, bool doActivate = 1);
     ~NETRootInfo ();
     void                    setSupported (NET::Property property, bool on = 1);
@@ -180,7 +180,7 @@ public:
         PROPERTIES_SIZE
     };
 //force
-                            NETWinInfo (Display* display, Window window, Window rootWindow, SIP_PYLIST properties, NET::Role role = NET::Client) [(Display*, Window, Window, const unsigned long*, int, Role = Client)];
+                            NETWinInfo (Display* display, xcb_window_t window, xcb_window_t rootWindow, SIP_PYLIST properties, NET::Role role = NET::Client) [(Display*, xcb_window_t, xcb_window_t, const unsigned long*, int, Role = Client)];
 %MethodCode
 int count   = PyList_Size (a3);
     unsigned long *list = new unsigned long [count];
@@ -200,7 +200,7 @@ int count   = PyList_Size (a3);
     delete list;
 %End
 //end
-                            NETWinInfo (Display* display, Window window, Window rootWindow, unsigned long properties, NET::Role role = NET::Client);
+                            NETWinInfo (Display* display, xcb_window_t window, xcb_window_t rootWindow, unsigned long properties, NET::Role role = NET::Client);
                             NETWinInfo (const NETWinInfo& wininfo);
     bool                    hasNETSupport () const;
 
@@ -248,8 +248,8 @@ int count   = PyList_Size (a3);
     unsigned long           opacity () const;
     void                    setAllowedActions (unsigned long actions);
     unsigned long           allowedActions () const;
-    Window                  transientFor () const;
-    Window                  groupLeader () const;
+    xcb_window_t                  transientFor () const;
+    xcb_window_t                  groupLeader () const;
     const char*             windowClassClass () const;
     const char*             windowClassName () const;
     const char*             windowRole () const;
@@ -268,7 +268,7 @@ public:
     static const int OnAllDesktops;
 
 //end
-//ig                            NETWinInfo (Display* display, Window window, Window rootWindow, const unsigned long properties [], int properties_size, NET::Role role = NET::Role::Client);
+//ig                            NETWinInfo (Display* display, xcb_window_t window, xcb_window_t rootWindow, const unsigned long properties [], int properties_size, NET::Role role = NET::Role::Client);
     ~NETWinInfo ();
     void                    setFrameOverlap (NETStrut strut);
     NETStrut                frameOverlap () const;

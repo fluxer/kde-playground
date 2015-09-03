@@ -53,7 +53,7 @@ int Application::newInstance()
   return KUniqueApplication::newInstance();
 }
 
-extern "C" int KDE_EXPORT kdemain( int argc, char **argv )
+int main( int argc, char **argv )
 {
   KAboutData aboutData( "khelpcenter", 0, ki18n("KDE Help Center"),
                         HELPCENTER_VERSION,

@@ -1,8 +1,50 @@
+find_package(LibXslt)
+set_package_properties(LibXslt PROPERTIES
+    URL "http://xmlsoft.org/XSLT"
+    TYPE REQUIRED
+    PURPOSE "Required by the KDE help system to process DocBook XML"
+)
+
+find_package(LibXml2)
+set_package_properties(LibXml2 PROPERTIES
+    URL "http://xmlsoft.org"
+    TYPE REQUIRED
+    PURPOSE "Required by the KDE help system to process DocBook XML"
+)
+
+include_directories( ${KDE4_KIO_INCLUDES} )
+
+include_directories( ${LIBXML2_INCLUDE_DIR} ${LIBXSLT_INCLUDE_DIR} )
+
 add_subdirectory( plugins )
 add_subdirectory( searchhandlers )
 if(ENABLE_TESTING)
     add_subdirectory( tests )
 endif()
+
+########### next target ###############
+
+set(kio_help_PART_SRCS
+   slave/kio_help.cpp
+   slave/main.cpp
+   slave/xslt.cpp
+   slave/xslt_help.cpp
+   slave/xslt_kde.cpp
+)
+
+kde4_add_plugin(kio_help ${kio_help_PART_SRCS})
+
+target_link_libraries(kio_help
+    ${KDE4_KDECORE_LIBS}
+    ${QT_QTGUI_LIBRARY}
+    kio
+    ${LIBXML2_LIBRARIES}
+    ${LIBXSLT_LIBRARIES}
+    ${LIBEXSLT_LIBRARIES}
+)
+
+install(TARGETS kio_help DESTINATION ${PLUGIN_INSTALL_DIR})
+install(FILES slave/help.protocol DESTINATION ${SERVICES_INSTALL_DIR})
 
 ########### next target ###############
 

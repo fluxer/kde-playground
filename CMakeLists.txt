@@ -18,7 +18,6 @@ macro_optional_add_subdirectory (kdbg)
 macro_optional_add_subdirectory (pykde4)
 macro_optional_add_subdirectory (kamera)
 macro_optional_add_subdirectory (kfilereplace)
-# NOTE: you will need kdoctools from kdelibs ported for the help KIO slave
 macro_optional_add_subdirectory (khelpcenter)
 macro_optional_add_subdirectory (kaffeine)
 # macro_optional_add_subdirectory (kamoso)
