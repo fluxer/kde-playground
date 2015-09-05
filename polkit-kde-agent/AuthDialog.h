@@ -26,6 +26,8 @@
 #include "ui_AuthDialog.h"
 #include "ui_authdetails.h"
 
+#include <KDialog>
+
 #include <PolkitQt1/Identity>
 #include <PolkitQt1/ActionDescription>
 

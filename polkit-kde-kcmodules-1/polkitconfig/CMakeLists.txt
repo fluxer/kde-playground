@@ -5,9 +5,6 @@ set( kcm_polkitconfig_SRCS
      kcmpolkitconfig.cpp
 )
 
-kde4_add_ui_files(kcm_polkitconfig_SRCS 
-    polkitconfig.ui)
-
 kde4_add_plugin(kcm_polkitconfig ${kcm_polkitconfig_SRCS})
 
 target_link_libraries(kcm_polkitconfig  

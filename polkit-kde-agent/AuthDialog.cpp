@@ -26,10 +26,11 @@
 #include <QtCore/QProcess>
 #include <QtGui/QPainter>
 #include <QtGui/QStandardItemModel>
-#include <KDebug>
 
+#include <KDebug>
 #include <KToolInvocation>
 #include <KUser>
+#include <KLocale>
 
 #include <PolkitQt1/Authority>
 #include <PolkitQt1/Details>

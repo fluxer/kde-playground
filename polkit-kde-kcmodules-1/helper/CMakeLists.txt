@@ -6,7 +6,7 @@ set(policy_gen_SRCS
     policy-gen/policy-gen.cpp
     policy-gen/kauth-policy-gen-polkit1.cpp )
 
-kde4_add_executable(polkit-kde-helper-policy-gen NOGUI ${policy_gen_SRCS})
+add_executable(polkit-kde-helper-policy-gen ${policy_gen_SRCS})
 
 target_link_libraries(polkit-kde-helper-policy-gen ${QT_QTCORE_LIBRARY})
 
@@ -20,7 +20,7 @@ add_custom_command(OUTPUT ${_output}
                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                    COMMENT "Generating org.kde.polkitkde1.policy"
                    DEPENDS polkit-kde-helper-policy-gen)
-add_custom_target("actions for polkit-kde" ALL DEPENDS ${_output})
+add_custom_target(genpolicy "actions for polkit-kde" ALL DEPENDS ${_output})
 
 # FIXME: hardcoded path
 install(FILES ${_output} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/polkit-1/actions/)
@@ -38,7 +38,7 @@ qt4_add_dbus_adaptor(polkitkde1helper_SRCS
     PolkitKde1Helper
 )
 
-kde4_add_executable(polkitkde1helper ${polkitkde1helper_SRCS})
+add_executable(polkitkde1helper ${polkitkde1helper_SRCS})
 
 target_link_libraries(polkitkde1helper ${KDE4_KDECORE_LIBS} ${QT_QTCORE_LIBRARY} ${QT_QTXML_LIBRARY} ${QT_QTDBUS_LIBRARY} ${POLKITQT-1_CORE_LIBRARY} polkitkdekcmodulesprivate)
 

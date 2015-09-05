@@ -11,11 +11,6 @@ set( kcm_polkitactions_SRCS
     pkitemdelegate.cpp
 )
 
-kde4_add_ui_files(kcm_polkitactions_SRCS
-    mainview.ui
-    explicitwidget.ui
-    actionwidget.ui)
-
 kde4_add_plugin(kcm_polkitactions ${kcm_polkitactions_SRCS})
 
 target_link_libraries(kcm_polkitactions

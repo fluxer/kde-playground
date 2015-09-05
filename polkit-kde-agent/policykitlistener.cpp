@@ -22,6 +22,7 @@
 #include "AuthDialog.h"
 
 #include <KDebug>
+#include <KLocale>
 
 #include <PolkitQt1/Agent/Listener>
 #include <PolkitQt1/Agent/Session>
