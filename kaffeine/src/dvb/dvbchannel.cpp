@@ -22,6 +22,7 @@
 
 #include <QFile>
 #include <QVariant>
+#include <QStringList>
 #include <KStandardDirs>
 #include "../ensurenopendingoperation.h"
 #include "../log.h"
