@@ -38,6 +38,7 @@
 // KDE Includes
 #include <KStandardDirs>
 #include <KIcon>
+#include <KLocale>
 
 // Qt Includes
 #include <QMovie>

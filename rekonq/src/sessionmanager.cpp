@@ -46,6 +46,7 @@
 #include <KPushButton>
 #include <KStandardDirs>
 #include <KUrl>
+#include <KLocale>
 
 // Qt Includes
 #include <QFile>

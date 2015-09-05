@@ -34,7 +34,7 @@
 // KDE Includes
 #include <KGlobal>
 #include <KCharsets>
-
+#include <KLocale>
 
 int zoomFactorList[13] = {5, 6, 7, 8, 9, 10, 11, 13, 15, 20, 25, 30};
 

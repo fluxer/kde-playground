@@ -39,8 +39,8 @@
 // Local Includes
 #include "syncassistant.h"
 
-
-
+// KDE Includes
+#include <KLocale>
 
 SyncOperaSettingsWidget::SyncOperaSettingsWidget(QWidget *parent)
     : QWizardPage(parent)

@@ -39,6 +39,8 @@
 // KDE Includes
 #include <KIO/FileCopyJob>
 #include <KStandardDirs>
+#include <KDialog>
+#include <KLocale>
 
 // Qt Includes
 #include <QUrl>

@@ -48,7 +48,7 @@ static const char description[] =
     I18N_NOOP("A lightweight Web Browser for KDE based on WebKit");
 
 
-extern "C" KDE_EXPORT int kdemain(int argc, char **argv)
+int main(int argc, char **argv)
 {
     KAboutData about("rekonq",
                      0,

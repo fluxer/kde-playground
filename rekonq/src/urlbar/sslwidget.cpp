@@ -41,6 +41,8 @@
 #include <QPushButton>
 #include <QTextDocument>
 
+// KDE Includes
+#include <KLocale>
 
 const int c_dim = 16;
 

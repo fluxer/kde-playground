@@ -37,6 +37,7 @@
 // KDE Includes
 #include <KDialog>
 #include <KPushButton>
+#include <KLocale>
 
 // Qt Includes
 #include <QProcess>

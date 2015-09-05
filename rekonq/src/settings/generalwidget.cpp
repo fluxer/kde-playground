@@ -39,7 +39,7 @@
 //KDE Includes
 #include <kstandarddirs.h>
 #include <KUrlRequester>
-
+#include <KLocale>
 
 GeneralWidget::GeneralWidget(QWidget *parent)
     : QWidget(parent)

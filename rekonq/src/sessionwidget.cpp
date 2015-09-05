@@ -38,6 +38,7 @@
 
 // KDE Includes
 #include <KIcon>
+#include <KLocale>
 
 // Qt Includes
 #include <QListWidgetItem>

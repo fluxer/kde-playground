@@ -28,6 +28,8 @@
 #include "webkitwidget.h"
 #include "moc_webkitwidget.cpp"
 
+// KDE Includes
+#include <KLocale>
 
 WebKitWidget::WebKitWidget(QWidget *parent)
     : QWidget(parent)

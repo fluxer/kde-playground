@@ -30,7 +30,7 @@
 
 // KDE Includes
 #include <KProtocolManager>
-
+#include <KConfigGroup>
 
 UserAgentWidget::UserAgentWidget(QWidget *parent)
     : QWidget(parent)

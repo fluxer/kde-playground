@@ -38,6 +38,8 @@
 #include "syncoperasettingswidget.h"
 #include "syncsshsettingswidget.h"
 
+// KDE Includes
+#include <KLocale>
 
 SyncAssistant::SyncAssistant(QWidget *parent)
     : QWizard(parent)

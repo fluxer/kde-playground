@@ -25,9 +25,7 @@
 
 PWD=$(pwd)
 
-cd $PWD
-cd ..
-cd src
+cd $PWD/../src
 
 echo "cppcheck(ing)..."
 cppcheck \

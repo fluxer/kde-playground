@@ -35,6 +35,7 @@
 #include <KSharedConfig>
 #include <KStandardDirs>
 #include <KIcon>
+#include <KLocale>
 
 // Qt Includes
 #include <QString>
