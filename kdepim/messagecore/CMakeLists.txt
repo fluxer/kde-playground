@@ -5,7 +5,9 @@ add_definitions( -DQT_NO_CAST_TO_ASCII )
 
 add_definitions(-DKDE_DEFAULT_DEBUG_AREA=5300)
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 include_directories( ${Boost_INCLUDE_DIR} 
                      ${CMAKE_SOURCE_DIR}/pimcommon
@@ -54,12 +56,7 @@ kde4_add_kcfg_files(messagecore_LIB_SRCS
   settings/globalsettings_base.kcfgc
 )
 
-kde4_add_ui_files(messagecore_LIB_SRCS
-  attachment/ui/attachmentpropertiesdialog.ui
-  attachment/ui/attachmentpropertiesdialog_readonly.ui
-)
-
-kde4_add_library(messagecore ${LIBRARY_TYPE} ${messagecore_LIB_SRCS})
+add_library(messagecore ${LIBRARY_TYPE} ${messagecore_LIB_SRCS})
 
 target_link_libraries(messagecore
   ${KDEPIMLIBS_KMIME_LIBS}

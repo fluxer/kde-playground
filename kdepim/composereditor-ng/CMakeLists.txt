@@ -8,7 +8,6 @@ add_definitions( -DQT_NO_CAST_TO_ASCII )
 #add_subdirectory(tests)
 
 add_definitions(-DQT_STATICPLUGIN)
-qt4_wrap_cpp(wk_HEADERS_MOC spellplugin/qwebkitplatformplugin.h)
 
 set(libcomposereditor_ng_SRCS 
     composereditor.cpp
@@ -38,18 +37,13 @@ set(libcomposereditor_ng_SRCS
     spellplugin/kspellplugin.cpp 
     widgets/domtreewidget.cpp 
     widgets/findreplacebar.cpp
-    ${wk_HEADERS_MOC}
 )
 
 kde4_add_kcfg_files(libcomposereditor_ng_SRCS
    globalsettings_base.kcfgc 
 )
 
-
-kde4_add_ui_files(libcomposereditor_ng_SRCS ui/pagecolorbackgroundwidget.ui )
-
-
-kde4_add_library(composereditorng ${LIBRARY_TYPE} ${libcomposereditor_ng_SRCS})
+add_library(composereditorng ${LIBRARY_TYPE} ${libcomposereditor_ng_SRCS})
 
 target_link_libraries(composereditorng 
    ${KDE4_KDEWEBKIT_LIBRARY} ${QT_QTWEBKIT_LIBRARY} ${KDEPIMLIBS_KPIMTEXTEDIT_LIBS} ${KDE4_KPRINTUTILS_LIBS}

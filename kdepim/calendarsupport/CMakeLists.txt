@@ -36,21 +36,11 @@ set(calendarsupport_LIB_SRCS
   next/incidenceviewer.cpp
 )
 
-kde4_add_ui_files(calendarsupport_LIB_SRCS
-  printing/calprintdayconfig_base.ui
-  printing/calprintincidenceconfig_base.ui
-  printing/calprintjournalconfig_base.ui
-  printing/calprintmonthconfig_base.ui
-  printing/calprinttodoconfig_base.ui
-  printing/calprintweekconfig_base.ui
-  printing/calprintyearconfig_base.ui
-)
-
 kde4_add_kcfg_files(calendarsupport_LIB_SRCS kcalprefs_base.kcfgc)
 
 # qt4_add_dbus_interface(calendarsupport_LIB_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/org.freedesktop.Akonadi.CalendarSearchAgent.xml calendarsearchinterface)
 
-kde4_add_library(calendarsupport ${LIBRARY_TYPE} ${calendarsupport_LIB_SRCS})
+add_library(calendarsupport ${LIBRARY_TYPE} ${calendarsupport_LIB_SRCS})
 
 target_link_libraries(
   calendarsupport

@@ -12,7 +12,7 @@ set(kalarm_resources_LIB_SRCS
 )
 
 
-kde4_add_library(kalarm_resources ${LIBRARY_TYPE} ${kalarm_resources_LIB_SRCS})
+add_library(kalarm_resources ${LIBRARY_TYPE} ${kalarm_resources_LIB_SRCS})
 
 target_link_libraries(kalarm_resources
                       ${KDEPIMLIBS_KALARMCAL_LIBS}

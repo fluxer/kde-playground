@@ -14,7 +14,7 @@ set(pimprint_calendar_LIB_SRCS
   calprintweek.cpp
 )
 
-kde4_add_library(pimprint_calendar ${LIBRARY_TYPE} ${pimprint_calendar_LIB_SRCS})
+add_library(pimprint_calendar ${LIBRARY_TYPE} ${pimprint_calendar_LIB_SRCS})
 
 target_link_libraries(pimprint_calendar
   calendarsupport

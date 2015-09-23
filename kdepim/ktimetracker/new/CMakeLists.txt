@@ -57,11 +57,11 @@ kde4_add_kcfg_files( ktimetracker_shared_SRCS ktimetracker.kcfgc )
 
 set(ktimetracker_SRCS main.cpp ${ktimetracker_shared_SRCS})
 
-kde4_add_executable(karm karm.cpp)
+add_executable(karm karm.cpp)
 
 kde4_add_app_icon(ktimetracker_SRCS "hi*-app-ktimetracker.png")
 
-kde4_add_executable(ktimetracker ${ktimetracker_SRCS})
+add_executable(ktimetracker ${ktimetracker_SRCS})
 
 
 target_link_libraries(karm  ${KDE4_KIO_LIBS} ${KDEPIMLIBS_KCAL_LIBS} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS} kcal_resourceremote)

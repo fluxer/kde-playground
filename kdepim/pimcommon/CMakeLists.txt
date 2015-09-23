@@ -196,11 +196,6 @@ set(libpimcommon_SRCS
 )
 
 
-kde4_add_ui_files(libpimcommon_SRCS
-     autocorrection/ui/autocorrectionwidget.ui
-     widgets/ui/manageaccountwidget.ui
-)
-
 macro(add_resource_iface _kcfgFile _ifaceName _className _fileName)
   kcfg_generate_dbus_interface(${CMAKE_CURRENT_SOURCE_DIR}/${_kcfgFile} ${_ifaceName})
   set_source_files_properties(${CMAKE_CURRENT_BINARY_DIR}/${_ifaceName}.xml PROPERTIES INCLUDE "metatype.h")
@@ -215,7 +210,7 @@ kde4_add_kcfg_files(libpimcommon_SRCS
   settings/pimcommonsetting_base.kcfgc
 )
 
-kde4_add_library(pimcommon ${LIBRARY_TYPE} ${libpimcommon_SRCS})
+add_library(pimcommon ${LIBRARY_TYPE} ${libpimcommon_SRCS})
 
 if( LibKGAPI2_FOUND )
   target_link_libraries(pimcommon
@@ -241,34 +236,37 @@ target_link_libraries(pimcommon
 set_target_properties(pimcommon PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION})
 install(TARGETS pimcommon ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-add_subdirectory(translator/tests)
-add_subdirectory(texteditor/plaintexteditor/tests)
-add_subdirectory(texteditor/richtexteditor/tests)
-add_subdirectory(texteditor/commonwidget/tests/)
-add_subdirectory(widgets/tests)
-add_subdirectory(shorturl/tests)
-add_subdirectory(autocorrection/tests)
-add_subdirectory(folderdialog/tests/)
-add_subdirectory(storageservice/dropbox/tests)
-add_subdirectory(storageservice/hubic/tests)
-add_subdirectory(storageservice/tests)
-add_subdirectory(storageservice/yousendit/tests)
-add_subdirectory(storageservice/webdav/tests)
-add_subdirectory(storageservice/box/tests)
-add_subdirectory(storageservice/dropbox/icons/)
-add_subdirectory(baloodebug/autotests)
-add_subdirectory(baloodebug/tests)
+if(ENABLE_TESTING)
+    add_subdirectory(translator/tests)
+    add_subdirectory(texteditor/plaintexteditor/tests)
+    add_subdirectory(texteditor/richtexteditor/tests)
+    add_subdirectory(texteditor/commonwidget/tests/)
+    add_subdirectory(widgets/tests)
+    add_subdirectory(shorturl/tests)
+    add_subdirectory(autocorrection/tests)
+    add_subdirectory(folderdialog/tests/)
+    add_subdirectory(storageservice/dropbox/tests)
+    add_subdirectory(storageservice/hubic/tests)
+    add_subdirectory(storageservice/tests)
+    add_subdirectory(storageservice/yousendit/tests)
+    add_subdirectory(storageservice/webdav/tests)
+    add_subdirectory(storageservice/box/tests)
+    add_subdirectory(storageservice/dropbox/icons/)
+    add_subdirectory(baloodebug/autotests)
+    add_subdirectory(baloodebug/tests)
+endif()
 
 if( LibKGAPI2_FOUND )
-add_subdirectory(storageservice/gdrive/tests/)
-add_subdirectory(storageservice/gdrive/icons/)
+    if(ENABLE_TESTING)
+        add_subdirectory(storageservice/gdrive/tests/)
+    endif()
+    add_subdirectory(storageservice/gdrive/icons/)
 endif()
 
 if (QT_QTDESIGNER_FOUND)
-  set(pimcommonwidgets_PART_SRCS)
-  kde4_add_widget_files(pimcommonwidgets_PART_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/designer/pimcommon.widgets)
+  kde4_add_widget_files(${CMAKE_CURRENT_SOURCE_DIR}/designer/pimcommon.widgets)
 
-  kde4_add_plugin(pimcommonwidgets ${pimcommonwidgets_PART_SRCS})
+  kde4_add_plugin(pimcommonwidgets $<TARGET_OBJECTS:pimcommon_autowidgets> ${pimcommonwidgets_PART_SRCS})
 
 
   target_link_libraries(pimcommonwidgets  ${KDE4_KIO_LIBS} pimcommon)

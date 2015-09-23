@@ -30,7 +30,7 @@ set(storageservicemanager_SRCS
   storageserviceconfigurestoragewidget.cpp
 )
 
-kde4_add_executable(storageservicemanager ${storageservicemanager_SRCS} )
+add_executable(storageservicemanager ${storageservicemanager_SRCS} )
 TARGET_LINK_LIBRARIES(storageservicemanager 
                        ${KDE4_KDEUI_LIBS} 
                        ${KDE4_KIO_LIBS}
@@ -53,4 +53,6 @@ install(FILES data/storageservicemanager.notifyrc
   )
 
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()

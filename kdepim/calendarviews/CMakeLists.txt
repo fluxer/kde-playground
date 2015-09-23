@@ -87,11 +87,7 @@ set(eventviews_LIB_SRCS
 
 kde4_add_kcfg_files(eventviews_LIB_SRCS prefs_base.kcfgc)
 
-kde4_add_ui_files(eventviews_LIB_SRCS
-  agenda/timescaleedit_base.ui
-)
-
-kde4_add_library(eventviews ${LIBRARY_TYPE} ${eventviews_LIB_SRCS})
+add_library(eventviews ${LIBRARY_TYPE} ${eventviews_LIB_SRCS})
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 

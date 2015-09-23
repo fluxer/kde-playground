@@ -6,7 +6,7 @@ set(korganizer_interfaces_LIB_SRCS
   mainwindow.cpp
 )
 
-kde4_add_library(korganizer_interfaces ${LIBRARY_TYPE} ${korganizer_interfaces_LIB_SRCS})
+add_library(korganizer_interfaces ${LIBRARY_TYPE} ${korganizer_interfaces_LIB_SRCS})
 
 target_link_libraries(korganizer_interfaces
   akonadi_next

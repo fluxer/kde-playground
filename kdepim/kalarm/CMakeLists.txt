@@ -174,10 +174,6 @@ set(kalarm_bin_SRCS ${kalarm_bin_SRCS}
    )
 endif()
 
-kde4_add_ui_files(kalarm_bin_SRCS
-    wakedlg.ui
-)
-
 qt4_add_dbus_adaptor(kalarm_bin_SRCS org.kde.kalarm.kalarm.xml dbushandler.h DBusHandler)
 if (KMAIL_SUPPORTED)
     qt4_add_dbus_interfaces(kalarm_bin_SRCS ${CMAKE_BINARY_DIR}/kmail/org.kde.kmail.kmail.xml)
@@ -198,11 +194,7 @@ endif()
 kde4_add_kcfg_files(kalarm_bin_SRCS GENERATE_MOC kalarmconfig.kcfgc)
 
 #if (UNIX)
-kde4_add_app_icon(kalarm_bin_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/appicons/ox*-app-kalarm.png")
-kde4_add_executable(kalarm_bin ${kalarm_bin_SRCS})
-if(KALARM_USE_AKONADI)
-    add_dependencies(kalarm_bin kalarm_resource_xml kalarmdir_resource_xml)
-endif()
+add_executable(kalarm_bin ${kalarm_bin_SRCS})
 if (KMAIL_SUPPORTED)
     add_dependencies(kalarm_bin kmail_xml)
 endif ()
@@ -265,8 +257,7 @@ install(PROGRAMS kalarm-version.pl kalarm-1.2.1-general.pl kalarm-1.9.5-defaults
 
 ########### KAuth helper ###############
 
-kde4_add_executable(kalarm_helper rtcwakeaction.cpp)
+add_executable(kalarm_helper rtcwakeaction.cpp)
 target_link_libraries(kalarm_helper ${KDE4_KDECORE_LIBS})
 install(TARGETS kalarm_helper DESTINATION ${LIBEXEC_INSTALL_DIR})
 kde4_install_auth_helper_files(kalarm_helper org.kde.kalarmrtcwake root)
-kde4_install_auth_actions(org.kde.kalarmrtcwake rtcwakeaction.actions)

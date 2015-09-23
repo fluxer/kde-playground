@@ -28,7 +28,7 @@ set(headerthemeeditor_SRCS
 )
 
 
-kde4_add_executable(headerthemeeditor ${headerthemeeditor_SRCS} )
+add_executable(headerthemeeditor ${headerthemeeditor_SRCS} )
 TARGET_LINK_LIBRARIES(headerthemeeditor ${KDEPIMLIBS_KMIME_LIBS} ${KDE4_KDEUI_LIBS} ${KDEPIMLIBS_KPIMTEXTEDIT_LIBS} ${KDE4_KIO_LIBS} ${KDE4_KNEWSTUFF3_LIBS} pimcommon messageviewer grantleethemeeditor)
 
 install(TARGETS headerthemeeditor ${INSTALL_TARGETS_DEFAULT_ARGS})

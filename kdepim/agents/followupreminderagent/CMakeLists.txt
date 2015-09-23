@@ -6,6 +6,10 @@ include_directories(
    ${CMAKE_SOURCE_DIR}/messagecomposer/
 )
 
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
+
 set(followupreminderlib_SRCS 
     followupreminderinfo.cpp
     followupreminderutil.cpp
@@ -16,7 +20,7 @@ kde4_add_kcfg_files(followupreminderlib_SRCS
 )
 
 
-kde4_add_library( followupreminder ${LIBRARY_TYPE} ${followupreminderlib_SRCS} )
+add_library( followupreminder ${LIBRARY_TYPE} ${followupreminderlib_SRCS} )
 target_link_libraries( followupreminder ${KDE4_KDEUI_LIBS} )
 
 set_target_properties( followupreminder PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
@@ -41,7 +45,7 @@ set(followupreminderagent_SRCS
 
 qt4_add_dbus_adaptor(followupreminderagent_SRCS org.freedesktop.Akonadi.FollowUpReminder.xml followupreminderagent.h FollowUpReminderAgent)
 
-kde4_add_executable(akonadi_followupreminder_agent ${followupreminderagent_SRCS})
+add_executable(akonadi_followupreminder_agent ${followupreminderagent_SRCS})
 
 target_link_libraries(akonadi_followupreminder_agent
   ${KDEPIMLIBS_AKONADI_LIBS}
@@ -51,17 +55,9 @@ target_link_libraries(akonadi_followupreminder_agent
   followupreminder
 )
 
-if (Q_WS_MAC)
-  set_target_properties(akonadi_followupreminder_agent PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist.template)
-  set_target_properties(akonadi_followupreminder_agent PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "org.akonadi_followupreminder_agent")
-  set_target_properties(akonadi_followupreminder_agent PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "KDE Akonadi Followup Reminder Agent")
-endif ()
-
 install(TARGETS akonadi_followupreminder_agent ${INSTALL_TARGETS_DEFAULT_ARGS} )
 
 install(FILES followupreminder.desktop DESTINATION "${CMAKE_INSTALL_PREFIX}/share/akonadi/agents")
-
-add_subdirectory(tests)
 
 install(FILES akonadi_followupreminder_agent.notifyrc DESTINATION "${DATA_INSTALL_DIR}/akonadi_followupreminder_agent" )
 

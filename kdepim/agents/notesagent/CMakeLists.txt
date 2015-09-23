@@ -23,7 +23,7 @@ qt4_add_dbus_adaptor(notesagent_SRCS org.freedesktop.Akonadi.NotesAgent.xml note
 
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
 
-kde4_add_executable(akonadi_notes_agent ${notesagent_SRCS})
+add_executable(akonadi_notes_agent ${notesagent_SRCS})
 
 target_link_libraries(akonadi_notes_agent
   ${KDEPIMLIBS_AKONADI_LIBS}

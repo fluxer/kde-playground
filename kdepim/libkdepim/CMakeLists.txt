@@ -6,7 +6,10 @@ add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
 
 
-add_subdirectory(tests)
+
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 add_subdirectory(pics)
 
 add_definitions(${QT_QTDBUS_DEFINITIONS})
@@ -92,7 +95,7 @@ if (KDEPIM_INPROCESS_LDAP)
   )
 endif ()
 
-kde4_add_library(kdepim ${LIBRARY_TYPE} ${kdepim_LIB_SRCS})
+add_library(kdepim ${LIBRARY_TYPE} ${kdepim_LIB_SRCS})
 
 target_link_libraries(kdepim
   ${KDEPIMLIBS_KRESOURCES_LIBS}
@@ -122,10 +125,6 @@ target_link_libraries(kdepim LINK_INTERFACE_LIBRARIES
   ${KDEPIMLIBS_AKONADI_CONTACT_LIBS}
 )
 
-if(MINGW)
-   target_link_libraries(kdepim oleaut32)
-endif()
-
 set_target_properties(kdepim PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION})
 install(TARGETS kdepim ${INSTALL_TARGETS_DEFAULT_ARGS})
 
@@ -133,10 +132,9 @@ install(TARGETS kdepim ${INSTALL_TARGETS_DEFAULT_ARGS})
 ########### next target ###############
 
 if (QT_QTDESIGNER_FOUND)
-  set(kdepimwidgets_PART_SRCS)
-  kde4_add_widget_files(kdepimwidgets_PART_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/designer/kdepim.widgets)
+  kde4_add_widget_files(${CMAKE_CURRENT_SOURCE_DIR}/designer/kdepim.widgets)
 
-  kde4_add_plugin(kdepimwidgets ${kdepimwidgets_PART_SRCS})
+  kde4_add_plugin(kdepimwidgets $<TARGET_OBJECTS:kdepim_autowidgets>)
 
 
   target_link_libraries(kdepimwidgets  ${KDE4_KIO_LIBS} kdepim)

@@ -24,7 +24,7 @@ qt4_add_dbus_adaptor(akonadi_mailfilter_agent_SRCS org.freedesktop.Akonadi.MailF
 #kde4_add_kcfg_files(akonadi_mailfilter_agent_SRCS settings.kcfgc)
 #kde4_add_ui_files(akonadi_mailfilter_agent_SRCS configdialog.ui)
 
-kde4_add_executable(akonadi_mailfilter_agent ${akonadi_mailfilter_agent_SRCS})
+add_executable(akonadi_mailfilter_agent ${akonadi_mailfilter_agent_SRCS})
 
 if (Q_WS_MAC)
   set_target_properties(akonadi_mailfilter_agent PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist.template)

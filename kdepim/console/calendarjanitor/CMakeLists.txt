@@ -22,11 +22,8 @@ include_directories(
   ${QT_INCLUDES}
   ${ZLIB_INCLUDE_DIRS}
 )
-   
 
-kde4_add_app_icon(calendarjanitor_SRCS "${KDE4_ICON_DIR}/oxygen/*/apps/office-calendar.png")
-
-kde4_add_executable(calendarjanitor NOGUI ${calendarjanitor_SRCS})
+add_executable(calendarjanitor ${calendarjanitor_SRCS})
 
 target_link_libraries(calendarjanitor
                       ${KDE4_KDECORE_LIBS}

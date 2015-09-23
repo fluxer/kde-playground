@@ -28,7 +28,13 @@ macro_bool_to_01(SYS_INOTIFY_H_FOUND HAVE_SYS_INOTIFY_H)
 configure_file(config-messageviewer.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-messageviewer.h)
 
 add_subdirectory(about)
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+    add_subdirectory(grantleefilters)
+    add_subdirectory(scamdetection/tests)
+    add_subdirectory(adblock/tests/)
+    add_subdirectory(findbar/tests)
+endif()
 add_subdirectory(pics)
 
 if(DEBUG_SIGNATURE)
@@ -177,16 +183,7 @@ kde4_add_kcfg_files(libmessageviewer_SRCS
   settings/globalsettings_base.kcfgc
 )
 
-kde4_add_ui_files(libmessageviewer_SRCS
-  ui/settings.ui
-  ui/invitationsettings.ui
-  ui/printingsettings.ui
-  adblock/ui/settings_adblock.ui
-  adblock/ui/adblockcreatefilterwidget.ui
-)
-
-
-kde4_add_library(messageviewer ${LIBRARY_TYPE} ${libmessageviewer_SRCS})
+add_library(messageviewer ${LIBRARY_TYPE} ${libmessageviewer_SRCS})
 
 target_link_libraries(messageviewer messagecore kdepim kpgp kleo
   ${KDEPIMLIBS_KMIME_LIBS}
@@ -231,9 +228,5 @@ install(DIRECTORY themes DESTINATION ${DATA_INSTALL_DIR}/messageviewer )
 
 install(FILES header/data/messageviewer_header_themes.knsrc DESTINATION ${CONFIG_INSTALL_DIR} )
 
-add_subdirectory(grantleefilters)
-add_subdirectory(scamdetection/tests)
-add_subdirectory(adblock/tests/)
-add_subdirectory(findbar/tests)
 install(FILES notify/messageviewer.notifyrc DESTINATION ${DATA_INSTALL_DIR}/messageviewer )
 install(FILES scamdetection/data/longurlServices.json DESTINATION ${DATA_INSTALL_DIR}/messageviewer )

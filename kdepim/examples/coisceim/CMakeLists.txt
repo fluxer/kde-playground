@@ -32,7 +32,7 @@ set (coisceim_part_SRCS
   coisceimpart.cpp
 )
 
-kde4_add_library(coisceim_widget ${LIBRARY_TYPE} ${coisceim_widget_SRCS})
+add_library(coisceim_widget ${LIBRARY_TYPE} ${coisceim_widget_SRCS})
 
 qt4_generate_dbus_interface(coisceimwidget.h
   org.kde.coisceim.CoisceimWidget.xml
@@ -55,7 +55,7 @@ set_target_properties(coisceim_widget
     PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION}
 )
 
-kde4_add_executable(coisceim ${coisceim_SRCS})
+add_executable(coisceim ${coisceim_SRCS})
 
 target_link_libraries(coisceim
   coisceim_widget

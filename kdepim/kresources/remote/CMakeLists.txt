@@ -11,7 +11,7 @@ include_directories(
 set(kcal_resourceremote_LIB_SRCS resourceremote.cpp resourceremoteconfig.cpp )
 
 
-kde4_add_library(kcal_resourceremote ${LIBRARY_TYPE} ${kcal_resourceremote_LIB_SRCS})
+add_library(kcal_resourceremote ${LIBRARY_TYPE} ${kcal_resourceremote_LIB_SRCS})
 
 target_link_libraries(kcal_resourceremote  ${KDE4_KDECORE_LIBS} ${KDEPIMLIBS_KCAL_LIBS} kdepim )
 

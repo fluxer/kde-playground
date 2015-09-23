@@ -25,7 +25,9 @@ include_directories(
   ${ZLIB_INCLUDE_DIRS}
 )
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 add_subdirectory(interfaces)
 if(KDEPIM_BUILD_DESKTOP)
   add_subdirectory(pixmaps)
@@ -48,9 +50,7 @@ if(KDEPIM_BUILD_DESKTOP)
     koapp.cpp
   )
 
-  kde4_add_app_icon(korganizer_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/pixmaps/hi*-apps-korganizer.png")
-
-  kde4_add_executable(korganizer ${korganizer_SRCS})
+  add_executable(korganizer ${korganizer_SRCS})
 
   target_link_libraries(korganizer
     ${KDE4_KDEUI_LIBS}
@@ -140,7 +140,7 @@ set(korganizer_core_LIB_SRCS
 
 kde4_add_kcfg_files(korganizer_core_LIB_SRCS koprefs_base.kcfgc)
 
-kde4_add_library(korganizer_core ${LIBRARY_TYPE} ${korganizer_core_LIB_SRCS})
+add_library(korganizer_core ${LIBRARY_TYPE} ${korganizer_core_LIB_SRCS})
 
 target_link_libraries(korganizer_core
   calendarsupport
@@ -213,15 +213,6 @@ set(korganizerprivate_LIB_SRCS
 
   kde4_add_kcfg_files(korganizerprivate_LIB_SRCS htmlexportsettings.kcfgc)
 
-  kde4_add_ui_files(korganizerprivate_LIB_SRCS
-    filteredit_base.ui
-    kogroupwareprefspage.ui
-    multiagendaviewconfigwidget.ui
-    publishdialog_base.ui
-    searchdialog_base.ui
-    timescaleedit_base.ui
-  )
-
   qt4_add_resources(korganizerprivate_LIB_SRCS
     agendaitem_pixmaps/agendaitemtheme.qrc)
 
@@ -247,7 +238,7 @@ set(korganizerprivate_LIB_SRCS
     ${CMAKE_SOURCE_DIR}/korganizer/org.kde.korganizer.Korganizer.xml
   )
 
-  kde4_add_library(korganizerprivate ${LIBRARY_TYPE} ${korganizerprivate_LIB_SRCS})
+  add_library(korganizerprivate ${LIBRARY_TYPE} ${korganizerprivate_LIB_SRCS})
 
   target_link_libraries(korganizerprivate
     pimcommon

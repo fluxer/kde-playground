@@ -29,7 +29,7 @@ set(contactthemeeditor_SRCS
 )
 
 
-kde4_add_executable(contactthemeeditor ${contactthemeeditor_SRCS} )
+add_executable(contactthemeeditor ${contactthemeeditor_SRCS} )
 TARGET_LINK_LIBRARIES(contactthemeeditor 
                        ${KDEPIMLIBS_KMIME_LIBS} 
                        ${KDE4_KDEUI_LIBS} 

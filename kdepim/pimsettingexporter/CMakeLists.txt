@@ -100,7 +100,7 @@ set(pimsettingexporter_SRCS
 
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
 
-kde4_add_executable(pimsettingexporter ${pimsettingexporter_SRCS})
+add_executable(pimsettingexporter ${pimsettingexporter_SRCS})
 
 target_link_libraries(pimsettingexporter
   ${KDE4_KFILE_LIBS}
@@ -135,4 +135,6 @@ install(PROGRAMS pimsettingexporter.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
 ########### install files ###############
 
 kde4_install_icons( ${ICON_INSTALL_DIR} )
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()

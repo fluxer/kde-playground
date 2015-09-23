@@ -34,7 +34,7 @@ set(etm_usage_SRCS
   checkable2.cpp
 )
 
-kde4_add_executable(etm_usage ${etm_usage_SRCS})
+add_executable(etm_usage ${etm_usage_SRCS})
 
 target_link_libraries(etm_usage
   ${KDE4_KDEUI_LIBS}

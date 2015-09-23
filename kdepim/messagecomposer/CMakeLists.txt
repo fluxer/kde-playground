@@ -17,7 +17,10 @@ include_directories(
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
 
-add_subdirectory( tests )
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+    add_subdirectory(imagescaling/tests)
+endif()
 include_directories(${Grantlee_INCLUDE_DIRS})
 
 
@@ -90,10 +93,6 @@ set( messagecomposer_src
      settings/messagecomposersettings.cpp
 )
 
-kde4_add_ui_files(messagecomposer_src
-     imagescaling/ui/imagescalingwidget.ui
-)
-
 
 if(KDEPIM_ENTERPRISE_BUILD)
   set(WARN_TOOMANY_RECIPIENTS_DEFAULT true)
@@ -109,13 +108,11 @@ kde4_add_kcfg_files(messagecomposer_src
   settings/messagecomposersettings_base.kcfgc 
 )
 
-kde4_add_library( messagecomposer ${LIBRARY_TYPE} ${messagecomposer_src} )
+add_library( messagecomposer ${LIBRARY_TYPE} ${messagecomposer_src} )
 target_link_libraries( messagecomposer ${KDE4_KIO_LIBS} ${KDEPIMLIBS_KMIME_LIBS} ${KDEPIMLIBS_AKONADI_KMIME_LIBS} ${KDEPIMLIBS_AKONADI_LIBS} ${KDEPIMLIBS_MAILTRANSPORT_LIBS} ${KDEPIMLIBS_KPIMTEXTEDIT_LIBS} ${KDEPIMLIBS_KPIMIDENTITIES_LIBS}
  messagecore messageviewer templateparser kleo kdepim ${QGPGME_LIBRARIES} ${Grantlee_GUI_LIBRARIES} sendlater pimcommon)
 
 set_target_properties( messagecomposer PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 
 install( TARGETS messagecomposer ${INSTALL_TARGETS_DEFAULT_ARGS} )
-
-add_subdirectory(imagescaling/tests)
 

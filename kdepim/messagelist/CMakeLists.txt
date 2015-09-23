@@ -15,7 +15,9 @@ include_directories(
 
 
 add_subdirectory(pics)
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 set(libmessagelist_SRCS
   core/aggregation.cpp
@@ -87,7 +89,7 @@ kde4_add_kcfg_files(libmessagelist_SRCS USE_RELATIVE_PATH
   core/settings.kcfgc
 )
 
-kde4_add_library(messagelist ${LIBRARY_TYPE} ${libmessagelist_SRCS})
+add_library(messagelist ${LIBRARY_TYPE} ${libmessagelist_SRCS})
 target_link_libraries(messagelist
   ${KDE4_KDEUI_LIBS}
   ${KDE4_KIO_LIBS}

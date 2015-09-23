@@ -18,7 +18,7 @@ kde4_add_ui_files(mailreader_SRCS mailreaderview.ui prefs_base.ui prefs_messagel
 
 kde4_add_kcfg_files(mailreader_SRCS settings.kcfgc)
 
-kde4_add_executable(akonadimailreader ${mailreader_SRCS})
+add_executable(akonadimailreader ${mailreader_SRCS})
 
 target_link_libraries(akonadimailreader
   ${KDE4_KDEUI_LIBS}

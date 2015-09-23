@@ -18,7 +18,9 @@ include_directories(
 )
 
 add_subdirectory(pixmaps)
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 ########### next target ###############
 
@@ -53,23 +55,10 @@ if(RUNTIME_PLUGINS_STATIC)
   add_definitions(-DSERIALIZER_PLUGIN_STATIC)
 endif()
 
-kde4_add_app_icon(korgac_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/pixmap/hi*-apps-korganizer.png")
-
 if(KORGAC_AKONADI_AGENT)
   kde4_add_plugin(korgac ${korgac_SRCS})
 else()
-  kde4_add_executable(korgac ${korgac_SRCS})
-  if(Q_WS_MAC)
-    set_target_properties(korgac PROPERTIES
-      MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist.template
-    )
-    set_target_properties(korgac PROPERTIES
-      MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.pim.korgac"
-    )
-    set_target_properties(korgac PROPERTIES
-      MACOSX_BUNDLE_BUNDLE_NAME "KOrganizer Reminder Client"
-    )
-  endif()
+  add_executable(korgac ${korgac_SRCS})
 endif()
 
 target_link_libraries(korgac

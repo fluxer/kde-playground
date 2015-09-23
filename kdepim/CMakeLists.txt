@@ -6,7 +6,8 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/modules")
 ############### Build Options ###############
 
 option(KDEPIM_BUILD_EXAMPLES "Build the kdepim example applications." FALSE)
-option(KDEPIM_BUILD_MOBILE "Build the mobile applications. Note that you have to enable KDEPIM_MOBILE_UI if you want to run these applications on a mobile device." TRUE)
+# TODO: drop this entirely
+option(KDEPIM_BUILD_MOBILE "Build the mobile applications. Note that you have to enable KDEPIM_MOBILE_UI if you want to run these applications on a mobile device." FALSE)
 option(KDEPIM_ENTERPRISE_BUILD "Enable features specific to the enterprise branch, which are normally disabled. Also, it disables many components not needed for Kontact such as the Kolab client." FALSE)
 option(KDEPIM_MOBILE_UI "Build UI for mobile devices instead of for desktops" FALSE)
 option(KDEPIM_ONLY_KLEO "Only build Kleopatra. This option will build only libkleo and kleopatra" FALSE)
@@ -29,17 +30,11 @@ if(KDEPIM_ENTERPRISE_BUILD)
   message(STATUS "Enterprise build is enabled.")
 endif()
 
-# if KDEPIM_ONLY_KLEO is defined, KDEPIM_BUILD_MOBILE and KDEPIM_MOBILE_UI are disabled.
+# if KDEPIM_ONLY_KLEO is defined, KDEPIM_MOBILE_UI are disabled.
 if(KDEPIM_ONLY_KLEO)
- set(KDEPIM_BUILD_MOBILE FALSE)
  set(KDEPIM_MOBILE_UI FALSE)
  set(KDEPIM_DEFINITIONS "-DHAVE_CONFIG_H=1")
  message(STATUS "Only libkleo and Kleopatra will be built.")
-endif()
-
-if(KDEPIM_MOBILE_UI)
-    # Build the mobile applications
-    set(KDEPIM_BUILD_MOBILE TRUE)
 endif()
 
 # config-enterprise.h is needed for both ENTERPRISE_BUILD and BUILD_EVERYTHING
@@ -176,10 +171,21 @@ else()
   set_package_properties(QGpgme PROPERTIES DESCRIPTION "The QGpgMe library" URL "http://www.kde.org" TYPE RECOMMENDED PURPOSE "QGpgME is required to build KMail, KOrganizer and Kleopatra")
 
   find_package(Grantlee 0.3.0 QUIET CONFIG)
-  set_package_properties(Grantlee PROPERTIES DESCRIPTION "The Grantlee Template System" URL "http://www.gitorious.org/grantlee/pages/Home" TYPE REQUIRED PURPOSE "Grantlee is requires for kmail and templating, theming for KJots, KaddressBook, KNotes and MessageViewer(KMail)." )
+  set_package_properties(Grantlee PROPERTIES
+  DESCRIPTION "The Grantlee Template System"
+  URL "http://www.gitorious.org/grantlee/pages/Home"
+  TYPE REQUIRED
+  PURPOSE "Grantlee is requires for kmail and templating, theming for KJots, KaddressBook, KNotes and MessageViewer(KMail)."
+  )
 
   find_package(Baloo 4.14.0 QUIET CONFIG)
-  set_package_properties(Baloo PROPERTIES DESCRIPTION "The Baloo libraries" URL "http://www.kde.org" TYPE REQUIRED PURPOSE "Baloo provides search capabilities in KMail and Akonadi")
+  set_package_properties(Baloo PROPERTIES
+    DESCRIPTION "The Baloo libraries"
+    URL "http://www.kde.org"
+    # FIXME: rip it off
+    # TYPE REQUIRED
+    PURPOSE "Baloo provides search capabilities in KMail and Akonadi"
+    )
 
   # Xsltproc
   find_package(Xsltproc)
@@ -199,21 +205,6 @@ else()
     add_definitions( -DKDEPIM_STORAGESERVICE_GDRIVE )
   endif()
 
-
-
-############### Desktop vs. Mobile options ##############
-
-  if(KDEPIM_MOBILE_UI)
-    add_definitions( -DKDEPIM_MOBILE_UI )
-    if(NOT QT_QTDECLARATIVE_FOUND)
-      message(FATAL_ERROR "The QtDeclarative (QML) module is required for building the mobile UI")
-    endif()
-  else()
-    if(NOT QT_QTDECLARATIVE_FOUND)
-      message(STATUS "The Qt Declarative (QML) module was not found. The mobile applications will not be built.")
-      set(KDEPIM_BUILD_MOBILE FALSE)
-    endif()
-  endif()
 
 ############### Needed commands before building anything ###############
 
@@ -263,9 +254,6 @@ else()
   add_subdirectory(mailcommon) # TODO: does this make sense?!?
   macro_optional_add_subdirectory(kmail)
   macro_optional_add_subdirectory(grantleeeditor)
-  if(KDEPIM_BUILD_MOBILE)
-    add_subdirectory(mobile)
-  endif()
 
   if(KDEPIM_BUILD_EXAMPLES)
     add_subdirectory(examples)

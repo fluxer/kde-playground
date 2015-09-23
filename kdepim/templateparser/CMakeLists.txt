@@ -32,12 +32,7 @@ kde4_add_kcfg_files(templateparser_LIB_SRCS
   settings/globalsettings_base.kcfgc
 )
 
-kde4_add_ui_files(templateparser_LIB_SRCS
-  ui/templatesconfiguration_base.ui
-  ui/customtemplates_base.ui
-)
-
-kde4_add_library(templateparser ${LIBRARY_TYPE} ${templateparser_LIB_SRCS})
+add_library(templateparser ${LIBRARY_TYPE} ${templateparser_LIB_SRCS})
 target_link_libraries(templateparser
   messageviewer
   ${KDE4_KIO_LIBS}
@@ -65,4 +60,6 @@ install(FILES
   DESTINATION ${KCFG_INSTALL_DIR}
 )
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()

@@ -77,23 +77,7 @@ qt4_add_dbus_interface(akonadiconsole_bin_SRCS
   storagedebuggerinterface
 )
 
-kde4_add_ui_files(akonadiconsole_bin_SRCS
-  agentwidget.ui
-  agentconfigdialog.ui
-  browserwidget_itemview.ui
-  collectionattributespage.ui
-  collectionaclpage.ui
-  dbbrowser.ui
-  dbconsole.ui
-  instanceselector.ui
-  rawsocketconsole.ui
-  browserwidget_contentview.ui
-  collectioninternalspage.ui
-)
-
-kde4_add_app_icon(akonadiconsole_bin_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-akonadiconsole.png")
-
-kde4_add_executable(akonadiconsole_bin ${akonadiconsole_bin_SRCS})
+add_executable(akonadiconsole_bin ${akonadiconsole_bin_SRCS})
 set_target_properties(akonadiconsole_bin PROPERTIES OUTPUT_NAME akonadiconsole)
 
 target_link_libraries(akonadiconsole_bin

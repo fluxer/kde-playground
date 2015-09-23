@@ -4,5 +4,7 @@ set(libkleopatraclient_soversion "0")
 add_subdirectory(core)
 add_subdirectory(gui)
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 

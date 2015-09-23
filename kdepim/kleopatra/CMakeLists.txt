@@ -70,14 +70,8 @@ endif()
 
 add_subdirectory(kgpgconf)
 add_subdirectory(kwatchgnupg)
-add_subdirectory(tests)
-
-if(WIN32)
-  set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_win.cpp)
-  set(_kleopatra_extra_SRCS utils/gnupg-registry.c selftest/registrycheck.cpp)
-else()
-  set(_kleopatra_extra_uiserver_SRCS uiserver/uiserver_unix.cpp)
-  set(_kleopatra_extra_SRCS)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
 endif()
 
 if(USABLE_ASSUAN_FOUND)
@@ -85,7 +79,7 @@ if(USABLE_ASSUAN_FOUND)
   set(_kleopatra_uiserver_SRCS
     uiserver/sessiondata.cpp
     uiserver/uiserver.cpp
-    ${_kleopatra_extra_uiserver_SRCS}
+    uiserver/uiserver_unix.cpp
     uiserver/assuanserverconnection.cpp
     uiserver/echocommand.cpp
     uiserver/decryptverifycommandemailbase.cpp
@@ -102,15 +96,6 @@ if(USABLE_ASSUAN_FOUND)
 
     libkleopatraclient/core/command.cpp
     selftest/uiservercheck.cpp
-  )
-  set_source_files_properties(libkleopatraclient/core/command.cpp PROPERTIES SKIP_AUTOMOC TRUE)
-
-  qt4_generate_moc(libkleopatraclient/core/command_p.h "${CMAKE_CURRENT_BINARY_DIR}/libkleopatraclient/core/moc_command_p.cpp")
-  qt4_generate_moc(libkleopatraclient/core/command.h "${CMAKE_CURRENT_BINARY_DIR}/libkleopatraclient/core/moc_command.cpp")
-
-  list(APPEND _kleopatra_uiserver_SRCS
-    "${CMAKE_CURRENT_BINARY_DIR}/libkleopatraclient/core/moc_command_p.cpp"
-    "${CMAKE_CURRENT_BINARY_DIR}/libkleopatraclient/core/moc_command.cpp"
   )
 
   if(ASSUAN2_FOUND)
@@ -132,8 +117,6 @@ if(USABLE_ASSUAN_FOUND)
 else()
   set(_kleopatra_uiserver_SRCS)
 endif()
-
-kde4_add_ui_files(_kleopatra_uiserver_SRCS crypto/gui/signingcertificateselectionwidget.ui)
 
 set(_kleopatra_SRCS
   utils/gnupg-helper.cpp
@@ -170,8 +153,6 @@ set(_kleopatra_SRCS
   selftest/gpgconfcheck.cpp
   selftest/gpgagentcheck.cpp
   selftest/libkleopatrarccheck.cpp
-
-  ${_kleopatra_extra_SRCS}
 
   models/keycache.cpp
   models/keylistmodel.cpp
@@ -307,26 +288,6 @@ if(KLEO_MODEL_TEST)
   set(_kleopatra_SRCS ${_kleopatra_SRCS} models/modeltest.cpp)
 endif()
 
-kde4_add_ui_files(_kleopatra_SRCS
-  dialogs/certificationoptionswidget.ui
-  dialogs/expirydialog.ui
-  dialogs/lookupcertificatesdialog.ui
-  dialogs/ownertrustdialog.ui
-  dialogs/selectchecklevelwidget.ui
-  dialogs/selftestdialog.ui
-  dialogs/exportsecretkeydialog.ui
-  dialogs/adduseriddialog.ui
-  dialogs/certificatedetailsdialog.ui
-  dialogs/setinitialpindialog.ui
-  newcertificatewizard/listwidget.ui
-  newcertificatewizard/chooseprotocolpage.ui
-  newcertificatewizard/enterdetailspage.ui
-  newcertificatewizard/overviewpage.ui
-  newcertificatewizard/keycreationpage.ui
-  newcertificatewizard/resultpage.ui
-  newcertificatewizard/advancedsettingsdialog.ui
-)
-
 kde4_add_kcfg_files(_kleopatra_SRCS
   kcfg/tooltippreferences.kcfgc
   kcfg/emailoperationspreferences.kcfgc
@@ -358,9 +319,7 @@ endif()
 
 add_definitions(-DKDE_DEFAULT_DEBUG_AREA=5151)
 
-kde4_add_app_icon(_kleopatra_mainwindow_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-kleopatra.png")
-
-kde4_add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_mainwindow_SRCS} ${_kleopatra_uiserver_SRCS} ${_kleopatra_libkdepim_SRCS})
+add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_mainwindow_SRCS} ${_kleopatra_uiserver_SRCS} ${_kleopatra_libkdepim_SRCS})
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
 
 target_link_libraries(kleopatra_bin
@@ -373,10 +332,6 @@ target_link_libraries(kleopatra_bin
   ${_kleopatra_uiserver_extra_libs}
   ${_kleopatra_libkdepim_LIBS}
 )
-
-if(KDEPIM_MOBILE_UI)
-  target_link_libraries(kleopatra_bin ${QT_QTDECLARATIVE_LIBRARY})
-endif()
 
 if(USABLE_ASSUAN_FOUND)
   target_link_libraries(kleopatra_bin ${QT_QTNETWORK_LIBRARY})

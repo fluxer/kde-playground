@@ -19,7 +19,7 @@ set(kontactprivate_LIB_SRCS
 
 kde4_add_kcfg_files(kontactprivate_LIB_SRCS prefs.kcfgc)
 
-kde4_add_library(kontactprivate ${LIBRARY_TYPE} ${kontactprivate_LIB_SRCS})
+add_library(kontactprivate ${LIBRARY_TYPE} ${kontactprivate_LIB_SRCS})
 
 target_link_libraries(kontactprivate
   ${KDE4_KCMUTILS_LIBS}
@@ -43,9 +43,7 @@ install(TARGETS kontactprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_
 
 set(kontact_bin_SRCS main.cpp)
 
-kde4_add_app_icon(kontact_bin_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-kontact.png")
-
-kde4_add_executable(kontact_bin ${kontact_bin_SRCS})
+add_executable(kontact_bin ${kontact_bin_SRCS})
 
 set_target_properties(kontact_bin PROPERTIES OUTPUT_NAME kontact)
 

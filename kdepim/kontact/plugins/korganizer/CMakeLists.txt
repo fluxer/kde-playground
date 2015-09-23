@@ -38,8 +38,6 @@ target_link_libraries(kontact_journalplugin ${KDE4_KPARTS_LIBS} ${KDEPIMLIBS_KON
 
 set(kcm_apptsummary_PART_SRCS kcmapptsummary.cpp)
 
-kde4_add_ui_files(kcm_apptsummary_PART_SRCS apptsummaryconfig_base.ui)
-
 kde4_add_plugin(kcm_apptsummary ${kcm_apptsummary_PART_SRCS})
 
 target_link_libraries(kcm_apptsummary ${KDE4_KDEUI_LIBS} korganizerprivate ${KDEPIMLIBS_KCALUTILS_LIBS})
@@ -48,14 +46,16 @@ target_link_libraries(kcm_apptsummary ${KDE4_KDEUI_LIBS} korganizerprivate ${KDE
 
 set(kcm_todosummary_PART_SRCS kcmtodosummary.cpp)
 
-kde4_add_ui_files(kcm_todosummary_PART_SRCS todosummaryconfig_base.ui)
 
 kde4_add_plugin(kcm_todosummary ${kcm_todosummary_PART_SRCS})
 
 target_link_libraries(kcm_todosummary ${KDE4_KDEUI_LIBS})
 
 ########## Unit Test ###########
-add_subdirectory(tests)
+
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 ########### install files ###############
 

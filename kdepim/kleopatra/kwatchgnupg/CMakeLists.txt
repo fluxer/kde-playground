@@ -9,13 +9,9 @@ set(kwatchgnupg_SRCS
   main.cpp
 )
 
-if(WIN32)
-  set(kwatchgnupg_SRCS ${kwatchgnupg_SRCS} ../utils/gnupg-registry.c)
-endif()
-
 include_directories(..)
 
-kde4_add_executable(kwatchgnupg ${kwatchgnupg_SRCS})
+add_executable(kwatchgnupg ${kwatchgnupg_SRCS})
 
 add_definitions(-DKDE_DEFAULT_DEBUG_AREA=5153)
 

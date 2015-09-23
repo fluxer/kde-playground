@@ -29,9 +29,6 @@ set(kjots_config_SRCS kjotsconfigdlg.cpp)
 
 kde4_add_kcfg_files(kjots_config_SRCS KJotsSettings.kcfgc )
 
-kde4_add_ui_files(kjots_config_SRCS confpagemisc.ui)
-
-
 set (kjots_common_SRCS
      aboutdata.cpp
      kjotslockjob.cpp
@@ -67,9 +64,8 @@ set(kjots_SRCS
    KJotsMain.cpp
    ${kjots_common_SRCS}
 )
-kde4_add_app_icon(kjots_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-kjots.png")
 
-kde4_add_executable(kjots ${kjots_SRCS})
+add_executable(kjots ${kjots_SRCS})
 
 target_link_libraries(kjots
   ${kjotsLibs}

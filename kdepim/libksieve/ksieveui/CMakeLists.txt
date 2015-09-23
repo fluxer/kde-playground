@@ -18,9 +18,15 @@ include_directories(${CMAKE_SOURCE_DIR}/libksieve
 	${CMAKE_SOURCE_DIR}/libkdepim/
 	)
 
-add_subdirectory(tests)
-add_subdirectory(editor/tests)
-add_subdirectory(managescriptsjob/tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+    add_subdirectory(editor/tests)
+    add_subdirectory(managescriptsjob/tests)
+    add_subdirectory(autocreatescripts/tests)
+    add_subdirectory(scriptsparsing/tests)
+    add_subdirectory(vacation/tests)
+endif()
+
 set(ksieveui_vacation_LIB_SRCS
   vacation/vacation.cpp
   vacation/vacationdialog.cpp
@@ -168,7 +174,7 @@ set(ksieveui_LIB_SRCS
 
 kde4_add_kcfg_files(ksieveui_LIB_SRCS settings/sieve-vacation.kcfgc settings/sieve-editor.kcfgc)
 
-kde4_add_library(ksieveui ${LIBRARY_TYPE} ${ksieveui_LIB_SRCS})
+add_library(ksieveui ${LIBRARY_TYPE} ${ksieveui_LIB_SRCS})
 
 target_link_libraries(ksieveui
   kmanagesieve
@@ -195,7 +201,4 @@ install(TARGETS ksieveui ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES data/ksieve_script.knsrc DESTINATION ${CONFIG_INSTALL_DIR} )
 install(DIRECTORY data/scripts/ DESTINATION ${DATA_INSTALL_DIR}/sieve/scripts/ )
 
-add_subdirectory(autocreatescripts/tests)
-add_subdirectory(scriptsparsing/tests)
-add_subdirectory(vacation/tests)
 

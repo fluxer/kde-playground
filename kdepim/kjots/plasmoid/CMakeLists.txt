@@ -12,8 +12,6 @@ set(akonotes_noteslist_plasmoid_SRCS
     plasmatreeview.cpp
 )
 
-kde4_add_ui_files(akonotes_noteslist_plasmoid_SRCS akonotes_applet.ui )
-
 kde4_add_plugin(plasma_applet_akonotes_note ${akonotes_note_plasmoid_SRCS})
 kde4_add_plugin(plasma_applet_akonotes_list ${akonotes_noteslist_plasmoid_SRCS})
 

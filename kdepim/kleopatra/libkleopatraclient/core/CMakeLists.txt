@@ -9,24 +9,12 @@ add_definitions(
   -DQT_NO_CAST_FROM_ASCII -DQT_NO_KEYWORDS -DQT_NO_CAST_TO_ASCII
 )
 
-if(WIN32)
-  set(_kleopatraclientcore_extra_SRCS ../../utils/gnupg-registry.c)
-else()
-  set(_kleopatraclientcore_extra_SRCS)
-endif()
-
-set_source_files_properties(command.cpp PROPERTIES SKIP_AUTOMOC TRUE)
-qt4_generate_moc(command_p.h "${CMAKE_CURRENT_BINARY_DIR}/moc_command_p.cpp")
-qt4_generate_moc(command.h "${CMAKE_CURRENT_BINARY_DIR}/moc_command.cpp")
-kde4_add_library(kleopatraclientcore ${LIBRARY_TYPE}
-  ${_kleopatraclientcore_extra_SRCS}
+add_library(kleopatraclientcore ${LIBRARY_TYPE}
   initialization.cpp
   command.cpp
   selectcertificatecommand.cpp
   signencryptfilescommand.cpp
   decryptverifyfilescommand.cpp
-  "${CMAKE_CURRENT_BINARY_DIR}/moc_command_p.cpp"
-  "${CMAKE_CURRENT_BINARY_DIR}/moc_command.cpp"
 )
 
 set_target_properties(kleopatraclientcore PROPERTIES
@@ -34,32 +22,16 @@ set_target_properties(kleopatraclientcore PROPERTIES
   SOVERSION ${libkleopatraclient_soversion}
 )
 
-if(WIN32)
-  if(ASSUAN2_FOUND)
-    target_link_libraries(kleopatraclientcore
-      ${QT_QTCORE_LIBRARY}
-      ${ASSUAN2_LIBRARIES}
-      ws2_32
-    )
-  else()
-    target_link_libraries(kleopatraclientcore
-      ${QT_QTCORE_LIBRARY}
-      ${ASSUAN_VANILLA_LIBRARIES}
-      ws2_32
-    )
-  endif()
+if(ASSUAN2_FOUND)
+target_link_libraries(kleopatraclientcore
+    ${QT_QTCORE_LIBRARY}
+    ${ASSUAN2_LIBRARIES}
+)
 else()
-  if(ASSUAN2_FOUND)
-    target_link_libraries(kleopatraclientcore
-      ${QT_QTCORE_LIBRARY}
-      ${ASSUAN2_LIBRARIES}
-    )
-  else()
-    target_link_libraries(kleopatraclientcore
-      ${QT_QTCORE_LIBRARY}
-      ${ASSUAN_PTHREAD_LIBRARIES}
-    )
-  endif()
+target_link_libraries(kleopatraclientcore
+    ${QT_QTCORE_LIBRARY}
+    ${ASSUAN_PTHREAD_LIBRARIES}
+)
 endif()
 
 install(TARGETS kleopatraclientcore ${INSTALL_TARGETS_DEFAULT_ARGS})

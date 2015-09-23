@@ -52,8 +52,9 @@ if (KDEPIM_BUILD_DESKTOP)
   add_subdirectory(pics)
   add_subdirectory(icons)
   add_subdirectory(avscripts)
-  add_subdirectory(tests)
-  add_subdirectory(kconf_update)
+  if(ENABLE_TESTING)
+    add_subdirectory(tests)
+  endif()
 endif()
 add_subdirectory(kcm_kpimidentities)
 
@@ -230,19 +231,6 @@ if (KDEPIM_BUILD_DESKTOP)
     ${CMAKE_SOURCE_DIR}/kmail/dbusinterface/org.freedesktop.Akonadi.NewMailNotifier.xml
   )
 
-
-  kde4_add_ui_files(kmailprivate_LIB_SRCS
-    ui/composercryptoconfiguration.ui
-    ui/warningconfiguration.ui
-    ui/smimeconfiguration.ui
-    ui/miscpagemaintab.ui
-    ui/securitypagegeneraltab.ui
-    ui/securitypagemdntab.ui
-    ui/identitypage.ui
-    ui/accountspagereceivingtab.ui
-    ui/searchwindow.ui
-  )
-
   # KCFG files. The main kmail.kcfg is configured by CMake and put
   # in the build directory.
 
@@ -260,7 +248,7 @@ if (KDEPIM_BUILD_DESKTOP)
   )
 
 
-  kde4_add_library(kmailprivate ${LIBRARY_TYPE} ${kmailprivate_LIB_SRCS})
+  add_library(kmailprivate ${LIBRARY_TYPE} ${kmailprivate_LIB_SRCS})
 
   target_link_libraries(kmailprivate
     ${KDEPIMLIBS_KMBOX_LIBS}
@@ -334,8 +322,7 @@ if (KDEPIM_BUILD_DESKTOP)
   ########### KMail executable ###############
 
   set(kmail_SRCS main.cpp)
-  kde4_add_app_icon(kmail_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-kmail.png")
-  kde4_add_executable(kmail ${kmail_SRCS})
+  add_executable(kmail ${kmail_SRCS})
   target_link_libraries(kmail
     ${KDE4_KDEUI_LIBS}
     ${KDE4_KDECORE_LIBS}
@@ -346,8 +333,10 @@ if (KDEPIM_BUILD_DESKTOP)
   )
 
 
-  add_subdirectory(mailmerge/tests/)
-  add_subdirectory(folderarchive/autotests/)
+  if(ENABLE_TESTING)
+    add_subdirectory(mailmerge/tests)
+    add_subdirectory(folderarchive/autotests)
+  endif()
   ########### install files ###############
 
   install(TARGETS kmailprivate ${INSTALL_TARGETS_DEFAULT_ARGS} LIBRARY NAMELINK_SKIP)

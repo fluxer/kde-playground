@@ -9,7 +9,7 @@ set(kmanagesieve_LIB_SRCS
   sievejob.cpp
 )
 
-kde4_add_library(kmanagesieve ${LIBRARY_TYPE} ${kmanagesieve_LIB_SRCS})
+add_library(kmanagesieve ${LIBRARY_TYPE} ${kmanagesieve_LIB_SRCS})
 
 target_link_libraries(kmanagesieve
   ${KDE4_KDECORE_LIBS}

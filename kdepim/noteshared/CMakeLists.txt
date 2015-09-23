@@ -60,8 +60,7 @@ set( libnoteshared_kcfg_lib_SRCS settings/notesharedglobalconfig.kcfgc )
 
 kde4_add_kcfg_files(libnoteshared_kcfg_lib_SRCS ${libnoteshared_kcfg_lib_SRCS})
 
-
-kde4_add_library(noteshared ${LIBRARY_TYPE} ${libnoteshared_SRCS} ${libnoteshared_kcfg_lib_SRCS} )
+add_library(noteshared ${LIBRARY_TYPE} ${libnoteshared_SRCS} ${libnoteshared_kcfg_lib_SRCS} )
 
 target_link_libraries(noteshared
      ${KDEPIMLIBS_AKONADI_LIBS} ${QT_QTNETWORK_LIBRARY} ${KDE4_KDNSSD_LIBS} pimcommon akonadi_next ${KDEPIMLIBS_KMIME_LIBS}
@@ -70,4 +69,6 @@ target_link_libraries(noteshared
 set_target_properties(noteshared PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION})
 install(TARGETS noteshared ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-add_subdirectory(attributes/tests)
+if(ENABLE_TESTING)
+    add_subdirectory(attributes/tests)
+endif()

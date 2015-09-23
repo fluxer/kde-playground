@@ -44,23 +44,13 @@ qt4_add_dbus_adaptor( ktimetracker_shared_SRCS
         storageadaptor
         StorageAdaptor )
 
-kde4_add_ui_files( ktimetracker_shared_SRCS
-        csvexportdialog_base.ui
-        historydialog.ui
-        edittaskdialog.ui
-        cfgbehavior.ui
-        cfgdisplay.ui
-        cfgstorage.ui )
-
 kde4_add_kcfg_files( ktimetracker_shared_SRCS ktimetracker.kcfgc )
 
 set(ktimetracker_SRCS main.cpp ${ktimetracker_shared_SRCS})
 
-kde4_add_executable(karm karm.cpp)
+add_executable(karm karm.cpp)
 
-kde4_add_app_icon(ktimetracker_SRCS "hi*-app-ktimetracker.png")
-
-kde4_add_executable(ktimetracker ${ktimetracker_SRCS})
+add_executable(ktimetracker ${ktimetracker_SRCS})
 
 
 target_link_libraries(karm  ${KDE4_KIO_LIBS} ${KDEPIMLIBS_KCALCORE_LIBS} ${KDEPIMLIBS_KONTACTINTERFACE_LIBS} )

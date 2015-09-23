@@ -27,7 +27,11 @@ endif()
 
 add_subdirectory(icons)
 add_subdirectory(printing)
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+    add_subdirectory(merge/tests)
+    add_subdirectory(sendmail/tests)
+endif()
 if(QGPGME_FOUND)
   add_definitions(-DQGPGME_FOUND)
 endif()
@@ -52,12 +56,6 @@ set(kaddressbook_printing_SRCS
   printing/grantlee/contactgrantleeprintgeoobject.cpp
   printing/grantlee/contactgrantleeprintcryptoobject.cpp
   printing/stylepage.cpp
-)
-
-kde4_add_ui_files(kaddressbook_printing_SRCS
-  printing/ringbinder/rbs_appearance.ui
-  printing/detailled/ds_appearance.ui
-  printing/compact/compactstyle.ui
 )
 
 set(kaddressbook_xxport_SRCS
@@ -115,7 +113,7 @@ set(kaddressbook_LIB_SRCS
 qt4_add_dbus_adaptor( kaddressbook_LIB_SRCS org.kde.kaddressbook.xml mainwidget.h MainWidget)
 
 kde4_add_kcfg_files(kaddressbook_LIB_SRCS settings/settings.kcfgc)
-kde4_add_library(kaddressbookprivate ${LIBRARY_TYPE} ${kaddressbook_LIB_SRCS})
+add_library(kaddressbookprivate ${LIBRARY_TYPE} ${kaddressbook_LIB_SRCS})
 target_link_libraries(kaddressbookprivate
   kdepim
   pimcommon
@@ -131,8 +129,6 @@ target_link_libraries(kaddressbookprivate
   grantleetheme
   kleo
 )
-add_subdirectory(merge/tests)
-add_subdirectory(sendmail/tests)
 
 if(QGPGME_FOUND)
   target_link_libraries(kaddressbookprivate ${QGPGME_LIBRARIES})
@@ -152,9 +148,7 @@ set(kaddressbook_SRCS
   mainwindow.cpp
 )
 
-kde4_add_app_icon(kaddressbook_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-apps-kaddressbook.png")
-
-kde4_add_executable(kaddressbook ${kaddressbook_SRCS})
+add_executable(kaddressbook ${kaddressbook_SRCS})
 
 target_link_libraries(kaddressbook
   ${KDEPIMLIBS_AKONADI_LIBS}

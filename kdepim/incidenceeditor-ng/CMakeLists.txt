@@ -74,18 +74,7 @@ set(incidenceeditors_ng_desktop_LIB_SRCS
   visualfreebusywidget.cpp
 )
 
-kde4_add_ui_files(incidenceeditors_ng_desktop_LIB_SRCS
-  categoryeditdialog_base.ui
-  categoryselectdialog_base.ui
-  categorydialog_base.ui
-  template_management_dialog_base.ui
-  dialogdesktop.ui
-  alarmdialog.ui
-  attachmenteditdialog.ui
-  schedulingdialog.ui
-)
-
-kde4_add_library(incidenceeditorsng ${LIBRARY_TYPE} ${incidenceeditors_ng_desktop_LIB_SRCS})
+add_library(incidenceeditorsng ${LIBRARY_TYPE} ${incidenceeditors_ng_desktop_LIB_SRCS})
 
 target_link_libraries(incidenceeditorsng
   akonadi-calendar
@@ -115,20 +104,7 @@ install(TARGETS incidenceeditorsng ${INSTALL_TARGETS_DEFAULT_ARGS})
     ${incidenceeditors_ng_shared_LIB_SRCS}
   )
 
-  kde4_add_ui_files(incidenceeditors_ng_mobile_LIB_SRCS
-    categoryeditdialog_base.ui
-    categoryselectdialog_base.ui
-    categorydialog_base.ui
-    editoralarms_base.ui
-    dialogdesktop.ui
-    dialogmobile.ui
-    dialogmoremobile.ui
-    attachmenteditdialog.ui
-    alarmdialog.ui
-    mobileschedulingdialog.ui
-  )
-
-  kde4_add_library(incidenceeditorsngmobile ${LIBRARY_TYPE} ${incidenceeditors_ng_mobile_LIB_SRCS})
+  add_library(incidenceeditorsngmobile ${LIBRARY_TYPE} ${incidenceeditors_ng_mobile_LIB_SRCS})
 
   target_link_libraries(incidenceeditorsngmobile
     akonadi-calendar
@@ -156,7 +132,7 @@ install(TARGETS incidenceeditorsng ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 set(testincidenceeditor_SRCS main.cpp)
 
-kde4_add_executable(kincidenceeditor ${testincidenceeditor_SRCS})
+add_executable(kincidenceeditor ${testincidenceeditor_SRCS})
 
 target_link_libraries(kincidenceeditor
   akonadi-calendar
@@ -171,4 +147,6 @@ target_link_libraries(kincidenceeditor
 
 install(TARGETS kincidenceeditor ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()

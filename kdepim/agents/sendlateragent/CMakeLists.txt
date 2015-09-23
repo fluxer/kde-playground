@@ -8,7 +8,9 @@ include_directories(
 )
 
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 set(sendlaterlib_SRCS 
     sendlaterinfo.cpp
@@ -21,10 +23,7 @@ kde4_add_kcfg_files(sendlaterlib_SRCS
     settings/sendlateragentsettings.kcfgc 
   )
 
-kde4_add_ui_files(sendlaterlib_SRCS ui/sendlaterwidget.ui)
-
-
-kde4_add_library( sendlater ${LIBRARY_TYPE} ${sendlaterlib_SRCS} )
+add_library( sendlater ${LIBRARY_TYPE} ${sendlaterlib_SRCS} )
 target_link_libraries( sendlater ${KDE4_KDEUI_LIBS} )
 
 set_target_properties( sendlater PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
@@ -48,9 +47,7 @@ set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
 
 qt4_add_dbus_adaptor(sendlateragent_SRCS org.freedesktop.Akonadi.SendLaterAgent.xml sendlateragent.h SendLaterAgent)
 
-kde4_add_ui_files(sendlateragent_SRCS ui/sendlaterconfigurewidget.ui)
-
-kde4_add_executable(akonadi_sendlater_agent ${sendlateragent_SRCS})
+add_executable(akonadi_sendlater_agent ${sendlateragent_SRCS})
 
 target_link_libraries(akonadi_sendlater_agent
   sendlater
@@ -62,12 +59,6 @@ target_link_libraries(akonadi_sendlater_agent
   messagecore
   pimcommon
 )
-
-if (Q_WS_MAC)
-  set_target_properties(akonadi_sendlater_agent PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_SOURCE_DIR}/Info.plist.template)
-  set_target_properties(akonadi_sendlater_agent PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.Akonadi.sendlater")
-  set_target_properties(akonadi_sendlater_agent PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "KDE Akonadi Send Later")
-endif ()
 
 install(TARGETS akonadi_sendlater_agent ${INSTALL_TARGETS_DEFAULT_ARGS} )
 

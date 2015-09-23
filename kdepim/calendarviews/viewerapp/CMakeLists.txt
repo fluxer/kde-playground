@@ -17,7 +17,7 @@ kde4_add_ui_files(viewerapp_SRCS
   mainwindow.ui
 )
 
-kde4_add_executable(viewerapp ${viewerapp_SRCS})
+add_executable(viewerapp ${viewerapp_SRCS})
 
 target_link_libraries(viewerapp
   calendarsupport

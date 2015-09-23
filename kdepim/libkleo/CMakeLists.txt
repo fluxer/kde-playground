@@ -15,7 +15,9 @@ set(CMAKE_CXX_FLAGS "${FOO}")
 
 add_subdirectory( pics )
 add_subdirectory( backends )
-add_subdirectory( tests )
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 ########### next target ###############
 set(libkleo_backend_qgpgme_SRCS
@@ -93,10 +95,6 @@ set(libkleo_ui_SRCS    # make this a separate lib.
     ui/keyapprovaldialog.cpp
     )
 
-kde4_add_ui_files(libkleo_ui_common_SRCS
-    ui/directoryserviceswidget.ui
-)
-
 set(kleo_LIB_SRCS ${libkleo_core_SRCS} ${libkleo_ui_common_SRCS} ${libkleo_backend_qgpgme_SRCS})
 set(kleo_LIB_LIBS ${KDE4_KDEUI_LIBS} ${QGPGME_LIBRARIES})
 if ( NOT KDEPIM_ONLY_KLEO )
@@ -104,17 +102,9 @@ if ( NOT KDEPIM_ONLY_KLEO )
    set( kleo_LIB_LIBS ${kleo_LIB_LIBS} ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS})
 endif ()
 
-kde4_add_library(kleo ${LIBRARY_TYPE} ${kleo_LIB_SRCS})
-if(WIN32)
-target_link_libraries(kleo ${kleo_LIB_LIBS}  ${GPGME_VANILLA_LIBRARIES} )
-else()
+add_library(kleo ${LIBRARY_TYPE} ${kleo_LIB_SRCS})
 target_link_libraries(kleo ${kleo_LIB_LIBS} )
-endif()
 set_target_properties(kleo PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 install(TARGETS kleo ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-if ( WIN32 )
-install ( FILES libkleopatrarc-win32.desktop DESTINATION ${CONFIG_INSTALL_DIR} RENAME libkleopatrarc )
-else ()
 install ( FILES libkleopatrarc.desktop DESTINATION ${CONFIG_INSTALL_DIR} RENAME libkleopatrarc )
-endif ()

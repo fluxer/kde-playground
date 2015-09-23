@@ -16,11 +16,6 @@ if(BUILD_libkleopatraclient)
     cryptooperationsconfigpage.cpp
   )
 
-  kde4_add_ui_files(_kcm_kleopatra_libkleopatraclient_extra_SRCS
-    smimevalidationconfigurationwidget.ui
-    cryptooperationsconfigwidget.ui
-  )
-
   kde4_add_kcfg_files(_kcm_kleopatra_libkleopatraclient_extra_SRCS
     ${CMAKE_SOURCE_DIR}/kleopatra/kcfg/smimevalidationpreferences.kcfgc
   )
@@ -50,11 +45,6 @@ set(kcm_kleopatra_PART_SRCS
 )
 
 add_definitions(-DKDE_DEFAULT_DEBUG_AREA=5152)
-
-kde4_add_ui_files(kcm_kleopatra_PART_SRCS
-  appearanceconfigwidget.ui
-  smimevalidationconfigurationwidget.ui
-)
 
 kde4_add_kcfg_files(kcm_kleopatra_PART_SRCS
   ${CMAKE_SOURCE_DIR}/kleopatra/kcfg/tooltippreferences.kcfgc

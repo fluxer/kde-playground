@@ -59,7 +59,7 @@ kde4_add_ui_files(
 
 kde4_add_kcfg_files( blogilo_SRCS settings.kcfgc)
 kde4_add_app_icon(blogilo_SRCS "${CMAKE_CURRENT_SOURCE_DIR}/../icons/hi*-app-blogilo.png")
-kde4_add_executable( blogilo ${blogilo_SRCS})
+add_executable( blogilo ${blogilo_SRCS})
 
 target_link_libraries( blogilo kdepim ${KDE4_KDEUI_LIBS} ${QT_QTSQL_LIBRARY} ${KDE4_KTEXTEDITOR_LIBS} ${QT_QTWEBKIT_LIBRARY} ${KDE4_KDEWEBKIT_LIBRARY} ${KDEPIMLIBS_KBLOG_LIBS} ${LibKGAPI2_LIBRARY} composereditorng  pimcommon)
 

@@ -12,7 +12,9 @@ set(libksieve_parser_SRCS
 add_subdirectory(ksieve)
 add_subdirectory(kmanagesieve)
 add_subdirectory(ksieveui)
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
 ########### next target ###############
 
@@ -21,7 +23,7 @@ set(ksieve_LIB_SRCS
   ${libksieve_parser_SRCS}
 )
 
-kde4_add_library(ksieve ${LIBRARY_TYPE} ${ksieve_LIB_SRCS})
+add_library(ksieve ${LIBRARY_TYPE} ${ksieve_LIB_SRCS})
 
 target_link_libraries(ksieve ${KDE4_KDECORE_LIBS})
 

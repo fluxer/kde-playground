@@ -31,7 +31,7 @@ set(akonadi_next_SRCS
   amazingdelegate.cpp
 )
 
-kde4_add_library(akonadi_next ${LIBRARY_TYPE} ${akonadi_next_SRCS})
+add_library(akonadi_next ${LIBRARY_TYPE} ${akonadi_next_SRCS})
 
 target_link_libraries(akonadi_next
   ${AKONADI_COMMON_LIBRARIES}
