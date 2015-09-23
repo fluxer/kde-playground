@@ -30,6 +30,7 @@
 
 #include <KDebug>
 #include <KGlobal>
+#include <KLocale>
 
 #include <akonadi/private/protocol_p.h>
 #include <akonadi/private/xdgbasedirs_p.h>

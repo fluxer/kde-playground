@@ -39,6 +39,7 @@
 #include <QtCore/QFile>
 #include <QtCore/QTextStream>
 #include <QtCore/QVariant>
+#include <QtCore/QStringList>
 
 namespace KRES {
 

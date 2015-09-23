@@ -110,7 +110,7 @@ void HolidayParserDriver::parseMetadata()
 void HolidayParserDriver::setParseCalendar( const QString &calendarType )
 {
   delete m_parseCalendar;
-  m_parseCalendar = KCalendarSystem::create( calendarType );
+  m_parseCalendar = KCalendarSystem::create( KCalendarSystem::calendarSystem(calendarType) );
 }
 
 void HolidayParserDriver::setParseStartEnd()

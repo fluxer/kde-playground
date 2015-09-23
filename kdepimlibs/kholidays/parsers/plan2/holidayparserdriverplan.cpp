@@ -181,7 +181,7 @@ std::string *HolidayParserDriverPlan::fileToParse() const
 int HolidayParserDriverPlan::adjustedMonthNumber( int month )
 {
     if ( m_eventCalendarType != QLatin1String("hebrew") ||              // Only adjust Hebrew months
-         m_parseCalendar->calendarType() != QLatin1String("hebrew") ||
+         m_parseCalendar->calendarLabel() != QLatin1String("hebrew") ||
          !m_parseCalendar->isLeapYear( m_parseYear ) ||  // Only adjust in leap year
          month < 6 ) {                                   // Only adjust from Adar onwards
         return month;
@@ -246,7 +246,7 @@ void HolidayParserDriverPlan::julianDayToDate( int jd, int *year, int *month, in
 
 QDate HolidayParserDriverPlan::easter( int year )
 {
-    if ( m_parseCalendar->calendarType() != QLatin1String("gregorian") ) {
+    if ( m_parseCalendar->calendarLabel() != QLatin1String("gregorian") ) {
         return QDate();
     }
 
@@ -267,8 +267,8 @@ QDate HolidayParserDriverPlan::easter( int year )
 
 QDate HolidayParserDriverPlan::pascha( int year )
 {
-    if ( m_parseCalendar->calendarType() == QLatin1String("gregorian") ||
-         m_parseCalendar->calendarType() == QLatin1String("julian") ) {
+    if ( m_parseCalendar->calendarLabel() == QLatin1String("gregorian") ||
+         m_parseCalendar->calendarLabel() == QLatin1String("julian") ) {
         // Algorithm taken from Tondering
         // http://www.tondering.dk/claus/cal/node3.html#SECTION003137000000000000000
         // Gives Orthodox Easter in the Julian Calendar, need to convert afterwards to Gregorian if needed
@@ -279,11 +279,11 @@ QDate HolidayParserDriverPlan::pascha( int year )
         int month = 3 + ( ( l + 40 ) / 44 );
         int day = l + 28 - ( 31 * ( month / 4 ) );
 
-        if ( m_parseCalendar->calendarType() == QLatin1String("julian") ) {
+        if ( m_parseCalendar->calendarLabel() == QLatin1String("julian") ) {
             return QDate::fromJulianDay( julianDay( year, month, day ) );
         }
 
-        if ( m_parseCalendar->calendarType() == QLatin1String("gregorian") ) {
+        if ( m_parseCalendar->calendarLabel() == QLatin1String("gregorian") ) {
             setParseCalendar( QLatin1String("julian") );
             int paschaJd = julianDay( year, month, day );
             setParseCalendar( QLatin1String("gregorian") );
@@ -441,7 +441,7 @@ void  HolidayParserDriverPlan::setEventDate( int jd )
 void HolidayParserDriverPlan::setFromWeekdayInMonth( int occurrence, int weekday, int month, int offset, int duration )
 {
     // Don't set if only parsing metadata or calendar for event rule is not the current parse calendar
-    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarType() ) {
+    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarLabel() ) {
         return;
     }
 
@@ -494,7 +494,7 @@ void HolidayParserDriverPlan::setFromWeekdayInMonth( int occurrence, int weekday
 void HolidayParserDriverPlan::setFromRelativeWeekday( int occurrence, int weekday, int offset, int duration )
 {
     // Don't set if only parsing metadata or calendar for event rule is not the current parse calendar
-    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarType() ) {
+    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarLabel() ) {
         return;
     }
 
@@ -582,7 +582,7 @@ int HolidayParserDriverPlan::conditionalOffset( int year, int month, int day, in
 void HolidayParserDriverPlan::setFromDate( int offset, int condition, int duration )
 {
     // Don't set if only parsing metadata or calendar for event rule is not the current parse calendar
-    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarType() ) {
+    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarLabel() ) {
         return;
     }
 
@@ -642,7 +642,7 @@ void HolidayParserDriverPlan::setFromDate( int offset, int condition, int durati
 void HolidayParserDriverPlan::setFromEaster( int offset, int duration )
 {
     // Don't set if only parsing metadata or calendar for event rule is not the current parse calendar
-    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarType() ) {
+    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarLabel() ) {
         return;
     }
 
@@ -662,7 +662,7 @@ void HolidayParserDriverPlan::setFromEaster( int offset, int duration )
 void HolidayParserDriverPlan::setFromPascha( int offset, int duration )
 {
     // Don't set if only parsing metadata or calendar for event rule is not the current parse calendar
-    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarType() ) {
+    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarLabel() ) {
         return;
     }
 
@@ -677,7 +677,7 @@ void HolidayParserDriverPlan::setFromPascha( int offset, int duration )
 void HolidayParserDriverPlan::setEvent( int jd, int observeOffset, int duration )
 {
     // Don't set if only parsing metadata or calendar for event rule is not the current parse calendar
-    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarType() ) {
+    if ( m_parseMetadataOnly || m_eventCalendarType != m_parseCalendar->calendarLabel() ) {
         return;
     }
 

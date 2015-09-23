@@ -25,6 +25,8 @@
 #include "collection.h"
 #include "collectionutils_p.h"
 
+#include <klocale.h>
+
 using namespace Akonadi;
 
 class CachePolicyPage::Private
