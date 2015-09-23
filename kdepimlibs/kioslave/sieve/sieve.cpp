@@ -1307,7 +1307,7 @@ bool kio_sieveProtocol::requestCapabilitiesAfterStartTLS() const
     const int patch = regExp.cap( 3 ).toInt();
     const QString vendor = regExp.cap( 4 );
     if ( major < 2 || (major == 2 && (minor < 3 || (minor == 3 && patch < 11))) || (vendor == "-kolab-nocaps") ) {
-      ksDebug << k_funcinfo << "Enabling compat mode for Cyrus < 2.3.11 or Cyrus marked as \"kolab-nocaps\"" << endl;
+      ksDebug << "Enabling compat mode for Cyrus < 2.3.11 or Cyrus marked as \"kolab-nocaps\"" << endl;
       return true;
     }
   }

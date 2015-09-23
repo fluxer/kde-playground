@@ -31,11 +31,7 @@
 #include "servertest.h"
 #include "mailtransport_defs.h"
 
-#ifndef KDEPIM_MOBILE_UI
 #include "ui_smtpsettings_desktop.h"
-#else
-#include "ui_smtpsettings_mobile.h"
-#endif
 
 #include <QAbstractButton>
 #include <QButtonGroup>

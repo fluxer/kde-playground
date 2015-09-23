@@ -26,6 +26,7 @@
 
 #include <KDebug>
 #include <KGlobal>
+#include <KLocale>
 
 #include <akonadi/agentinstance.h>
 #include <akonadi/agentinstancecreatejob.h>
