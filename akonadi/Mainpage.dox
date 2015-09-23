@@ -1,0 +1,340 @@
+/**
+\mainpage %Akonadi Server
+
+<p><b>
+Overview |
+\ref akonadi_server_definitions |
+\ref akonadi_server_srclayout
+</b></p>
+
+Akonadi aims to be an extensible cross-desktop storage service for PIM data
+and meta data providing concurrent read, write, and query access.
+It provides unique desktop-wide object identification and retrieval.
+
+This is the API documentation for the Akonadi server.  If you are using Akonadi
+from within KDE, you almost certainly want the
+<a href="http://api.kde.org/4.x-api/kdepimlibs-apidocs/akonadi/html/index.html">KDE client library documentation</a>.
+This API reference is more useful to people implementing client libraries or
+working on the Akonadi server itself.
+
+For additional information, see the <a href="http://community.kde.org/KDE_PIM/Akonadi">Akonadi website</a>.
+
+\section akonadi_server_architecture Architecture
+
+<img src="http://community.kde.org/images.community/8/8e/Akonadi_Architecture.png"/>
+
+The Akonadi framework uses a client/server architecture. The Akonadi server has the following primary tasks:
+\li Abstract access to data from arbitrary sources, using toolkit-agnostic protocols and data formats
+\li Provide a data cache shared among several clients
+\li Provide change notifications and conflict detection
+\li Support offline change recording and change replay for remote data
+
+\subsection akonadi_server_design_principles Design Principles
+
+The Akonadi architecture is based on the following four design principles:
+
+\li <em>Functionality is spread over different processes.</em><br>
+        This separation has the big advantage that if one process crashes because of
+        a programming error it doesn't affect the other components. That results in
+        robustness of the whole system. A disadvantage might be that there is an additional
+        overhead due to inter-process communication.
+\li <em>Communication protocol is split into data and control channel.</em><br>
+        When doing communication between processes you have to differentiate between the type of data
+        that is being transferred. For a large amount of data a high-performance
+        protocol should be used and for control data a low-latency protocol.
+        Matching both requirements in one protocol is mostly impossible and hard to
+        achieve with currently available software.
+\li <em>Separate logic from storage.</em><br>
+        By separating the logic from the storage, the storage can be used to store data
+        of any type. In this case, the storage is a kind of service, which is available for
+        other components of the system. The logic is located in separated components and so
+        3rd-party developers can extend the system by providing their own components.
+\li <em>Keep communication asynchronous.</em><br>
+        To allow a non-blocking GUI, all the communication with the back-end and within the
+        back-end itself must be asynchronous. You can easily provide a synchronous convenience
+        for the application developer; the back-end, however, must communicate asynchronously.
+
+\subsection akonadi_server_components Components
+
+The Akonadi server itself consists of a number of components:
+\li The Akonadi control process (\c akonadi_control). It is responsible for managing all other server components
+and Akonadi agents.
+\li The Akonadi server process (\c akonadiserver). The actual data access and caching server.
+\li The Akonadi agent server (\c akonadi_agent_server). Allows running of multiple Akonadi agents in one process.
+\li The Akonadi agent launcher (\c akonadi_agent_launcher). A helper process for running Akonadi agents.
+\li The Akonadi control tool (\c akonadictl). A tool to start/stop/restart the Akonadi server system and query its status.
+    This is the only program of these listed here you should ever run manually.
+\li The Akonadi protocol library (\c libakonadiprotocolinternals), Contains protocol definitions and protocol parsing methods
+    useful for client implementations.
+
+\subsubsection akonadi_server_components_server The Akonadi server process
+
+The %Akonadi server process (\c akonadiserver) has the following tasks:
+\li Provide a transaction-safe data store.
+\li Provide operations to add/modify/delete items and collections in the local store, implementing the server side of the ASAP protocol.
+\li Cache management of cached remote contents.
+\li Manage virtual collections representing search results.
+\li Provide change notifications for all known Akonadi objects over D-Bus.
+
+\subsubsection akonadi_server_components_control The Akonadi server control process
+
+The %Akondi control process (\c akonadi_control) has the following tasks:
+\li Manage and monitor the other server processes.
+\li Lifecycle management of agent instances using the various supported agent launch methods.
+\li Monitor agent instances and provide crash recovery.
+\li Provide D-Bus API to manage agents.
+\li Provide change notifications on agent types and agent instances.
+
+
+\section akonadi_server_objects Objects and Data Types
+
+The %Akonadi server operates on two basic object types, called items and collections. They are comparable to files and directories
+and are described in more detail in this section.
+
+\subsection akonadi_server_objects_items Akonadi Items
+
+An item is a generic container for whatever you want to store in Akonadi (eg. mails,
+events, contacts, etc.). An item consists of some generic information (such as identifier,
+mimetype, change date, flags, etc.) and a set of data fields, the item parts. Items
+are independent of the type of stored data, the semantics of the actual content is only
+known on the client side.
+
+\subsubsection akonadi_server_objects_items_parts Item Parts
+
+%Akonadi items can have one or more parts, e.g. an email message consists of the
+envelope, the body and possible one or more attachments. Item parts are identified
+by an identifier string. There are a few special pre-defined part identifiers (ALL,
+ENVELOPE, etc.), but in general the part identifiers are defined by the type specific
+extensions (ie. resource, serializer plugin, type specific client library).
+
+\subsubsection akonadi_server_objects_items_attributes Item Tags
+
+%Tags are self-contained entities stored in separate database table. A tag is a
+relation between multiple items. Tags can have different types (PLAIN, ...) and applications
+can define their own type to describe application-specific relations. Tags can also have
+attributes to store additional metadata about the relation the tag describes.
+
+\subsubsection akonadi_server_objects_items_serializer Payload Data Serialization
+
+Item payload data is typically serialized in a standard format to ensure interoperability between different
+client library implementations. However, the %Akonadi server does not enforce any format,
+payload data is handled as an opaque binary blob.
+
+\subsection akonadi_server_objects_collections Collections
+
+Collections are sets of items. Every item is stored in exactly one
+collection, this is sometimes also referred to as the "physical" storage location of the item.
+An item might also be visible in several other collections - so called "virtual collections" -
+which are defined as the result set of a search query.
+
+Collections are organized hierarchically, i.e. a collection can have child
+collections, thus defining a collection tree.
+
+Collections are uniquely identified by their identifier in
+contrast to their path, which is more robust with regard to renaming and moving.
+
+\subsubsection akonadi_server_objects_collections_akonadi Collection Properties
+
+Every collection has a set of supported content types.
+These are the mimetypes of items the collection can contain.
+Example: A collection of a folder-less iCal file resource would only support
+"text/calendar" items, a folder on an IMAP server "message/rfc822" but also
+"inode/directory" if it can contain sub-folders.
+
+There is a cache policy associated with every collection which defines how much
+of its content should be kept in the local cache and for how long.
+
+Additionally, collections can contain an arbitrary set of attributes to represent
+various other collection properties such as ACLs, quotas or backend-specific data
+used for incremental synchronization. Evaluation of such attributes is the responsibility
+of client implementations, the %Akonadi server does not interpret properties
+other than content types and cache policies.
+
+\subsubsection akonadi_server_objects_collections_tree Collection Tree
+
+There is a single collection tree in Akonadi, consisting of several parts:
+
+- A root node, id 0
+- One or more top-level collections for each resource. Think of these as mount-points
+  for the resource. The resources must put their items and sub-collections into their
+  corresponding top-level collection.
+- Resource-dependent sub-collections below the resource top-level collections.
+  If the resource represents data that is organized in folders (e.g. an IMAP
+  resource), it can create additional collections below its top-level
+  collection. These have to be synched with the corresponding backend by the
+  resource.
+  Resources which represent folder-less data (e.g. an iCal file) don't need
+  any sub-collections and put their items directly into the top-level collection.
+- A top-level collection containing virtual collections.
+
+Example:
+
+\verbatim
++-+ resource-folder1
+| +- sub-folder1
+| +- sub-folder2
+|  ...
++-+ resource-folder2
+| ...
+|
++-+ Searches
+  +- search-folder1
+  +- search-folder2
+  ...
+\endverbatim
+
+
+\subsection akonadi_server_objects_identification Object Identification
+
+\subsubsection akonadi_server_objects_identification_uid Unique Identifier
+
+Every object stored in %Akonadi (collections and items) has a unique
+identifier in the form of an integer value. This identifier cannot be changed in
+any way and will stay the same, regardless of any modifications to the referred
+object. A unique identifier will never be used twice and is globally unique,
+therefore it is possible to retrieve an item without knowing the collection it belongs to.
+
+\subsubsection akonadi_server_objects_identification_rid Remote Identifier
+
+Every object can also have an optional so-called remote identifier. This is an
+identifier used by the corresponding resource to identify the object on its
+backend (e.g., a groupware server).
+
+The remote identifier can be changed by the owning resource agent only.
+
+Special case applies for Tags, where each tag can have multiple remote IDs. This fact is
+however opaque to resources as each resource is shown only the remote ID that it had
+provided when inserting the tag into Akonadi.
+
+\subsubsection akonadi_server_objects_identification_gid Global Identifier
+
+Every item can has also so called GID, an identifier specific to the content (payload)
+of the item. The GID is extracted from the payload by client serializer when storing the
+item in Akonadi. For example, contacts have vCard "UID" field as their GID, emails can
+use value of "Message-Id" header.
+
+\section akonadi_server_protocols Communication Protocols
+
+For communication within the Akonadi server infrastructure and for communication with Akonadi clients, two communication technologies are used:
+\li \em D-Bus Used for management tasks and change notifications.
+\li \em ASAP (Akonadi Server Access Protocol), used for high-throughput data transfer. ASAP is based on the well-known IMAP protocol (RFC 3501)
+  which has been proven it's ability to handle large quantities of data in practice already.
+
+\todo add protocol documentation
+
+
+\section akonadi_server_interaction Interacting with Akonadi
+
+There are various possibilities to interact with %Akonadi.
+
+\section akonadi_server_interaction_client_libraray Akonadi Client Libraries
+
+Accessing the %Akonadi server using the ASAP and D-Bus interfaces directly is cumbersome.
+Therefore you'd usually use a client library implementing the low-level protocol handling
+and providing convenient high-level APIs for %Akonadi operations.
+
+Currently, the most complete implementation is the
+<a href="http://api.kde.org/4.x-api/kdepimlibs-apidocs/akonadi/html/index.html">KDE %Akonadi client library</a>.
+
+<!--
+// Afaik there are no "other ones"? -- dvratil
+\todo add links to the other ones
+//-->
+
+\subsection akonadi_server_interaction_agents Akonadi Agents
+
+%Akonadi agents are processes which are controlled by the Akonadi server itself. Agents typically
+operate autonomously (ie. without much user interaction) on the objects handled by Akonadi, mostly
+by reacting to change notifications sent by the %Akonadi server.
+
+Agents can implement specialized interfaces to provide additional functionality.
+The most important ones are the so-called resource agents. 
+
+Resource agents are connectors that provide access to data from an external source, and replay local changes
+back to their corresponding backend.
+
+
+\section akonadi_server_implementation Implementation Details
+
+\subsection akonadi_server_implementation_storage Data and Metadata Storage
+
+The Akonadi server uses two mechanisms for data storage:
+\li A SQL databases for metadata and small payload data
+\li Plain files for large payload data
+
+More details on the SQL database layout can be found here: \ref akonadi_server_database.
+
+The following SQL databases are supported by the Akonadi server:
+\li \em MySQL using the default QtSQL driver shipped with Qt
+\li \em Sqlite using the improved QtSQL driver shipped with the Akonadi server
+\li \em PostgreSQL using the default QtSQL driver shipped with Qt
+
+For details on how to configure the various backends, see Akonadi::DataStore.
+
+
+
+
+\page akonadi_server_definitions Type Definitions
+
+<p><b>
+\ref index "Overview" |
+\ref Type Definitions |
+\ref akonadi_server_srclayout
+</b></p>
+
+To let all components play together nicely, we have to use some common encoding
+definitions.
+
+\li <em>Collection names</em><br>
+    Collection names and paths are Unicode strings (QString) to allow custom names by the user.
+\li <em>Data references</em><br>
+    The persistent identifier is an unsigned integer and the external URL is
+    a Unicode string (QString).
+\li <em>Transferred data over ASAP</em><br/>
+    The data transferred over ASAP are byte arrays (QByteArray). If Unicode strings are
+    transferred over ASAP, UTF-8 encoding is applied.
+\li <em>Error and status messages</em><br>
+    Error and status messages are visible to the user, so they have to be
+    Unicode strings (QString).
+
+
+
+
+\page akonadi_server_srclayout Source Code Layout
+
+<p><b>
+\ref index "Overview" |
+\ref akonadi_server_definitions |
+\ref Source Code Layout
+</b></p>
+
+The code of the storage and control components is located in the \c server sub-directory.
+The different parts are laid out as follows:
+
+<ul>
+<li> \e control <br>
+    Contains the source code of the \ref akonadi_design_control "control" component.
+<li> \e interfaces <br>
+    Contains the D-Bus interface descriptions of the Akonadi components
+<li> \e src <br>
+    Contains the source code of the \ref akonadi_design_storage "storage" component.
+<li> \e src/handler <br>
+    Contains the source code for the handlers of the single ASAP commands.
+    See <a href="group__akonadi__server__handler.html">command handlers module</a>
+<li> \e src/storage <br>
+    Contains the source code for accessing the storage back-end.<br>
+    <ul>
+    <li>  entity.{h,cpp} <br>
+        The files contain classes which reflect records in the tables of the database.
+        They are generated by XSL transformation from akonadidb.xml and entities.xsl
+    <li> datastore.{h,cpp} <br>
+        The files contain a class which provides the access to the underlaying database tables.
+    </ul>
+</ul>
+*/
+
+// DOXYGEN_EXCLUDE = sqlplugin server/control server/akonadictl server/tests
+// DOXYGEN_PROJECTNAME=Akonadi
+// DOXYGEN_PROJECTVERSION=1.10.43
+
+// vim:ts=4:sw=4:expandtab:filetype=doxygen
