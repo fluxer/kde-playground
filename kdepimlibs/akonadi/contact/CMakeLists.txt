@@ -17,7 +17,9 @@ endif()
 set( AKONADI_PHONE_DIAL_DEFAULT "UseSkype" )
 set( AKONADI_SEND_SMS_DEFAULT  "UseSkypeSms" )
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 add_subdirectory(kcm)
 add_subdirectory(editor/im)
 
@@ -118,7 +120,6 @@ else()
 add_definitions(-DDISABLE_EDITOR_WIDGETS)
 endif()
 
-qt4_wrap_ui(akonadicontact_LIB_SRC contactgroupeditor.ui)
 kde4_add_kcfg_files(akonadicontact_LIB_SRC recentcontactscollectionssettings.kcfgc )
 
 include_directories(
@@ -138,7 +139,7 @@ generate_export_header(akonadi-contact
   EXPORT_FILE_NAME akonadi-contact_export.h
 )
 
-if (KDE4_BUILD_TESTS)
+if (ENABLE_TESTING)
    set(AKONADI_CONTACT_TESTS_EXPORT AKONADI_CONTACT_EXPORT)
 endif()
 configure_file(akonadi-contactprivate_export.h.in "${CMAKE_CURRENT_BINARY_DIR}/akonadi-contactprivate_export.h")

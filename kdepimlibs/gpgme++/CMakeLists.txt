@@ -49,7 +49,6 @@ set( GPGMEPP_INCLUDE ${INCLUDE_INSTALL_DIR} ${GPGME_INCLUDES} ${Boost_INCLUDE_DI
 
 if ( GPGME_VANILLA_FOUND )
    add_library( gpgmepp ${LIBRARY_TYPE} ${gpgme_LIB_SRCS} context_vanilla.cpp )
-   generate_export_header(gpgmepp EXPORT_FILE_NAME gpgme++_export.h)
 
    target_link_libraries( gpgmepp ${GPGME_VANILLA_LIBRARIES} )
    set_target_properties( gpgmepp PROPERTIES
@@ -114,9 +113,6 @@ if ( GPGME_PTH_FOUND )
    get_target_property( GPGMEPP_PTH_LIBRARY gpgmepp LOCATION )
    install(TARGETS gpgmepp-pth EXPORT kdepimlibsLibraryTargets ${INSTALL_TARGETS_DEFAULT_ARGS} )
 endif()
-
-# this writes way too much, but do we care?
-EXPORT_LIBRARY_DEPENDENCIES( ${CMAKE_CURRENT_BINARY_DIR}/GpgmeppLibraryDepends.cmake )
 
 ########### install files ###############
 

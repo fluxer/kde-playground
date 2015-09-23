@@ -4,18 +4,7 @@ set( _any_gpgme_found false )
 set( _qgpgme_version 1.0.1 )
 set( _qgpgme_soversion 1 )
 
-if ( WIN32 AND GPGME_VANILLA_FOUND )
-
-   # on Windows, we require gpgme(-vanilla), which is thread-safe,
-   # and we don't provide gpgme-qt support
-
-   set( _any_gpgme_found true )
-   set( _qgpgme_libgpgme gpgmepp )
-   #set( _qgpgme_extra_src eventloopinteractor_win.cpp )
-
-endif()
-
-if ( NOT WIN32 AND GPGME_PTHREAD_FOUND )
+if ( GPGME_PTHREAD_FOUND )
 
    # on Unix, we requrie gpgme-pthread (for convenience, since vanilla
    # gpgme isn't thread-aware, and we don't want to restrict clients
@@ -44,7 +33,6 @@ if ( _any_gpgme_found )
    )
 
    add_library( qgpgme ${LIBRARY_TYPE} ${qgpgme_LIB_SRCS} )
-   generate_export_header(qgpgme)
 
    target_link_libraries( qgpgme ${QT_QTCORE_LIBRARY} ${_qgpgme_libgpgme} )
 

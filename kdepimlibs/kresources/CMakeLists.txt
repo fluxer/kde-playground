@@ -1,6 +1,8 @@
 project(kresources)
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 include_directories(${KDE4_KIO_INCLUDES})
 

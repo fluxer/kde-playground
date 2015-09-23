@@ -5,7 +5,9 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 include_directories(${QJSON_INCLUDE_DIR})
 
 add_subdirectory(serializer)
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 set(akonadi_social_utils_SRCS
   socialnetworkattributes.cpp

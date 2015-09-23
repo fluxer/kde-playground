@@ -7,11 +7,8 @@ if(CMAKE_COMPILE_GCOV)
   set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
 endif()
 
-if (KDE4_BUILD_TESTS)
+if (ENABLE_TESTING)
   add_subdirectory( tests )
-else()
-  add_subdirectory( tests/testrunner )
-  add_subdirectory( tests/testresource )
 endif()
 
 add_definitions( ${AKONADI_DEFINITIONS} )
@@ -249,23 +246,6 @@ qt4_add_dbus_adaptor( akonadikde_LIB_SRC interfaces/org.freedesktop.Akonadi.Agen
 kde4_add_kcfg_files( akonadikde_LIB_SRC resourcebasesettings.kcfgc )
 install( FILES resourcebase.kcfg DESTINATION ${KCFG_INSTALL_DIR} )
 
-kde4_add_ui_files( akonadikde_LIB_SRC
-  cachepolicypage.ui
-  controlprogressindicator.ui
-  selftestdialog.ui
-  erroroverlay.ui
-)
-
-if (KDEPIM_MOBILE_UI)
-  kde4_add_ui_files( akonadikde_LIB_SRC
-    collectiongeneralpropertiespage_mobile.ui
-  )
-else()
-  kde4_add_ui_files( akonadikde_LIB_SRC
-    collectiongeneralpropertiespage.ui
-  )
-endif()
-
 add_definitions(
   -DAKONADI_DEPRECATED=
 )
@@ -280,12 +260,12 @@ if(CMAKE_MINIMUM_REQUIRED_VERSION VERSION_LESS 2.8.12)
 endif()
 generate_export_header(akonadi-kde BASE_NAME akonadi)
 
-if (KDE4_BUILD_TESTS)
+if (ENABLE_TESTING)
    set(AKONADI_TESTS_EXPORT AKONADI_EXPORT)
 endif()
 configure_file(akonadiprivate_export.h.in "${CMAKE_CURRENT_BINARY_DIR}/akonadiprivate_export.h")
 
-if (KDE4_BUILD_TESTS)
+if (ENABLE_TESTING)
    set(AKONADI_TESTS_EXPORT AKONADI_EXPORT)
 endif()
 configure_file(akonadiprivate_export.h.in
@@ -459,10 +439,9 @@ install( FILES
 
 if(QT_QTDESIGNER_FOUND)
   message(STATUS "Building Akonadi widgets")
-  set(akonadiwidgets_PART_SRCS)
-  kde4_add_widget_files(akonadiwidgets_PART_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/designer/akonadi.widgets)
+  kde4_add_widget_files(${CMAKE_CURRENT_SOURCE_DIR}/designer/akonadi.widgets)
 
-  kde4_add_plugin(akonadiwidgets ${akonadiwidgets_PART_SRCS})
+  kde4_add_plugin(akonadiwidgets $<TARGET_OBJECTS:akonadi_autowidgets>)
 
   target_link_libraries(akonadiwidgets ${KDE4_KIO_LIBS} akonadi-kde)
 

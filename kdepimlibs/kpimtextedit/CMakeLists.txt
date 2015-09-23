@@ -36,7 +36,9 @@ target_link_libraries(kpimtextedit
   kmime
 )
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 set_target_properties(kpimtextedit PROPERTIES
   VERSION ${GENERIC_LIB_VERSION}

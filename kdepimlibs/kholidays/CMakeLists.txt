@@ -6,7 +6,9 @@ add_definitions(-DKDE_DEFAULT_DEBUG_AREA=5350)
 
 
 add_subdirectory(holidays)
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/parsers/plan2)
 
@@ -30,12 +32,6 @@ set(kholidays_LIB_SRCS
   parsers/plan2/holidayparserplan.cpp
 )
 
-set(kholidays_UI
-  holidayregionselector.ui
-)
-
-kde4_add_ui_files(kholidays_LIB_SRCS ${kholidays_UI})
-
 add_library(kholidays ${LIBRARY_TYPE} ${kholidays_LIB_SRCS})
 generate_export_header(kholidays)
 
@@ -51,10 +47,9 @@ install(TARGETS kholidays EXPORT kdepimlibsLibraryTargets ${INSTALL_TARGETS_DEFA
 ########### next target ###############
 
 if(QT_QTDESIGNER_FOUND)
-  set(kholidayswidgets_PART_SRCS)
-  kde4_add_widget_files(kholidayswidgets_PART_SRCS ${CMAKE_CURRENT_SOURCE_DIR}/kholidays.widgets)
+  kde4_add_widget_files(${CMAKE_CURRENT_SOURCE_DIR}/kholidays.widgets)
 
-  kde4_add_plugin(kholidayswidgets ${kholidayswidgets_PART_SRCS})
+  kde4_add_plugin(kholidayswidgets $<TARGET_OBJECTS:kholidays_autowidgets>)
 
   target_link_libraries(kholidayswidgets ${KDE4_KIO_LIBS} kholidays)
 

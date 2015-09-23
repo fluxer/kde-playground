@@ -1,4 +1,6 @@
-add_subdirectory( tests )
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 add_definitions( -DKDE_DEFAULT_DEBUG_AREA=5320 -DQT_NO_CAST_FROM_ASCII -DQT_NO_CAST_TO_ASCII )
 include(CheckTimezone)
 configure_file (config-kmime.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kmime.h)

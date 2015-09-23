@@ -100,7 +100,9 @@ install(TARGETS kcalcore EXPORT kdepimlibsLibraryTargets ${INSTALL_TARGETS_DEFAU
 
 ########### next target ###############
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 ########### install files ###############
 

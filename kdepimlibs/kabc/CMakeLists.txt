@@ -37,7 +37,9 @@ if(NOT KDEPIM_NO_KRESOURCES)
   add_subdirectory(formats)
   add_subdirectory(plugins)
 endif()
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 ########### next target ###############
 

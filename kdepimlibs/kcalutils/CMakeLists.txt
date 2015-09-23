@@ -28,8 +28,6 @@ set(kcalutils_LIB_SRCS
 
 kde4_add_kcfg_files(kcalutils_LIB_SRCS htmlexportsettings.kcfgc)
 
-kde4_add_ui_files(kcalutils_LIB_SRCS recurrenceactionsscopewidget.ui)
-
 add_library(kcalutils ${LIBRARY_TYPE} ${kcalutils_LIB_SRCS})
 generate_export_header(kcalutils)
 
@@ -50,7 +48,9 @@ install(TARGETS kcalutils EXPORT kdepimlibsLibraryTargets ${INSTALL_TARGETS_DEFA
 
 ########### next target ###############
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 ########### install files ###############
 

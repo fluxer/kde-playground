@@ -38,4 +38,6 @@ install( FILES
   DESTINATION ${INCLUDE_INSTALL_DIR}/akonadi/notes COMPONENT Devel
 )
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()

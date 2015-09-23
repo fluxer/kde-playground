@@ -9,7 +9,9 @@ set(kmbox_LIB_SRCS
     mbox.cpp
 )
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory(tests)
+endif()
 
 add_library(kmbox ${LIBRARY_TYPE} ${kmbox_LIB_SRCS})
 generate_export_header(kmbox)
