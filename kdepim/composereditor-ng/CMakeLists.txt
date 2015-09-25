@@ -7,8 +7,6 @@ add_definitions( -DQT_NO_CAST_TO_ASCII )
 # Laurent install it if you want to debug it
 #add_subdirectory(tests)
 
-add_definitions(-DQT_STATICPLUGIN)
-
 set(libcomposereditor_ng_SRCS 
     composereditor.cpp
     composerview.cpp

@@ -117,7 +117,12 @@ configure_file(${CMAKE_SOURCE_DIR}/CTestCustom.cmake ${CMAKE_BINARY_DIR}/CTestCu
 ############### search Boost ###############
 
 find_package(Boost 1.34.0)
-set_package_properties(Boost PROPERTIES DESCRIPTION "Boost C++ Libraries" URL "http://www.boost.org" TYPE REQUIRED PURPOSE "Boost is required for building most KDEPIM applications")
+set_package_properties(Boost PROPERTIES
+  DESCRIPTION "Boost C++ Libraries"
+  URL "http://www.boost.org"
+  TYPE REQUIRED PURPOSE
+  "Boost is required for building most KDEPIM applications"
+)
 
 # Kleopatra needs to know if the topological.hpp header exists (part of Boost_graph).
 find_path(Boost_TOPOLOGICAL_SORT_DIR NAMES boost/graph/topological_sort.hpp PATHS ${Boost_INCLUDE_DIRS})
@@ -146,10 +151,21 @@ endif()
 # If the KDEPIM_ONLY_KLEO option is true
 if(KDEPIM_ONLY_KLEO)
   find_package(QGpgme)
-  set_package_properties(QGpgme PROPERTIES DESCRIPTION "The QGpgME library" URL "http://www.kde.org" TYPE REQUIRED PURPOSE "QGpgME is required to build Kleopatra.")
+  set_package_properties(QGpgme PROPERTIES
+    DESCRIPTION "The QGpgME library"
+    URL "http://www.kde.org"
+    TYPE REQUIRED
+    PURPOSE "QGpgME is required to build Kleopatra."
+  )
 
   add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS} ${KDEPIM_DEFINITIONS})
-  include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDE4_INCLUDES} ${KDEPIMLIBS_INCLUDE_DIRS} ${QT_QTDBUS_INCLUDE_DIR})
+  include_directories (
+    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_BINARY_DIR}
+    ${KDE4_INCLUDES}
+    ${KDEPIMLIBS_INCLUDE_DIRS}
+    ${QT_QTDBUS_INCLUDE_DIR}
+  )
   include(kleopatra/ConfigureChecks.cmake)
 
   add_subdirectory(libkleo)
@@ -162,44 +178,76 @@ else()
 ############### Find the stuff we need ###############
   # Akonadi
   find_package(Akonadi 1.12.90 QUIET CONFIG)
-  set_package_properties(Akonadi PROPERTIES DESCRIPTION "Akonadi server libraries" URL "http://pim.kde.org/akonadi" TYPE REQUIRED PURPOSE "Akonadi is required to build KDEPIM")
+  set_package_properties(Akonadi PROPERTIES
+    DESCRIPTION "Akonadi server libraries"
+    URL "http://pim.kde.org/akonadi"
+    TYPE REQUIRED
+    PURPOSE "Akonadi is required to build KDEPIM"
+  )
 
   find_package(ZLIB)
-  set_package_properties(ZLIB PROPERTIES DESCRIPTION "The Zlib compression library" URL "http://www.zlib.net" TYPE REQUIRED)
+  set_package_properties(ZLIB PROPERTIES
+    DESCRIPTION "The Zlib compression library"
+    URL "http://www.zlib.net"
+    TYPE REQUIRED
+  )
 
   find_package(QGpgme)
-  set_package_properties(QGpgme PROPERTIES DESCRIPTION "The QGpgMe library" URL "http://www.kde.org" TYPE RECOMMENDED PURPOSE "QGpgME is required to build KMail, KOrganizer and Kleopatra")
+  set_package_properties(QGpgme PROPERTIES
+    DESCRIPTION "The QGpgMe library"
+    URL "http://www.kde.org"
+    TYPE RECOMMENDED
+    PURPOSE "QGpgME is required to build KMail, KOrganizer and Kleopatra"
+  )
 
   find_package(Grantlee 0.3.0 QUIET CONFIG)
   set_package_properties(Grantlee PROPERTIES
-  DESCRIPTION "The Grantlee Template System"
-  URL "http://www.gitorious.org/grantlee/pages/Home"
-  TYPE REQUIRED
-  PURPOSE "Grantlee is requires for kmail and templating, theming for KJots, KaddressBook, KNotes and MessageViewer(KMail)."
+    DESCRIPTION "The Grantlee Template System"
+    URL "http://www.gitorious.org/grantlee/pages/Home"
+    TYPE REQUIRED
+    PURPOSE "Grantlee is requires for kmail and templating, theming for KJots, KaddressBook, KNotes and MessageViewer(KMail)."
   )
 
+  # FIXME: rip it off
   find_package(Baloo 4.14.0 QUIET CONFIG)
   set_package_properties(Baloo PROPERTIES
     DESCRIPTION "The Baloo libraries"
     URL "http://www.kde.org"
-    # FIXME: rip it off
-    # TYPE REQUIRED
+    TYPE RECOMMENDED
     PURPOSE "Baloo provides search capabilities in KMail and Akonadi"
-    )
+  )
 
   # Xsltproc
   find_package(Xsltproc)
-  set_package_properties(Xsltproc PROPERTIES DESCRIPTION "XSLT processor from libxslt" TYPE REQUIRED PURPOSE "Required to generate D-Bus interfaces.")
+  set_package_properties(Xsltproc PROPERTIES
+    DESCRIPTION "XSLT processor from libxslt"
+    TYPE REQUIRED
+    PURPOSE "Required to generate D-Bus interfaces."
+  )
 
   find_package(QJSON)
-  set_package_properties(QJSON PROPERTIES DESCRIPTION "QJSON" URL "http://qjson.sourceforge.net/" TYPE REQUIRED PURPOSE "Qt library for handling JSON data")
+  set_package_properties(QJSON PROPERTIES
+    DESCRIPTION "QJSON"
+    URL "http://qjson.sourceforge.net/"
+    TYPE REQUIRED
+    PURPOSE "Qt library for handling JSON data"
+  )
 
   find_package(Prison QUIET CONFIG)
-  set_package_properties(Prison PROPERTIES DESCRIPTION "The Prison library" URL "http://projects.kde.org/prison" TYPE OPTIONAL PURPOSE "Needed to show mobile barcodes of your contacts")
+  set_package_properties(Prison PROPERTIES
+    DESCRIPTION "The Prison library"
+    URL "http://projects.kde.org/prison"
+    TYPE OPTIONAL
+    PURPOSE "Needed to show mobile barcodes of your contacts"
+  )
 
   # Libkgapi2
   find_package(LibKGAPI2 2.2.0 QUIET CONFIG)
-  set_package_properties(LibKGAPI2 PROPERTIES DESCRIPTION "KDE-based library for accessing various Google services" URL "https://projects.kde.org/libkgapi" TYPE OPTIONAL PURPOSE "LibKGAPI is required to build Google Drive Storage Service")
+  set_package_properties(LibKGAPI2 PROPERTIES
+    DESCRIPTION "KDE-based library for accessing various Google services"
+    URL "https://projects.kde.org/libkgapi"
+    TYPE OPTIONAL
+    PURPOSE "LibKGAPI is required to build Google Drive Storage Service")
 
   if( LibKGAPI2_FOUND )
     add_definitions( -DKDEPIM_STORAGESERVICE_GDRIVE )
@@ -208,9 +256,21 @@ else()
 
 ############### Needed commands before building anything ###############
 
-  add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS} ${KDEPIM_DEFINITIONS} ${AKONADI_DEFINITIONS})
+  add_definitions (
+    ${QT_DEFINITIONS}
+    ${KDE4_DEFINITIONS}
+    ${KDEPIM_DEFINITIONS}
+    ${AKONADI_DEFINITIONS}
+  )
 
-  include_directories (${CMAKE_SOURCE_DIR} ${CMAKE_BINARY_DIR} ${KDEPIMLIBS_INCLUDE_DIRS} ${KDE4_INCLUDES} ${QT_QTDBUS_INCLUDE_DIR} ${Boost_INCLUDE_DIR})
+  include_directories (
+    ${CMAKE_SOURCE_DIR}
+    ${CMAKE_BINARY_DIR}
+    ${KDEPIMLIBS_INCLUDE_DIRS}
+    ${KDE4_INCLUDES}
+    ${QT_QTDBUS_INCLUDE_DIR}
+    ${Boost_INCLUDE_DIR}
+  )
 
   if(NOT KDEPIMLIBS_KRESOURCES_LIBRARY)
     add_definitions( -DKDEPIM_NO_KRESOURCES )

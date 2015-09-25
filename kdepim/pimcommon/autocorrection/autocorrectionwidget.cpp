@@ -29,6 +29,7 @@ using namespace PimCommon::ConfigureImmutableWidgetUtils;
 
 #include <KFileDialog>
 #include <KMessageBox>
+#include <KLocale>
 
 #include <QTreeWidgetItem>
 #include <QMenu>

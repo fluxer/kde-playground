@@ -39,7 +39,9 @@
 #include <Akonadi/Session>
 #include <Akonadi/Job>
 
+#ifdef HAVE_BALOO
 #include <baloo/pim/contactcompleter.h>
+#endif
 
 #include <KPIMUtils/Email>
 #include <KColorScheme>
@@ -381,6 +383,7 @@ QStringList AddresseeLineEdit::Private::cleanupBalooContact(const QStringList &l
 
 void AddresseeLineEdit::Private::searchInBaloo()
 {
+#ifdef HAVE_BALOO
     const QString trimmedString = m_searchString.trimmed();
     Baloo::PIM::ContactCompleter com(trimmedString, 20);
     const QStringList listEmail = cleanupBalooContact(com.complete());
@@ -390,6 +393,7 @@ void AddresseeLineEdit::Private::searchInBaloo()
     doCompletion( m_lastSearchMode );
     //  if ( q->hasFocus() || q->completionBox()->hasFocus() ) {
     //}
+#endif
 }
 
 void AddresseeLineEdit::Private::alternateColor()
