@@ -23,6 +23,7 @@
 #include "yearprint.h"
 
 #include <KCalendarSystem>
+#include <KConfigGroup>
 
 using namespace CalendarSupport;
 

@@ -23,6 +23,8 @@
 #include "journalprint.h"
 #include "utils.h"
 
+#include <KConfigGroup>
+
 using namespace CalendarSupport;
 
 /**************************************************************

@@ -22,6 +22,7 @@
 #include "timescaleconfigdialog.h"
 #include "prefs.h"
 
+#include <KLocale>
 #include <KSystemTimeZone>
 
 using namespace EventViews;

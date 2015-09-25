@@ -39,6 +39,7 @@
 
 #include "templatemanagementdialog.h"
 
+#include <KLocale>
 #include <KInputDialog>
 #include <KMessageBox>
 

@@ -28,6 +28,7 @@
 #include "timescaleconfigdialog.h"
 
 #include <KIcon>
+#include <KLocale>
 #include <KLocalizedString>
 #include <KGlobal>
 

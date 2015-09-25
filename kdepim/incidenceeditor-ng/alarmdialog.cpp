@@ -22,6 +22,7 @@
 #include "editorconfig.h"
 #include "ui_alarmdialog.h"
 
+#include <KLocale>
 #include <KPIMUtils/Email>
 
 using namespace IncidenceEditorNG;

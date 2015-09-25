@@ -58,7 +58,7 @@ target_link_libraries(
   ${KDEPIMLIBS_MAILTRANSPORT_LIBS}
   ${KDE4_KDEUI_LIBS}
   ${KDE4_KIO_LIBS}
-  ${KDE4_KUTILS_LIBS}
+  ${KDE4_KPRINTUTILS_LIBS}
   akonadi-calendar
 )
 
