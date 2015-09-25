@@ -21,6 +21,7 @@
 
 #include "settings.h"
 
+#include <KLocale>
 #include <KConfigDialogManager>
 #include <KWindowSystem>
 

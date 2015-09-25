@@ -23,6 +23,8 @@
 #include "settingsadaptor.h"
 #include "../shared/dirsettingsdialog.h"
 
+#include <KLocale>
+
 #include <QtCore/QDir>
 #include <QtCore/QDirIterator>
 #include <QtCore/QFile>

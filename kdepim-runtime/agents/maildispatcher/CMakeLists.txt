@@ -1,4 +1,6 @@
-add_subdirectory( tests )
+if(ENABLE_TESTING)
+  add_subdirectory( autotests )
+endif()
 
 set( maildispatcheragent_SRCS
   maildispatcheragent.cpp
@@ -9,7 +11,6 @@ set( maildispatcheragent_SRCS
   #configdialog.cpp
 )
 
-kde4_add_ui_files(maildispatcheragent_SRCS settings.ui)
 kde4_add_kcfg_files(maildispatcheragent_SRCS settings.kcfgc)
 kcfg_generate_dbus_interface(${CMAKE_CURRENT_SOURCE_DIR}/maildispatcheragent.kcfg org.kde.Akonadi.MailDispatcher.Settings)
 qt4_add_dbus_adaptor(maildispatcheragent_SRCS

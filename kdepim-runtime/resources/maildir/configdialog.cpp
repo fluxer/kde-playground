@@ -26,6 +26,7 @@
 #include <kconfigdialogmanager.h>
 #include <kurlrequester.h>
 #include <klineedit.h>
+#include <klocale.h>
 
 using KPIM::Maildir;
 using namespace Akonadi_Maildir_Resource;

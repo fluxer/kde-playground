@@ -25,6 +25,7 @@
 #include "settingsadaptor.h"
 
 #include <KWindowSystem>
+#include <KLocale>
 
 #include <QtDBus/QDBusConnection>
 

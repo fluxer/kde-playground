@@ -15,7 +15,7 @@ set(folderarchivesettings_SRCS
    folderarchiveaccountinfo.cpp 
 )
 
-kde4_add_library(folderarchivesettings ${LIBRARY_TYPE} ${folderarchivesettings_SRCS} )
+add_library(folderarchivesettings ${LIBRARY_TYPE} ${folderarchivesettings_SRCS} )
 
 target_link_libraries(folderarchivesettings
                       ${KDEPIMLIBS_KMIME_LIBS}
@@ -27,5 +27,9 @@ target_link_libraries(folderarchivesettings
 set_target_properties(folderarchivesettings PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 
 install(TARGETS folderarchivesettings ${INSTALL_TARGETS_DEFAULT_ARGS})
-add_subdirectory(autotests)
+
+if(ENABLE_TESTING)
+  add_subdirectory( autotests )
+endif()
+
 

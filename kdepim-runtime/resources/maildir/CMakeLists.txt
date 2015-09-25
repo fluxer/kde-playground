@@ -7,7 +7,10 @@ include_directories(
 
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
 
-add_subdirectory( tests )
+if(ENABLE_TESTING)
+  add_subdirectory( tests )
+endif()
+
 add_subdirectory( wizard )
 
 # maildir access library
@@ -24,8 +27,6 @@ set( maildirresource_SRCS
 )
 
 install( FILES maildirresource.desktop DESTINATION "${CMAKE_INSTALL_PREFIX}/share/akonadi/agents" )
-
-kde4_add_ui_files(maildirresource_SRCS settings.ui)
 
 kde4_add_kcfg_files(maildirresource_SRCS settings.kcfgc)
 

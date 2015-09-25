@@ -3,7 +3,9 @@ include_directories(
     ${KDE4_INCLUDES}
 )
 
-add_subdirectory(tests)
+if(ENABLE_TESTING)
+  add_subdirectory( tests )
+endif()
 
 ########### next target ###############
 
@@ -11,7 +13,7 @@ set(kmindexreader_LIB_SRCS
  kmindexreader.cpp
 )
 
-kde4_add_library(kmindexreader ${LIBRARY_TYPE} ${kmindexreader_LIB_SRCS})
+add_library(kmindexreader ${LIBRARY_TYPE} ${kmindexreader_LIB_SRCS})
 
 target_link_libraries(kmindexreader
     ${KDE4_KDECORE_LIBS}

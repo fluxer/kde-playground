@@ -26,6 +26,7 @@
 #include <KFileItem>
 #include <KIO/Job>
 #include <KWindowSystem>
+#include <KLocale>
 
 #include <QTimer>
 

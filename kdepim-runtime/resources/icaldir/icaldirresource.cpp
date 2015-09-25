@@ -28,6 +28,7 @@
 #include <akonadi/entitydisplayattribute.h>
 #include <akonadi/itemfetchscope.h>
 
+#include <KLocale>
 #include <KCalCore/MemoryCalendar>
 #include <KCalCore/FileStorage>
 #include <KCalCore/ICalFormat>

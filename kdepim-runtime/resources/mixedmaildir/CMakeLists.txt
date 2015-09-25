@@ -29,8 +29,6 @@ set( mixedmaildirresource_SRCS
 
 install( FILES mixedmaildirresource.desktop DESTINATION "${CMAKE_INSTALL_PREFIX}/share/akonadi/agents" )
 
-kde4_add_ui_files(mixedmaildirresource_SRCS settings.ui)
-
 kde4_add_kcfg_files(mixedmaildirresource_SRCS settings.kcfgc)
 
 kcfg_generate_dbus_interface(${CMAKE_CURRENT_SOURCE_DIR}/mixedmaildirresource.kcfg org.kde.Akonadi.MixedMaildir.Settings)
@@ -39,7 +37,7 @@ qt4_add_dbus_adaptor(mixedmaildirresource_SRCS
   ${CMAKE_CURRENT_BINARY_DIR}/org.kde.Akonadi.MixedMaildir.Settings.xml settings.h Settings
 )
 
-kde4_add_executable(akonadi_mixedmaildir_resource ${mixedmaildirresource_SRCS})
+add_executable(akonadi_mixedmaildir_resource ${mixedmaildirresource_SRCS})
 
 if (Q_WS_MAC)
   set_target_properties(akonadi_mixedmaildir_resource PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/../Info.plist.template)
@@ -64,7 +62,6 @@ install(TARGETS akonadi_mixedmaildir_resource ${INSTALL_TARGETS_DEFAULT_ARGS})
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/org.kde.Akonadi.MixedMaildir.Settings.xml
         DESTINATION ${DBUS_INTERFACES_INSTALL_DIR})
 
-# unit tests
-if (KDE4_BUILD_TESTS)
+if(ENABLE_TESTING)
   add_subdirectory( tests )
-endif ()
+endif()

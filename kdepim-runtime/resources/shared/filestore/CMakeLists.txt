@@ -32,7 +32,7 @@ set(akonadi-filestore_SRCS
   storecompactjob.cpp
 )
 
-kde4_add_library(akonadi-filestore ${LIBRARY_TYPE} ${akonadi-filestore_SRCS} )
+add_library(akonadi-filestore ${LIBRARY_TYPE} ${akonadi-filestore_SRCS} )
 
 target_link_libraries(akonadi-filestore
                       ${AKONADI_COMMON_LIBRARIES}
@@ -46,7 +46,7 @@ set_target_properties(akonadi-filestore PROPERTIES VERSION ${GENERIC_LIB_VERSION
 
 install(TARGETS akonadi-filestore ${INSTALL_TARGETS_DEFAULT_ARGS})
 
-if (KDE4_BUILD_TESTS)
+if(ENABLE_TESTING)
   add_subdirectory( tests )
-endif ()
+endif()
 

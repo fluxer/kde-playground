@@ -25,6 +25,9 @@
 
 #include "deleteditemsattribute.h"
 
+#include <KLocale>
+#include <KUrl>
+
 #include <QFileInfo>
 
 using namespace Akonadi;

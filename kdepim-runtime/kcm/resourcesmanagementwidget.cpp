@@ -30,8 +30,8 @@
 #include <akonadi/agenttypedialog.h>
 #include <akonadi/control.h>
 
-#include <kwindowsystem.h>
-
+#include <KWindowSystem>
+#include <KLocale>
 #include <KDebug>
 #include <KMessageBox>
 #include <KLineEdit>

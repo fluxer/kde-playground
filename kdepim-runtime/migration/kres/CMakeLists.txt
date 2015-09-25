@@ -20,8 +20,7 @@ add_resource_iface( birthdays/birthdaysresource.kcfg org.kde.Akonadi.Birthdays.S
 add_resource_iface( maildir/maildirresource.kcfg org.kde.Akonadi.Maildir.Settings MaildirSettings )
 add_resource_iface( dav/resource/davgroupwareresource.kcfg org.kde.Akonadi.davGroupware.Settings DavSettings )
 
-kde4_add_app_icon(kres-migrator_srcs "${KDE4_ICON_DIR}/oxygen/*/apps/akonadi.png")
-kde4_add_executable(kres-migrator ${kres-migrator_srcs})
+add_executable(kres-migrator ${kres-migrator_srcs})
 
 target_link_libraries(kres-migrator
     ${KDEPIMLIBS_AKONADI_LIBS}

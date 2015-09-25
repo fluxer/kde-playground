@@ -23,6 +23,8 @@
 
 #include "davutils.h"
 
+#include <KDialog>
+
 #include <QtCore/QString>
 
 class KJob;

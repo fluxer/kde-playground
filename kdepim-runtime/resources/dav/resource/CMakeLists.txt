@@ -69,13 +69,12 @@ if (QT_QTXMLPATTERNS_LIBRARY)
   install( FILES ${providersFiles} DESTINATION "${SERVICES_INSTALL_DIR}/akonadi/davgroupware-providers" )
 
   kde4_add_kcfg_files(davgroupwareresource_SRCS settingsbase.kcfgc)
-  kde4_add_ui_files(davgroupwareresource_SRCS configdialog.ui urlconfigurationdialog.ui searchdialog.ui)
   kcfg_generate_dbus_interface(${CMAKE_CURRENT_SOURCE_DIR}/davgroupwareresource.kcfg org.kde.Akonadi.davGroupware.Settings)
   qt4_add_dbus_adaptor(davgroupwareresource_SRCS
     ${CMAKE_CURRENT_BINARY_DIR}/org.kde.Akonadi.davGroupware.Settings.xml settings.h Settings
   )
 
-  kde4_add_executable(akonadi_davgroupware_resource RUN_UNINSTALLED ${davgroupwareresource_SRCS})
+  add_executable(akonadi_davgroupware_resource ${davgroupwareresource_SRCS})
 
   if (Q_WS_MAC)
     set_target_properties(akonadi_davgroupware_resource PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/../../Info.plist.template)

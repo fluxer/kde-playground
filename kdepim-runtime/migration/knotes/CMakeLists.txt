@@ -22,7 +22,7 @@ endmacro()
 
 add_resource_iface( maildir/maildirresource.kcfg org.kde.Akonadi.Maildir.Settings MaildirSettings )
 
-kde4_add_executable(knotes-migrator ${knotes-migrator_srcs})
+add_executable(knotes-migrator ${knotes-migrator_srcs})
 
 target_link_libraries(knotes-migrator
     ${KDEPIMLIBS_AKONADI_LIBS}

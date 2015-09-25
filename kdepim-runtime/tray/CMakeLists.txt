@@ -12,9 +12,7 @@ qt4_generate_dbus_interface( ${CMAKE_CURRENT_SOURCE_DIR}/dock.h
                              org.freedesktop.akonaditray.xml )
 qt4_add_dbus_adaptor( tray_sources org.freedesktop.akonaditray.xml dock.h Dock )
 
-kde4_add_app_icon(tray_sources "${CMAKE_CURRENT_SOURCE_DIR}/icons/hi*-app-akonaditray.png")
-
-kde4_add_executable(akonaditray ${tray_sources})
+add_executable(akonaditray ${tray_sources})
 
 target_link_libraries(akonaditray ${KDE4_KIO_LIBS} ${KDE4_KDEUI_LIBS} ${AKONADI_COMMON_LIBRARIES} ${KDEPIMLIBS_AKONADI_LIBS})
 

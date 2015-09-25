@@ -36,6 +36,7 @@
 #include <kmime/kmime_newsarticle.h>
 #include <kmime/kmime_util.h>
 
+#include <KLocale>
 #include <KWindowSystem>
 
 #include <QDateTime>

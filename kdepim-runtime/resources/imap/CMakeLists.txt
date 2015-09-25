@@ -66,7 +66,7 @@ qt4_add_dbus_adaptor( imapresource_LIB_SRCS
         imapresourcebase.h ImapResourceBase
      )
 
-kde4_add_library(imapresource STATIC ${imapresource_LIB_SRCS})
+add_library(imapresource STATIC ${imapresource_LIB_SRCS})
 
 target_link_libraries(imapresource ${KDEPIMLIBS_AKONADI_LIBS} ${QT_QTDBUS_LIBRARY} ${QT_QTCORE_LIBRARY} ${QT_QTGUI_LIBRARY} ${QT_QTNETWORK_LIBRARY} ${KDEPIMLIBS_KIMAP_LIBS} ${KDEPIMLIBS_MAILTRANSPORT_LIBS} ${KDE4_KIO_LIBS} ${KDEPIMLIBS_KMIME_LIBS} ${KDEPIMLIBS_AKONADI_KMIME_LIBS} ${KDEPIMLIBS_KPIMIDENTITIES_LIBS})
 
@@ -86,20 +86,11 @@ set( akonadi_imap_resource_SRCS
 
 install( FILES imapresource.desktop DESTINATION "${CMAKE_INSTALL_PREFIX}/share/akonadi/agents" )
 
-if (KDEPIM_MOBILE_UI)
-kde4_add_ui_files(akonadi_imap_resource_SRCS setupserverview_mobile.ui)
-else ()
-kde4_add_ui_files(akonadi_imap_resource_SRCS setupserverview_desktop.ui)
-endif ()
-kde4_add_ui_files(akonadi_imap_resource_SRCS serverinfo.ui)
-
-
-
 if (RUNTIME_PLUGINS_STATIC)
     add_definitions(-DMAIL_SERIALIZER_PLUGIN_STATIC)
 endif ()
 
-kde4_add_executable(akonadi_imap_resource ${akonadi_imap_resource_SRCS})
+add_executable(akonadi_imap_resource ${akonadi_imap_resource_SRCS})
 
 if (Q_WS_MAC)
   set_target_properties(akonadi_imap_resource PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/../Info.plist.template)
@@ -120,4 +111,6 @@ endif()
 install(TARGETS akonadi_imap_resource ${INSTALL_TARGETS_DEFAULT_ARGS})
 
 add_subdirectory( wizard )
+if(ENABLE_TESTING)
 add_subdirectory( tests )
+endif()

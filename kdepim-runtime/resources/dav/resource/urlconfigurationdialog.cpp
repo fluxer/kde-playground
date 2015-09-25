@@ -24,6 +24,7 @@
 #include "settings.h"
 
 #include <kmessagebox.h>
+#include <klocale.h>
 
 #include <QtGui/QStandardItem>
 #include <QtGui/QStandardItemModel>

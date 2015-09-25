@@ -1,5 +1,7 @@
+if(ENABLE_TESTING)
+    add_subdirectory(tests)
+endif()
 
-add_subdirectory( tests )
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
 
@@ -15,7 +17,7 @@ set(kdepim-copy_LIB_SRCS
     kincidencechooser.cpp
 )
 
-kde4_add_library(kdepim-copy ${LIBRARY_TYPE} ${kdepim-copy_LIB_SRCS})
+add_library(kdepim-copy ${LIBRARY_TYPE} ${kdepim-copy_LIB_SRCS})
 
 target_link_libraries(kdepim-copy
   ${KDE4_KDEUI_LIBS}

@@ -43,6 +43,7 @@
 #include <kcalcore/todo.h>
 #include <kdatetime.h>
 #include <kjob.h>
+#include <klocale.h>
 
 #include <akonadi/attributefactory.h>
 #include <akonadi/cachepolicy.h>

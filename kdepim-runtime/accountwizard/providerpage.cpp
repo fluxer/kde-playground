@@ -21,6 +21,7 @@
 #include "providerpage.h"
 #include "global.h"
 
+#include <KLocale>
 #include <KDebug>
 #include <QSortFilterProxyModel>
 

@@ -35,6 +35,7 @@
 #include <KPasswordDialog>
 #include <KMessageBox>
 #include <kwallet.h>
+#include <klocale.h>
 
 #include <QTimer>
 

@@ -33,6 +33,7 @@
 
 #include <mailtransport/transport.h>
 
+#include <KLocale>
 #include <KDebug>
 
 

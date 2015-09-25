@@ -23,6 +23,8 @@
 #include "contactsresourcesettingsadaptor.h"
 #include "settingsdialog.h"
 
+#include <KLocale>
+
 #include <QtCore/QDir>
 #include <QtCore/QDirIterator>
 #include <QtCore/QFile>

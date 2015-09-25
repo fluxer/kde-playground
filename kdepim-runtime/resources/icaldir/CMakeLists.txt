@@ -5,6 +5,7 @@ include_directories(
 
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}" )
 
+set(CMAKE_AUTOUIC OFF)
 
 ########### next target ###############
 
@@ -13,7 +14,8 @@ set( icaldirresource_SRCS
   ../shared/dirsettingsdialog.cpp
 )
 
-kde4_add_ui_files(icaldirresource_SRCS settingsdialog.ui)
+
+qt4_wrap_ui(icaldirresource_SRCS settingsdialog.ui)
 kde4_add_kcfg_files(icaldirresource_SRCS settings.kcfgc)
 kcfg_generate_dbus_interface(${CMAKE_CURRENT_SOURCE_DIR}/icaldirresource.kcfg org.kde.Akonadi.ICalDirectory.Settings)
 qt4_add_dbus_adaptor(icaldirresource_SRCS
@@ -22,14 +24,7 @@ qt4_add_dbus_adaptor(icaldirresource_SRCS
 
 install( FILES icaldirresource.desktop DESTINATION "${CMAKE_INSTALL_PREFIX}/share/akonadi/agents" )
 
-kde4_add_executable(akonadi_icaldir_resource ${icaldirresource_SRCS})
-
-if (Q_WS_MAC)
-  set_target_properties(akonadi_icaldir_resource PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/../Info.plist.template)
-  set_target_properties(akonadi_icaldir_resource PROPERTIES MACOSX_BUNDLE_GUI_IDENTIFIER "org.kde.Akonadi.ICalDirectory")
-  set_target_properties(akonadi_icaldir_resource PROPERTIES MACOSX_BUNDLE_BUNDLE_NAME "KDE Akonadi ICalDirectory Resource")
-endif ()
-
+add_executable(akonadi_icaldir_resource ${icaldirresource_SRCS})
 
 target_link_libraries(akonadi_icaldir_resource
   ${KDEPIMLIBS_AKONADI_LIBS}

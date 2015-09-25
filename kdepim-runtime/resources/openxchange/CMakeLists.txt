@@ -34,7 +34,6 @@ set( openxchangeresource_SRCS
   openxchangeresource.cpp
 )
 
-kde4_add_ui_files( openxchangeresource_SRCS configdialog.ui )
 
 install( FILES openxchangeresource.desktop DESTINATION "${CMAKE_INSTALL_PREFIX}/share/akonadi/agents" )
 
@@ -44,7 +43,7 @@ qt4_add_dbus_adaptor(openxchangeresource_SRCS
   ${CMAKE_CURRENT_BINARY_DIR}/org.kde.Akonadi.OpenXchange.Settings.xml settings.h Settings
 )
 
-kde4_add_executable(akonadi_openxchange_resource RUN_UNINSTALLED ${openxchangeresource_SRCS})
+add_executable(akonadi_openxchange_resource ${openxchangeresource_SRCS})
 
 if (Q_WS_MAC)
   set_target_properties(akonadi_openxchange_resource PROPERTIES MACOSX_BUNDLE_INFO_PLIST ${CMAKE_CURRENT_SOURCE_DIR}/../Info.plist.template)

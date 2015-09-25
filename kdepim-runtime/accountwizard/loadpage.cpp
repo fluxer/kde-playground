@@ -23,6 +23,7 @@
 #include <kconfig.h>
 #include <kconfiggroup.h>
 #include <kross/core/action.h>
+#include <klocale.h>
 #include <QtCore/qfile.h>
 
 LoadPage::LoadPage(KAssistantDialog* parent) :

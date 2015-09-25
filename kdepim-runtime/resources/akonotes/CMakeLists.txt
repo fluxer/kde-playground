@@ -24,8 +24,6 @@ set( akonotesresource_SRCS
 
 kcfg_generate_dbus_interface(${CMAKE_CURRENT_SOURCE_DIR}/../maildir/maildirresource.kcfg org.kde.Akonadi.Maildir.Settings)
 
-kde4_add_ui_files(akonotesresource_SRCS ../maildir/settings.ui)
-
 kde4_add_kcfg_files(akonotesresource_SRCS ../maildir/settings.kcfgc)
 
 qt4_add_dbus_adaptor(akonotesresource_SRCS

@@ -21,7 +21,7 @@ endmacro()
 add_resource_iface( maildir/maildirresource.kcfg
                     org.kde.Akonadi.Maildir.Settings MaildirSettings )
 
-kde4_add_executable( kjotsmigrator ${kjotsmigrator_SRCS} )
+add_executable( kjotsmigrator ${kjotsmigrator_SRCS} )
 
 target_link_libraries(kjotsmigrator
   ${QT_QTXML_LIBRARY}
