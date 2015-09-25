@@ -25,8 +25,10 @@
 #include "templateparser/templatesconfiguration_kfg.h"
 #include <akonadi/collection.h>
 
+#include <KDialog>
 #include <KLocalizedString>
 #include <KPushButton>
+
 #include <QCheckBox>
 
 using namespace Akonadi;

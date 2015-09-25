@@ -121,6 +121,9 @@ void KNoteFindWidget::slotItemDoubleClicked(QListWidgetItem *item)
 
 void KNoteFindWidget::slotSearchNote()
 {
+    Akonadi::Item::List lst;
+
+#ifdef HAVE_BALOO
     const QString searchStr = mSearchLineEdit->text().trimmed();
     if (searchStr.trimmed().isEmpty())
         return;
@@ -128,8 +131,6 @@ void KNoteFindWidget::slotSearchNote()
     query.matchNote(searchStr);
     query.matchTitle(searchStr);
 
-    Akonadi::Item::List lst;
-#ifdef HAVE_BALOO
     Baloo::PIM::ResultIterator it = query.exec();
     while (it.next()) {
         const Akonadi::Item::Id id = it.id();

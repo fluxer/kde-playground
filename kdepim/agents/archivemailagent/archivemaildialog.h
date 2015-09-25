@@ -20,6 +20,9 @@
 
 #include "ui_archivemailwidget.h"
 #include "archivemailinfo.h"
+
+#include <KDialog>
+
 #include <QTreeWidgetItem>
 
 class QTreeWidget;

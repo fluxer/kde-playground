@@ -26,6 +26,8 @@
 #include <Akonadi/Monitor>
 #include <Akonadi/Session>
 #include <Akonadi/CollectionFetchScope>
+
+#include <KLocale>
 #include <KMime/Message>
 #include <KWindowSystem>
 

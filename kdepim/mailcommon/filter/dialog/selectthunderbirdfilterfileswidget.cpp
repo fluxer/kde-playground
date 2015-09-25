@@ -18,8 +18,11 @@
 #include "selectthunderbirdfilterfileswidget.h"
 #include "ui_selectthunderbirdfilterfileswidget.h"
 #include "mailimporter/filter_thunderbird.h"
+
 #include <QAbstractButton>
 #include <QListWidgetItem>
+
+#include <KLocale>
 
 SelectThunderbirdFilterFilesWidget::SelectThunderbirdFilterFilesWidget(QWidget *parent) :
     QWidget(parent),

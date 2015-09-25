@@ -30,6 +30,8 @@
 
 #include <KABC/Addressee>
 
+// some include guard is messing things up, ksharedconfig should not be included here!
+#include <ksharedconfig.h>
 #include <KConfigGroup>
 #include <KLocalizedString>
 

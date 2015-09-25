@@ -26,9 +26,11 @@ using namespace PimCommon::ConfigureImmutableWidgetUtils;
 #include "messageviewer/widgets/printingsettings.h"
 #include "messageviewer/settings/globalsettings.h"
 
+#include <KDialog>
 #include <KCModuleProxy>
 #include <KCModuleInfo>
 #include <KLocalizedString>
+
 using namespace MailCommon;
 QString MiscPage::helpAnchor() const
 {

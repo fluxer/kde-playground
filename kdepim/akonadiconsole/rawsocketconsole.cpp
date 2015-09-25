@@ -25,6 +25,7 @@
 #include <KDebug>
 #include <KGlobalSettings>
 #include <KIcon>
+#include <KLocale>
 
 #include <QFile>
 #include <QLocalSocket>

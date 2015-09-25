@@ -22,6 +22,8 @@
 
 #include <Akonadi/Item>
 
+#include <KConfigGroup>
+
 #include <QTreeWidgetItem>
 
 namespace SendLater {

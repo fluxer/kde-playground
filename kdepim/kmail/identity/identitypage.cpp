@@ -35,8 +35,10 @@
 #include <kpimidentities/identity.h>
 #include <kpimidentities/identitymanager.h>
 
+#include <KLocale>
 #include <KDebug>
 #include <KMessageBox>
+
 #include <QMenu>
 
 using namespace KMail;
