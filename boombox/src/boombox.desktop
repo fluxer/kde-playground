@@ -1,0 +1,15 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=BoomBox
+Name[x-test]=xxBoomBoxxx
+Exec=boombox %i -graphicssystem raster -caption "%c" %U
+Icon=boombox
+Categories=KDE;Qt;AudioVideo;Audio;Player;
+GenericName=Music player
+GenericName[sv]=Musikspelare
+GenericName[en]=Music Player
+MimeType=application/x-ogg;audio/basic;audio/vnd.rn-realaudio;audio/x-aiff;audio/x-flac;audio/x-matroska;audio/x-mp3;audio/mpeg;audio/mp4;audio/ogg;audio/x-flac+ogg;audio/x-vorbis+ogg;audio/x-mpegurl;audio/x-ms-wma;audio/x-pn-realaudio;audio/x-scpls;audio/x-wav;
+DocPath=boombox/index.html
+Terminal=false
+X-KDE-StartupNotify=true

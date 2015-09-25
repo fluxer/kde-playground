@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+
+<kcfgfile name="boomboxrc"/>
+<include>KStandardDirs</include>
+<include>KGlobalSettings</include>
+<include>KGlobal</include>
+<group name="musicfiles">
+	<entry name="MusicDirectories" type="PathList">
+		<label>Directories to scan for music files</label>
+		<default code="true">QStringList(KGlobalSettings::musicPath())</default>
+	</entry>
+	<entry name="FileNameDB" type="Path">
+		<label>Location of the database file</label>
+		<default code="true">KGlobal::dirs()->saveLocation("appdata") + "music.db"</default>
+	</entry>
+	<entry name="FileNameStreams" type="Path">
+		<label>Location of the internet streams database file</label>
+		<default code="true">KGlobal::dirs()->saveLocation("appdata") + "streams.xml"</default>
+	</entry>
+	<entry name="DatabaseUpdateTime" type="DateTime">
+		<label>The last time the database was updated</label>
+	</entry>
+
+</group>
+
+</kcfg>
+

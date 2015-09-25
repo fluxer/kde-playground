@@ -1,0 +1,7 @@
+# Code generation options for kconfig_compiler
+File=boombox.kcfg
+ClassName=BBSettings
+Singleton=true
+Mutators=true
+ItemAccessors=true
+SetUserTexts=true
