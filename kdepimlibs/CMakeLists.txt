@@ -22,7 +22,6 @@ include(KDEPlatformProfile)
 include(FeatureSummary)
 
 set(CMAKE_AUTOMOC ON)
-set(CMAKE_LINK_INTERFACE_LIBRARIES "")
 
 include(GenerateExportHeader)
 

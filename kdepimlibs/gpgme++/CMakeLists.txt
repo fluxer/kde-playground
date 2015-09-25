@@ -1,13 +1,12 @@
 project( gpgmepp )
-if (MINGW)
-  set(CMAKE_C_FLAGS   "${CMAKE_C_FLAGS}   -mms-bitfields")
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -mms-bitfields")
-endif()
 
 include_directories(  ${GPGME_INCLUDES} ${Boost_INCLUDE_DIR} )
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-gpgme++.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-gpgme++.h )
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/config-gpgme++.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/config-gpgme++.h
+)
 
 ## gpgme comes in three flavours on each of the platforms:
 ##  Windows: gpgme, gpgme-glib, gpgme-qt
@@ -77,9 +76,6 @@ endif()
 if ( GPGME_QT_FOUND )
    add_library( gpgmepp-qt ${LIBRARY_TYPE} ${gpgme_LIB_SRCS} context_qt.cpp )
    target_link_libraries( gpgmepp-qt ${GPGME_QT_LIBRARIES} )
-   if(WIN32)
-      target_link_libraries( gpgmepp-qt ${GPGME_VANILLA_LIBRARIES} )
-   endif()
    set_target_properties( gpgmepp-qt PROPERTIES
                                      VERSION     ${_gpgmepp_version}
                                      SOVERSION   ${_gpgmepp_soversion}
@@ -116,7 +112,10 @@ endif()
 
 ########### install files ###############
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/GpgmeppConfig.cmake.in ${CMAKE_CURRENT_BINARY_DIR}/GpgmeppConfig.cmake @ONLY )
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/GpgmeppConfig.cmake.in
+    ${CMAKE_CURRENT_BINARY_DIR}/GpgmeppConfig.cmake @ONLY
+)
 
 if ( GPGME_FOUND )
 
@@ -144,7 +143,6 @@ if ( GPGME_FOUND )
    install(
      FILES
      ${CMAKE_CURRENT_BINARY_DIR}/GpgmeppConfig.cmake
-     ${CMAKE_CURRENT_BINARY_DIR}/GpgmeppLibraryDepends.cmake
      DESTINATION
      ${LIB_INSTALL_DIR}/gpgmepp )
 

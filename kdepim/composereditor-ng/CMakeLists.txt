@@ -34,8 +34,8 @@ set(libcomposereditor_ng_SRCS
     list/composerlistdialog.cpp
     helper/tablehelper.cpp
     helper/listhelper.cpp
-    spellplugin/kspellplugin.cpp 
-    widgets/domtreewidget.cpp 
+    spellplugin/kspellplugin.cpp
+    widgets/domtreewidget.cpp
     widgets/findreplacebar.cpp
 )
 

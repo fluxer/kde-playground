@@ -42,6 +42,7 @@
 #include <kleo/cryptobackendfactory.h>
 
 #include <kdebug.h>
+#include <klocale.h>
 
 #include <QDBusConnection>
 

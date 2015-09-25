@@ -193,5 +193,3 @@ QObject* KWebKitPlatformPlugin::createExtension(Extension ext) const
 
 Q_EXPORT_PLUGIN2(kwebspellchecker, KWebKitPlatformPlugin)
 Q_IMPORT_PLUGIN(kwebspellchecker)
-
-

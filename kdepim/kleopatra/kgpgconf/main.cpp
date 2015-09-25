@@ -33,6 +33,8 @@
 #include "mainwindow.h"
 
 #include <QApplication>
+#include <KGlobal>
+#include <KLocale>
 
 int main( int argc, char** argv )
 {

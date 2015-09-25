@@ -28,6 +28,7 @@
 #include <KDateTimeWidget>
 #include <KMessageBox>
 #include <KDebug>
+#include <KLocale>
 
 class HistoryWidgetDelegate : public QItemDelegate
 {

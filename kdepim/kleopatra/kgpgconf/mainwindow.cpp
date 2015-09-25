@@ -37,6 +37,8 @@
 #include "configwriter.h"
 #include "exception.h"
 
+#include <KLocale>
+
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
