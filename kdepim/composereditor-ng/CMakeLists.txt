@@ -7,6 +7,8 @@ add_definitions( -DQT_NO_CAST_TO_ASCII )
 # Laurent install it if you want to debug it
 #add_subdirectory(tests)
 
+add_definitions(-DQT_STATICPLUGIN)
+
 set(libcomposereditor_ng_SRCS 
     composereditor.cpp
     composerview.cpp
@@ -46,7 +48,6 @@ add_library(composereditorng ${LIBRARY_TYPE} ${libcomposereditor_ng_SRCS})
 target_link_libraries(composereditorng 
    ${KDE4_KDEWEBKIT_LIBRARY} ${QT_QTWEBKIT_LIBRARY} ${KDEPIMLIBS_KPIMTEXTEDIT_LIBS} ${KDE4_KPRINTUTILS_LIBS}
 )
-
 
 set_target_properties( composereditorng PROPERTIES VERSION ${GENERIC_LIB_VERSION} SOVERSION ${GENERIC_LIB_SOVERSION} )
 install(TARGETS composereditorng ${INSTALL_TARGETS_DEFAULT_ARGS} )

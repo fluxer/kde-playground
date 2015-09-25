@@ -94,7 +94,7 @@ if(USABLE_ASSUAN_FOUND)
     uiserver/createchecksumscommand.cpp
     uiserver/verifychecksumscommand.cpp
 
-    libkleopatraclient/core/command.cpp
+    libkleopatraclient/core/kleocommand.cpp
     selftest/uiservercheck.cpp
   )
 
@@ -312,7 +312,7 @@ endif()
 
 add_definitions(-DKDE_DEFAULT_DEBUG_AREA=5151)
 
-add_executable(kleopatra_bin ${_kleopatra_SRCS} mainwindow_desktop.cpp ${_kleopatra_uiserver_SRCS} ${_kleopatra_libkdepim_SRCS})
+add_executable(kleopatra_bin ${_kleopatra_SRCS} mainwindow.cpp ${_kleopatra_uiserver_SRCS} ${_kleopatra_libkdepim_SRCS})
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
 
 target_link_libraries(kleopatra_bin

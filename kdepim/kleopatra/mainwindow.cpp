@@ -32,7 +32,7 @@
 
 #include <config-kleopatra.h>
 
-#include "mainwindow_desktop.h"
+#include "mainwindow.h"
 #include "aboutdata.h"
 
 #include "models/keylistmodel.h"
@@ -93,12 +93,6 @@
 #include <boost/shared_ptr.hpp>
 
 #include <vector>
-
-#ifdef Q_OS_WIN32
-static const bool OS_WIN = true;
-#else
-static const bool OS_WIN = false;
-#endif
 
 using namespace Kleo;
 using namespace Kleo::Commands;
@@ -319,10 +313,8 @@ void MainWindow::Private::setupActions() {
     const action_data action_data[] = {
         // most have been MOVED TO keylistcontroller.cpp
         // Tools menu
-#ifndef Q_OS_WIN
         { "tools_start_kwatchgnupg", i18n("GnuPG Log Viewer"), QString(),
           "kwatchgnupg", q, SLOT(gnupgLogViewer()), QString(), false, true },
-#endif
 #if 0
         { "tools_start_kgpgconf", i18n("GnuPG Administrative Console"), QString(),
           "kgpgconf", q, SLOT(gnupgLogViewer()), QString(), false, true },
@@ -335,11 +327,6 @@ void MainWindow::Private::setupActions() {
         // Settings menu
         { "settings_self_test", i18n("Perform Self-Test"), QString(),
           0, q, SLOT(selfTest()), QString(), false, true },
-        // Help menu
-#ifdef Q_WS_WIN
-        { "help_about_gpg4win", i18n("About Gpg4win"), QString(),
-          "gpg4win-compact", q, SLOT(aboutGpg4Win()), QString(), false, true },
-#endif
         // most have been MOVED TO keylistcontroller.cpp
     };
 
@@ -565,4 +552,4 @@ void MainWindow::saveProperties( KConfigGroup & cg )
     }
 }
 
-#include "moc_mainwindow_desktop.cpp"
+#include "moc_mainwindow.cpp"

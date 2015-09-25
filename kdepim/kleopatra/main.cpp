@@ -68,10 +68,6 @@ namespace Kleo {
 
 #include <kleo/checksumdefinition.h>
 
-#ifdef KDEPIM_MOBILE_UI
-# include <kdeclarativeapplication.h>
-#endif
-
 #include <KDebug>
 #include <kcmdlineargs.h>
 #include <klocale.h>
@@ -207,19 +203,11 @@ int main( int argc, char** argv )
   AboutData aboutData;
 
   KCmdLineArgs::init(argc, argv, &aboutData);
-
-#ifdef KDEPIM_MOBILE_UI
-  KDeclarativeApplicationBase::preApplicationSetup( KleopatraApplication::commandLineOptions() );
-#else
   KCmdLineArgs::addCmdLineOptions( KleopatraApplication::commandLineOptions() );
-#endif
 
   kDebug() << "Statup timing:" << timer.elapsed() << "ms elapsed: Command line args created";
 
   KleopatraApplication app;
-#ifdef KDEPIM_MOBILE_UI
-  KDeclarativeApplicationBase::postApplicationSetup();
-#endif
 
   kDebug() << "Startup timing:" << timer.elapsed() << "ms elapsed: Application created";
 

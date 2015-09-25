@@ -45,6 +45,7 @@
 
 #include <gpgme++/key.h>
 
+#include <KConfigGroup>
 #include <KGlobal>
 #include <KLocalizedString>
 

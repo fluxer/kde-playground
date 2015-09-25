@@ -21,7 +21,7 @@
 #ifndef __LIBKLEOPATRACLIENT_CORE_COMMAND_P_H__
 #define __LIBKLEOPATRACLIENT_CORE_COMMAND_P_H__
 
-#include "command.h"
+#include "kleocommand.h"
 
 #include <QThread>
 #include <QMutex>

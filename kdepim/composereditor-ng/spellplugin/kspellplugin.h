@@ -30,7 +30,7 @@
 
 #include <QtGlobal>
 #include <QtPlugin>
-#include <QWebKitPlatformPlugin>
+#include "qwebkitplatformplugin.h"
 #include <sonnet/speller.h>
 
 class KWebSpellChecker : public QWebSpellChecker

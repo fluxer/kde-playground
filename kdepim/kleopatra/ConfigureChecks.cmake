@@ -26,13 +26,6 @@ if ( ASSUAN${ASSUAN_SUFFIX}_FOUND )
     set( USABLE_ASSUAN_FOUND true )
   endif( ASSUAN2_FOUND )
 
-  # TODO: this workaround will be removed as soon as we find better solution
-  if(MINGW)
-    set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${KDEWIN32_INCLUDE_DIR}/mingw)
-  elseif(MSVC)
-    set(CMAKE_REQUIRED_INCLUDES ${CMAKE_REQUIRED_INCLUDES} ${KDEWIN32_INCLUDE_DIR}/msvc)
-  endif(MINGW)
-
 endif( ASSUAN${ASSUAN_SUFFIX}_FOUND )
 
 if ( USABLE_ASSUAN_FOUND )

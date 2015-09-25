@@ -6,8 +6,6 @@ add_definitions(-DQT_STRICT_ITERATORS)
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
 
-set(CMAKE_AUTOMOC_RELAXED_MODE ON)
-
 option(KALARM_USE_AKONADI "Build to use Akonadi" ON)
 
 # Kalarm from kdepim master needs kdepimlibs 4.7
@@ -25,12 +23,6 @@ endif()
 
 if(KALARM_USE_AKONADI)
     add_definitions(-DUSE_AKONADI)
-    if (NOT CMAKE_VERSION VERSION_LESS 2.8.12 AND (CMAKE_VERSION VERSION_LESS 2.8.12.1
-            OR CMAKE_VERSION VERSION_LESS 2.8.13 # Temporary measure because build.kde.org uses a datestamped CMake version
-            ))
-        # http://public.kitware.com/Bug/view.php?id=14535
-        set(CMAKE_AUTOMOC_MOC_OPTIONS -DUSE_AKONADI)
-    endif()
 else()
     add_definitions(-DUSE_KRESOURCES)
     add_definitions(

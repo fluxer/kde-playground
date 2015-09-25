@@ -21,8 +21,8 @@
 
 #include <config-kleopatra.h>
 
-#include "command.h"
-#include "command_p.h"
+#include "kleocommand.h"
+#include "kleocommand_p.h"
 
 #include <QtGlobal> // Q_OS_WIN
 

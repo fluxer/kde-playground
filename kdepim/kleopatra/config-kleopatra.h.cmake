@@ -26,11 +26,7 @@
 #endif
 
 #if !defined(KPATH_SEPARATOR)
-#if defined _WIN32 || defined _WIN64
-#define KPATH_SEPARATOR ';'
-#else
 #define KPATH_SEPARATOR ':'
-#endif
 #endif
 
 /* Mirrored from cmake option */

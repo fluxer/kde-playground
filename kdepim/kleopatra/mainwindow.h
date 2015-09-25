@@ -1,8 +1,8 @@
 /* -*- mode: c++; c-basic-offset:4 -*-
-    mainwindow.h
+    mainwindow_desktop.h
 
     This file is part of Kleopatra, the KDE keymanager
-    Copyright (c) 2010 Klarälvdalens Datakonsult AB
+    Copyright (c) 2007 Klarälvdalens Datakonsult AB
 
     Kleopatra is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -30,13 +30,48 @@
     your version.
 */
 
-#ifndef __KLEOPATRA_MAINWINDOW_H__
-#define __KLEOPATRA_MAINWINDOW_H__
+#ifndef __KLEOPATRA_MAINWINDOW_DESKTOP_H__
+#define __KLEOPATRA_MAINWINDOW_DESKTOP_H__
 
-#ifdef KDEPIM_MOBILE_UI
-# include "mainwindow_mobile.h"
-#else
-# include "mainwindow_desktop.h"
-#endif
+#include <KXmlGuiWindow>
 
-#endif /* __KLEOPATRA_MAINWINDOW_H__ */
+#include <utils/pimpl_ptr.h>
+
+class MainWindow : public KXmlGuiWindow {
+    Q_OBJECT
+public:
+    explicit MainWindow( QWidget * parent=0, Qt::WindowFlags f=KDE_DEFAULT_WINDOWFLAGS );
+    ~MainWindow();
+
+public Q_SLOTS:
+    void importCertificatesFromFile( const QStringList & files );
+
+protected:
+    QByteArray savedGeometry;
+
+    void closeEvent( QCloseEvent * e );
+    void showEvent( QShowEvent * e );
+    void hideEvent( QHideEvent * e );
+    void dragEnterEvent( QDragEnterEvent * );
+    void dropEvent( QDropEvent * );
+    void readProperties( const KConfigGroup & cg );
+    void saveProperties( KConfigGroup & cg );
+
+private:
+    class Private;
+    kdtools::pimpl_ptr<Private> d;
+    Q_PRIVATE_SLOT( d, void closeAndQuit() )
+    Q_PRIVATE_SLOT( d, void selfTest() )
+    Q_PRIVATE_SLOT( d, void configureBackend() )
+    Q_PRIVATE_SLOT( d, void configureToolbars() )
+    Q_PRIVATE_SLOT( d, void editKeybindings() )
+    Q_PRIVATE_SLOT( d, void gnupgLogViewer() )
+    Q_PRIVATE_SLOT( d, void gnupgAdministrativeConsole() )
+    Q_PRIVATE_SLOT( d, void slotConfigCommitted() )
+    Q_PRIVATE_SLOT( d, void slotContextMenuRequested(QAbstractItemView*,QPoint) )
+    Q_PRIVATE_SLOT( d, void aboutGpg4Win() )
+    Q_PRIVATE_SLOT( d, void slotFocusQuickSearch() )
+};
+
+
+#endif /* __KLEOPATRA_MAINWINDOW_DESKTOP_H__ */

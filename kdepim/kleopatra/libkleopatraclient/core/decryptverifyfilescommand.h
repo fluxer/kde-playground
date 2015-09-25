@@ -22,7 +22,7 @@
 #ifndef __LIBKLEOPATRACLIENT_CORE_DECRYPTVERIFYFILESCOMMAND_H__
 #define __LIBKLEOPATRACLIENT_CORE_DECRYPTVERIFYFILESCOMMAND_H__
 
-#include <libkleopatraclient/core/command.h>
+#include <libkleopatraclient/core/kleocommand.h>
 
 namespace KLEOPATRACLIENT_NAMESPACE {
 

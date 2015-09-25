@@ -40,11 +40,10 @@
 
 #include <kleo/stl_util.h>
 
-#include <QString>
-#include <QStringList>
 #include <QPushButton>
 #include <QValidator>
 
+#include <ksharedconfig.h>
 #include <KConfigGroup>
 #include <KGlobal>
 #include <KLocalizedString>

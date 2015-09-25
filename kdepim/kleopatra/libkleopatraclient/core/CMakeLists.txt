@@ -11,7 +11,7 @@ add_definitions(
 
 add_library(kleopatraclientcore ${LIBRARY_TYPE}
   initialization.cpp
-  command.cpp
+  kleocommand.cpp
   selectcertificatecommand.cpp
   signencryptfilescommand.cpp
   decryptverifyfilescommand.cpp
