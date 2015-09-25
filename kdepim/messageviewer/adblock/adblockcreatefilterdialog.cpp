@@ -18,6 +18,9 @@
 #include "adblockcreatefilterdialog.h"
 #include "ui_adblockcreatefilterwidget.h"
 
+#include <KLocale>
+#include <KConfigGroup>
+
 #include <QDebug>
 
 using namespace MessageViewer;

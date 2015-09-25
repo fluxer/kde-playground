@@ -37,6 +37,7 @@
 
 #include <utils/formatting.h>
 
+#include <klocale.h>
 #include <kpushbutton.h>
 
 #include <cassert>

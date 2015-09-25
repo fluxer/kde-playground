@@ -18,6 +18,8 @@
 #include "selectthunderbirdprofilewidget.h"
 #include "ui_selectthunderbirdprofilewidget.h"
 
+#include <KLocale>
+
 #include <QHBoxLayout>
 
 SelectThunderbirdProfileDialog::SelectThunderbirdProfileDialog(QWidget *parent)

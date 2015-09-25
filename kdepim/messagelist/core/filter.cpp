@@ -21,8 +21,10 @@
 #include "core/filter.h"
 #include "core/messageitem.h"
 
+#ifdef HAVE_BALOO
 #include <baloo/pim/emailquery.h>
 #include <baloo/pim/resultiterator.h>
+#endif
 
 using namespace MessageList::Core;
 
@@ -130,6 +132,7 @@ void Filter::setSearchString( const QString &search, QuickSearchLine::SearchOpti
         needToSplitString = true;
     }
 
+#ifdef HAVE_BALOO
     Baloo::PIM::EmailQuery query;
     if (options & QuickSearchLine::SearchEveryWhere) {
         query.matches(newStr);
@@ -156,6 +159,10 @@ void Filter::setSearchString( const QString &search, QuickSearchLine::SearchOpti
     while (it.next()) {
         mMatchingItemIds << it.id();
     }
+#else
+    Q_UNUSED(needToSplitString);
+#endif
+
     emit finished();
 }
 

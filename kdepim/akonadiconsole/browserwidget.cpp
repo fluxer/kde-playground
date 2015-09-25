@@ -52,6 +52,7 @@
 #include <kabc/contactgroup.h>
 #include <kcalcore/incidence.h>
 
+#include <klocale.h>
 #include <kdebug.h>
 #include <kconfig.h>
 #include <kconfiggroup.h>

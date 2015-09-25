@@ -23,6 +23,7 @@
 #include "ui_instanceselector.h"
 
 #include <KDebug>
+#include <KLocale>
 
 #include <akonadi/private/protocol_p.h>
 

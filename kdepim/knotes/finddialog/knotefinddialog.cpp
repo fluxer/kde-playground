@@ -18,8 +18,10 @@
 #include "knotefinddialog.h"
 #include "noteshared/widget/notelistwidget.h"
 
+#ifdef HAVE_BALOO
 #include "baloo/pim/notequery.h"
 #include <baloo/pim/resultiterator.h>
+#endif
 
 #include <KLocalizedString>
 #include <KLineEdit>
@@ -126,15 +128,17 @@ void KNoteFindWidget::slotSearchNote()
     query.matchNote(searchStr);
     query.matchTitle(searchStr);
 
-    Baloo::PIM::ResultIterator it = query.exec();
-
     Akonadi::Item::List lst;
+#ifdef HAVE_BALOO
+    Baloo::PIM::ResultIterator it = query.exec();
     while (it.next()) {
         const Akonadi::Item::Id id = it.id();
         if (mNotes.contains(id)) {
             lst << mNotes.value(id);
         }
     }
+#endif
+
     mNoteList->setNotes(lst);
     if (lst.isEmpty()) {
         mResultSearch->setText(i18n("No Result found."));

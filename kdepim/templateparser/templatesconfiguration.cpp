@@ -22,6 +22,7 @@
 #include "templatesconfiguration_kfg.h"
 #include "pimcommon/texteditor/richtexteditor/richtexteditor.h"
 
+#include <KLocale>
 #include <KMessageBox>
 
 #include <QWhatsThis>

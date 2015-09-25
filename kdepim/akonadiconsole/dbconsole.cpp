@@ -24,6 +24,7 @@
 #include <KDebug>
 #include <KGlobalSettings>
 #include <KStandardAction>
+#include <KConfigGroup>
 
 #include <QApplication>
 #include <QClipboard>

@@ -310,16 +310,9 @@ else()
   set(_kleopatra_libkdepim_LIBS kdepim)
 endif()
 
-if(KDEPIM_MOBILE_UI)
-  set(_kleopatra_uiserver_extra_libs ${_kleopatra_uiserver_extra_libs} kdepimmobileui)
-  set(_kleopatra_mainwindow_SRCS mainwindow_mobile.cpp)
-else()
-  set(_kleopatra_mainwindow_SRCS mainwindow_desktop.cpp)
-endif()
-
 add_definitions(-DKDE_DEFAULT_DEBUG_AREA=5151)
 
-add_executable(kleopatra_bin ${_kleopatra_SRCS} ${_kleopatra_mainwindow_SRCS} ${_kleopatra_uiserver_SRCS} ${_kleopatra_libkdepim_SRCS})
+add_executable(kleopatra_bin ${_kleopatra_SRCS} mainwindow_desktop.cpp ${_kleopatra_uiserver_SRCS} ${_kleopatra_libkdepim_SRCS})
 set_target_properties(kleopatra_bin PROPERTIES OUTPUT_NAME kleopatra)
 
 target_link_libraries(kleopatra_bin
@@ -353,10 +346,4 @@ install(
 
 install(FILES kleopatra.rc DESTINATION ${DATA_INSTALL_DIR}/kleopatra)
 
-if(KDEPIM_MOBILE_UI)
-  install(
-    FILES qml/kleopatra-mobile.qml qml/KleopatraActions.qml
-    DESTINATION ${DATA_INSTALL_DIR}/kleopatra
-  )
-endif()
 add_subdirectory(icons)

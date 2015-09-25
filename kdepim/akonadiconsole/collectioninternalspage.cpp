@@ -21,6 +21,8 @@
 
 #include <akonadi/collection.h>
 
+#include <KLocale>
+
 using namespace Akonadi;
 
 CollectionInternalsPage::CollectionInternalsPage(QWidget * parent) :

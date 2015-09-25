@@ -2538,7 +2538,7 @@ FullScreenType haveFullScreenWindow(int screen)
     const NETRootInfo rootInfo(display, NET::ClientList | NET::ActiveWindow, screen);
     const Window rootWindow   = rootInfo.rootWindow();
     const Window activeWindow = rootInfo.activeWindow();
-    const Window* windows     = rootInfo.clientList();
+    const xcb_window_t* windows     = rootInfo.clientList();
     const int windowCount     = rootInfo.clientListCount();
 kDebug()<<"Screen"<<screen<<": Window count="<<windowCount<<", active="<<activeWindow<<", geom="<<qApp->desktop()->screenGeometry(screen);
 NETRect geom;
@@ -2573,7 +2573,7 @@ FullScreenType findFullScreenWindows(const QVector<QRect>& screenRects, QVector<
     const NETRootInfo rootInfo(display, NET::ClientList | NET::ActiveWindow, 0);
     const Window rootWindow   = rootInfo.rootWindow();
     const Window activeWindow = rootInfo.activeWindow();
-    const Window* windows     = rootInfo.clientList();
+    const xcb_window_t* windows     = rootInfo.clientList();
     const int windowCount     = rootInfo.clientListCount();
 kDebug()<<"Virtual desktops: Window count="<<windowCount<<", active="<<activeWindow<<", geom="<<qApp->desktop()->screenGeometry(0);
     NETRect netgeom;

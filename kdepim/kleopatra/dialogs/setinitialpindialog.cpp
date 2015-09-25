@@ -36,6 +36,7 @@
 
 #include "ui_setinitialpindialog.h"
 
+#include <KIcon>
 #include <KIconLoader>
 #include <KLocalizedString>
 

@@ -45,6 +45,7 @@
 
 #include <gpgme++/key.h>
 
+#include <KGlobal>
 #include <KLocalizedString>
 
 #include <QPushButton>

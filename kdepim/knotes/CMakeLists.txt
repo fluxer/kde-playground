@@ -5,6 +5,10 @@ if(ENABLE_TESTING)
 endif()
 add_definitions( -DQT_NO_CAST_FROM_ASCII )
 add_definitions( -DQT_NO_CAST_TO_ASCII )
+if(BALOO_FOUND)
+    add_definitions(-DHAVE_BALOO)
+endif()
+
 set( CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${KDE4_ENABLE_EXCEPTIONS}")
 
 include_directories(

@@ -1856,7 +1856,7 @@ void Private::windowAdded(WId w)
 #ifdef Q_WS_X11
     static const int SUPPORTED_TYPES = NET::NormalMask | NET::DesktopMask | NET::DockMask
                                      | NET::ToolbarMask | NET::MenuMask | NET::DialogMask
-                                     | NET::OverrideMask | NET::TopMenuMask | NET::UtilityMask | NET::SplashMask;
+                                     | NET::TopMenuMask | NET::UtilityMask | NET::SplashMask;
     KWindowInfo kwinfo = KWindowSystem::windowInfo(w, NET::WMWindowType | NET::WMName);
     if (kwinfo.windowType(SUPPORTED_TYPES) == NET::TopMenu
     ||  kwinfo.windowType(SUPPORTED_TYPES) == NET::Toolbar

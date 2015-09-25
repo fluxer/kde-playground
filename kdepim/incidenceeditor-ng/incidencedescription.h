@@ -40,11 +40,7 @@ class INCIDENCEEDITORS_NG_EXPORT IncidenceDescription : public IncidenceEditor
 {
   Q_OBJECT
   public:
-#ifdef KDEPIM_MOBILE_UI
-    explicit IncidenceDescription( Ui::EventOrTodoMore *ui );
-#else
     explicit IncidenceDescription( Ui::EventOrTodoDesktop *ui );
-#endif
 
     ~IncidenceDescription();
 
@@ -65,11 +61,7 @@ class INCIDENCEEDITORS_NG_EXPORT IncidenceDescription : public IncidenceEditor
     void setupToolBar();
 
   private:
-#ifdef KDEPIM_MOBILE_UI
-    Ui::EventOrTodoMore *mUi;
-#else
     Ui::EventOrTodoDesktop *mUi;
-#endif
     //@cond PRIVATE
     Q_DECLARE_PRIVATE( IncidenceDescription )
     IncidenceDescriptionPrivate * const d;

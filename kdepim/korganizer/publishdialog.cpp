@@ -33,6 +33,7 @@
 #include <KCalCore/Attendee>
 #include <KCalCore/Person>
 
+#include <KLocale>
 #include <KPIMUtils/Email>
 
 PublishDialog::PublishDialog( QWidget *parent )

@@ -38,6 +38,7 @@
 
 #include <selftest/selftest.h>
 
+#include <KLocale>
 #include <KDebug>
 
 #include <QAbstractTableModel>

@@ -29,6 +29,7 @@
 
 #include <KConfig>
 #include <KGlobal>
+#include <KLocale>
 #include <KLocalizedString>
 
 #include <QPrinter>

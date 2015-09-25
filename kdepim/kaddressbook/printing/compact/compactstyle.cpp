@@ -30,6 +30,7 @@
 
 #include <KABC/Addressee>
 
+#include <KConfigGroup>
 #include <KLocalizedString>
 
 #include <QCheckBox>
