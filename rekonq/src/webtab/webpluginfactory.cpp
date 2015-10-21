@@ -27,7 +27,6 @@
 
 // Self Includes
 #include "webpluginfactory.h"
-#include "moc_qwebkitplatformplugin.cxx"
 #include "moc_webpluginfactory.cpp"
 
 // Auto Includes

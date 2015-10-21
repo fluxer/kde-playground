@@ -58,6 +58,7 @@
 #include <QNetworkRequest>
 #include <QWebFrame>
 #include <QTextDocument>
+#include <QFileInfo>
 
 
 static bool fileItemListLessThan(const KFileItem &s1, const KFileItem &s2)

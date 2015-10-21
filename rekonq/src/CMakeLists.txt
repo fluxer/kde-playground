@@ -5,6 +5,7 @@ ADD_SUBDIRECTORY( data )
 
 ### ------- SETTING REKONQ FILES..
 add_definitions(-DQT_STATICPLUGIN)
+QT4_WRAP_CPP(wk_HEADERS_MOC qwebkitplatformplugin.h)
 
 # src files
 set(rekonq_KDEINIT_SRCS
@@ -118,6 +119,7 @@ set(rekonq_KDEINIT_SRCS
     webwindow/webwindow.cpp
     #----------------------------------------
     kspellplugin.cpp
+    ${wk_HEADERS_MOC}
 )
 
 
