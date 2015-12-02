@@ -35,7 +35,7 @@
 #include "ui_sync_host_type.h"
 
 // Qt Includes
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 
 
 class SyncHostTypeWidget : public QWizardPage, private Ui::SyncHostType

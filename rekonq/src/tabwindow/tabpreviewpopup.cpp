@@ -38,9 +38,9 @@
 #include <QPalette>
 #include <QBitmap>
 #include <QPoint>
-#include <QPaintEvent>
+#include <QtGui/qevent.h>
 #include <QStylePainter>
-#include <QStyleOptionFrame>
+#include <QtGui/qstyleoption.h>
 
 
 TabPreviewPopup::TabPreviewPopup(const QPixmap &pixmap, const QString &urlText, QWidget *parent)

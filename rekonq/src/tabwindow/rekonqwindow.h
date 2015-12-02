@@ -41,7 +41,7 @@
 
 // Qt Includes
 #include <QSplitter>
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 
 // Forward Declarations
 class TabBar;

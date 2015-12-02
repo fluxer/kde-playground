@@ -36,7 +36,7 @@
 
 // Qt Includes
 #include <QObject>
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 
 
 class REKONQ_TESTS_EXPORT SyncManager : public QObject

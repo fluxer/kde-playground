@@ -35,7 +35,7 @@
 #include "ui_sync_data.h"
 
 // Qt Includes
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 
 
 class SyncDataWidget : public QWizardPage, private Ui::SyncData

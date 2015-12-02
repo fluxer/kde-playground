@@ -31,9 +31,9 @@
 
 // Qt Includes
 #include <QMetaObject>
-#include <QTimerEvent>
+#include <QtCore/qcoreevent.h>
 #include <QBasicTimer>
-#include <QTime>
+#include <QtCore/qdatetime.h>
 
 
 const int AUTOSAVE_TIME  = 1000 * 2;  // seconds

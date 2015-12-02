@@ -21,9 +21,6 @@ The build system, as every KDE4 software is based on cmake. Actual minimum depen
 
 Since 1.0, Rekonq can use optional libraries to provide extra features. These are:
 
-- Nepomuk (www.kde.org) & soprano (soprano.sf.net) libraries: 
-needed to provide nepomuk bookmarks tagging
-
 - QtOAuth (github.com/ayoy/qoauth) & QCA2 (delta.affinix.com/qca/) libraries:
 needed to provide Opera Link sync handler
 

@@ -34,7 +34,7 @@
 #include <KSessionManager>
 
 // Qt Includes
-#include <QCloseEvent>
+#include <QtGui/qevent.h>
 #include <QDesktopWidget>
 
 

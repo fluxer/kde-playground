@@ -66,7 +66,7 @@
 #include <QApplication>
 #include <QBitmap>
 #include <QClipboard>
-#include <QContextMenuEvent>
+#include <QtGui/qevent.h>
 #include <QLabel>
 
 #include <QWebFrame>

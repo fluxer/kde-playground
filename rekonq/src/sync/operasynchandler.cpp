@@ -49,7 +49,7 @@
 #include <QWebSettings>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QDomDocument>
+#include <QtXml/qdom.h>
 
 
 OperaSyncHandler::OperaSyncHandler(QObject *parent)

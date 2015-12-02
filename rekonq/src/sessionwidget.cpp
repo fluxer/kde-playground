@@ -41,7 +41,7 @@
 #include <KLocale>
 
 // Qt Includes
-#include <QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 
 
 SessionWidget::SessionWidget(QWidget *parent)

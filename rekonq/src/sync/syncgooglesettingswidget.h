@@ -36,7 +36,7 @@
 #include "ui_sync_google_settings.h"
 
 // Qt Includes
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 
 
 class SyncGoogleSettingsWidget : public QWizardPage, private Ui::SyncGoogleSettings

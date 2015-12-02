@@ -54,7 +54,7 @@
 #include <QSizePolicy>
 #include <QPixmap>
 #include <QStylePainter>
-#include <QMouseEvent>
+#include <QtGui/qevent.h>
 #include <QWebSettings>
 #include <QFile>
 #include <QTextDocument>

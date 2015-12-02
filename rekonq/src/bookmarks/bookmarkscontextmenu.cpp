@@ -66,9 +66,6 @@ void BookmarksContextMenu::addBookmarkActions()
     addSeparator();
 
     addAction(m_bmOwner->createAction(bookmark(), BookmarkOwner::EDIT));
-#ifdef HAVE_NEPOMUK
-    addAction(m_bmOwner->createAction(bookmark(), BookmarkOwner::FANCYBOOKMARK));
-#endif
     addAction(m_bmOwner->createAction(bookmark(), BookmarkOwner::DELETE));
 }
 

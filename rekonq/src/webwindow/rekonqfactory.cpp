@@ -42,8 +42,8 @@
 #include <QString>
 #include <QWidget>
 
-#include <QDomDocument>
-#include <QDomElement>
+
+#include <QtXml/qdom.h>
 
 
 // Only used internally

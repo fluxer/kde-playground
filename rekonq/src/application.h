@@ -36,7 +36,7 @@
 #include <KUrl>
 
 // Qt Includes
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 
 // Forward Declarations
 class RekonqWindow;

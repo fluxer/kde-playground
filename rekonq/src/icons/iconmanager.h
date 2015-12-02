@@ -32,7 +32,7 @@
 
 // Qt Includes
 #include <QObject>
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 #include <QString>
 #include <QStringList>
 

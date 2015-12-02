@@ -35,7 +35,7 @@
 #include "ui_sync_check.h"
 
 // Qt Includes
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 
 
 class SyncCheckWidget : public QWizardPage, private Ui::SyncCheck

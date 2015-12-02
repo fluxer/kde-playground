@@ -40,8 +40,10 @@
 
 // Qt Includes
 #include <QWidget>
-#include <QWebInspector>
 #include <QSplitter>
+#ifndef QT_KATIE
+#include <QWebInspector>
+#endif
 
 // Forward Declarations
 class PreviewSelectorBar;
@@ -135,7 +137,9 @@ private:
 
     QWeakPointer<WalletBar> m_walletBar;
     QWeakPointer<PreviewSelectorBar> m_previewSelectorBar;
+#ifndef QT_KATIE
     QWeakPointer<QWebInspector> m_inspector;
+#endif
 
     KParts::ReadOnlyPart *m_part;
 

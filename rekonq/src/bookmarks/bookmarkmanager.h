@@ -40,7 +40,7 @@
 
 // Qt Includes
 #include <QObject>
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 
 // Forward Declarations
 class BookmarkToolBar;

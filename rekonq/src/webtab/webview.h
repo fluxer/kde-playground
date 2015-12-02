@@ -36,10 +36,10 @@
 #include <KWebView>
 
 // Qt Includes
-#include <QTime>
+#include <QtCore/qdatetime.h>
 #include <QPoint>
 #include <QPixmap>
-#include <QWebHitTestResult>
+#include <QtWebKit/qwebframe.h>
 
 // Forward Declarations
 class WebPage;

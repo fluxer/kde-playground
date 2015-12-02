@@ -487,6 +487,7 @@ void WebTab::webAppIconChanged()
 
 void WebTab::toggleInspector(bool on)
 {
+#ifndef QT_KATIE
     if (on)
     {
         page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, on);
@@ -508,6 +509,9 @@ void WebTab::toggleInspector(bool on)
     m_inspector.data()->hide();
 
     page()->settings()->setAttribute(QWebSettings::DeveloperExtrasEnabled, on);
+#else
+    Q_UNUSED(on);
+#endif
 }
 
 

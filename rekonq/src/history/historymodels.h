@@ -38,7 +38,7 @@
 
 // Qt Includes
 #include <QHash>
-#include <QAbstractTableModel>
+#include <QtCore/qabstractitemmodel.h>
 #include <QAbstractProxyModel>
 #include <QSortFilterProxyModel>
 

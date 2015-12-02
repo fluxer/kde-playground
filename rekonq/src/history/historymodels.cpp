@@ -45,7 +45,7 @@
 // Qt Includes
 #include <QList>
 #include <QUrl>
-#include <QDate>
+#include <QtCore/qdatetime.h>
 #include <QDateTime>
 #include <QString>
 #include <QFile>
@@ -56,7 +56,7 @@
 #include <QFileInfo>
 
 // generic algorithms
-#include <QtAlgorithms>
+#include <QtCore/qalgorithms.h>
 
 
 HistoryModel::HistoryModel(HistoryManager *history, QObject *parent)

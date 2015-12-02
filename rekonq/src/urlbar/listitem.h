@@ -39,7 +39,7 @@
 // Qt Includes
 #include <QWidget>
 #include <QLabel>
-#include <QStyleOptionViewItemV4>
+#include <QtGui/qstyleoption.h>
 #include <QString>
 #include <QByteArray>
 

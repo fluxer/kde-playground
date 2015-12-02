@@ -30,7 +30,7 @@
 
 
 #include <QtGlobal>
-#include <QtPlugin>
+#include <QtCore/qplugin.h>
 
 #include <sonnet/speller.h>
 

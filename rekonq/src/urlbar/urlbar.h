@@ -38,7 +38,7 @@
 #include <KLineEdit>
 
 // Qt Includes
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 #include <QToolButton>
 
 // Forward Declarations

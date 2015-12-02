@@ -34,13 +34,6 @@
 #include <QGridLayout>
 #include <QPlainTextEdit>
 
-// Nepomuk Includes
-#ifdef HAVE_NEPOMUK
-#include <Nepomuk2/Resource>
-#include <Nepomuk2/Tag>
-#include <Nepomuk2/Vocabulary/NFO>
-#endif
-
 // Forward Declarations
 class KBookmark;
 class KLineEdit;
@@ -57,12 +50,6 @@ public:
 
     void showAt(const QPoint &pos);
 
-#ifdef HAVE_NEPOMUK
-    void addTags(QList<Nepomuk2::Tag>);
-    void parseTags();
-    void loadTags();
-#endif
-
 Q_SIGNALS:
     void updateIcon();
 
@@ -73,12 +60,6 @@ private Q_SLOTS:
     void accept();
     void removeBookmark();
 
-#ifdef HAVE_NEPOMUK
-    void setRatingSlot(int rate);
-    void addCommentSlot();
-    void linkToResourceSlot();
-#endif
-
 private:
     KBookmark *m_bookmark;
     KLineEdit *m_name;
@@ -86,11 +67,6 @@ private:
     KLineEdit *m_tagLine;
     QPlainTextEdit *m_commentEdit;
     QStringList m_tList;
-
-#ifdef HAVE_NEPOMUK
-    Nepomuk2::Resource m_nfoResource;
-    bool m_isNepomukEnabled;
-#endif
 };
 
 #endif

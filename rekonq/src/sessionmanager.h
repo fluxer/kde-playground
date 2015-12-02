@@ -36,7 +36,7 @@
 // Qt Includes
 #include <QObject>
 #include <QString>
-#include <QWeakPointer>
+#include <QtCore/qsharedpointer.h>
 
 // Forward Declarations
 class TabHistory;

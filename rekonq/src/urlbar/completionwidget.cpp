@@ -49,7 +49,7 @@
 #include <QEvent>
 
 #include <QVBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 
 
 

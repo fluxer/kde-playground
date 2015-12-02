@@ -35,7 +35,7 @@
 #include "ui_sync_ftp_settings.h"
 
 // Qt Includes
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 
 
 class SyncFTPSettingsWidget : public QWizardPage, private Ui::SyncFTPSettings

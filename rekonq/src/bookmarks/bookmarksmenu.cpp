@@ -39,7 +39,7 @@
 
 // Qt Includes
 #include <QFrame>
-#include <QActionEvent>
+#include <QtGui/qevent.h>
 #include <QApplication>
 
 

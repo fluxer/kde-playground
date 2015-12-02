@@ -9,7 +9,10 @@ PROJECT( rekonq )
 # rekonq info
 SET(REKONQ_VERSION "2.4.2" )
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config-version.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/src/config-version.h )
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/config-version.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/src/config-version.h
+)
 
 SET(REKONQ_SITE "http://rekonq.kde.org")
 
@@ -23,8 +26,6 @@ SET(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 # ==================================================================================
 
 
-FIND_PACKAGE(Qt4 4.8.0 COMPONENTS QtCore QtGui QtNetwork QtWebKit REQUIRED)
-
 ## Ensure we have QtWebKit >= 2.2.0
 #FIND_PACKAGE(PkgConfig REQUIRED)
 #PKG_CHECK_MODULES(PC_QTWEBKIT REQUIRED QtWebKit>=4.8.0)
@@ -34,7 +35,7 @@ FIND_PACKAGE(Qt4 4.8.0 COMPONENTS QtCore QtGui QtNetwork QtWebKit REQUIRED)
 #  MESSAGE(STATUS "Found QtWebKit ${PC_QTWEBKIT_VERSION}")
 #ENDIF()
 
-FIND_PACKAGE(KDE4 4.8.4 REQUIRED)
+FIND_PACKAGE(KDE4 4.18.0 REQUIRED)
 
 
 INCLUDE(MacroOptionalFindPackage)
@@ -44,19 +45,6 @@ INCLUDE(MacroLibrary)
 
 ADD_DEFINITIONS(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
 
-
-# ==================================================================================
-# optional nepomuk requirements
-
-if(WITH_NEPOMUK)
-  FIND_PACKAGE(Soprano)
-
-  FIND_PACKAGE(NepomukCore 0.1.0)
-endif()
-
-IF(SOPRANO_FOUND AND NepomukCore_FOUND)
-    ADD_DEFINITIONS(-DHAVE_NEPOMUK)
-ENDIF(SOPRANO_FOUND AND NepomukCore_FOUND)
 
 # ==================================================================================
 # optional QCA2 & QtOAuth requirements
@@ -136,18 +124,6 @@ IF(REKONQ_CAN_BE_COMPILED)
     MESSAGE(STATUS "")
     MESSAGE(STATUS "")
     MESSAGE(STATUS " ----- Optional Features")
-    MESSAGE(STATUS "")
-
-    # Nepomuk
-
-    IF(SOPRANO_FOUND AND NepomukCore_FOUND)
-        MESSAGE(STATUS " Nepomuk Libraries..................... YES")
-        MESSAGE(STATUS " Rekonq will be compiled with support for bookmarks nepomuk tagging")
-    ELSE(SOPRANO_FOUND AND NepomukCore_FOUND)
-        MESSAGE(STATUS " Nepomuk Libraries..................... NO")
-        MESSAGE(STATUS " Rekonq will be compiled WITHOUT support for bookmarks tagging")
-    ENDIF(SOPRANO_FOUND AND NepomukCore_FOUND)
-
     MESSAGE(STATUS "")
 
     # QCA2

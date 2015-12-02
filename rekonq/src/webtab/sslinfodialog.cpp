@@ -36,7 +36,7 @@
 #include <ktcpsocket.h>
 
 // Qt Includes
-#include <QDate>
+#include <QtCore/qdatetime.h>
 #include <QFile>
 
 #include <QLabel>

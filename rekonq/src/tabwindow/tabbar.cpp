@@ -54,8 +54,8 @@
 #include <QLabel>
 #include <QPropertyAnimation>
 #include <QSignalMapper>
-#include <QStyleOptionFrameV3>
-#include <QMouseEvent>
+#include <QtGui/qstyleoption.h>
+#include <QtGui/qevent.h>
 #include <QTimer>
 
 

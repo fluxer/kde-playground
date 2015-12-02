@@ -40,7 +40,7 @@
 // Qt Includes
 #include <QString>
 #include <QWhatsThis>
-#include <QListWidgetItem>
+#include <QtGui/qlistwidget.h>
 
 
 AdBlockSettingWidget::AdBlockSettingWidget(KSharedConfig::Ptr config, QWidget *parent)

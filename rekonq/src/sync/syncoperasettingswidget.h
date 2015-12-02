@@ -36,7 +36,7 @@
 #include "ui_sync_opera_settings.h"
 
 // Qt Includes
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 
 
 class SyncOperaSettingsWidget : public QWizardPage, private Ui::SyncOperaSettings

@@ -45,7 +45,7 @@
 // Qt Includes
 #include <QCheckBox>
 #include <QHBoxLayout>
-#include <QKeyEvent>
+#include <QtGui/qevent.h>
 #include <QLabel>
 #include <QToolButton>
 #include <QWebFrame>

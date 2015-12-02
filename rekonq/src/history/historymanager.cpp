@@ -46,7 +46,7 @@
 #include <QApplication>
 #include <QList>
 #include <QUrl>
-#include <QDate>
+#include <QtCore/qdatetime.h>
 #include <QDateTime>
 #include <QString>
 #include <QFile>
@@ -58,7 +58,7 @@
 #include <QClipboard>
 
 // generic algorithms
-#include <QtAlgorithms>
+#include <QtCore/qalgorithms.h>
 
 
 static const unsigned int HISTORY_VERSION = 25;

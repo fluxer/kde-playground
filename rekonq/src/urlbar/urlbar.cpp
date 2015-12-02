@@ -68,7 +68,7 @@
 
 // Qt Includes
 #include <QPainter>
-#include <QPaintEvent>
+#include <QtGui/qevent.h>
 #include <QPalette>
 #include <QVBoxLayout>
 #include <QClipboard>

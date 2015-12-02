@@ -50,7 +50,7 @@
 
 // Qt Includes
 #include <QFile>
-#include <QDomDocument>
+#include <QtXml/qdom.h>
 #include <QPointer>
 
 

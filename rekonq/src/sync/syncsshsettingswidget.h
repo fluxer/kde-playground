@@ -28,7 +28,7 @@
 #define SYNCSSHSETTINGSWIDGET_H
 
 // Qt Includes
-#include <QWizardPage>
+#include <QtGui/qwizard.h>
 
 // Ui Includes
 #include "ui_sync_ssh_settings.h"
