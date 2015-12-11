@@ -23,7 +23,7 @@
 
 #include <PolkitQt1/Agent/Listener>
 
-#include <QtCore/QWeakPointer>
+#include <QtCore/QSharedPointer>
 #include <QtCore/QHash>
 
 class AuthDialog;
