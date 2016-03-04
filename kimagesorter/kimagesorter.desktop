@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=KImageSorter
+GenericName=KDE Image sorter
+Comment=A simple program to sort your image files
+Exec=kimagesorter --icon '%i' --caption '%c' %U
+Terminal=false
+Icon=view-preview
+Type=Application
+Categories=Qt;KDE;Graphics;Viewer;Photography;
+MimeType=inode/directory;image/gif;image/jpeg;image/png;image/bmp;image/x-eps;image/x-ico;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;image/tiff;image/x-psd;image/x-webp;image/webp;
