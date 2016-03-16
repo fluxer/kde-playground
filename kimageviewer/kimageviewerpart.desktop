@@ -1,0 +1,8 @@
+[Desktop Entry]
+Icon=view-preview
+Name=KImageViwer
+Comment=A simple program to view your image files
+X-KDE-ServiceTypes=KParts/ReadOnlyPart,Browser/View
+X-KDE-Library=kimageviewerpart
+Type=Service
+MimeType=image/gif;image/jpeg;image/png;image/bmp;image/x-eps;image/x-ico;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;image/tiff;image/x-psd;image/x-webp;image/webp;

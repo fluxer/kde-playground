@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=KImageViewer
+GenericName=Simple image viewer for KDE
+Comment=A simple program to view your image files
+Exec=kimageviewer --icon '%i' --caption '%c' %U
+Terminal=false
+Icon=view-preview
+Type=Application
+Categories=Qt;KDE;Graphics;Viewer;Photography;
+MimeType=image/gif;image/jpeg;image/png;image/bmp;image/x-eps;image/x-ico;image/x-portable-bitmap;image/x-portable-graymap;image/x-portable-pixmap;image/x-xbitmap;image/x-xpixmap;image/tiff;image/x-psd;image/x-webp;image/webp;
