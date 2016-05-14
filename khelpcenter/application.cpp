@@ -21,11 +21,11 @@
 
 #include "application.h"
 #include "mainwindow.h"
-#include "version.h"
 
 #include <KCmdLineArgs>
 #include <KAboutData>
 #include <KLocale>
+#include <kdeversion.h>
 
 using namespace KHC;
 
@@ -56,7 +56,7 @@ int Application::newInstance()
 int main( int argc, char **argv )
 {
   KAboutData aboutData( "khelpcenter", 0, ki18n("KDE Help Center"),
-                        HELPCENTER_VERSION,
+                        KDE_VERSION_STRING,
                         ki18n("The KDE Help Center"),
                         KAboutData::License_GPL,
                         ki18n("(c) 1999-2011, The KHelpCenter developers") );

@@ -41,7 +41,7 @@ namespace KHC {
 
 }
 
-extern "C" { int KDE_EXPORT kdemain(int argc, char **argv); }
+extern "C" { int Q_DECL_EXPORT kdemain(int argc, char **argv); }
 
 #endif // KHC_APPLICATION_H
 // vim:ts=2:sw=2:et

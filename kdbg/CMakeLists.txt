@@ -9,8 +9,6 @@ add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 include(KDE4Defaults)
 include(MacroLibrary)
-#include(ManualStuff.cmake)
-#include(ConfigureChecks.cmake)
 
 add_subdirectory(kdbg)
 add_subdirectory(po)

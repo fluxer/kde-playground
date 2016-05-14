@@ -29,7 +29,6 @@
 #include <QApplication>
 #include <QStandardItemModel>
 
-#include <KGenericFactory>
 #include <KConfig>
 #include <KAction>
 #include <KIcon>

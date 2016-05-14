@@ -232,7 +232,7 @@ void HelpProtocol::get( const KUrl& url )
       }
     } else {
         QString docbook_file = file.left(file.lastIndexOf('/')) + "/index.docbook";
-        if (!KStandardDirs::exists(file)) {
+        if (!KGlobal::dirs()->exists(file)) {
             file = docbook_file;
         } else {
             QFileInfo fi(file);

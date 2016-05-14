@@ -14,7 +14,7 @@ set(core_SRCS
    utils.cpp
    logger.cpp
    config.cpp
-   globalconfig.cpp )
+   globalconfig.cpp
+)
 
-qt4_automoc(${core_SRCS})
 add_library(core STATIC ${core_SRCS})

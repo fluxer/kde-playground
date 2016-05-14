@@ -28,8 +28,8 @@ set(libviews_SRCS
    coverageitem.cpp
    sourceitem.cpp
    instritem.cpp
-   partlistitem.cpp )
+   partlistitem.cpp
+)
 
-qt4_automoc(${libviews_SRCS})
 add_library(views STATIC ${libviews_SRCS})
 target_link_libraries(views core)

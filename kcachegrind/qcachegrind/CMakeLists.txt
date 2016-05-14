@@ -4,7 +4,6 @@ set(qcachegrind_SRCS qcgmain.cpp qcgtoplevel.cpp qcgconfig.cpp
 		     configdialog.cpp configpage.cpp qtcolorbutton.cpp
 		     generalsettings.cpp sourcesettings.cpp colorsettings.cpp)
 
-qt4_automoc(${qcachegrind_SRCS})
 qt4_wrap_ui(qcachegrind_H generalsettings.ui sourcesettings.ui colorsettings.ui)
 qt4_add_resources(qcachegrind_RSRC qcachegrind.qrc)
 

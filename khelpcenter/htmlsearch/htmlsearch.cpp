@@ -33,7 +33,7 @@ void HTMLSearch::scanDir(const QString& dir)
 
     QStringList::ConstIterator it;
 
-    if ( KStandardDirs::exists( dir + "index.docbook" ) ) {
+    if ( KGlobal::dirs()->exists( dir + "index.docbook" ) ) {
         _files.append(dir + "index.docbook");
         progress->setFilesScanned(++_filesScanned);
     } else {

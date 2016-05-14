@@ -628,7 +628,8 @@ void KCMHelpCenter::slotReceivedStdout()
     mStdOut.append( text );
   } else {
     if ( mProgressDialog ) {
-      mProgressDialog->appendLog( mStdOut + text.left( pos ) );
+      QByteArray logtext = mStdOut + text.left( pos );
+      mProgressDialog->appendLog( logtext );
       mStdOut = text.mid( pos + 1 );
     }
   }

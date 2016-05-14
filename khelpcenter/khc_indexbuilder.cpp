@@ -21,8 +21,6 @@
 
 #include "khc_indexbuilder.h"
 
-#include "version.h"
-
 #include <KAboutData>
 #include <KLocale>
 #include <KCmdLineArgs>
@@ -31,6 +29,7 @@
 #include <KProcess>
 #include <KConfig>
 #include <KShell>
+#include <kdeversion.h>
 
 #include <QFile>
 #include <QTextStream>
@@ -152,7 +151,7 @@ int main( int argc, char **argv )
 {
   KAboutData aboutData( "khc_indexbuilder", 0,
                         ki18n("KHelpCenter Index Builder"),
-                        HELPCENTER_VERSION,
+                        KDE_VERSION_STRING,
                         ki18n("The KDE Help Center"),
                         KAboutData::License_GPL,
                         ki18n("(c) 2003, The KHelpCenter developers") );

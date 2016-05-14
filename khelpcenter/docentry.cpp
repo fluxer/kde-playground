@@ -256,7 +256,7 @@ bool DocEntry::docExists() const
   if ( !mUrl.isEmpty() ) 
   {
     KUrl docUrl( mUrl );
-    if ( docUrl.isLocalFile() && !KStandardDirs::exists( docUrl.toLocalFile() ) )
+    if ( docUrl.isLocalFile() && !KGlobal::dirs()->exists( docUrl.toLocalFile() ) )
     {
       return false;
     }

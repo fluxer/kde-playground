@@ -13,7 +13,6 @@
 #include <QFileInfo>
 #include <QListWidget>
 #include <QApplication>
-#include <kcodecs.h>			// KMD5
 #include <kconfig.h>
 #include <klocale.h>			/* i18n */
 #include <kmessagebox.h>
@@ -677,7 +676,7 @@ QString KDebugger::getConfigForExe(const QString& name)
     // a hash of the directory, followed by the program name.
     // Assume that the first 15 positions of the hash are unique;
     // this keeps the file names short.
-    QString hash = KMD5(dir.toUtf8()).base64Digest();
+    QString hash = dir.toUtf8().toBase64();
     hash.replace('/', QString());	// avoid directory separators
     QString pgmConfigFile = hash.left(15) + "-" + fi.fileName();
     pgmConfigFile = KStandardDirs::locateLocal("sessions", pgmConfigFile);

@@ -58,7 +58,7 @@ using namespace KIO;
 
 extern "C"
 {
-	KDE_EXPORT int kdemain(int argc, char **argv);
+	Q_DECL_EXPORT int kdemain(int argc, char **argv);
 
 #ifdef HAVE_GPHOTO2_5
 	static void frontendCameraStatus(GPContext *context, const char *status, void *data);
