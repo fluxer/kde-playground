@@ -20,7 +20,7 @@ add_custom_command(OUTPUT ${_output}
                    WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
                    COMMENT "Generating org.kde.polkitkde1.policy"
                    DEPENDS polkit-kde-helper-policy-gen)
-add_custom_target(genpolicy "actions for polkit-kde" ALL DEPENDS ${_output})
+add_custom_target(genpolicy ALL DEPENDS ${_output})
 
 # FIXME: hardcoded path
 install(FILES ${_output} DESTINATION ${CMAKE_INSTALL_PREFIX}/share/polkit-1/actions/)
