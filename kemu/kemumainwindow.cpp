@@ -131,7 +131,7 @@ KEmuMainWindow::~KEmuMainWindow()
 {
     saveAutoSaveSettings();
     m_settings->sync();
-    delete m_settings;
+    m_settings->deleteLater();
     foreach(QProcess* machineProcess, m_machines) {
         const QString machine = m_machines.key(machineProcess);
         if (machineProcess->state() == QProcess::Running) {
@@ -141,6 +141,7 @@ KEmuMainWindow::~KEmuMainWindow()
         machineProcess->deleteLater();
         m_machines.remove(machine);
     }
+    delete m_kemuui;
 }
 
 void KEmuMainWindow::createHardDrive()
@@ -156,6 +157,7 @@ void KEmuMainWindow::quit()
 
 void KEmuMainWindow::machineSave(const QString ignored)
 {
+    Q_UNUSED(ignored);
     QString machine = m_kemuui->machinesList->currentText();
     kDebug() << "saving machine" << machine;
     m_settings->setValue(machine + "/cdrom", m_kemuui->CDROMInput->url().prettyUrl());
@@ -170,6 +172,7 @@ void KEmuMainWindow::machineSave(const QString ignored)
 
 void KEmuMainWindow::machineSave(int ignored)
 {
+    Q_UNUSED(ignored);
     machineSave(QString());
 }
 
@@ -192,6 +195,8 @@ void KEmuMainWindow::machineLoad(const QString machine)
 
 void KEmuMainWindow::machineChanged(QItemSelection ignored, QItemSelection ignored2)
 {
+    Q_UNUSED(ignored);
+    Q_UNUSED(ignored2);
     const QString machine = m_kemuui->machinesList->currentText();
     if (!machine.isEmpty()) {
         QFile kvmdev("/dev/kvm");
@@ -204,6 +209,7 @@ void KEmuMainWindow::machineChanged(QItemSelection ignored, QItemSelection ignor
             m_kemuui->startStopButton->setText(i18n("Stop"));
             m_kemuui->startStopButton->setIcon(KIcon("system-shutdown"));
         } else {
+            kDebug() << "machine is stopped" << machine;
             m_kemuui->startStopButton->setText(i18n("Start"));
             m_kemuui->startStopButton->setIcon(KIcon("system-run"));
         }
@@ -281,7 +287,7 @@ void KEmuMainWindow::startStopMachine()
             m_kemuui->startStopButton->setIcon(KIcon("system-shutdown"));
             m_machines.insert(machine, machineProcess);
             connect(machineProcess, SIGNAL(finished(int,QProcess::ExitStatus)),
-                    this, SLOT(machineFinished(int,QProcess::ExitStatus)));
+                this, SLOT(machineFinished(int,QProcess::ExitStatus)));
             machineProcess->start(m_kemuui->systemComboBox->currentText(), machineArgs);
         }
     }
