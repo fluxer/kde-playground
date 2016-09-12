@@ -60,8 +60,33 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(m_kemuui->startStopButton, SIGNAL(clicked()), this, SLOT(startStopMachine()));
     connect(m_kemuui->machinesList, SIGNAL(removed(QString)), this, SLOT(removeMachine(QString)));
 
-    // TODO: more machine-type entries
-    static const QStringList qemuBins = QStringList() << "qemu-system-i386";
+    static const QStringList qemuBins = QStringList() << "emu-system-aarch64"
+        << "qemu-system-alpha"
+        << "qemu-system-arm"
+        << "qemu-system-cris"
+        << "qemu-system-i386"
+        << "qemu-system-lm32"
+        << "qemu-system-m68k"
+        << "qemu-system-microblaze"
+        << "qemu-system-microblazeel"
+        << "qemu-system-mips"
+        << "qemu-system-mips64"
+        << "qemu-system-mips64el"
+        << "qemu-system-mipsel"
+        << "qemu-system-moxie"
+        << "qemu-system-or32"
+        << "qemu-system-ppc"
+        << "qemu-system-ppc64"
+        << "qemu-system-ppcemb"
+        << "qemu-system-s390x"
+        << "qemu-system-sh4"
+        << "qemu-system-sh4eb"
+        << "qemu-system-sparc"
+        << "qemu-system-sparc64"
+        << "qemu-system-tricore"
+        << "qemu-system-unicore32"
+        << "qemu-system-xtensa"
+        << "qemu-system-xtensaeb";
     foreach (const QString bin, qemuBins) {
         if(!KStandardDirs::findExe(bin).isEmpty()) {
             m_kemuui->systemComboBox->addItem(bin);
