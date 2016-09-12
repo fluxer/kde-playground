@@ -167,7 +167,7 @@ void KEmuMainWindow::machineLoad(const QString machine)
 
 void KEmuMainWindow::machineChanged(QItemSelection ignored, QItemSelection ignored2)
 {
-    QString machine = m_kemuui->machinesList->currentText();
+    const QString machine = m_kemuui->machinesList->currentText();
     if (!machine.isEmpty()) {
         QFile kvmdev("/dev/kvm");
         m_kemuui->KVMCheckBox->setEnabled(kvmdev.exists());
@@ -176,14 +176,11 @@ void KEmuMainWindow::machineChanged(QItemSelection ignored, QItemSelection ignor
         m_kemuui->groupBox->setEnabled(true);
         if (m_machines.contains(machine)) {
             kDebug() << "machine is running" << machine;
-            QProcess* machineProcess = m_machines.value(machine);
-            if (machineProcess->state() == QProcess::Running) {
-                m_kemuui->startStopButton->setText(i18n("Stop"));
-                m_kemuui->startStopButton->setIcon(KIcon("system-shutdown"));
-            } else {
-                m_kemuui->startStopButton->setText(i18n("Start"));
-                m_kemuui->startStopButton->setIcon(KIcon("system-run"));
-            }
+            m_kemuui->startStopButton->setText(i18n("Stop"));
+            m_kemuui->startStopButton->setIcon(KIcon("system-shutdown"));
+        } else {
+            m_kemuui->startStopButton->setText(i18n("Start"));
+            m_kemuui->startStopButton->setIcon(KIcon("system-run"));
         }
         machineLoad(machine);
     } else {
