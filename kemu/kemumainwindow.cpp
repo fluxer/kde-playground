@@ -23,6 +23,7 @@
 #include <KFileDialog>
 #include <KInputDialog>
 #include <KStandardDirs>
+#include <KStatusBar>
 #include <KDebug>
 #include <QApplication>
 #include <QMessageBox>
@@ -56,6 +57,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     m_kemuui->startStopButton->setText(i18n("Start"));
     m_kemuui->startStopButton->setIcon(KIcon("system-run"));
     m_kemuui->CPUInput->setMaximum(QThread::idealThreadCount());
+    statusBar()->showMessage(i18n("No machines running"));
     connect(m_kemuui->machinesList->listView()->selectionModel(),
         SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
         this, SLOT(machineChanged(QItemSelection,QItemSelection)));
@@ -321,6 +323,23 @@ void KEmuMainWindow::startStopMachine()
             connect(machineProcess, SIGNAL(finished(int,QProcess::ExitStatus)),
                 this, SLOT(machineFinished(int,QProcess::ExitStatus)));
             machineProcess->start(m_kemuui->systemComboBox->currentText(), machineArgs);
+        }
+
+        QString machineNames;
+        bool firstmachine = true;
+        foreach (const QString name, m_machines.keys()) {
+            if (firstmachine) {
+                machineNames += name;
+                firstmachine = false;
+            } else {
+                machineNames += ", " + name;
+            }
+        }
+        if (m_machines.size() == 0) {
+            statusBar()->showMessage(i18n("No machines running"));
+        } else {
+            const QString statusText = i18n("Machines running: %1 (%2)", machineNames, m_machines.size());
+            statusBar()->showMessage(statusText);
         }
     }
 }
