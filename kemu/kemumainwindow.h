@@ -33,7 +33,7 @@ public:
     ~KEmuMainWindow();
 
 public slots:
-    void createHardDrive();
+    void createHardDisk();
     void quit();
 
 private slots:

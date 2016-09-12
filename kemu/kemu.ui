@@ -111,7 +111,7 @@
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="KUrlRequester" name="HardDriveInput"/>
+        <widget class="KUrlRequester" name="HardDiskInput"/>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label_3">

@@ -20,6 +20,7 @@
 #include <KActionCollection>
 #include <KLocale>
 #include <KIcon>
+#include <KFileDialog>
 #include <KInputDialog>
 #include <KStandardDirs>
 #include <KDebug>
@@ -35,9 +36,9 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
 {
     m_kemuui->setupUi(this);
 
-    KAction *a = actionCollection()->addAction("harddisk_create", this, SLOT(createHardDrive()));
+    KAction *a = actionCollection()->addAction("harddisk_create", this, SLOT(createHardDisk()));
     a->setText(i18n("Create Hard Disk image"));
-    a->setIcon(KIcon("hard-drive"));
+    a->setIcon(KIcon("drive-harddisk"));
     a->setShortcut(KStandardShortcut::openNew());
     a->setWhatsThis(i18n("Create a new Hard Disk image for later use."));
 
@@ -121,7 +122,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     }
 
     connect(m_kemuui->CDROMInput, SIGNAL(textChanged(QString)), this, SLOT(machineSave(QString)));
-    connect(m_kemuui->HardDriveInput, SIGNAL(textChanged(QString)), this, SLOT(machineSave(QString)));
+    connect(m_kemuui->HardDiskInput, SIGNAL(textChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->systemComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->videoComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->RAMInput, SIGNAL(valueChanged(int)), this, SLOT(machineSave(int)));
@@ -147,10 +148,34 @@ KEmuMainWindow::~KEmuMainWindow()
     delete m_kemuui;
 }
 
-void KEmuMainWindow::createHardDrive()
+void KEmuMainWindow::createHardDisk()
 {
-    // TODO: implement
-    QMessageBox::warning(this, "NOT IMPLEMENTED", "NOT IMPLEMENTED");
+    const QString qemuImg = KStandardDirs::findExe("qemu-img");
+    if (qemuImg.isEmpty()) {
+        QMessageBox::warning(this, i18n("Requirements not met"),
+            i18n("qemu-img not found"));
+        return;
+    }
+    const QString diskPath = KFileDialog::getSaveFileName(KUrl(), QString(), this, i18n("Hard Disk path"));
+    if (!diskPath.isEmpty()) {
+        bool ok = false;
+        const int diskSize = KInputDialog::getInteger(i18n("Hard Disk size"),
+            i18n("Hard Disk size in MegaBytes"), 10, 10, INT_MAX, 1, 10, &ok, this);
+        if (ok) {
+            QProcess imageProcess(this);
+            imageProcess.setProcessChannelMode(QProcess::MergedChannels);
+            imageProcess.start(qemuImg, QStringList() << "create" << "-f" << "raw"
+                << diskPath << QByteArray(QByteArray::number(diskSize) + QByteArray("M")));
+            imageProcess.waitForFinished();
+            if (imageProcess.exitCode() == 0) {
+                QMessageBox::information(this, i18n("Success"),
+                    i18n("Image successfully created"));
+            } else {
+                QMessageBox::warning(this, i18n("QEMU error"),
+                    i18n("An error occured:\n%1", QString(imageProcess.readAll())));
+            }
+        }
+    }
 }
 
 void KEmuMainWindow::quit()
@@ -161,10 +186,10 @@ void KEmuMainWindow::quit()
 void KEmuMainWindow::machineSave(const QString ignored)
 {
     Q_UNUSED(ignored);
-    QString machine = m_kemuui->machinesList->currentText();
+    const QString machine = m_kemuui->machinesList->currentText();
     kDebug() << "saving machine" << machine;
     m_settings->setValue(machine + "/cdrom", m_kemuui->CDROMInput->url().prettyUrl());
-    m_settings->setValue(machine + "/harddrive", m_kemuui->HardDriveInput->url().prettyUrl());
+    m_settings->setValue(machine + "/harddisk", m_kemuui->HardDiskInput->url().prettyUrl());
     m_settings->setValue(machine + "/system", m_kemuui->systemComboBox->currentText());
     m_settings->setValue(machine + "/video", m_kemuui->videoComboBox->currentText());
     m_settings->setValue(machine + "/ram", m_kemuui->RAMInput->value());
@@ -185,7 +210,7 @@ void KEmuMainWindow::machineLoad(const QString machine)
 {
     kDebug() << "loading machine" << machine;
     m_kemuui->CDROMInput->setUrl(m_settings->value(machine + "/cdrom").toUrl());
-    m_kemuui->HardDriveInput->setUrl(m_settings->value(machine + "/harddrive").toUrl());
+    m_kemuui->HardDiskInput->setUrl(m_settings->value(machine + "/harddisk").toUrl());
     const QString system = m_settings->value(machine + "/system").toString();
     const int systemIndex = m_kemuui->systemComboBox->findText(system);
     m_kemuui->systemComboBox->setCurrentIndex(systemIndex);
@@ -267,13 +292,13 @@ void KEmuMainWindow::startStopMachine()
             if (!CDRom.isEmpty()) {
                 machineArgs << "-cdrom" << CDRom;
             }
-            const QString HDrive = m_kemuui->HardDriveInput->url().prettyUrl();
-            if (!HDrive.isEmpty()) {
-                machineArgs << "-hda" << HDrive;
+            const QString HardDisk = m_kemuui->HardDiskInput->url().prettyUrl();
+            if (!HardDisk.isEmpty()) {
+                machineArgs << "-hda" << HardDisk;
             }
-            if (CDRom.isEmpty() && HDrive.isEmpty()) {
+            if (CDRom.isEmpty() && HardDisk.isEmpty()) {
                 QMessageBox::warning(this, i18n("Requirements not met"),
-                    i18n("Either CD-ROM or Hard-Drive image must be set"));
+                    i18n("Either CD-ROM or Hard Disk image must be set"));
                 return;
             }
             machineArgs << "-vga" << m_kemuui->videoComboBox->currentText();
