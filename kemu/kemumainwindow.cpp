@@ -255,13 +255,12 @@ void KEmuMainWindow::startStopMachine()
             }
             QProcess* machineProcess = new QProcess(this);
             machineProcess->setProcessChannelMode(QProcess::MergedChannels);
-            machineProcess->start(m_kemuui->systemComboBox->currentText(), machineArgs);
-            machineProcess->waitForStarted();
             m_kemuui->startStopButton->setText(i18n("Stop"));
             m_kemuui->startStopButton->setIcon(KIcon("system-shutdown"));
             m_machines.insert(machine, machineProcess);
             connect(machineProcess, SIGNAL(finished(int,QProcess::ExitStatus)),
                     this, SLOT(machineFinished(int,QProcess::ExitStatus)));
+            machineProcess->start(m_kemuui->systemComboBox->currentText(), machineArgs);
         }
     }
 }
