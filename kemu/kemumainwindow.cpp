@@ -60,7 +60,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(m_kemuui->startStopButton, SIGNAL(clicked()), this, SLOT(startStopMachine()));
     connect(m_kemuui->machinesList, SIGNAL(removed(QString)), this, SLOT(removeMachine(QString)));
 
-    static const QStringList qemuBins = QStringList() << "emu-system-aarch64"
+    static const QStringList qemuBins = QStringList() << "qemu-system-aarch64"
         << "qemu-system-alpha"
         << "qemu-system-arm"
         << "qemu-system-cris"
