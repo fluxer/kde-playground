@@ -25,6 +25,7 @@
 #include <KDebug>
 #include <QApplication>
 #include <QMessageBox>
+#include <QThread>
 
 #include "kemumainwindow.h"
 #include "ui_kemu.h"
@@ -33,8 +34,6 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     : KXmlGuiWindow(parent, flags), m_kemuui(new Ui_KEmuWindow)
 {
     m_kemuui->setupUi(this);
-    m_kemuui->startStopButton->setText(i18n("Start"));
-    m_kemuui->startStopButton->setIcon(KIcon("system-run"));
 
     KAction *a = actionCollection()->addAction("harddisk_create", this, SLOT(createHardDrive()));
     a->setText(i18n("Create Hard Disk image"));
@@ -53,6 +52,9 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
 
     setWindowIcon(KIcon("applications-engineering"));
     m_kemuui->groupBox->setEnabled(false);
+    m_kemuui->startStopButton->setText(i18n("Start"));
+    m_kemuui->startStopButton->setIcon(KIcon("system-run"));
+    m_kemuui->CPUInput->setMaximum(QThread::idealThreadCount());
     connect(m_kemuui->machinesList->listView()->selectionModel(),
         SIGNAL(selectionChanged(QItemSelection,QItemSelection)),
         this, SLOT(machineChanged(QItemSelection,QItemSelection)));
@@ -123,6 +125,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(m_kemuui->systemComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->videoComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->RAMInput, SIGNAL(valueChanged(int)), this, SLOT(machineSave(int)));
+    connect(m_kemuui->CPUInput, SIGNAL(valueChanged(int)), this, SLOT(machineSave(int)));
     connect(m_kemuui->KVMCheckBox, SIGNAL(stateChanged(int)), this, SLOT(machineSave(int)));
     connect(m_kemuui->argumentsLineEdit, SIGNAL(textChanged(QString)), this, SLOT(machineSave(QString)));
 }
@@ -165,6 +168,7 @@ void KEmuMainWindow::machineSave(const QString ignored)
     m_settings->setValue(machine + "/system", m_kemuui->systemComboBox->currentText());
     m_settings->setValue(machine + "/video", m_kemuui->videoComboBox->currentText());
     m_settings->setValue(machine + "/ram", m_kemuui->RAMInput->value());
+    m_settings->setValue(machine + "/cpu", m_kemuui->CPUInput->value());
     m_settings->setValue(machine + "/kvm", m_kemuui->KVMCheckBox->isChecked());
     m_settings->setValue(machine + "/args", m_kemuui->argumentsLineEdit->text());
     m_settings->sync();
@@ -189,6 +193,7 @@ void KEmuMainWindow::machineLoad(const QString machine)
     const int videoIndex = m_kemuui->videoComboBox->findText(video);
     m_kemuui->videoComboBox->setCurrentIndex(videoIndex);
     m_kemuui->RAMInput->setValue(m_settings->value(machine + "/ram", 32).toInt());
+    m_kemuui->CPUInput->setValue(m_settings->value(machine + "/cpu", 1).toInt());
     m_kemuui->KVMCheckBox->setChecked(m_settings->value(machine + "/kvm", false).toBool());
     m_kemuui->argumentsLineEdit->setText(m_settings->value(machine + "/args").toString());
 }
@@ -257,6 +262,7 @@ void KEmuMainWindow::startStopMachine()
         } else {
             kDebug() << "starting machine" << machine;
             QStringList machineArgs;
+            machineArgs << "-name" << machine;
             const QString CDRom = m_kemuui->CDROMInput->url().prettyUrl();
             if (!CDRom.isEmpty()) {
                 machineArgs << "-cdrom" << CDRom;
@@ -272,6 +278,7 @@ void KEmuMainWindow::startStopMachine()
             }
             machineArgs << "-vga" << m_kemuui->videoComboBox->currentText();
             machineArgs << "-m" << QByteArray::number(m_kemuui->RAMInput->value());
+            machineArgs << "-smp" << QByteArray::number(m_kemuui->CPUInput->value());
             if (m_kemuui->KVMCheckBox->isChecked()) {
                 machineArgs << "-enable-kvm";
             }

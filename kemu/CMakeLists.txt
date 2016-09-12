@@ -6,6 +6,7 @@ find_package(KDE4)
 include(KDE4Defaults)
 
 include_directories(${KDE4_INCLUDES})
+add_definitions(${KDE4_DEFINITIONS})
 
 set(kemu_sources
     main.cpp

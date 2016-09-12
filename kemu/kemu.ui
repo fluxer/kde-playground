@@ -83,16 +83,6 @@
        <string/>
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
-       <item row="1" column="0">
-        <widget class="QLabel" name="label_5">
-         <property name="text">
-          <string>Hard Drive image</string>
-         </property>
-        </widget>
-       </item>
-       <item row="0" column="1">
-        <widget class="KUrlRequester" name="CDROMInput"/>
-       </item>
        <item row="0" column="0">
         <widget class="QLabel" name="label_2">
          <property name="text">
@@ -100,11 +90,18 @@
          </property>
         </widget>
        </item>
+       <item row="0" column="1">
+        <widget class="KUrlRequester" name="CDROMInput"/>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_5">
+         <property name="text">
+          <string>Hard Drive image</string>
+         </property>
+        </widget>
+       </item>
        <item row="2" column="1">
         <widget class="QComboBox" name="systemComboBox"/>
-       </item>
-       <item row="1" column="1">
-        <widget class="KUrlRequester" name="HardDriveInput"/>
        </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_4">
@@ -112,6 +109,9 @@
           <string>System type</string>
          </property>
         </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="KUrlRequester" name="HardDriveInput"/>
        </item>
        <item row="3" column="0">
         <widget class="QLabel" name="label_3">
@@ -173,7 +173,10 @@
          </property>
         </widget>
        </item>
-       <item row="5" column="0" colspan="2">
+       <item row="8" column="1">
+        <widget class="KLineEdit" name="argumentsLineEdit"/>
+       </item>
+       <item row="6" column="0" colspan="2">
         <widget class="QCheckBox" name="KVMCheckBox">
          <property name="text">
           <string>Kernel-based Virtual Machine </string>
@@ -183,7 +186,7 @@
          </property>
         </widget>
        </item>
-       <item row="6" column="0" colspan="2">
+       <item row="7" column="0" colspan="2">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -196,13 +199,24 @@
          </property>
         </spacer>
        </item>
-       <item row="7" column="1">
-        <widget class="KLineEdit" name="argumentsLineEdit"/>
-       </item>
-       <item row="7" column="0">
+       <item row="8" column="0">
         <widget class="QLabel" name="label_6">
          <property name="text">
           <string>Extra arguments</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="0">
+        <widget class="QLabel" name="label_7">
+         <property name="text">
+          <string>CPU cores</string>
+         </property>
+        </widget>
+       </item>
+       <item row="5" column="1">
+        <widget class="KIntNumInput" name="CPUInput">
+         <property name="minimum">
+          <number>1</number>
          </property>
         </widget>
        </item>
