@@ -130,6 +130,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(m_kemuui->RAMInput, SIGNAL(valueChanged(int)), this, SLOT(machineSave(int)));
     connect(m_kemuui->CPUInput, SIGNAL(valueChanged(int)), this, SLOT(machineSave(int)));
     connect(m_kemuui->KVMCheckBox, SIGNAL(stateChanged(int)), this, SLOT(machineSave(int)));
+    connect(m_kemuui->ACPICheckBox, SIGNAL(stateChanged(int)), this, SLOT(machineSave(int)));
     connect(m_kemuui->argumentsLineEdit, SIGNAL(textChanged(QString)), this, SLOT(machineSave(QString)));
 }
 
@@ -197,6 +198,7 @@ void KEmuMainWindow::machineSave(const QString ignored)
     m_settings->setValue(machine + "/ram", m_kemuui->RAMInput->value());
     m_settings->setValue(machine + "/cpu", m_kemuui->CPUInput->value());
     m_settings->setValue(machine + "/kvm", m_kemuui->KVMCheckBox->isChecked());
+    m_settings->setValue(machine + "/acpi", m_kemuui->ACPICheckBox->isChecked());
     m_settings->setValue(machine + "/args", m_kemuui->argumentsLineEdit->text());
     m_settings->sync();
 }
@@ -222,6 +224,7 @@ void KEmuMainWindow::machineLoad(const QString machine)
     m_kemuui->RAMInput->setValue(m_settings->value(machine + "/ram", 32).toInt());
     m_kemuui->CPUInput->setValue(m_settings->value(machine + "/cpu", 1).toInt());
     m_kemuui->KVMCheckBox->setChecked(m_settings->value(machine + "/kvm", false).toBool());
+    m_kemuui->ACPICheckBox->setChecked(m_settings->value(machine + "/acpi", false).toBool());
     m_kemuui->argumentsLineEdit->setText(m_settings->value(machine + "/args").toString());
 }
 
@@ -308,6 +311,9 @@ void KEmuMainWindow::startStopMachine()
             machineArgs << "-smp" << QByteArray::number(m_kemuui->CPUInput->value());
             if (m_kemuui->KVMCheckBox->isChecked()) {
                 machineArgs << "-enable-kvm";
+            }
+            if (!m_kemuui->ACPICheckBox->isChecked()) {
+                machineArgs << "-no-acpi";
             }
             const QString extraArgs = m_kemuui->argumentsLineEdit->text();
             if (!extraArgs.isEmpty()) {
