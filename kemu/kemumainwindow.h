@@ -47,6 +47,7 @@ private slots:
     void removeMachine(const QString machine);
 
 private:
+    void updateStatus();
 
     Ui_KEmuWindow *m_kemuui;
     QSettings *m_settings;

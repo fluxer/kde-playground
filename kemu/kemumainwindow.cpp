@@ -186,6 +186,26 @@ void KEmuMainWindow::quit()
     qApp->quit();
 }
 
+void KEmuMainWindow::updateStatus()
+{
+    if (m_machines.size() == 0) {
+        statusBar()->showMessage(i18n("No machines running"));
+    } else {
+        QString machineNames;
+        bool firstmachine = true;
+        foreach (const QString name, m_machines.keys()) {
+            if (firstmachine) {
+                machineNames += name;
+                firstmachine = false;
+            } else {
+                machineNames += ", " + name;
+            }
+        }
+        const QString statusText = i18n("Machines running: %1 (%2)", machineNames, m_machines.size());
+        statusBar()->showMessage(statusText);
+    }
+}
+
 void KEmuMainWindow::machineSave(const QString ignored)
 {
     Q_UNUSED(ignored);
@@ -269,6 +289,8 @@ void KEmuMainWindow::machineFinished(int exitCode, QProcess::ExitStatus exitStat
     const QString machine = m_machines.key(machineProcess);
     m_machines.remove(machine);
     machineProcess->deleteLater();
+
+    updateStatus();
 }
 
 void KEmuMainWindow::addMachine(const QString machine)
@@ -331,22 +353,7 @@ void KEmuMainWindow::startStopMachine()
             machineProcess->start(m_kemuui->systemComboBox->currentText(), machineArgs);
         }
 
-        QString machineNames;
-        bool firstmachine = true;
-        foreach (const QString name, m_machines.keys()) {
-            if (firstmachine) {
-                machineNames += name;
-                firstmachine = false;
-            } else {
-                machineNames += ", " + name;
-            }
-        }
-        if (m_machines.size() == 0) {
-            statusBar()->showMessage(i18n("No machines running"));
-        } else {
-            const QString statusText = i18n("Machines running: %1 (%2)", machineNames, m_machines.size());
-            statusBar()->showMessage(statusText);
-        }
+        updateStatus();
     }
 }
 
