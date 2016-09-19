@@ -127,6 +127,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     connect(m_kemuui->HardDiskInput, SIGNAL(textChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->systemComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->videoComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(machineSave(QString)));
+    connect(m_kemuui->audioComboBox, SIGNAL(currentIndexChanged(QString)), this, SLOT(machineSave(QString)));
     connect(m_kemuui->RAMInput, SIGNAL(valueChanged(int)), this, SLOT(machineSave(int)));
     connect(m_kemuui->CPUInput, SIGNAL(valueChanged(int)), this, SLOT(machineSave(int)));
     connect(m_kemuui->KVMCheckBox, SIGNAL(stateChanged(int)), this, SLOT(machineSave(int)));
@@ -215,6 +216,7 @@ void KEmuMainWindow::machineSave(const QString ignored)
     m_settings->setValue(machine + "/harddisk", m_kemuui->HardDiskInput->url().prettyUrl());
     m_settings->setValue(machine + "/system", m_kemuui->systemComboBox->currentText());
     m_settings->setValue(machine + "/video", m_kemuui->videoComboBox->currentText());
+    m_settings->setValue(machine + "/audio", m_kemuui->audioComboBox->currentText());
     m_settings->setValue(machine + "/ram", m_kemuui->RAMInput->value());
     m_settings->setValue(machine + "/cpu", m_kemuui->CPUInput->value());
     m_settings->setValue(machine + "/kvm", m_kemuui->KVMCheckBox->isChecked());
@@ -241,6 +243,9 @@ void KEmuMainWindow::machineLoad(const QString machine)
     const QString video = m_settings->value(machine + "/video", "virtio").toString();
     const int videoIndex = m_kemuui->videoComboBox->findText(video);
     m_kemuui->videoComboBox->setCurrentIndex(videoIndex);
+    const QString audio = m_settings->value(machine + "/audio", "ac97").toString();
+    const int audioIndex = m_kemuui->audioComboBox->findText(audio);
+    m_kemuui->audioComboBox->setCurrentIndex(audioIndex);
     m_kemuui->RAMInput->setValue(m_settings->value(machine + "/ram", 32).toInt());
     m_kemuui->CPUInput->setValue(m_settings->value(machine + "/cpu", 1).toInt());
     m_kemuui->KVMCheckBox->setChecked(m_settings->value(machine + "/kvm", false).toBool());
@@ -329,6 +334,7 @@ void KEmuMainWindow::startStopMachine()
                 return;
             }
             machineArgs << "-vga" << m_kemuui->videoComboBox->currentText();
+            machineArgs << "-soundhw" << m_kemuui->audioComboBox->currentText();
             machineArgs << "-m" << QByteArray::number(m_kemuui->RAMInput->value());
             machineArgs << "-smp" << QByteArray::number(m_kemuui->CPUInput->value());
             if (m_kemuui->KVMCheckBox->isChecked()) {
