@@ -808,28 +808,22 @@ TreeMapItem* TreeMapItemList::commonParent()
   return parent;
 }
 
-class TreeMapItemLessThan
+static bool treeMapItemLessThan(const TreeMapItem* i1, const TreeMapItem* i2)
 {
-public:
-    bool operator()(const TreeMapItem* i1, const TreeMapItem* i2) const
-    {
-	TreeMapItem* p = i1->parent();
-	// should not happen
-	if (!p) return false;
+    TreeMapItem* p = i1->parent();
+    // should not happen
+    if (!p) return false;
 
-	bool ascending;
-	bool result;
-	int textNo = p->sorting(&ascending);
-	if (textNo < 0)
-	    result = i1->value() < i2->value();
-	else
-	    result = i1->text(textNo) < i2->text(textNo);
+    bool ascending;
+    bool result;
+    int textNo = p->sorting(&ascending);
+    if (textNo < 0)
+        result = i1->value() < i2->value();
+    else
+        result = i1->text(textNo) < i2->text(textNo);
 
-	return ascending ? result : !result;
-    }
+    return ascending ? result : !result;
 };
-
-TreeMapItemLessThan treeMapItemLessThan;
 
 // TreeMapItem
 
@@ -990,7 +984,7 @@ void TreeMapItem::addItem(TreeMapItem* i)
 
   _children->append(i); // preserve insertion order
   if (sorting(0) != -1)
-    qSort(_children->begin(), _children->end(), treeMapItemLessThan);
+    qStableSort(_children->begin(), _children->end(), treeMapItemLessThan);
 }
 
 
@@ -1057,7 +1051,7 @@ void TreeMapItem::setSorting(int textNo, bool ascending)
     _sortTextNo = textNo;
 
     if (_children && _sortTextNo != -1)
-	qSort(_children->begin(), _children->end(), treeMapItemLessThan);
+	qStableSort(_children->begin(), _children->end(), treeMapItemLessThan);
 }
 
 void TreeMapItem::resort(bool recursive)
@@ -1065,7 +1059,7 @@ void TreeMapItem::resort(bool recursive)
   if (!_children) return;
 
   if (_sortTextNo != -1)
-      qSort(_children->begin(), _children->end(), treeMapItemLessThan);
+      qStableSort(_children->begin(), _children->end(), treeMapItemLessThan);
 
   if (recursive)
     foreach(TreeMapItem* i, *_children)
