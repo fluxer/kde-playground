@@ -23,7 +23,6 @@
 #ifndef KDCHARTDATAVALUEATTRIBUTES_H
 #define KDCHARTDATAVALUEATTRIBUTES_H
 
-#include <Qt>
 #include <QMetaType>
 #include "KDChartGlobal.h"
 #include "KDChartEnums.h"

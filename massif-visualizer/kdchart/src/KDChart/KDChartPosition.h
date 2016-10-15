@@ -24,7 +24,6 @@
 #define KDCHARTPOSITION_H
 
 #include <QDebug>
-#include <Qt>
 #include <QMetaType>
 #include <QCoreApplication>
 #include "KDChartGlobal.h"

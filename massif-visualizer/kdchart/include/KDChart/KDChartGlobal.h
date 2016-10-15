@@ -176,13 +176,11 @@ protected: \
 #if defined(Q_OS_WIN) && defined(QT_DLL)
 #if defined(_MSC_VER) && _MSC_VER >= 1300
 // workaround http://support.microsoft.com/default.aspx?scid=kb;en-us;309801
-#include <QPointF>
+#include <QPoint>
 #include <QVector>
 template class Q_DECL_IMPORT QVector<QPointF>;
 #endif
 #endif
-
-#include <Qt>
 
 namespace KDChart {
 

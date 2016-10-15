@@ -25,9 +25,8 @@
 
 #include <QDebug>
 #include <QMetaType>
-#include <Qt>
-#include <QPointF>
-#include <QSizeF>
+#include <QPoint>
+#include <QSize>
 #include "KDChartGlobal.h"
 
 namespace KDChart {

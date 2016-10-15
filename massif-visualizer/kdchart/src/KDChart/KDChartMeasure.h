@@ -24,7 +24,6 @@
 #define KDCHARTMEASURE_H
 
 #include <QDebug>
-#include <Qt>
 #include <QStack>
 #include "KDChartGlobal.h"
 #include "KDChartEnums.h"
