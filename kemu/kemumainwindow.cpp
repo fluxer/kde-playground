@@ -142,10 +142,8 @@ KEmuMainWindow::~KEmuMainWindow()
     m_settings->deleteLater();
     foreach(QProcess* machineProcess, m_machines) {
         const QString machine = m_machines.key(machineProcess);
-        if (machineProcess->state() == QProcess::Running) {
-            kDebug() << "stopping machine" << machine;
-            machineProcess->terminate();
-        }
+        kDebug() << "stopping machine" << machine;
+        machineProcess->terminate();
         machineProcess->deleteLater();
         m_machines.remove(machine);
     }
