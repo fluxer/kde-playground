@@ -335,7 +335,7 @@ void KEmuMainWindow::startStopMachine()
             machineArgs << "-soundhw" << m_kemuui->audioComboBox->currentText();
             machineArgs << "-m" << QByteArray::number(m_kemuui->RAMInput->value());
             machineArgs << "-smp" << QByteArray::number(m_kemuui->CPUInput->value());
-            if (m_kemuui->KVMCheckBox->isChecked()) {
+            if (m_kemuui->KVMCheckBox->isEnabled() && m_kemuui->KVMCheckBox->isChecked()) {
                 machineArgs << "-enable-kvm";
             }
             if (!m_kemuui->ACPICheckBox->isChecked()) {
