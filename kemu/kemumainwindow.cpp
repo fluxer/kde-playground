@@ -107,6 +107,10 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
             kDebug() << "garbage machine" << machine;
         }
     }
+    const QString lastSelected = m_settings->value("lastselected").toString();
+    if (!lastSelected.isEmpty()) {
+        m_kemuui->machinesList->listView()->keyboardSearch(lastSelected);
+    }
 
     QFile kvmdev("/dev/kvm");
     if (!kvmdev.exists()) {
@@ -138,6 +142,10 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
 KEmuMainWindow::~KEmuMainWindow()
 {
     saveAutoSaveSettings();
+    const QString lastSelected = m_kemuui->machinesList->currentText();
+    if (!lastSelected.isEmpty()) {
+        m_settings->setValue("lastselected", lastSelected);
+    }
     m_settings->sync();
     m_settings->deleteLater();
     foreach(QProcess* machineProcess, m_machines) {
