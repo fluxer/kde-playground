@@ -216,6 +216,9 @@ void KEmuMainWindow::updateStatus()
 void KEmuMainWindow::machineSave(const QString ignored)
 {
     Q_UNUSED(ignored);
+    if (m_loading) {
+        return;
+    }
     const QString machine = m_kemuui->machinesList->currentText();
     kDebug() << "saving machine" << machine;
     m_settings->setValue(machine + "/cdrom", m_kemuui->CDROMInput->url().prettyUrl());
@@ -240,6 +243,7 @@ void KEmuMainWindow::machineSave(int ignored)
 
 void KEmuMainWindow::machineLoad(const QString machine)
 {
+    m_loading = true;
     kDebug() << "loading machine" << machine;
     m_kemuui->CDROMInput->setUrl(m_settings->value(machine + "/cdrom").toUrl());
     m_kemuui->HardDiskInput->setUrl(m_settings->value(machine + "/harddisk").toUrl());
@@ -257,6 +261,7 @@ void KEmuMainWindow::machineLoad(const QString machine)
     m_kemuui->KVMCheckBox->setChecked(m_settings->value(machine + "/kvm", false).toBool());
     m_kemuui->ACPICheckBox->setChecked(m_settings->value(machine + "/acpi", false).toBool());
     m_kemuui->argumentsLineEdit->setText(m_settings->value(machine + "/args").toString());
+    m_loading = false;
 }
 
 void KEmuMainWindow::machineChanged(QItemSelection ignored, QItemSelection ignored2)
