@@ -33,7 +33,7 @@
 #include "ui_kemu.h"
 
 KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
-    : KXmlGuiWindow(parent, flags), m_kemuui(new Ui_KEmuWindow)
+    : KXmlGuiWindow(parent, flags), m_loading(false), m_installed(false), m_kemuui(new Ui_KEmuWindow)
 {
     m_kemuui->setupUi(this);
 
@@ -94,6 +94,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
         << "qemu-system-xtensaeb";
     foreach (const QString bin, qemuBins) {
         if(!KStandardDirs::findExe(bin).isEmpty()) {
+            m_installed = true;
             m_kemuui->systemComboBox->addItem(bin);
         }
     }
@@ -110,6 +111,12 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
     const QString lastSelected = m_settings->value("lastselected").toString();
     if (!lastSelected.isEmpty()) {
         m_kemuui->machinesList->listView()->keyboardSearch(lastSelected);
+    }
+
+    if(!m_installed) {
+        m_kemuui->startStopButton->setEnabled(false);
+        QMessageBox::critical(this, i18n("QEMU not available"), i18n("QEMU not available"));
+        return;
     }
 
     QFile kvmdev("/dev/kvm");
@@ -273,7 +280,7 @@ void KEmuMainWindow::machineChanged(QItemSelection ignored, QItemSelection ignor
         QFile kvmdev("/dev/kvm");
         m_kemuui->KVMCheckBox->setEnabled(kvmdev.exists());
 
-        m_kemuui->startStopButton->setEnabled(true);
+        m_kemuui->startStopButton->setEnabled(m_installed);
         m_kemuui->groupBox->setEnabled(true);
         if (m_machines.contains(machine)) {
             kDebug() << "machine is running" << machine;

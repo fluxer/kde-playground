@@ -49,10 +49,11 @@ private slots:
 private:
     void updateStatus();
 
+    bool m_loading;
+    bool m_installed;
     Ui_KEmuWindow *m_kemuui;
     QSettings *m_settings;
     QHash<QString,QProcess*> m_machines;
-    bool m_loading;
 };
 
 #endif // KEMUMAINWINDOW_H
