@@ -28,7 +28,7 @@
 
 #include <messagelist/messagelist_export.h>
 #include <akonadi/collection.h>
-class QPixmap;
+#include <QPixmap>
 
 namespace KMime
 {

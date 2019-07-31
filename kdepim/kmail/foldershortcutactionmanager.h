@@ -28,7 +28,7 @@
 #include <QModelIndex>
 #include <QObject>
 
-class QAction;
+#include <QAction>
 
 class KActionCollection;
 

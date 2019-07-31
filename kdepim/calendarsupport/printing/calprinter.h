@@ -29,8 +29,8 @@
 #include <KComboBox>
 #include <KDialog>
 
-class QButtonGroup;
-class QStackedWidget;
+#include <QButtonGroup>
+#include <QStackedWidget>
 
 namespace CalendarSupport {
 

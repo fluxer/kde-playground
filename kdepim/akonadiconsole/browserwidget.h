@@ -29,8 +29,8 @@
 
 #include <QWidget>
 
-class QModelIndex;
-class QStandardItemModel;
+#include <QModelIndex>
+#include <QStandardItemModel>
 
 class KJob;
 class KToggleAction;

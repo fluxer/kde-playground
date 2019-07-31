@@ -20,7 +20,7 @@
 
 #include <KMessageWidget>
 #include <KUrl>
-class QTimer;
+#include <QTimer>
 namespace MessageViewer {
 class OpenAttachmentFolderWidget : public KMessageWidget
 {

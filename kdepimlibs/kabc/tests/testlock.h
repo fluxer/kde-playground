@@ -26,8 +26,8 @@
 
 #include "kabc/lock.h"
 
-class QLabel;
-class QTreeWidget;
+#include <QLabel>
+#include <QTreeWidget>
 
 class LockWidget : public QWidget
 {

@@ -25,10 +25,10 @@
 #include <KIcon>
 #include <KUrl>
 
-class QActionGroup;
-class QPushButton;
-class QSlider;
-class QStringListModel;
+#include <QActionGroup>
+#include <QPushButton>
+#include <QSlider>
+#include <QStringListModel>
 class KAction;
 class KActionCollection;
 class KComboBox;

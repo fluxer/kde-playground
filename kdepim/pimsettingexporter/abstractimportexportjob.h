@@ -22,8 +22,8 @@
 #include <Akonadi/Collection>
 #include <QStringList>
 
-class QWidget;
-class QProgressDialog;
+#include <QWidget>
+#include <QProgressDialog>
 class ArchiveStorage;
 class KArchiveDirectory;
 class KTempDir;

@@ -16,7 +16,7 @@
 
 #include <kdialog.h>
 
-template <typename T> class QList;
+#include <QList>
 
 namespace KMime {
 namespace Types {

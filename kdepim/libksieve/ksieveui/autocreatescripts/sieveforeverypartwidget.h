@@ -19,9 +19,9 @@
 #define SIEVEFOREVERYPARTWIDGET_H
 
 #include "sievewidgetpageabstract.h"
-class QCheckBox;
+#include <QCheckBox>
 class KLineEdit;
-class QDomElement;
+#include <QDomElement>
 
 namespace KSieveUi {
 class SieveHelpButton;

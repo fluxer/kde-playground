@@ -22,8 +22,8 @@
 #define GROUPBOX_H
 
 #include <QGroupBox>
-class QMouseEvent;
-class QKeyEvent;
+#include <QMouseEvent>
+#include <QKeyEvent>
 
 
 /**

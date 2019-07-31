@@ -22,8 +22,8 @@
 #define SLIDER_H
 
 #include <QSlider>
-class QMouseEvent;
-class QKeyEvent;
+#include <QMouseEvent>
+#include <QKeyEvent>
 
 
 /**

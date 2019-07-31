@@ -24,7 +24,7 @@
 
 #include <akonadi/entitytreemodel.h>
 
-class QTextDocument;
+#include <QTextDocument>
 
 namespace Akonadi
 {

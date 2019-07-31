@@ -25,9 +25,9 @@
 
 #include "documenttabinterface.h"
 
-class QTreeView;
-class QSortFilterProxyModel;
-class QModelIndex;
+#include <QTreeView>
+#include <QSortFilterProxyModel>
+#include <QModelIndex>
 
 namespace Massif {
 class AllocatorsModel;

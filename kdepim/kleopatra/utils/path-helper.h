@@ -33,9 +33,9 @@
 #ifndef __KLEOPATRA_UTILS_PATH_HELPER_H__
 #define __KLEOPATRA_UTILS_PATH_HELPER_H__
 
-class QString;
-class QStringList;
-class QDir;
+#include <QString>
+#include <QStringList>
+#include <QDir>
 
 namespace Kleo {
 

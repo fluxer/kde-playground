@@ -35,9 +35,9 @@
 
 #include <gpgme++/global.h>
 
-class QButtonGroup;
-class QCheckBox;
-class QLabel;
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QLabel>
 
 #include <vector>
 #include <map>

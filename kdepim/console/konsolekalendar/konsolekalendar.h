@@ -35,7 +35,7 @@
 
 #include <QDateTime>
 
-class QTextStream;
+#include <QTextStream>
 
 /**
  * @file konsolekalendar.h

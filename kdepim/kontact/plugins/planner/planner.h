@@ -52,9 +52,9 @@ namespace KontactInterface {
   class Plugin;
 }
 
-class QGridLayout;
-class QLabel;
-class QVBoxLayout;
+#include <QGridLayout>
+#include <QLabel>
+#include <QVBoxLayout>
 
 class Planner : public KontactInterface::Summary
 {

@@ -31,9 +31,9 @@
 #include <QPixmap>
 #include <QVector>
 
-class QObject;
-class QPixmap;
-class QString;
+#include <QObject>
+#include <QPixmap>
+#include <QString>
 
 class timetrackerstorage;
 

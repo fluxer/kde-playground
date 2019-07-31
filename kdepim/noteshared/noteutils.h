@@ -21,7 +21,7 @@
 #include "noteshared_export.h"
 #include <Akonadi/Item>
 #include <QString>
-class QWidget;
+#include <QWidget>
 namespace NoteShared
 {
 namespace NoteUtils {

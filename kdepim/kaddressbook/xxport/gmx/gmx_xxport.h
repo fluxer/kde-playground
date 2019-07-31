@@ -28,7 +28,7 @@
 
 #include "xxport.h"
 
-class QFile;
+#include <QFile>
 
 class GMXXXPort : public XXPort
 {

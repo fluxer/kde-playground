@@ -32,14 +32,14 @@
 
 #include <QtCore/QTimer>
 
-class QCloseEvent;
-class QKeyEvent;
+#include <QCloseEvent>
+#include <QKeyEvent>
 class KActionMenu;
 class KJob;
 class KMMainWidget;
 class KMSearchMessageModel;
-class QAbstractItemModel;
-class QModelIndex;
+#include <QAbstractItemModel>
+#include <QModelIndex>
 
 namespace PimCommon {
 class SelectMultiCollectionDialog;

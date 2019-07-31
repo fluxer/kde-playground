@@ -26,7 +26,7 @@
 #include <QStringList>
 #include <QModelIndex>
 
-class QCheckBox;
+#include <QCheckBox>
 class FindDlg;
 class KFind;
 class KSeparator;

@@ -52,9 +52,9 @@ namespace Akonadi {
   class ETMCalendar;
 }
 
-class QAbstractItemModel;
-class QDrag;
-class QMimeData;
+#include <QAbstractItemModel>
+#include <QDrag>
+#include <QMimeData>
 
 typedef QList<QModelIndex> QModelIndexList;
 

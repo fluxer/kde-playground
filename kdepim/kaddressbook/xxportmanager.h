@@ -30,9 +30,9 @@
 class KJob;
 class KProgressDialog;
 
-class QAction;
-class QItemSelectionModel;
-class QSignalMapper;
+#include <QAction>
+#include <QItemSelectionModel>
+#include <QSignalMapper>
 
 /**
  * @short The class that manages import and export of contacts.

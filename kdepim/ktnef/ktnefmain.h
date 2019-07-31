@@ -19,8 +19,8 @@
 
 #include <KXmlGuiWindow>
 
-class QContextMenuEvent;
-class QTreeWidgetItem;
+#include <QContextMenuEvent>
+#include <QTreeWidgetItem>
 class KRecentFilesAction;
 class KUrl;
 

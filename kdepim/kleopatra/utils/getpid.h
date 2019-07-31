@@ -42,7 +42,7 @@
 # include <unistd.h>
 #endif
 
-class QString;
+#include <QString>
 
 namespace Kleo {
 

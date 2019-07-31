@@ -27,7 +27,7 @@
 
 #include "kabc_export.h"
 
-class QString;
+#include <QString>
 
 namespace KABC {
 

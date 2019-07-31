@@ -23,7 +23,7 @@
 #include "page.h"
 #include "ui_setuppage.h"
 
-class QStandardItemModel;
+#include <QStandardItemModel>
 
 class SetupPage : public Page
 {

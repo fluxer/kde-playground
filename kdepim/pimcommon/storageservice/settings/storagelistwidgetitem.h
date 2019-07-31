@@ -21,8 +21,8 @@
 #include <KPixmapSequence>
 #include <KIcon>
 
-class QTimer;
-class QListWidget;
+#include <QTimer>
+#include <QListWidget>
 namespace PimCommon {
 class StorageListWidgetItemProgress;
 class StorageListWidgetItem : public QListWidgetItem

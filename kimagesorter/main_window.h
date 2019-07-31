@@ -29,7 +29,7 @@
 class PictureWidget;
 class ImageSorter;
 class SortSettingsDialog;
-class QActionGroup;
+#include <QActionGroup>
 
 
 class MainWindow : public KXmlGuiWindow

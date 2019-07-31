@@ -27,11 +27,11 @@
 
 #include "bblistitem.h"
 
-class QListView;
+#include <QListView>
 class BBStringSetModel;
 class KPushButton;
 class BBCollectionTab;
-class QMenu;
+#include <QMenu>
 
 class BBFilterDock: public QDockWidget
 {

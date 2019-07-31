@@ -26,7 +26,7 @@
 #include "kabc/resource.h"
 #include <sys/types.h>
 
-class QFile;
+#include <QFile>
 class KTemporaryFile;
 
 class KJob;

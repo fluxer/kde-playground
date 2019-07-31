@@ -22,7 +22,7 @@
 
 #include <QtCore/QObject>
 
-class QIODevice;
+#include <QIODevice>
 
 /**
  * @short An interface to build data structures from a CSV file.

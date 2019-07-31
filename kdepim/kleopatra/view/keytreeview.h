@@ -42,7 +42,7 @@
 #include <boost/shared_ptr.hpp>
 #include <vector>
 
-class QTreeView;
+#include <QTreeView>
 
 namespace Kleo {
 

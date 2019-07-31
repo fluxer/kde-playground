@@ -20,8 +20,8 @@
 #ifndef AKONADI_TRACERINTERFACE_H
 #define AKONADI_TRACERINTERFACE_H
 
-class QByteArray;
-class QString;
+#include <QByteArray>
+#include <QString>
 
 namespace Akonadi {
 namespace Server {

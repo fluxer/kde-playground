@@ -20,8 +20,8 @@
 
 #include <KDialog>
 
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 class KArchiveEntry;
 class KArchiveDirectory;
 

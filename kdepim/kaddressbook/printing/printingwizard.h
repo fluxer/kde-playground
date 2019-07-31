@@ -35,8 +35,8 @@
 class ContactSelectionWidget;
 class StylePage;
 
-class QItemSelectionModel;
-class QPrinter;
+#include <QItemSelectionModel>
+#include <QPrinter>
 
 namespace Akonadi {
 class Collection;

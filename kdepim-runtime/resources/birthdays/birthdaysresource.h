@@ -27,7 +27,7 @@
 
 #include <QHash>
 
-class QDate;
+#include <QDate>
 
 class BirthdaysResource : public Akonadi::ResourceBase, public Akonadi::AgentBase::Observer
 {

@@ -21,9 +21,9 @@
 #include "pimcommon_export.h"
 #include <QTextEdit>
 
-class QContextMenuEvent;
-class QMenu;
-class QWheelEvent;
+#include <QContextMenuEvent>
+#include <QMenu>
+#include <QWheelEvent>
 namespace Sonnet {
 class Highlighter;
 }

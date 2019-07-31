@@ -29,8 +29,8 @@
 #include "tracedata.h"
 #include "traceitemview.h"
 
-class QAction;
-class QMenu;
+#include <QAction>
+#include <QMenu>
 
 class CallMapView: public TreeMapWidget, public TraceItemView
 {

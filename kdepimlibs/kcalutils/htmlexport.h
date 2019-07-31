@@ -35,7 +35,7 @@ namespace KCalCore {
 class MemoryCalendar;
 }
 
-class QTextStream;
+#include <QTextStream>
 
 namespace KCalUtils {
 

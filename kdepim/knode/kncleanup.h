@@ -21,9 +21,9 @@
 #include <QList>
 #include <KDialog>
 
-class QProgressBar;
-class QCloseEvent;
-class QLabel;
+#include <QProgressBar>
+#include <QCloseEvent>
+#include <QLabel>
 
 class KNFolder;
 

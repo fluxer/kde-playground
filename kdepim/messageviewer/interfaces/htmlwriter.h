@@ -33,8 +33,8 @@
 #ifndef __KMAIL_INTERFACES_HTMLWRITER_H__
 #define __KMAIL_INTERFACES_HTMLWRITER_H__
 
-class QByteArray;
-class QString;
+#include <QByteArray>
+#include <QString>
 
 namespace MessageViewer {
 /**

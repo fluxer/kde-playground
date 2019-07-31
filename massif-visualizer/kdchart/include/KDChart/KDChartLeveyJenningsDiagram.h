@@ -27,9 +27,9 @@
 #include "KDChartLeveyJenningsCoordinatePlane.h"
 
 QT_BEGIN_NAMESPACE
-class QPainter;
-class QPolygonF;
-class QSvgRenderer;
+#include <QPainter>
+#include <QPolygonF>
+#include <QSvgRenderer>
 QT_END_NAMESPACE
 
 namespace KDChart {

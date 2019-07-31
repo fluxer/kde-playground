@@ -25,8 +25,8 @@
 #include <akonadi/collection.h>
 #include <akonadi/item.h>
 
-class QAbstractItemModel;
-class QModelIndex;
+#include <QAbstractItemModel>
+#include <QModelIndex>
 
 namespace Akonadi
 {

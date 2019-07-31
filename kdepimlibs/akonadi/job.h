@@ -26,7 +26,7 @@
 
 #include <kcompositejob.h>
 
-class QString;
+#include <QString>
 
 namespace Akonadi {
 

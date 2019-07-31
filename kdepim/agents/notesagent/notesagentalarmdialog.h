@@ -19,9 +19,9 @@
 #define NOTESAGENTALARMDIALOG_H
 #include <KDialog>
 #include <Akonadi/Item>
-class QListWidget;
-class QLabel;
-class QListWidgetItem;
+#include <QListWidget>
+#include <QLabel>
+#include <QListWidgetItem>
 namespace NoteShared {
 class NoteListWidget;
 }

@@ -26,8 +26,8 @@ namespace PimCommon {
 class RichTextEditorWidget;
 }
 
-class QCheckBox;
-template <typename T> class QList;
+#include <QCheckBox>
+#include <QList>
 
 namespace KMime {
 namespace Types {

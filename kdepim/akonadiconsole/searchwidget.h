@@ -29,9 +29,9 @@ class KJob;
 class KTextBrowser;
 class KTextEdit;
 
-class QListView;
-class QModelIndex;
-class QStringListModel;
+#include <QListView>
+#include <QModelIndex>
+#include <QStringListModel>
 
 class SearchWidget : public QWidget
 {

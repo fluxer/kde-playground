@@ -21,7 +21,7 @@
 #include <KDialog>
 #include <QList>
 class KAboutData;
-class QTreeWidget;
+#include <QTreeWidget>
 class FollowUpReminderInfoWidget;
 namespace FollowUpReminder {
 class FollowUpReminderInfo;

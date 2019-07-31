@@ -26,7 +26,7 @@
 #include <QDateTime>
 #include <kurl.h>
 
-class QString;
+#include <QString>
 
 /**
  Stores entries from export dialog.

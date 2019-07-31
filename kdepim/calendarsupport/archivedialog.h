@@ -33,8 +33,8 @@ class KDateComboBox;
 class KIntNumInput;
 class KUrlRequester;
 
-class QCheckBox;
-class QRadioButton;
+#include <QCheckBox>
+#include <QRadioButton>
 
 namespace Akonadi {
   class IncidenceChanger;

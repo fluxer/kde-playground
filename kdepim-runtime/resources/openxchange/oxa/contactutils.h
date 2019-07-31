@@ -26,8 +26,8 @@
 
 class KJob;
 
-class QDomDocument;
-class QDomElement;
+#include <QDomDocument>
+#include <QDomElement>
 
 namespace OXA {
 

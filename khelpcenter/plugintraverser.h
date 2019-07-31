@@ -24,7 +24,7 @@
 
 #include <QTreeWidget>
 
-class QTreeWidget;
+#include <QTreeWidget>
 
 namespace KHC {
   

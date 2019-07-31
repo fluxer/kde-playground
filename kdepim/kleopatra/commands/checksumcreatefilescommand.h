@@ -39,7 +39,7 @@
 
 #include <gpgme++/global.h>
 
-class QStringList;
+#include <QStringList>
 
 namespace Kleo {
 namespace Commands {

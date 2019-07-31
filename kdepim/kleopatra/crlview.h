@@ -37,11 +37,11 @@
 #include <QString>
 #include <QProcess>
 
-class QTextEdit;
-class QPushButton;
+#include <QTextEdit>
+#include <QPushButton>
 class KProcess;
-class QTimer;
-class QCloseEvent;
+#include <QTimer>
+#include <QCloseEvent>
 
 class CRLView : public QDialog {
   Q_OBJECT

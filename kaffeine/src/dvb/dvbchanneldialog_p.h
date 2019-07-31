@@ -24,8 +24,8 @@
 #include <KDialog>
 #include "dvbchannel.h"
 
-class QCheckBox;
-class QSpinBox;
+#include <QCheckBox>
+#include <QSpinBox>
 class KComboBox;
 class KLineEdit;
 class DvbChannelTableModel;

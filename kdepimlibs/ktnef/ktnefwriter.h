@@ -31,12 +31,12 @@
 #ifndef KTNEFWRITER_H
 #define KTNEFWRITER_H
 
-class QString;
-class QVariant;
-class QIODevice;
-class QDataStream;
-class QDateTime;
-class QStringList;
+#include <QString>
+#include <QVariant>
+#include <QIODevice>
+#include <QDataStream>
+#include <QDateTime>
+#include <QStringList>
 
 #include "ktnef_export.h"
 #include <qglobal.h>

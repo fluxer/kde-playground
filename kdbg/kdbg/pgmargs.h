@@ -13,7 +13,7 @@
 #include <map>
 #include "envvar.h"
 
-class QStringList;
+#include <QStringList>
 
 class PgmArgs : public QDialog, private Ui::PgmArgsBase
 {

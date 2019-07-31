@@ -35,7 +35,7 @@ class KMenu;
 class KConfig;
 class KConfigGroup;
 
-class QAction;
+#include <QAction>
 
 namespace KPIM
 {

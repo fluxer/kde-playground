@@ -27,7 +27,7 @@
 #include <QListView>
 
 class KXMLGUIClient;
-class QDragMoveEvent;
+#include <QDragMoveEvent>
 
 namespace Akonadi
 {

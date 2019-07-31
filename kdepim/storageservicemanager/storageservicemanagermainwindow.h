@@ -29,7 +29,7 @@ class StorageServiceManager;
 }
 
 class KAction;
-class QLabel;
+#include <QLabel>
 class StorageServiceManagerMainWidget;
 class StorageServiceManagerMainWindow : public KXmlGuiWindow
 {

@@ -31,7 +31,7 @@
 #include <QSet>
 #include <QModelIndex>
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 class CheckableProxyModel;
 class KSelectionProxyModel;
 

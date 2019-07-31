@@ -24,7 +24,7 @@
 
 #include <QObject>
 
-class QFile;
+#include <QFile>
 class KJob;
 
 /**

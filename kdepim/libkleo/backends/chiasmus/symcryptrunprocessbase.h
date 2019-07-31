@@ -35,7 +35,7 @@
 
 #include <kprocess.h>
 
-class QString;
+#include <QString>
 
 namespace Kleo {
 

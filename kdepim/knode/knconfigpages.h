@@ -18,7 +18,7 @@
 #include <kcmodule.h>
 
 
-class QTabWidget;
+#include <QTabWidget>
 
 namespace KNode {
 

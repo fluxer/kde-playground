@@ -28,7 +28,7 @@
 
 #include <QtCore/QObject>
 
-template <class T,class S> class QMap;
+#include <QMap>
 
 class KTimeZone;
 class KUrl;

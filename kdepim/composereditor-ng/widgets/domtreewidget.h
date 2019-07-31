@@ -24,7 +24,7 @@
 #include "composereditor_export.h"
 
 #include <QWidget>
-class QTreeWidget;
+#include <QTreeWidget>
 class QWebView;
 
 namespace ComposerEditorNG

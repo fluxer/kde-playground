@@ -32,9 +32,9 @@
 
 #include "kdganttglobal.h"
 
-class QAbstractProxyModel;
-class QItemSelectionModel;
-class QPrinter;
+#include <QAbstractProxyModel>
+#include <QItemSelectionModel>
+#include <QPrinter>
 
 namespace KDGantt {
     class AbstractGrid;

@@ -23,7 +23,7 @@
 #include <QList>
 #include <QStringList>
 
-class QFile;
+#include <QFile>
 
 namespace MailCommon {
 

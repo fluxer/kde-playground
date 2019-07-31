@@ -26,7 +26,7 @@
 
 #include "akonadi-kmime_export.h"
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 
 namespace Akonadi {
 

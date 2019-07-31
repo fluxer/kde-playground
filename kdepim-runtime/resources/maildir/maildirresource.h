@@ -23,8 +23,8 @@
 #include <akonadi/collection.h>
 #include <akonadi/resourcebase.h>
 
-class QTimer;
-class QFileInfo;
+#include <QTimer>
+#include <QFileInfo>
 class KDirWatch;
 namespace Akonadi_Maildir_Resource
 {

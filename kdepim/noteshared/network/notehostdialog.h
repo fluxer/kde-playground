@@ -36,8 +36,8 @@
 #include <kdialog.h>
 #include "noteshared_export.h"
 class KHistoryComboBox;
-class QTreeView;
-class QModelIndex;
+#include <QTreeView>
+#include <QModelIndex>
 
 
 /**

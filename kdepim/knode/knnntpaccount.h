@@ -22,7 +22,7 @@
 #include <QObject>
 #include <QDate>
 
-class QTimer;
+#include <QTimer>
 class KNNntpAccount;
 namespace KNode {
   class Cleanup;

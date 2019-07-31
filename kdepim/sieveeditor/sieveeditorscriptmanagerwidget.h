@@ -25,7 +25,7 @@
 #include <KUrl>
 
 class SieveEditorManageSieveWidget;
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 class SieveEditorScriptManagerWidget : public QWidget
 {
     Q_OBJECT

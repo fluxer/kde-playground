@@ -23,7 +23,7 @@ class SnippetsManager;
 class KActionCollection;
 class KMComposerEditor;
 
-class QContextMenuEvent;
+#include <QContextMenuEvent>
 
 /**
  * @author Robert Gruber

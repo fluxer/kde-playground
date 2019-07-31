@@ -24,7 +24,7 @@
 
 
 class ImportWizard;
-class QDomElement;
+#include <QDomElement>
 
 class EvolutionSettings : public AbstractSettings
 {

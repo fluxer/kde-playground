@@ -22,8 +22,8 @@
 #ifndef OXA_FOLDERUTILS_H
 #define OXA_FOLDERUTILS_H
 
-class QDomDocument;
-class QDomElement;
+#include <QDomDocument>
+#include <QDomElement>
 
 namespace OXA {
 

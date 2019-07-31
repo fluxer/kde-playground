@@ -26,8 +26,8 @@
 
 #include <QWidget>
 
-class QModelIndex;
-class QTreeView;
+#include <QModelIndex>
+#include <QTreeView>
 
 class EntityTreeWidget;
 

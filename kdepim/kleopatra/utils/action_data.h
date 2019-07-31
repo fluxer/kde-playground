@@ -35,7 +35,7 @@
 
 #include <QString>
 
-class QObject;
+#include <QObject>
 class KAction;
 class KActionCollection;
 

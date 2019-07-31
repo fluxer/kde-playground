@@ -42,14 +42,14 @@
 #include <QList>
 #include <QMap>
 
-class QDragEnterEvent;
-class QHideEvent;
-class QShowEvent;
-class QResizeEvent;
-class QDropEvent;
-class QCloseEvent;
-class QSplitter;
-class QMenu;
+#include <QDragEnterEvent>
+#include <QHideEvent>
+#include <QShowEvent>
+#include <QResizeEvent>
+#include <QDropEvent>
+#include <QCloseEvent>
+#include <QSplitter>
+#include <QMenu>
 class KAction;
 class KToggleAction;
 class KToolBarPopupAction;

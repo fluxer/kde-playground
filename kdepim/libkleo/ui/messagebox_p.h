@@ -35,7 +35,7 @@
 
 #include <KDialog>
 
-class QString;
+#include <QString>
 class KTextEdit;
 
 namespace Kleo {

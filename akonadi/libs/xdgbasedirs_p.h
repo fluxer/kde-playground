@@ -27,7 +27,7 @@
 #include "akonadiprotocolinternals_export.h"
 
 // forward declarations
-class QString;
+#include <QString>
 
 namespace Akonadi {
 

@@ -34,7 +34,7 @@
 
 class KJob;
 class KTemporaryFile;
-class QByteArray;
+#include <QByteArray>
 namespace KIO {
 class Job;
 }

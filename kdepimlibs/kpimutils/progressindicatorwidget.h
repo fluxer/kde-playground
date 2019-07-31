@@ -26,7 +26,7 @@
 
 #include <QLabel>
 
-class QTimer;
+#include <QTimer>
 namespace KPIMUtils {
 class ProgressIndicatorWidgetPrivate;
 class ProgressIndicatorWidget;

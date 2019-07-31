@@ -32,7 +32,7 @@
 #include <QList>
 #include <QString>
 
-class QDate;
+#include <QDate>
 
 class SummaryEventInfo
 {

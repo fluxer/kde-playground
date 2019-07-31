@@ -50,8 +50,8 @@ namespace GpgME {
     class Key;
 }
 
-class QFileInfo;
-template <typename T> class QList;
+#include <QFileInfo>
+#include <QList>
 typedef QList<QFileInfo> QFileInfoList;
 
 namespace Kleo {

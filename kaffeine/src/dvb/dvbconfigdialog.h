@@ -23,14 +23,14 @@
 
 #include <KDialog>
 
-class QBoxLayout;
-class QButtonGroup;
-class QCheckBox;
-class QGridLayout;
-class QLabel;
-class QProgressBar;
-class QSpinBox;
-class QTreeWidget;
+#include <QBoxLayout>
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QGridLayout>
+#include <QLabel>
+#include <QProgressBar>
+#include <QSpinBox>
+#include <QTreeWidget>
 class KComboBox;
 class KJob;
 class KLineEdit;

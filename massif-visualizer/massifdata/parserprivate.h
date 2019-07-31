@@ -28,7 +28,7 @@
 #include <QtCore/QSet>
 #include <QVector>
 
-class QIODevice;
+#include <QIODevice>
 
 namespace Massif {
 

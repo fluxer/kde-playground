@@ -34,19 +34,19 @@
 #include <kdialog.h>      // base class of all dialogs here
 #include <kpassworddialog.h>
 
-class QString;
-class QRegExp;
-class QByteArray;
-class QCheckBox;            // needed by Config, KeySelectionDialog
-class QTextEdit;            // needed by CipherTextDialog
-class QComboBox;            // needed by Config
-class QPixmap;              // needed by KeySelectionDialog
-class QPushButton;          // needed by KeyRequester
-class QTimer;               // needed by KeySelectionDialog
-class QGroupBox;
-class QTreeWidgetItem;
+#include <QString>
+#include <QRegExp>
+#include <QByteArray>
+#include <QCheckBox>            // needed by Config, KeySelectionDialog
+#include <QTextEdit>            // needed by CipherTextDialog
+#include <QComboBox>            // needed by Config
+#include <QPixmap>              // needed by KeySelectionDialog
+#include <QPushButton>          // needed by KeyRequester
+#include <QTimer>               // needed by KeySelectionDialog
+#include <QGroupBox>
+#include <QTreeWidgetItem>
 
-class QTreeWidget;          // needed by KeySelectionDialog
+#include <QTreeWidget>          // needed by KeySelectionDialog
 class KPasswordEdit;        // needed by PassphraseDialog
 
 namespace Kpgp {

@@ -26,7 +26,7 @@
 
 class KConfigBase;
 class KConfig;
-class QStringList;
+#include <QStringList>
 
 namespace KPIMIdentities
 {

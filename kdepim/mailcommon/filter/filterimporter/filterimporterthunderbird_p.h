@@ -22,7 +22,7 @@
 #include "mailcommon_export.h"
 #include <QTextStream>
 
-class QFile;
+#include <QFile>
 
 namespace MailCommon {
 

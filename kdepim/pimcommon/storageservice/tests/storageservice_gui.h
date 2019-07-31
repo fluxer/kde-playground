@@ -20,7 +20,7 @@
 
 #include <QWidget>
 #include <KDialog>
-class QTextEdit;
+#include <QTextEdit>
 namespace PimCommon {
 class StorageServiceManager;
 class StorageServiceSettingsWidget;

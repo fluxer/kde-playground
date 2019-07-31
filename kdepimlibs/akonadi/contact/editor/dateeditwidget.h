@@ -28,8 +28,8 @@
 
 class KDatePickerPopup;
 
-class QContextMenuEvent;
-class QToolButton;
+#include <QContextMenuEvent>
+#include <QToolButton>
 
 class DateView : public QLabel
 {

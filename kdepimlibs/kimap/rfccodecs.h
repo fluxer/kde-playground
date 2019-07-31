@@ -37,7 +37,7 @@
 
 #include "kimap_export.h"
 
-class QTextCodec;
+#include <QTextCodec>
 
 namespace KIMAP {
 

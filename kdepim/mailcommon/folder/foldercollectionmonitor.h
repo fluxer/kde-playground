@@ -26,7 +26,7 @@
 #include <QModelIndex>
 #include <QObject>
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 
 namespace Akonadi {
 class ChangeRecorder;

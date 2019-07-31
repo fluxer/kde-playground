@@ -29,7 +29,7 @@
 #include <akonadi/collection.h>
 #include <akonadi/item.h>
 
-class QDomElement;
+#include <QDomElement>
 
 class KJotsMigrator : public KMigratorBase
 {

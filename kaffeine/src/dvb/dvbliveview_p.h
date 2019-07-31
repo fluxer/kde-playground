@@ -27,7 +27,7 @@
 #include "dvbepg.h"
 #include "dvbsi.h"
 
-class QSocketNotifier;
+#include <QSocketNotifier>
 
 class DvbOsd : public OsdObject
 {

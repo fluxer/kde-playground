@@ -39,9 +39,9 @@ namespace KontactInterface {
   class Plugin;
 }
 
-class QDate;
-class QGridLayout;
-class QLabel;
+#include <QDate>
+#include <QGridLayout>
+#include <QLabel>
 class SDEntry;
 class KJob;
 

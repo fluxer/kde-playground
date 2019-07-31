@@ -29,7 +29,7 @@
 #include <QDate>
 #include <QObject>
 
-class QTimer;
+#include <QTimer>
 
 class DateChecker: public QObject
 {

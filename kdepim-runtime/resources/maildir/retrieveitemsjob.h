@@ -26,7 +26,7 @@
 
 #include "maildir.h"
 
-class QDirIterator;
+#include <QDirIterator>
 namespace Akonadi
 {
 class TransactionSequence;

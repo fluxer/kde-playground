@@ -23,7 +23,7 @@
 #include "shootmode.h"
 #include <QPointer>
 
-class QPushButton;
+#include <QPushButton>
 
 class PhotoShootMode : public ShootMode
 {

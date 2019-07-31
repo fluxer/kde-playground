@@ -29,7 +29,7 @@
 
 #include "indexfinder.h"
 
-template<typename T> class QList;
+#include <QList>
 
 class ModelMoveCommand;
 

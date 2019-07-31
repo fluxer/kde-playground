@@ -25,8 +25,8 @@
 
 class KComboBox;
 
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 namespace CalendarSupport {
 

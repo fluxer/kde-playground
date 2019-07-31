@@ -35,11 +35,11 @@
 
 #include <QByteArray>
 
-class QWidget;
-class QStackedWidget;
-class QByteArray;
-class QString;
-class QObject;
+#include <QWidget>
+#include <QStackedWidget>
+#include <QByteArray>
+#include <QString>
+#include <QObject>
 
 namespace MailCommon {
 

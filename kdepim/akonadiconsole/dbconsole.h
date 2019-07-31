@@ -22,7 +22,7 @@
 
 #include "ui_dbconsole.h"
 
-class QSqlQueryModel;
+#include <QSqlQueryModel>
 
 class DbConsole : public QWidget
 {

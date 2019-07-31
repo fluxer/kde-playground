@@ -23,7 +23,7 @@
 
 #include <QObject>
 
-class QLocalSocket;
+#include <QLocalSocket>
 
 class Connection : public QObject
 {

@@ -33,7 +33,7 @@ typedef KBiHash<qint64, QModelIndex> ParentMapping;
 #define KDO(object) kDebug() << #object << object
 #define SON(object) object->setObjectName(#object)
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 
 class KSelectionProxyModel;
 

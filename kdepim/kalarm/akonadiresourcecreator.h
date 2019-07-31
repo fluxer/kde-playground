@@ -31,7 +31,7 @@
 
 using namespace KAlarmCal;
 
-class QWidget;
+#include <QWidget>
 class KJob;
 
 class AkonadiResourceCreator : public QObject

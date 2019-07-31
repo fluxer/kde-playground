@@ -42,7 +42,7 @@
 #include <KDABLibFakes>
 
 QT_BEGIN_NAMESPACE
-class QSvgRenderer;
+#include <QSvgRenderer>
 QT_END_NAMESPACE
 
 namespace KDChart {

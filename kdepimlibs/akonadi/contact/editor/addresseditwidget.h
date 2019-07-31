@@ -29,8 +29,8 @@
 #include <kcombobox.h>
 #include <kdialog.h>
 
-class QCheckBox;
-class QLabel;
+#include <QCheckBox>
+#include <QLabel>
 
 class KLineEdit;
 class KTextEdit;

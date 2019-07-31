@@ -23,8 +23,8 @@
 
 #include <QWidget>
 
-class QResizeEvent;
-class QLabel;
+#include <QResizeEvent>
+#include <QLabel>
 
 
 class PictureWidget : public QWidget

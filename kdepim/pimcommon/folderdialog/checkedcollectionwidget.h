@@ -22,9 +22,9 @@
 #include <QWidget>
 #include "pimcommon_export.h"
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 class KRecursiveFilterProxyModel;
-class QTreeView;
+#include <QTreeView>
 class KCheckableProxyModel;
 
 namespace Akonadi {

@@ -23,12 +23,12 @@
 #include "kaddressbook_export.h"
 
 #include <Akonadi/Item>
-class QLabel;
+#include <QLabel>
 namespace KAddressBookGrantlee {
 class GrantleeContactViewer;
 }
 
-class QStackedWidget;
+#include <QStackedWidget>
 namespace KABMergeContacts {
 class KADDRESSBOOK_EXPORT MergeContactInfoWidget : public QWidget
 {

@@ -38,7 +38,7 @@ namespace Akonadi {
   class CollectionComboBox;
 }
 
-class QRadioButton;
+#include <QRadioButton>
 
 class KCM_KORGANIZER_EXPORT KOPrefsDialogMain : public KPIM::KPrefsModule
 {

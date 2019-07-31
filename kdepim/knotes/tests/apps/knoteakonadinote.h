@@ -19,8 +19,8 @@
 #define KNOTEAKONADINOTE_H
 
 #include <QFrame>
-class QTextEdit;
-class QLineEdit;
+#include <QTextEdit>
+#include <QLineEdit>
 class KNoteAkonadiNote : public QFrame
 {
     Q_OBJECT

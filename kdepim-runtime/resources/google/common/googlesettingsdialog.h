@@ -31,9 +31,9 @@ class GoogleResource;
 class GoogleSettings;
 class GoogleAccountManager;
 
-class QGroupBox;
+#include <QGroupBox>
 class KComboBox;
-class QCheckBox;
+#include <QCheckBox>
 class KIntSpinBox;
 
 

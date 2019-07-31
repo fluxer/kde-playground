@@ -28,7 +28,7 @@
 #include "itemselection.h"
 #include <QItemSelectionModel>
 
-class QSortFilterProxyModel;
+#include <QSortFilterProxyModel>
 class TripComponentFactory;
 class TripModel;
 

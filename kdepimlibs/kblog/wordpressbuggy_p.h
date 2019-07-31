@@ -29,8 +29,8 @@
 #include <kxmlrpcclient/client.h>
 
 class KJob;
-class QByteArray;
-template <class T,class S>class QMap;
+#include <QByteArray>
+#include <QMap>
 
 namespace KIO
 {

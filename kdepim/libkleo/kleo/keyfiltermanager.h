@@ -46,11 +46,11 @@ namespace GpgME {
   class Key;
 }
 
-class QAbstractItemModel;
-class QModelIndex;
-class QFont;
-class QColor;
-class QIcon;
+#include <QAbstractItemModel>
+#include <QModelIndex>
+#include <QFont>
+#include <QColor>
+#include <QIcon>
 
 namespace Kleo {
 

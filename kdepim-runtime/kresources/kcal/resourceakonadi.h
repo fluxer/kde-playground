@@ -32,7 +32,7 @@ namespace Akonadi {
 
 class KJob;
 
-class QModelIndex;
+#include <QModelIndex>
 
 namespace KCal {
 

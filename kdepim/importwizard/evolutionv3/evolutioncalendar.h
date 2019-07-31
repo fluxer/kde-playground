@@ -20,7 +20,7 @@
 
 #include "abstractcalendar.h"
 
-class QDomElement;
+#include <QDomElement>
 
 class ImportWizard;
 

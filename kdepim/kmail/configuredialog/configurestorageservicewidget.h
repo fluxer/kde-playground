@@ -19,7 +19,7 @@
 #define CONFIGURESTORAGESERVICEWIDGET_H
 
 #include <QWidget>
-class QPushButton;
+#include <QPushButton>
 namespace PimCommon {
 class StorageServiceSettingsWidget;
 }

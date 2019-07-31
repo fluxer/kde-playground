@@ -25,7 +25,7 @@
 
 #include <qstring.h>
 
-class QIODevice;
+#include <QIODevice>
 
 typedef unsigned long long uint64;
 typedef long long int64;

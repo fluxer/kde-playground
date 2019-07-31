@@ -22,7 +22,7 @@
 
 #include "objecttreesourceif.h"
 
-class QString;
+#include <QString>
 
 namespace MessageViewer {
 

@@ -34,7 +34,7 @@
 #include "kcal_export.h"
 #include <QtCore/QString>
 
-class QDate;
+#include <QDate>
 
 namespace KCal {
 

@@ -26,7 +26,7 @@
 
 #include "messageviewer/globalsettings_base.h"
 
-class QTimer;
+#include <QTimer>
 
 namespace MessageViewer {
 

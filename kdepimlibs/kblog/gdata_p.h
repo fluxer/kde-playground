@@ -28,9 +28,9 @@
 #include <syndication/loader.h>
 
 class KJob;
-class QDateTime;
-class QByteArray;
-template <class T,class S>class QMap;
+#include <QDateTime>
+#include <QByteArray>
+#include <QMap>
 
 namespace KIO
 {

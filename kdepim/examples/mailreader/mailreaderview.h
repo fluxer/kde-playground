@@ -10,7 +10,7 @@
 
 #include "ui_mailreaderview.h"
 
-class QPainter;
+#include <QPainter>
 class KUrl;
 
 namespace MessageViewer {

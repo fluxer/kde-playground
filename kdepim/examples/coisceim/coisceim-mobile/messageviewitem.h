@@ -22,7 +22,7 @@
 
 #include <mobile/lib/declarativeakonadiitem.h>
 
-class QSortFilterProxyModel;
+#include <QSortFilterProxyModel>
 class KUrl;
 
 namespace Akonadi {

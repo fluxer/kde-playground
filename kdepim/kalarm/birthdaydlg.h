@@ -26,8 +26,8 @@
 #include <klineedit.h>
 #include <QVector>
 
-class QFocusEvent;
-class QTreeView;
+#include <QFocusEvent>
+#include <QTreeView>
 class CheckBox;
 class FontColourButton;
 class SoundPicker;

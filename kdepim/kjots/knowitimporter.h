@@ -22,7 +22,7 @@
 #ifndef KNOWITIMPORTER_H
 #define KNOWITIMPORTER_H
 
-class QDomElement;
+#include <QDomElement>
 
 #include <QHash>
 #include <QDomDocument>

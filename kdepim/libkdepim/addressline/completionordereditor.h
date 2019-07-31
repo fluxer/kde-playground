@@ -37,9 +37,9 @@
 #include <KDE/KDialog>
 
 class KPushButton;
-class QAbstractItemModel;
-class QModelIndex;
-class QTreeWidget;
+#include <QAbstractItemModel>
+#include <QModelIndex>
+#include <QTreeWidget>
 
 namespace KLDAP {
 class LdapClientSearch;

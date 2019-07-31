@@ -4,8 +4,8 @@
 #include <QtCore/QString>
 #include <QtCore/QVector>
 
-class QByteArray;
-class QIODevice;
+#include <QByteArray>
+#include <QIODevice>
 class KComponentData;
 
 void fillInstance(KComponentData &ins, const QString &srcdir = QString() );

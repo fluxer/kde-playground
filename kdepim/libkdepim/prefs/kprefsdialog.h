@@ -42,12 +42,12 @@ class KDateComboBox;
 class KTimeComboBox;
 class KUrlRequester;
 
-class QCheckBox;
-class QLabel;
-class QSpinBox;
-class QTimeEdit;
-class QButtonGroup;
-class QGroupBox;
+#include <QCheckBox>
+#include <QLabel>
+#include <QSpinBox>
+#include <QTimeEdit>
+#include <QButtonGroup>
+#include <QGroupBox>
 
 namespace KPIM {
 

@@ -29,7 +29,7 @@
 
 #include <KJob>
 
-class QTextStream;
+#include <QTextStream>
 
 namespace KOrg {
 

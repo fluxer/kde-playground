@@ -63,10 +63,10 @@ namespace GpgME {
   class KeyListResult;
 }
 
-class QStringList;
-class QString;
-class QPushButton;
-class QLabel;
+#include <QStringList>
+#include <QString>
+#include <QPushButton>
+#include <QLabel>
 
 namespace Kleo {
 

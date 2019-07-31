@@ -27,8 +27,8 @@
 
 #include <KRichTextWidget>
 
-class QItemSelection;
-class QItemSelectionModel;
+#include <QItemSelection>
+#include <QItemSelectionModel>
 
 class KActionCollection;
 

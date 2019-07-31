@@ -24,7 +24,7 @@
 #include <QVariantList>
 #include "kdemacros.h"
 
-class QAction;
+#include <QAction>
 class KUrl;
 class KamosoJob;
 

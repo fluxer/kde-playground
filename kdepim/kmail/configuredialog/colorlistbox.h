@@ -25,10 +25,10 @@
 
 #include <QTreeWidget>
 
-class QDragLeaveEvent;
-class QDropEvent;
-class QDragMoveEvent;
-class QDragLeaveEvent;
+#include <QDragLeaveEvent>
+#include <QDropEvent>
+#include <QDragMoveEvent>
+#include <QDragLeaveEvent>
 
 class ColorListBox : public QTreeWidget
 {

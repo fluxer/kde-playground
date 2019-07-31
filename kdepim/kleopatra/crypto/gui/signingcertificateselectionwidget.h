@@ -38,7 +38,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-template <typename K, typename U> class QMap;
+#include <QMap>
 
 namespace GpgME {
     class Key;

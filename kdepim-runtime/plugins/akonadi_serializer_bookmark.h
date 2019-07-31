@@ -24,8 +24,8 @@
 
 #include <akonadi/itemserializerplugin.h>
 
-class QIODevice;
-class QString;
+#include <QIODevice>
+#include <QString>
 
 namespace Akonadi {
 

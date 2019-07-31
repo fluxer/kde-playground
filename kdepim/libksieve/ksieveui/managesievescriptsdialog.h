@@ -26,7 +26,7 @@
 
 #include <QMap>
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 class KPushButton;
 
 namespace KManageSieve {

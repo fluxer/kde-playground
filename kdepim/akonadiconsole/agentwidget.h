@@ -27,9 +27,9 @@
 #include <akonadi/agentinstance.h>
 
 class KJob;
-class QMenu;
-class QPoint;
-class QResizeEvent;
+#include <QMenu>
+#include <QPoint>
+#include <QResizeEvent>
 
 class AgentWidget : public QWidget
 {

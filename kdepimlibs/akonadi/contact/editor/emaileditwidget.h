@@ -31,7 +31,7 @@ class Addressee;
 
 class KLineEdit;
 class KListWidget;
-class QToolButton;
+#include <QToolButton>
 
 /**
  * @short A widget for editing email addresses.

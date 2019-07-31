@@ -22,12 +22,12 @@
 
 #include <QWidget>
 
-class QModelIndex;
+#include <QModelIndex>
 
-class QComboBox;
-class QPlainTextEdit;
-class QTreeView;
-class QRadioButton;
+#include <QComboBox>
+#include <QPlainTextEdit>
+#include <QTreeView>
+#include <QRadioButton>
 
 class DynamicTreeModel;
 

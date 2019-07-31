@@ -68,7 +68,7 @@
 #include <QDataStream>
 
 class KUrl;
-class QDate;
+#include <QDate>
 
 namespace KCalCore {
 

@@ -25,7 +25,7 @@
 
 #include <utils/kdtoolsglobal.h>
 
-class QObject;
+#include <QObject>
 
 class KDSignalBlocker {
     Q_DISABLE_COPY( KDSignalBlocker )

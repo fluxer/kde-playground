@@ -24,7 +24,7 @@
 #include <QPointer>
 
 
-class QWidget;
+#include <QWidget>
 namespace KSieveUi {
 class MultiImapVacationManager;
 class MultiImapVacationDialog;

@@ -28,7 +28,7 @@
 
 class KComboBox;
 class KLineEdit;
-class QButtonGroup;
+#include <QButtonGroup>
 
 namespace KPIMIdentities {
 class IdentityManager;

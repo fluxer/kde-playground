@@ -26,8 +26,8 @@
 
 #include "holidays.h"
 
-class QString;
-class QDate;
+#include <QString>
+#include <QDate>
 
 class HolidayRegionTest : public QObject
 {

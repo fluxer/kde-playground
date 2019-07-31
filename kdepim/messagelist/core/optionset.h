@@ -23,7 +23,7 @@
 
 #include <QString>
 
-class QDataStream;
+#include <QDataStream>
 
 namespace MessageList
 {

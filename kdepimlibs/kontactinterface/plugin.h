@@ -36,10 +36,10 @@ class KAboutData;
 class KAction;
 class KConfig;
 class KConfigGroup;
-class QDropEvent;
-class QMimeData;
-class QStringList;
-class QWidget;
+#include <QDropEvent>
+#include <QMimeData>
+#include <QStringList>
+#include <QWidget>
 namespace KParts {
   class ReadOnlyPart;
 }

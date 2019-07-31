@@ -32,7 +32,7 @@
  * Util functions that have no place to live.
  */
 
-class QWidget;
+#include <QWidget>
 
 namespace Akonadi {
 namespace CalendarUtils {

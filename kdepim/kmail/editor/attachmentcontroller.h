@@ -26,7 +26,7 @@
 #include "attachment/attachmentcontrollerbase.h"
 
 class KMComposeWin;
-class QModelIndex;
+#include <QModelIndex>
 namespace MessageComposer {
 class AttachmentModel;
 }

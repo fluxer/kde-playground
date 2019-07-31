@@ -51,7 +51,7 @@ class VerifyOpaqueJob;
 class KeyListJob;
 }
 
-class QStringList;
+#include <QStringList>
 
 namespace MessageViewer {
 

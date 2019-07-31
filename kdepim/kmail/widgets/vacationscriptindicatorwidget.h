@@ -19,8 +19,8 @@
 #define VACATIONSCRIPTINDICATORWIDGET_H
 
 #include <QLabel>
-class QHBoxLayout;
-class QLabel;
+#include <QHBoxLayout>
+#include <QLabel>
 namespace KMail {
 
 class ServerLabel : public QLabel

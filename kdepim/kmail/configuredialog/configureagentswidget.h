@@ -20,11 +20,11 @@
 
 #include <QWidget>
 
-class QTreeWidget;
-class QSplitter;
+#include <QTreeWidget>
+#include <QSplitter>
 class KTextEdit;
-class QTreeWidgetItem;
-class QPushButton;
+#include <QTreeWidgetItem>
+#include <QPushButton>
 class ConfigureAgentsWidget : public QWidget
 {
     Q_OBJECT

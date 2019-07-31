@@ -24,8 +24,8 @@
 
 #include <KDialog>
 
-class QString;
-class QLabel;
+#include <QString>
+#include <QLabel>
 
 // Mostly stolen from kdelibs/kdeui/findreplace/kreplace.cpp
 class KJotsReplaceNextDialog : public KDialog

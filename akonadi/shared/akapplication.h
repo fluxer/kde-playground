@@ -26,8 +26,8 @@
 #include <boost/program_options.hpp>
 #endif
 
-class QCoreApplication;
-class QApplication;
+#include <QCoreApplication>
+#include <QApplication>
 
 /**
  * D-Bus session bus monitoring and command line handling.

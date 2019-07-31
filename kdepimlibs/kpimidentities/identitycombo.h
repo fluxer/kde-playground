@@ -33,7 +33,7 @@
 #include "kpimidentities_export.h"
 #include <QComboBox>
 
-class QString;
+#include <QString>
 
 namespace KPIMIdentities
 {

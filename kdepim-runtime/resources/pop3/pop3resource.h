@@ -31,7 +31,7 @@ class Wallet;
 }
 
 class POPSession;
-class QTimer;
+#include <QTimer>
 
 class POP3Resource : public Akonadi::ResourceBase,
                      public Akonadi::AgentBase::Observer

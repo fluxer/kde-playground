@@ -29,7 +29,7 @@
 
 class KDateTime;
 class KGuiItem;
-class QWidget;
+#include <QWidget>
 
 namespace KCalUtils {
 

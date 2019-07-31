@@ -25,7 +25,7 @@
 #include <QObject>
 #include <QStringList>
 
-class QSignalMapper;
+#include <QSignalMapper>
 
 class KActionCollection;
 class KAction;

@@ -21,8 +21,8 @@
 
 #include "abstractaddressbook.h"
 #include <QHash>
-class QDir;
-class QString;
+#include <QDir>
+#include <QString>
 
 
 class ImportWizard;

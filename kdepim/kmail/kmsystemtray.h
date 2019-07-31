@@ -25,7 +25,7 @@
 #include <QAction>
 #include <QAbstractItemModel>
 
-class QMenu;
+#include <QMenu>
 
 /**
  * KMSystemTray extends KStatusNotifierItem and handles system

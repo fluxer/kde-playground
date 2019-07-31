@@ -23,7 +23,7 @@
 #include <KDialog>
 #include <akonadi/collection.h>
 
-class QLabel;
+#include <QLabel>
 class KLineEdit;
 
 class RenameFavoriteDialog : public KDialog

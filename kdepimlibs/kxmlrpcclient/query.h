@@ -29,7 +29,7 @@
 #include <QtCore/QMap>
 #include <kio/job.h>
 
-class QString;
+#include <QString>
 
 /** Namespace for XmlRpc related classes */
 namespace KXmlRpc {

@@ -34,9 +34,9 @@
 #include <QtCore/QHash>
 #include <QtCore/QMap>
 
-class QCheckBox;
-class QPushButton;
-class QString;
+#include <QCheckBox>
+#include <QPushButton>
+#include <QString>
 
 class KComboBox;
 class KLineEdit;

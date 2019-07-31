@@ -24,7 +24,7 @@
 
 #include <akonadi/collectionpropertiespage.h>
 
-template <typename T> class QSharedPointer;
+#include <QSharedPointer>
 
 class KKeySequenceWidget;
 

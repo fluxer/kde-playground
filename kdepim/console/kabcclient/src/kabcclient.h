@@ -29,7 +29,7 @@
 class FormatFactory;
 class InputFormat;
 class OutputFormat;
-class QTextCodec;
+#include <QTextCodec>
 
 namespace KABC
 {

@@ -12,13 +12,13 @@
 #include <kxmlguiwindow.h>
 #include "regwnd.h"
 
-class QDockWidget;
-class QProcess;
+#include <QDockWidget>
+#include <QProcess>
 class KAnimatedButton;
 class KRecentFilesAction;
 class KUrl;
 class WinStack;
-class QListWidget;
+#include <QListWidget>
 class ExprWnd;
 class BreakpointTable;
 class ThreadList;

@@ -25,7 +25,7 @@
 
 #include "radiobutton.h"
 
-class QPushButton;
+#include <QPushButton>
 class ButtonGroup;
 class LineEdit;
 

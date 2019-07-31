@@ -35,7 +35,7 @@ namespace Akonadi {
 
 class KOEventPopupMenu;
 
-class QMenu;
+#include <QMenu>
 
 /**
   KOEventView is the abstract base class from which all other

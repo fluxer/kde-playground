@@ -24,7 +24,7 @@
 
 //KDE
 class KMenu;
-class QListWidget;
+#include <QListWidget>
 
 //local
 #include "ui_kfilereplaceviewwdg.h"

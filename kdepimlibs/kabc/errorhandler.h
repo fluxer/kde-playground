@@ -25,7 +25,7 @@
 #include "kabc_export.h"
 #include <QtCore/QString>
 
-class QWidget;
+#include <QWidget>
 
 namespace KABC {
 

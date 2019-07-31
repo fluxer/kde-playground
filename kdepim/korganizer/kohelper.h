@@ -36,8 +36,8 @@ namespace Akonadi {
   class Item;
 }
 
-class QColor;
-class QDate;
+#include <QColor>
+#include <QDate>
 
 // Provides static methods that are useful to all views.
 

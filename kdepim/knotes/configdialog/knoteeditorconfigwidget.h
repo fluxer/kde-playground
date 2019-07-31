@@ -21,7 +21,7 @@
 
 #include <QWidget>
 class KIntNumInput;
-class QCheckBox;
+#include <QCheckBox>
 class KFontRequester;
 namespace NoteShared {
 class NoteDisplayAttribute;

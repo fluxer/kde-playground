@@ -30,8 +30,8 @@ namespace KABC {
 class Addressee;
 }
 
-class QPushButton;
-class QTreeView;
+#include <QPushButton>
+#include <QTreeView>
 
 void splitCustomField(const QString &str, QString &app, QString &name, QString &value);
 

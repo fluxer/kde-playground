@@ -25,9 +25,9 @@
 
 #include <KDialog>
 
-class QLabel;
-class QListWidget;
-class QProgressBar;
+#include <QLabel>
+#include <QListWidget>
+#include <QProgressBar>
 
 class InfoDialog : public KDialog
 {

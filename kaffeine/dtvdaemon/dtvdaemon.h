@@ -23,7 +23,7 @@
 
 #include <QLocalServer>
 
-class QFile;
+#include <QFile>
 
 class DtvDaemon : public QObject
 {

@@ -28,7 +28,7 @@
 
 #include <QObject>
 
-template <typename T> class QList;
+#include <QList>
 
 namespace Akonadi
 {

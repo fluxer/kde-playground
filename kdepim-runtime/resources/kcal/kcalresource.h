@@ -36,7 +36,7 @@ namespace Akonadi {
   class IncidenceMimeTypeVisitor;
 }
 
-class QTimer;
+#include <QTimer>
 
 class KCalResource : public Akonadi::ResourceBase, public Akonadi::AgentBase::Observer
 {

@@ -28,7 +28,7 @@
 #include <QPair>
 #include "kdganttglobal.h"
 
-class QModelIndex;
+#include <QModelIndex>
 
 namespace KDGantt {
     class KDGANTT_EXPORT AbstractRowController {

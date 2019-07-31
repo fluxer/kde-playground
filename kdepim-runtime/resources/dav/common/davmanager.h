@@ -32,7 +32,7 @@ class DavJob;
 
 class KUrl;
 
-class QDomDocument;
+#include <QDomDocument>
 
 /**
  * @short A factory class for handling DAV jobs.

@@ -21,9 +21,9 @@
 #include <QWidget>
 #include <QTextDocument>
 
-class QAction;
+#include <QAction>
 class KLineEdit;
-class QPushButton;
+#include <QPushButton>
 namespace PimCommon {
 
 class TextFindWidget : public QWidget

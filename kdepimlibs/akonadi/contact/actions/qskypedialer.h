@@ -26,7 +26,7 @@
 
 #include <QtCore/QString>
 
-class QDBusInterface;
+#include <QDBusInterface>
 
 class QSkypeDialer : public QDialer
 {

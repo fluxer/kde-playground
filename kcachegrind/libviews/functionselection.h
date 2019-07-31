@@ -33,14 +33,14 @@
 #include "listutils.h"
 #include "toplevelbase.h"
 
-class QAction;
-class QMenu;
-class QLabel;
-class QComboBox;
-class QLineEdit;
-class QTreeView;
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QAction>
+#include <QMenu>
+#include <QLabel>
+#include <QComboBox>
+#include <QLineEdit>
+#include <QTreeView>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 class FunctionListModel;
 
 class FunctionSelection: public QWidget, public TraceItemView

@@ -26,8 +26,8 @@
 
 #include <QTreeWidget>
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QStringList>
 
 namespace KHolidays {
 

@@ -25,7 +25,7 @@
 
 #include <QTreeWidgetItem>
 
-class QTreeWidget;
+#include <QTreeWidget>
 class KAboutData;
 class ArchiveMailItem : public QTreeWidgetItem
 {

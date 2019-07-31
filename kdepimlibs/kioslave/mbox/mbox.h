@@ -23,7 +23,7 @@
 //Added by qt3to4:
 #include <QByteArray>
 
-class QByteArray;
+#include <QByteArray>
 class KUrl;
 
 /**

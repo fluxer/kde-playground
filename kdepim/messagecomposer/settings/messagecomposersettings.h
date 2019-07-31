@@ -28,7 +28,7 @@
 #include "messagecomposersettings_base.h"
 
 
-class QTimer;
+#include <QTimer>
 
 namespace MessageComposer {
 

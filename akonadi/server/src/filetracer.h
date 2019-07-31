@@ -22,7 +22,7 @@
 
 #include "tracerinterface.h"
 
-class QFile;
+#include <QFile>
 
 namespace Akonadi {
 namespace Server {

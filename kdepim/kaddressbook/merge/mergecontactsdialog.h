@@ -21,7 +21,7 @@
 
 #include <KDialog>
 #include <Akonadi/Item>
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 namespace KABMergeContacts {
 class MergeContactWidget;
 class MergeContactsDialog : public KDialog

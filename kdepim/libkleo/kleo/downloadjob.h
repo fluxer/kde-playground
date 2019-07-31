@@ -45,9 +45,9 @@ namespace boost {
     template <typename T> class shared_ptr;
 }
 
-class QStringList;
-class QIODevice;
-class QByteArray;
+#include <QStringList>
+#include <QIODevice>
+#include <QByteArray>
 
 namespace Kleo {
 

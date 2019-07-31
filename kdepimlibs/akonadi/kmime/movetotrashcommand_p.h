@@ -27,7 +27,7 @@
 
 #include <QList>
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 class KJob;
 class MoveToTrashCommand : public CommandBase
 {

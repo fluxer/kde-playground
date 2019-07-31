@@ -36,7 +36,7 @@
 class KConfig;
 class KHBox;
 
-class QSplitter;
+#include <QSplitter>
 
 namespace EventViews {
 

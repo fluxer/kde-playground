@@ -23,7 +23,7 @@
 
 #include <KPageDialog>
 
-class QSpinBox;
+#include <QSpinBox>
 class KComboBox;
 
 class ConfigurationDialog : public KPageDialog

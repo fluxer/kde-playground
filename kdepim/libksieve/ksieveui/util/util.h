@@ -44,7 +44,7 @@
 #include <akonadi/agentinstance.h>
 
 class KUrl;
-class QString;
+#include <QString>
 
 namespace KSieveUi
 {

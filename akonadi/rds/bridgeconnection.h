@@ -22,8 +22,8 @@
 
 #include <QObject>
 
-class QTcpSocket;
-class QIODevice;
+#include <QTcpSocket>
+#include <QIODevice>
 
 class BridgeConnection : public QObject
 {

@@ -25,7 +25,7 @@
 #include <QtCore/QStringList>
 #include <QtSql/QSqlDatabase>
 
-class QDomElement;
+#include <QDomElement>
 class DbUpdaterTest;
 
 namespace Akonadi {

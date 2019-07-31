@@ -51,9 +51,9 @@ class Item;
 
 class KJob;
 
-class QAbstractItemModel;
-class QModelIndex;
-class QString;
+#include <QAbstractItemModel>
+#include <QModelIndex>
+#include <QString>
 
 namespace MailCommon {
 

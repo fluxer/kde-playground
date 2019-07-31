@@ -38,7 +38,7 @@
 
 #include "traceitemview.h"
 
-class QLabel;
+#include <QLabel>
 class TabView;
 
 /**

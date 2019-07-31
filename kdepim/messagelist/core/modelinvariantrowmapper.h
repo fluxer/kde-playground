@@ -27,7 +27,7 @@
 #include <messagelist/core/modelinvariantindex.h>
 #include <messagelist/messagelist_export.h>
 
-class QTimer;
+#include <QTimer>
 
 namespace MessageList
 {

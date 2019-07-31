@@ -35,7 +35,7 @@
 
 using namespace KAlarmCal;
 
-class QEventLoop;
+#include <QEventLoop>
 namespace Akonadi
 {
     class EntityMimeTypeFilterModel;

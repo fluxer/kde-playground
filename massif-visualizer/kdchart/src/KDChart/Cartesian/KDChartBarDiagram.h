@@ -27,7 +27,7 @@
 #include "KDChartBarAttributes.h"
 
 QT_BEGIN_NAMESPACE
-class QPainter;
+#include <QPainter>
 QT_END_NAMESPACE
 
 namespace KDChart {

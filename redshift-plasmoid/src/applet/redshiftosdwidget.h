@@ -27,8 +27,8 @@
 
 #include <Plasma/Dialog>
 
-class QPixmap;
-class QTimer;
+#include <QPixmap>
+#include <QTimer>
 
 namespace Plasma
 {

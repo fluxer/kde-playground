@@ -25,7 +25,7 @@
 
 // forward declarations
 class KConfigBase;
-class QDateTime;
+#include <QDateTime>
 
 namespace KABC
 {

@@ -33,8 +33,8 @@
 #include <QWidget>
 
 class KLineEdit;
-class QAbstractItemModel;
-class QTreeView;
+#include <QAbstractItemModel>
+#include <QTreeView>
 
 namespace Akonadi {
 

@@ -29,7 +29,7 @@
 #ifndef KCAL_FREEBUSYCACHE_H
 #define KCAL_FREEBUSYCACHE_H
 
-class QString;
+#include <QString>
 
 namespace KCal {
 

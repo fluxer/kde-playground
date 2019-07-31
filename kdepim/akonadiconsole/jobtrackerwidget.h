@@ -24,8 +24,8 @@
 
 #include <QWidget>
 
-class QModelIndex;
-class QFile;
+#include <QModelIndex>
+#include <QFile>
 class JobTrackerWidget : public QWidget
 {
   Q_OBJECT

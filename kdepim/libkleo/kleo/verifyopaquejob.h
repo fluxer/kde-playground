@@ -37,8 +37,8 @@
 
 #include <boost/shared_ptr.hpp>
 
-class QByteArray;
-class QIODevice;
+#include <QByteArray>
+#include <QIODevice>
 
 namespace GpgME {
   class Error;

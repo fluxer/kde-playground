@@ -25,7 +25,7 @@
 
 class ContactSelectionWidget;
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 
 namespace Akonadi
 {

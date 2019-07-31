@@ -20,8 +20,8 @@
 #ifndef AKONADI_QUERYCACHE_H
 #define AKONADI_QUERYCACHE_H
 
-class QString;
-class QSqlQuery;
+#include <QString>
+#include <QSqlQuery>
 
 namespace Akonadi {
 namespace Server {

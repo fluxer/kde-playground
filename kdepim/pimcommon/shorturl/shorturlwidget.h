@@ -25,8 +25,8 @@
 
 class KLineEdit;
 class KToggleAction;
-class QPushButton;
-class QLabel;
+#include <QPushButton>
+#include <QLabel>
 namespace KPIMUtils {
 class ProgressIndicatorLabel;
 }

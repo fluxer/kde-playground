@@ -49,7 +49,7 @@ struct VObject;
 
 class KDateTime;
 
-class QDate;
+#include <QDate>
 
 #define _VCAL_VERSION "1.0"
 

@@ -26,7 +26,7 @@
 
 #include <QFrame>
 
-class QStackedWidget;
+#include <QStackedWidget>
 class CheckBox;
 
 

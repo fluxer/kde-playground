@@ -19,7 +19,7 @@
 
 #include <QWidget>
 #include "mailimporter_export.h"
-class QListWidgetItem;
+#include <QListWidgetItem>
 namespace Ui {
 class ImportMailsWidget;
 }

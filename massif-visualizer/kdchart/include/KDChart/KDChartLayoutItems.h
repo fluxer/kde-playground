@@ -34,7 +34,7 @@
 #include "KDChartMarkerAttributes.h"
 
 QT_BEGIN_NAMESPACE
-class QPainter;
+#include <QPainter>
 class KDTextDocument;
 QT_END_NAMESPACE
 

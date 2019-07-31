@@ -33,7 +33,7 @@
 
 #include <QObject>
 
-class QDate;
+#include <QDate>
 
 namespace Akonadi {
   class IncidenceChanger;

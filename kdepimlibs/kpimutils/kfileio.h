@@ -23,9 +23,9 @@
 
 #include "kpimutils_export.h"
 
-class QByteArray;
-class QString;
-class QWidget;
+#include <QByteArray>
+#include <QString>
+#include <QWidget>
 
 namespace KPIMUtils {
 

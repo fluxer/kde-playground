@@ -24,8 +24,8 @@
 
 #include "kholidays_export.h"
 
-class QDate;
-class QString;
+#include <QDate>
+#include <QString>
 
 namespace KHolidays {
 

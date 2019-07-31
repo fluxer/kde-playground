@@ -30,7 +30,7 @@
 #include "tracedata.h"
 #include "traceitemview.h"
 
-class QLabel;
+#include <QLabel>
 class TraceData;
 class TreeMapItem;
 class PartAreaWidget;

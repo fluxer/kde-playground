@@ -32,7 +32,7 @@
 
 #include <KTextEdit>
 
-class QMimeData;
+#include <QMimeData>
 namespace KPIM {
 
 class KDEPIM_EXPORT SpellCheckLineEdit : public KTextEdit

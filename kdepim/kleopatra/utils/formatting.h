@@ -35,9 +35,9 @@
 
 #include <gpgme++/key.h>
 
-class QString;
-class QStringList;
-class QDate;
+#include <QString>
+#include <QStringList>
+#include <QDate>
 
 namespace GpgME {
     class Import;

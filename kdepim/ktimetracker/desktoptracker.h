@@ -29,7 +29,7 @@
 #include "desktoplist.h"
 
 class Task;
-class QTimer;
+#include <QTimer>
 
 typedef QVector<Task *> TaskVector;
 const int maxDesktops = 20;

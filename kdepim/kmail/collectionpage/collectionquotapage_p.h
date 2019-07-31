@@ -36,8 +36,8 @@
 
 #include <QWidget>
 
-class QProgressBar;
-class QLabel;
+#include <QProgressBar>
+#include <QLabel>
 
 class QuotaWidget : public QWidget {
 

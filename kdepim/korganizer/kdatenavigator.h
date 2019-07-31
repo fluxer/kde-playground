@@ -38,7 +38,7 @@ namespace Akonadi {
   class Item;
 }
 
-class QLabel;
+#include <QLabel>
 
 class KDateNavigator: public QFrame
 {

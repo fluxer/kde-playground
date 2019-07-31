@@ -31,8 +31,8 @@ namespace KTnef {
 }
 using namespace KTnef;
 
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 class AttachPropertyDialog : public KDialog
 {

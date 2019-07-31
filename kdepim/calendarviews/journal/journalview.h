@@ -30,7 +30,7 @@
 #include <KCalCore/Journal>
 
 class KVBox;
-class QScrollArea;
+#include <QScrollArea>
 
 /**
  * This class provides a journal view.

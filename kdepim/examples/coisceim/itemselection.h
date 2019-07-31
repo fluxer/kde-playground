@@ -24,7 +24,7 @@
 
 #include <QModelIndex>
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 
 class ItemSelection : public QObject
 {

@@ -26,7 +26,7 @@
 #include <QListWidgetItem>
 #include <kdialog.h>
 
-class QLabel;
+#include <QLabel>
 class KNComposer;
 class KNSendErrorDialog;
 

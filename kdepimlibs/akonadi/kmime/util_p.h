@@ -22,7 +22,7 @@
 
 class OrgKdeAkonadiImapSettingsInterface;
 class KJob;
-class QString;
+#include <QString>
 #define IMAP_RESOURCE_IDENTIFIER QString::fromLatin1("akonadi_imap_resource")
 
 namespace Util

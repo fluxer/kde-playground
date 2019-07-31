@@ -22,7 +22,7 @@
 #define ITEMBOX_H
 
 #include <khbox.h>
-class QHBoxLayout;
+#include <QHBoxLayout>
 
 
 /**

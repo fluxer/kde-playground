@@ -20,7 +20,7 @@
 
 #include <QWidget>
 class KUrl;
-class QAbstractButton;
+#include <QAbstractButton>
 
 namespace Ui {
 class SelectThunderbirdFilterFilesWidget;

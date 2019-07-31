@@ -42,12 +42,12 @@ class KLineEdit;
 class KIntNumInput;
 class KUrlRequester;
 
-class QPushButton;
-class QGridLayout;
-class QLineEdit;
-class QLabel;
-class QCheckBox;
-class QComboBox;
+#include <QPushButton>
+#include <QGridLayout>
+#include <QLineEdit>
+#include <QLabel>
+#include <QCheckBox>
+#include <QComboBox>
 
 namespace Kleo {
     class FileNameRequester;

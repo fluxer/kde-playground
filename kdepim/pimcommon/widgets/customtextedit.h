@@ -21,7 +21,7 @@
 #include "pimcommon_export.h"
 #include <KTextEdit>
 
-class QMenu;
+#include <QMenu>
 namespace PimCommon {
 class PIMCOMMON_EXPORT CustomTextEdit : public KTextEdit
 {

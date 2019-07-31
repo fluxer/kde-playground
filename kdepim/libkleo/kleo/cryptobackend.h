@@ -61,9 +61,9 @@ namespace Kleo {
   class SpecialJob;
 }
 
-class QString;
-class QVariant;
-template <typename T_Key, typename T_Value> class QMap;
+#include <QString>
+#include <QVariant>
+#include <QMap>
 
 namespace Kleo {
 

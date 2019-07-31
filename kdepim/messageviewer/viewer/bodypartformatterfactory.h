@@ -36,7 +36,7 @@
 
 #include <QByteArray>
 
-class QString;
+#include <QString>
 
 namespace MessageViewer {
 

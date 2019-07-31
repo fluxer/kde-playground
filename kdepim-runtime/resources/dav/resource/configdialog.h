@@ -30,7 +30,7 @@
 #include <QtCore/QString>
 
 class KConfigDialogManager;
-class QStandardItemModel;
+#include <QStandardItemModel>
 
 class ConfigDialog : public KDialog
 {

@@ -25,7 +25,7 @@
 #include <QtCore/QByteArray>
 #include <exception>
 
-class QString;
+#include <QString>
 
 namespace Akonadi {
 

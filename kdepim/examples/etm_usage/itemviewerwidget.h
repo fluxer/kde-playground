@@ -28,8 +28,8 @@
 #include <QItemSelection>
 class NoteViewer;
 
-class QItemSelectionModel;
-class QStackedWidget;
+#include <QItemSelectionModel>
+#include <QStackedWidget>
 
 namespace MessageViewer
 {

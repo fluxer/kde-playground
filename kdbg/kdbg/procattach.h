@@ -19,7 +19,7 @@
 #include <vector>
 
 
-class QProcess;
+#include <QProcess>
 
 /*
  * This is the full-featured version of the dialog. It is used when the

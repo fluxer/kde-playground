@@ -21,7 +21,7 @@
 #include "common/googlesettingsdialog.h"
 
 class KListWidget;
-class QLabel;
+#include <QLabel>
 class KDateComboBox;
 
 class SettingsDialog : public GoogleSettingsDialog

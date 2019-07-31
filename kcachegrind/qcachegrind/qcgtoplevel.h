@@ -35,11 +35,11 @@
 #include "toplevelbase.h"
 
 class MultiView;
-class QDockWidget;
-class QLabel;
-class QComboBox;
-class QProgressBar;
-class QMenu;
+#include <QDockWidget>
+#include <QLabel>
+#include <QComboBox>
+#include <QProgressBar>
+#include <QMenu>
 
 class TraceData;
 class MainWidget;

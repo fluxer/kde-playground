@@ -36,7 +36,7 @@
 #define FIX_KMAIL_INSERT_IMAGE 1
 
 class KUrl;
-class QFileInfo;
+#include <QFileInfo>
 
 namespace KPIMTextEdit {
 

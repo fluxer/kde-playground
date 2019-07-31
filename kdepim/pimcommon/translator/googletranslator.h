@@ -20,9 +20,9 @@
 
 #include "abstracttranslator.h"
 #include <QNetworkReply>
-class QNetworkAccessManager;
+#include <QNetworkAccessManager>
 class KComboBox;
-class QNetworkReply;
+#include <QNetworkReply>
 
 namespace PimCommon {
 class GoogleTranslator : public AbstractTranslator

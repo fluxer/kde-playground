@@ -11,7 +11,7 @@
 #include "navigator.h"
 #include "glossary.h"
 
-class QSplitter;
+#include <QSplitter>
 
 class LogDialog;
 

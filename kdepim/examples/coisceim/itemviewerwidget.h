@@ -26,11 +26,11 @@
 
 #include <QWidget>
 
-class QModelIndex;
+#include <QModelIndex>
 class NoteViewer;
 
 class ItemSelection;
-class QStackedWidget;
+#include <QStackedWidget>
 
 namespace MessageViewer
 {

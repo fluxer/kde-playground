@@ -33,8 +33,8 @@
 
 #include <kurl.h>
 
-class QAbstractButton;
-class QGroupBox;
+#include <QAbstractButton>
+#include <QGroupBox>
 class KComboBox;
 class KHBox;
 class EmailIdCombo;

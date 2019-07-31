@@ -33,7 +33,7 @@
 
 #include "settings.h"
 
-class QFileSystemWatcher;
+#include <QFileSystemWatcher>
 
 class KnutResource : public Akonadi::ResourceBase,
                      public Akonadi::AgentBase::ObserverV2,

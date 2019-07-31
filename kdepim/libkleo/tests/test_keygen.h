@@ -41,7 +41,7 @@ namespace GpgME {
   class KeyGenerationResult;
 }
 
-class QLineEdit;
+#include <QLineEdit>
 
 class KeyGenerator : public KDialog {
   Q_OBJECT

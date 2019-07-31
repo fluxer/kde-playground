@@ -36,7 +36,7 @@
 #include "context.h"
 #include "eventtype.h"
 
-class QFile;
+#include <QFile>
 
 /**
  * All cost items are classes prefixed with "Trace".

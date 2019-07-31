@@ -29,9 +29,9 @@
 #include <KontactInterface/Summary>
 #include <KViewStateMaintainer>
 #include <Akonadi/Item>
-class QGridLayout;
-class QItemSelectionModel;
-class QLabel;
+#include <QGridLayout>
+#include <QItemSelectionModel>
+#include <QLabel>
 namespace KontactInterface {
 class Plugin;
 }

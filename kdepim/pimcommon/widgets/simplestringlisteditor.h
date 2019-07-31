@@ -39,10 +39,10 @@
 
 #include "pimcommon_export.h"
 
-class QListWidget;
-class QListWidgetItem;
-class QPushButton;
-class QVBoxLayout;
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QPushButton>
+#include <QVBoxLayout>
 
 //
 //

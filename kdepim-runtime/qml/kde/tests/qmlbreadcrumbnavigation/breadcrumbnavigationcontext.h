@@ -24,9 +24,9 @@
 
 #include <QObject>
 
-class QAbstractItemModel;
-class QItemSelectionModel;
-class QDeclarativeContext;
+#include <QAbstractItemModel>
+#include <QItemSelectionModel>
+#include <QDeclarativeContext>
 
 
 class KBreadcrumbNavigationFactoryPrivate;

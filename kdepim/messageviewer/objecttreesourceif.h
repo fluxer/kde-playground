@@ -25,8 +25,8 @@
 
 #include <KMime/Message>
 
-class QObject;
-class QTextCodec;
+#include <QObject>
+#include <QTextCodec>
 
 namespace MessageViewer {
   class HtmlWriter;

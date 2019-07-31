@@ -25,13 +25,13 @@
 #include "prefdlg.h"
 #include "stackedwidgets.h"
 
-class QCheckBox;
-class QGroupBox;
-class QAbstractButton;
-class QRadioButton;
-class QPushButton;
-class QLabel;
-class QSpinBox;
+#include <QCheckBox>
+#include <QGroupBox>
+#include <QAbstractButton>
+#include <QRadioButton>
+#include <QPushButton>
+#include <QLabel>
+#include <QSpinBox>
 class KTimeZone;
 class KLineEdit;
 class KVBox;

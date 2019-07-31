@@ -24,7 +24,7 @@
 
 #include "akonadi_export.h"
 
-class QModelIndex;
+#include <QModelIndex>
 
 namespace Akonadi
 {

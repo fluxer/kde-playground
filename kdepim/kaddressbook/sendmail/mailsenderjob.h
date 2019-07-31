@@ -27,7 +27,7 @@
 #include <QObject>
 #include <QStringList>
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 class KJob;
 namespace KABMailSender {
 class KADDRESSBOOK_EXPORT MailSenderJob : public QObject

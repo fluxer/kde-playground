@@ -26,7 +26,7 @@
 #include "sharedresourceiface.h"
 
 class KJob;
-class QModelIndex;
+#include <QModelIndex>
 
 namespace Akonadi {
   class Collection;

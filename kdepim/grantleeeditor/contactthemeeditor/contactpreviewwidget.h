@@ -22,7 +22,7 @@
 
 #include <KABC/Addressee>
 
-class QTabWidget;
+#include <QTabWidget>
 
 namespace Akonadi {
 class ContactViewer;

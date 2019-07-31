@@ -32,7 +32,7 @@
 #include <QSortFilterProxyModel>
 #include <QSize>
 
-class QPixmap;
+#include <QPixmap>
 namespace KCal { class Event; }
 
 using namespace KAlarmCal;

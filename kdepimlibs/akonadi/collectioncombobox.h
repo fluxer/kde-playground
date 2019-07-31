@@ -25,7 +25,7 @@
 #include <akonadi/collection.h>
 #include <kcombobox.h>
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 
 namespace Akonadi {
 

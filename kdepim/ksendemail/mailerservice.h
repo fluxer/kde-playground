@@ -22,7 +22,7 @@
 #ifndef MAILERSERVICE_H
 #define MAILERSERVICE_H
 
-class QEventLoop;
+#include <QEventLoop>
 
 #include <QObject>
 

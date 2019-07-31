@@ -28,7 +28,7 @@
  */
 #include <QWidget>
 #include "pimcommon_export.h"
-class QTimer;
+#include <QTimer>
 namespace PimCommon {
 class PIMCOMMON_EXPORT TextMessageIndicator : public QWidget
 {

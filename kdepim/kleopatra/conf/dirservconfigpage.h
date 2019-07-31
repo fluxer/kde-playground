@@ -37,9 +37,9 @@
 
 #include "libkleo/kleo/cryptoconfig.h"
 
-class QCheckBox;
-class QLabel;
-class QTimeEdit;
+#include <QCheckBox>
+#include <QLabel>
+#include <QTimeEdit>
 class KIntNumInput;
 namespace Kleo {
   class CryptoConfig;

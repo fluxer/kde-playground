@@ -21,7 +21,7 @@
 
 #include "knotesglobalconfig.h"
 #include "knotes_export.h"
-class QTimer;
+#include <QTimer>
 
 class KNOTES_EXPORT GlobalSettings : public KNotesGlobalConfig
 {

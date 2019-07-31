@@ -27,9 +27,9 @@
 #include <QHash>
 
 QT_BEGIN_NAMESPACE
-class QRectF;
-class QGraphicsScene;
-class QPolygonF;
+#include <QRectF>
+#include <QGraphicsScene>
+#include <QPolygonF>
 QT_END_NAMESPACE
 
 namespace KDChart {

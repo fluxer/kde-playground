@@ -34,8 +34,8 @@
 
 
 QT_BEGIN_NAMESPACE
-class QPainter;
-class QString;
+#include <QPainter>
+#include <QString>
 QT_END_NAMESPACE
 
 namespace KDChart {

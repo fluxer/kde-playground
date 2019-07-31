@@ -39,7 +39,7 @@
 #include <QMimeData>
 
 
-class QUrl;
+#include <QUrl>
 
 namespace Kleo {
 

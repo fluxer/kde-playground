@@ -27,8 +27,8 @@
 
 #include "kdganttabstractrowcontroller.h"
 
-class QAbstractProxyModel;
-class QListView;
+#include <QAbstractProxyModel>
+#include <QListView>
 
 namespace KDGantt {
     class KDGANTT_EXPORT ListViewRowController : public AbstractRowController {

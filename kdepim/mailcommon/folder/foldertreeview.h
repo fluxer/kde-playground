@@ -26,7 +26,7 @@
 #include <Akonadi/EntityTreeView>
 #include <Akonadi/Collection>
 
-class QMouseEvent;
+#include <QMouseEvent>
 
 namespace Akonadi {
 class CollectionStatisticsDelegate;

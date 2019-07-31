@@ -31,7 +31,7 @@
 #include "task.h"
 #include "ktimetrackerpart.h"
 
-class QTimer;
+#include <QTimer>
 class MainWindow;
 
 class TrayIcon : public KStatusNotifierItem

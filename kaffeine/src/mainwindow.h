@@ -24,7 +24,7 @@
 #include <KMainWindow>
 #include "mediawidget.h"
 
-class QStackedLayout;
+#include <QStackedLayout>
 class KCmdLineOptions;
 class KRecentFilesAction;
 class KTabBar;

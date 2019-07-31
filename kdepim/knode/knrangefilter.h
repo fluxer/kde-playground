@@ -17,10 +17,10 @@
 
 #include <QGroupBox>
 
-class QLabel;
+#include <QLabel>
 class KIntSpinBox;
-class QComboBox;
-class QCheckBox;
+#include <QComboBox>
+#include <QCheckBox>
 
 class KConfig;
 

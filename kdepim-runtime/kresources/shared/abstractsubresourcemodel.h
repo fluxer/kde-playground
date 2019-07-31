@@ -36,7 +36,7 @@ class ItemFetchAdapter;
 class KJob;
 
 typedef QSet<QString> StringIdSet;
-class QStringList;
+#include <QStringList>
 class SubResourceBase;
 
 class AbstractSubResourceModel : public QObject

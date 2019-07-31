@@ -51,14 +51,14 @@ class ContactSwitcher;
 class KActionCollection;
 class KXMLGUIClient;
 class ModelColumnManager;
-class QAbstractItemModel;
-class QItemSelectionModel;
-class QModelIndex;
-class QSplitter;
-class QStackedWidget;
+#include <QAbstractItemModel>
+#include <QItemSelectionModel>
+#include <QModelIndex>
+#include <QSplitter>
+#include <QStackedWidget>
 class QuickSearchWidget;
 class XXPortManager;
-class QActionGroup;
+#include <QActionGroup>
 class CategorySelectWidget;
 class CategoryFilterProxyModel;
 

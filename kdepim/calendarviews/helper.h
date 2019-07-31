@@ -35,8 +35,8 @@ namespace Akonadi {
   class Item;
 }
 
-class QPixmap;
-class QDate;
+#include <QPixmap>
+#include <QDate>
 
 // Provides static methods that are useful to all views.
 

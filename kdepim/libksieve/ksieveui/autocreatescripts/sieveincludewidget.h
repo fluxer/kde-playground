@@ -24,9 +24,9 @@
 
 class KPushButton;
 class KLineEdit;
-class QGridLayout;
-class QCheckBox;
-class QDomElement;
+#include <QGridLayout>
+#include <QCheckBox>
+#include <QDomElement>
 namespace KSieveUi {
 class SieveHelpButton;
 class SieveIncludeLocation : public KComboBox

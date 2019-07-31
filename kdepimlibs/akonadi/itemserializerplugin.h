@@ -27,7 +27,7 @@
 #include "item.h"
 #include "akonadi_export.h"
 
-class QIODevice;
+#include <QIODevice>
 
 namespace Akonadi {
 

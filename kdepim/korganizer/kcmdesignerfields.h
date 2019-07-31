@@ -27,10 +27,10 @@
 
 class KComponentData;
 
-class QLabel;
-class QPushButton;
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QLabel>
+#include <QPushButton>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 class KCMDesignerFields : public KCModule
 {

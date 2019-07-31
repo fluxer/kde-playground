@@ -33,12 +33,12 @@
 
 class DocumentTabInterface;
 
-class QMenu;
-class QLabel;
-class QProgressBar;
-class QToolButton;
-class QStackedWidget;
-class QTabWidget;
+#include <QMenu>
+#include <QLabel>
+#include <QProgressBar>
+#include <QToolButton>
+#include <QStackedWidget>
+#include <QTabWidget>
 
 class KMessageWidget;
 

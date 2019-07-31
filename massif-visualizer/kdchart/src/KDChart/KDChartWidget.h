@@ -31,8 +31,8 @@
 #include "KDChartHeaderFooter.h"
 
 QT_BEGIN_NAMESPACE
-template <typename T> class QVector;
-template <typename T1, typename T2> struct QPair;
+#include <QVector>
+#include <QPair>
 QT_END_NAMESPACE
 
 namespace KDChart {

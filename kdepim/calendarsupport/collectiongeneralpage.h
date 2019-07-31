@@ -26,7 +26,7 @@
 
 class KLineEdit;
 class KIconButton;
-class QCheckBox;
+#include <QCheckBox>
 
 namespace CalendarSupport {
 

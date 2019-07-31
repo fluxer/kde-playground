@@ -31,8 +31,8 @@ namespace Akonadi {
 }
 
 class AbstractSubResourceModel;
-class QLabel;
-class QModelIndex;
+#include <QLabel>
+#include <QModelIndex>
 
 class StoreCollectionDialog : public KDialog
 {

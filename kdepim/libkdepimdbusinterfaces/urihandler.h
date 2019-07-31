@@ -26,7 +26,7 @@
 
 #include "kdepimdbusinterfaces_export.h"
 #include <akonadi/item.h>
-class QString;
+#include <QString>
 
 class KDEPIMDBUSINTERFACES_EXPORT UriHandler
 {

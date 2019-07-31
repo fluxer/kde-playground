@@ -26,7 +26,7 @@
 #include <QtCore/QString>
 
 // forward declarations
-class QTextCodec;
+#include <QTextCodec>
 
 namespace KABC
 {

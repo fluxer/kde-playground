@@ -34,7 +34,7 @@
 
 #include "utils/util.h"
 #include <QLabel>
-class QMouseEvent;
+#include <QMouseEvent>
 
 namespace MessageViewer {
 

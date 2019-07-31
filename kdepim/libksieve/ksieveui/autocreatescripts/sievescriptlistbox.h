@@ -20,9 +20,9 @@
 
 #include <QGroupBox>
 #include <QListWidgetItem>
-class QListWidget;
-class QDomDocument;
-class QDomNode;
+#include <QListWidget>
+#include <QDomDocument>
+#include <QDomNode>
 class KPushButton;
 
 namespace KSieveUi {

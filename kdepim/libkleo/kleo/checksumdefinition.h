@@ -40,7 +40,7 @@
 
 #include <vector>
 
-class QProcess;
+#include <QProcess>
 
 namespace boost {
     template <typename T> class shared_ptr;

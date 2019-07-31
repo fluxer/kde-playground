@@ -27,8 +27,8 @@
 #include <QWidget>
 #include <QPersistentModelIndex>
 
-class QLineEdit;
-class QTextEdit;
+#include <QLineEdit>
+#include <QTextEdit>
 
 class KJob;
 

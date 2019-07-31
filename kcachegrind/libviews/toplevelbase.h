@@ -29,7 +29,7 @@
 #include "tracedata.h"
 #include "traceitemview.h"
 
-class QMenu;
+#include <QMenu>
 
 class TopLevelBase
 {

@@ -27,7 +27,7 @@
 #include <QWidget>
 #include <QtCore/QHash>
 
-class QProgressBar;
+#include <QProgressBar>
 
 namespace MailTransport {
 

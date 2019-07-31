@@ -26,7 +26,7 @@
 class KJob;
 class KUrl;
 
-class QTimer;
+#include <QTimer>
 
 /**
  * A class that triggers the update of freebusy lists on the Kolab server

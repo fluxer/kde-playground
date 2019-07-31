@@ -22,7 +22,7 @@
 #include "pimcommon/texteditor/commonwidget/texteditfindbarbase.h"
 #include <QTextDocument>
 
-class QTextEdit;
+#include <QTextEdit>
 namespace PimCommon {
 class PIMCOMMON_EXPORT RichTextEditFindBar : public TextEditFindBarBase
 {

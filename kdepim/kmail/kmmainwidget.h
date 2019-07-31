@@ -46,11 +46,11 @@ namespace KMime {
 class Message;
 }
 class KUrl;
-class QVBoxLayout;
-class QSplitter;
+#include <QVBoxLayout>
+#include <QSplitter>
 
 class DisplayMessageFormatActionMenu;
-class QMenu;
+#include <QMenu>
 class KAction;
 class KActionMenu;
 class KToggleAction;
@@ -59,8 +59,8 @@ class CollectionPane;
 class KMCommand;
 class KMMoveCommand;
 class KRecentFilesAction;
-class QDBusPendingCallWatcher;
-template <typename T, typename S> class QMap;
+#include <QDBusPendingCallWatcher>
+#include <QMap>
 
 namespace KIO {
 class Job;

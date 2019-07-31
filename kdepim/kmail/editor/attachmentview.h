@@ -27,7 +27,7 @@
 
 #include <QTreeView>
 
-class QContextMenuEvent;
+#include <QContextMenuEvent>
 
 namespace MessageComposer {
 class AttachmentModel;

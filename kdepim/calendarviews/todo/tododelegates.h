@@ -28,10 +28,10 @@
 #include <Akonadi/Calendar/ETMCalendar>
 #include <QStyledItemDelegate>
 
-class QPainter;
-class QSize;
-class QStyleOptionViewItem;
-class QTextDocument;
+#include <QPainter>
+#include <QSize>
+#include <QStyleOptionViewItem>
+#include <QTextDocument>
 
 /**
   This delegate is responsible for displaying progress bars for the completion

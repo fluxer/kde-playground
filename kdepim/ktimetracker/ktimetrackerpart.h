@@ -27,7 +27,7 @@
 #include "reportcriteria.h"
 
 class TrayIcon;
-class QWidget;
+#include <QWidget>
 class TimetrackerWidget;
 
 /**

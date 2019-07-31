@@ -43,8 +43,8 @@
 using namespace KAlarmCal;
 
 namespace KCal { class Event; }
-class QWidget;
-class QAction;
+#include <QWidget>
+#include <QAction>
 class KAction;
 class KToggleAction;
 class AlarmResource;

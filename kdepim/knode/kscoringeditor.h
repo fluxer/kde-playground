@@ -35,11 +35,11 @@ class KComboBox;
 class KColorCombo;
 class KLineEdit;
 class KIntSpinBox;
-class QLabel;
+#include <QLabel>
 class Q3ListBoxItem;
-class QPushButton;
-class QCheckBox;
-class QRadioButton;
+#include <QPushButton>
+#include <QCheckBox>
+#include <QRadioButton>
 class ScoreEditWidget;
 
 namespace KPIM {

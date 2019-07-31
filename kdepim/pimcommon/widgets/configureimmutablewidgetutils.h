@@ -24,15 +24,15 @@
 #include <KConfigSkeletonItem>
 #include <KConfigSkeleton>
 
-class QWidget;
-class QGroupBox;
-class QCheckBox;
-class QButtonGroup;
-class QLineEdit;
+#include <QWidget>
+#include <QGroupBox>
+#include <QCheckBox>
+#include <QButtonGroup>
+#include <QLineEdit>
 class KConfigSkeletonItem;
 class KUrlRequester;
-class QSpinBox;
-class QComboBox;
+#include <QSpinBox>
+#include <QComboBox>
 
 namespace PimCommon {
 class SimpleStringListEditor;

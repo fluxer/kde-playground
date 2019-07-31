@@ -30,7 +30,7 @@ namespace Akonadi {
 }
 
 class AgentManager;
-class QSettings;
+#include <QSettings>
 
 class AgentType
 {

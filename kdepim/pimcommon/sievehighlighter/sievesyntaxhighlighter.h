@@ -25,7 +25,7 @@
 #include <QRegExp>
 #include <QSyntaxHighlighter>
 
-class QTextDocument;
+#include <QTextDocument>
 
 namespace PimCommon {
 

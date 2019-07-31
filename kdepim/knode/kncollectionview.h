@@ -21,8 +21,8 @@
 
 #include <foldertreewidget.h>
 
-class QContextMenuEvent;
-class QDropEvent;
+#include <QContextMenuEvent>
+#include <QDropEvent>
 
 using namespace KPIM;
 

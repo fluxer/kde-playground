@@ -31,7 +31,7 @@ namespace Akonadi
 
 class KJob;
 
-template <typename T> class QList;
+#include <QList>
 
 class EmptyResourceCleaner : public QObject
 {

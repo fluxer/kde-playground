@@ -137,7 +137,7 @@
 #include <QByteArray>
 
 // Forward Includes
-class QNetworkRequest;
+#include <QNetworkRequest>
 class QWebFrame;
 
 // Definitions

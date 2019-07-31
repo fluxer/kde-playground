@@ -26,7 +26,7 @@
 
 class KJob;
 class KLineEdit;
-class QTreeWidget;
+#include <QTreeWidget>
 
 namespace MessageComposer {
 

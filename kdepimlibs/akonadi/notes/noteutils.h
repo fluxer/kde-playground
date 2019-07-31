@@ -25,7 +25,7 @@
 #include <QtCore/QUrl>
 
 class KDateTime;
-class QString;
+#include <QString>
 
 namespace boost {
   template <typename T> class shared_ptr;

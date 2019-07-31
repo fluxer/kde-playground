@@ -40,7 +40,7 @@
 namespace Kleo {
   class CryptoConfig;
 }
-class QString;
+#include <QString>
 
 namespace Kleo {
 

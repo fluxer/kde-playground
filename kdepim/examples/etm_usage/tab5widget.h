@@ -26,7 +26,7 @@
 
 #include <QWidget>
 
-class QModelIndex;
+#include <QModelIndex>
 class KCategorizedView;
 
 class EntityTreeWidget;

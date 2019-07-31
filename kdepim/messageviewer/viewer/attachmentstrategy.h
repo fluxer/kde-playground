@@ -36,7 +36,7 @@
 
 #include "messageviewer_export.h"
 
-class QString;
+#include <QString>
 namespace KMime {
 class Content;
 }

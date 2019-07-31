@@ -26,7 +26,7 @@
 
 class KAction;
 class SieveEditorCentralWidget;
-class QLabel;
+#include <QLabel>
 class SieveEditorMainWindow : public KXmlGuiWindow
 {
     Q_OBJECT

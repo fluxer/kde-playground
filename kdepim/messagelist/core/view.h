@@ -30,7 +30,7 @@
 
 class KMenu;
 
-class QTimer;
+#include <QTimer>
 
 namespace Akonadi
 {

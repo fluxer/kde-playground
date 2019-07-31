@@ -24,8 +24,8 @@
 
 #include <QWidget>
 
-class QDragEnterEvent;
-class QDropEvent;
+#include <QDragEnterEvent>
+#include <QDropEvent>
 
 class DropWidget : public QWidget
 {

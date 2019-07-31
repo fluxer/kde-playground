@@ -31,8 +31,8 @@ namespace Ui {
 class KAction;
 class KMenu;
 
-class QListWidgetItem;
-class QMimeData;
+#include <QListWidgetItem>
+#include <QMimeData>
 
 namespace IncidenceEditorNG {
 

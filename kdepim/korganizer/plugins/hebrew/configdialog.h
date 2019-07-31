@@ -24,7 +24,7 @@
 
 #include <KDialog>
 
-class QCheckBox;
+#include <QCheckBox>
 
 /**
   @author Jonathan Singer

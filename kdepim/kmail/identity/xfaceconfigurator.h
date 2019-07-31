@@ -22,8 +22,8 @@
 class KJob;
 class KUrl;
 
-class QCheckBox;
-class QLabel;
+#include <QCheckBox>
+#include <QLabel>
 namespace PimCommon {
 class PlainTextEditor;
 }

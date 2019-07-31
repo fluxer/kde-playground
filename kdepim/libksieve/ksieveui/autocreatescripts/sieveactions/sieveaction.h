@@ -19,7 +19,7 @@
 #define SIEVEACTION_H
 
 #include <QObject>
-class QDomElement;
+#include <QDomElement>
 namespace KSieveUi {
 class SieveAction : public QObject
 {

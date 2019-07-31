@@ -27,15 +27,15 @@
 
 #include "scopeitem.h"
 
-class QPushButton;
-class QProgressBar;
-class QTextEdit;
-class QLabel;
+#include <QPushButton>
+#include <QProgressBar>
+#include <QTextEdit>
+#include <QLabel>
 
 class KAboutData;
 class KTemporaryFile;
 class KUrlRequester;
-class QTreeWidget;
+#include <QTreeWidget>
 
 namespace KHC {
 class HtmlSearchConfig;

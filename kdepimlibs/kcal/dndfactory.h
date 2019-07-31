@@ -39,12 +39,12 @@
 
 #include <KDE/KDateTime>
 
-class QDate;
-class QTime;
-class QDrag;
-class QWidget;
-class QDropEvent;
-class QMimeData;
+#include <QDate>
+#include <QTime>
+#include <QDrag>
+#include <QWidget>
+#include <QDropEvent>
+#include <QMimeData>
 
 namespace KCal {
 

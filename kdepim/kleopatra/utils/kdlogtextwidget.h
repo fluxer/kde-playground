@@ -27,9 +27,9 @@
 #include <utils/pimpl_ptr.h>
 #include <QAbstractScrollArea>
 
-class QString;
-class QStringList;
-class QColor;
+#include <QString>
+#include <QStringList>
+#include <QColor>
 
 class KDLogTextWidget : public QAbstractScrollArea {
     Q_OBJECT

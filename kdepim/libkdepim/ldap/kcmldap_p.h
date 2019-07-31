@@ -25,10 +25,10 @@
 
 #include <kcmodule.h>
 
-class QListWidget;
-class QListWidgetItem;
-class QPushButton;
-class QToolButton;
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QPushButton>
+#include <QToolButton>
 
 namespace KLDAP {
 class LdapClientSearchConfig;

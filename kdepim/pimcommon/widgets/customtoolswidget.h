@@ -22,7 +22,7 @@
 
 #include <QWidget>
 class KToggleAction;
-class QStackedWidget;
+#include <QStackedWidget>
 namespace PimCommon {
 class ShortUrlWidget;
 class TranslatorWidget;

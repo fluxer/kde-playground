@@ -23,7 +23,7 @@
 
 #include <QWidget>
 
-class QPushButton;
+#include <QPushButton>
 class KUrlRequester;
 
 namespace MailCommon {

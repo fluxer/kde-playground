@@ -20,7 +20,7 @@
 #define COMMANDENGINE_H
 
 // QT
-class QString;
+#include <QString>
 #include <qobject.h>
 
 //KDE

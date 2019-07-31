@@ -33,7 +33,7 @@
 
 AKONADI_EXCEPTION_MAKE_INSTANCE( ImapParserException );
 
-class QIODevice;
+#include <QIODevice>
 
 class ImapStreamParserTest;
 

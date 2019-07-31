@@ -43,7 +43,7 @@
 #include <vector>
 #include <map>
 
-class QString;
+#include <QString>
 class KConfig;
 
 namespace Kleo {

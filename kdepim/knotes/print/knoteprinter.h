@@ -28,7 +28,7 @@ namespace Grantlee {
 class Engine;
 }
 
-class QPrinter;
+#include <QPrinter>
 class KNotePrintObject;
 class KNOTES_EXPORT KNotePrinter
 {

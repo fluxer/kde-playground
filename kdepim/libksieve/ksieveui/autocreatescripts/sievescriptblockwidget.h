@@ -20,12 +20,12 @@
 
 #include "sievewidgetpageabstract.h"
 
-class QRadioButton;
-class QGroupBox;
-class QAbstractButton;
+#include <QRadioButton>
+#include <QGroupBox>
+#include <QAbstractButton>
 class KComboBox;
 class KPushButton;
-class QDomElement;
+#include <QDomElement>
 
 namespace KSieveUi {
 class SieveConditionWidgetLister;

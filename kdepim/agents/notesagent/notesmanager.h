@@ -25,13 +25,13 @@
 
 #include <Akonadi/Item>
 #include <QPointer>
-class QTcpServer;
-class QTimer;
+#include <QTcpServer>
+#include <QTimer>
 namespace NoteShared {
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
-class QModelIndex;
+#include <QModelIndex>
 class NotesManager : public QObject
 {
     Q_OBJECT

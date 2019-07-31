@@ -30,8 +30,8 @@
 
 #include <boost/shared_ptr.hpp>
 
-class QHBoxLayout;
-class QScrollArea;
+#include <QHBoxLayout>
+#include <QScrollArea>
 
 namespace EventViews {
 

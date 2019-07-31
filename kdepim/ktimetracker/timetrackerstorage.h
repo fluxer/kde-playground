@@ -33,7 +33,7 @@
 #include <KCalCore/Todo>
 #include <KCalCore/Event>
 
-class QDateTime;
+#include <QDateTime>
 class Task;
 class TaskView;
 class HistoryEvent;

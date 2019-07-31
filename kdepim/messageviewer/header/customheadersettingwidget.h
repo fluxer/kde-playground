@@ -26,8 +26,8 @@ namespace PimCommon {
 class SimpleStringListEditor;
 }
 
-class QRadioButton;
-class QButtonGroup;
+#include <QRadioButton>
+#include <QButtonGroup>
 namespace MessageViewer {
 
 class MESSAGEVIEWER_EXPORT CustomHeaderSettingWidget : public QWidget

@@ -21,7 +21,7 @@
 
 class KLineEdit;
 class KPushButton;
-class QListWidget;
+#include <QListWidget>
 
 namespace MessageComposer {
 

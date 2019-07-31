@@ -28,8 +28,8 @@
 #include "KDChartValueTrackerAttributes.h"
 
 QT_BEGIN_NAMESPACE
-class QPainter;
-class QPolygonF;
+#include <QPainter>
+#include <QPolygonF>
 QT_END_NAMESPACE
 
 namespace KDChart {

@@ -22,8 +22,8 @@
 
 #include <QtCore/QObject>
 
-class QAbstractItemModel;
-class QEvent;
+#include <QAbstractItemModel>
+#include <QEvent>
 
 namespace Akonadi {
 

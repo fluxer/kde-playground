@@ -24,7 +24,7 @@
 #include <Akonadi/Collection>
 #include <QModelIndex>
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 class KRecursiveFilterProxyModel;
 namespace Akonadi {
 class EntityTreeModel;
@@ -32,7 +32,7 @@ class ChangeRecorder;
 class CollectionRequester;
 class EntityTreeView;
 }
-class QTreeView;
+#include <QTreeView>
 class KCheckableProxyModel;
 class KJob;
 class KPushButton;

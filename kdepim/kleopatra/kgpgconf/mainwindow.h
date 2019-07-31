@@ -38,7 +38,7 @@
 
 #include "ui_mainwidget.h"
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 class Config;
 class ConfigComponent;

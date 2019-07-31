@@ -28,7 +28,7 @@
 #include <kparts/part.h>
 #include <kparts/statusbarextension.h>
 
-class QWidget;
+#include <QWidget>
 class KAboutData;
 class KJotsWidget;
 

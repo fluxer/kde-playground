@@ -36,7 +36,7 @@
 #include <QStringList>
 class KConfig;
 class KPushButton;
-class QListWidget;
+#include <QListWidget>
 class KLineEdit;
 
 namespace KPIM {

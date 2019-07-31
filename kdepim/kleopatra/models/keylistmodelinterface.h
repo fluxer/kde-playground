@@ -39,8 +39,8 @@ namespace GpgME {
     class Key;
 }
 
-class QModelIndex;
-template <typename T> class QList;
+#include <QModelIndex>
+#include <QList>
 
 namespace Kleo {
 

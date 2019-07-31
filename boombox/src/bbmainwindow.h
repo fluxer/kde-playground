@@ -46,7 +46,7 @@ class BBPlaylistSystem;
 class Mpris2Player;
 class KActionCollection;
 class KAction;
-class QToolButton;
+#include <QToolButton>
 
 class BBTitleLabel : public QLabel
 {

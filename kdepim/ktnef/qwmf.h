@@ -27,8 +27,8 @@
 #include <QImage>
 #include <QRect>
 
-class QBuffer;
-class QString;
+#include <QBuffer>
+#include <QString>
 class WmfCmd;
 class WinObjHandle;
 struct WmfPlaceableHeader;

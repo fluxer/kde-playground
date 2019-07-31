@@ -22,8 +22,8 @@
 
 #include "capabilities.h"
 
-class QByteArray;
-class QString;
+#include <QByteArray>
+#include <QString>
 
 namespace KIO {
 class AuthInfo;

@@ -22,9 +22,9 @@
 #define LINEEDIT_H
 
 #include <klineedit.h>
-class QDragEnterEvent;
-class QFocusEvent;
-class QDropEvent;
+#include <QDragEnterEvent>
+#include <QFocusEvent>
+#include <QDropEvent>
 
 
 /**

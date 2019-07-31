@@ -21,7 +21,7 @@
 #include "filterimporter/filterimporterabstract_p.h"
 #include "mailcommon_export.h"
 
-class QFile;
+#include <QFile>
 
 namespace MailCommon {
 

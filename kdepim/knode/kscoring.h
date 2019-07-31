@@ -35,10 +35,10 @@
 
 #include <unistd.h>
 
-class QDomNode;
-class QDomDocument;
-class QDomElement;
-class QLabel;
+#include <QDomNode>
+#include <QDomDocument>
+#include <QDomElement>
+#include <QLabel>
 
 namespace KPIM {
 

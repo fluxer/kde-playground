@@ -41,7 +41,7 @@
 #include <akonadi/kmime/messagestatus.h>
 #include <KMime/Message>
 
-class QString;
+#include <QString>
 
 namespace MessageViewer {
 

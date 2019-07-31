@@ -32,10 +32,10 @@ namespace KABC
 class Addressee;
 }
 
-class QDoubleSpinBox;
-class QLabel;
-class QPushButton;
-class QSpinBox;
+#include <QDoubleSpinBox>
+#include <QLabel>
+#include <QPushButton>
+#include <QSpinBox>
 
 class KComboBox;
 

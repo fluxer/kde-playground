@@ -32,7 +32,7 @@
 #endif
 
 
-class QSqlQuery;
+#include <QSqlQuery>
 
 namespace Akonadi {
 namespace Server {

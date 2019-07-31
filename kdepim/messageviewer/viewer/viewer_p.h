@@ -55,9 +55,9 @@ class KToggleAction;
 class KHBox;
 class KMenu;
 
-class QPoint;
-class QSplitter;
-class QModelIndex;
+#include <QPoint>
+#include <QSplitter>
+#include <QModelIndex>
 
 namespace GrantleeTheme {
 class GrantleeThemeManager;

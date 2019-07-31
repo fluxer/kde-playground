@@ -37,8 +37,8 @@
 #include <QObject>
 #include <QAbstractSocket>
 
-class QTcpSocket;
-class QTimer;
+#include <QTcpSocket>
+#include <QTimer>
 
 
 namespace NoteShared {

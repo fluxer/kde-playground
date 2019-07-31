@@ -17,8 +17,8 @@
 
 #include <QGroupBox>
 
-class QCheckBox;
-class QComboBox;
+#include <QCheckBox>
+#include <QComboBox>
 class KConfigGroup;
 class KLineEdit;
 class KConfig;

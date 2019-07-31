@@ -38,8 +38,8 @@
 
 class KUrl;
 
-class QString;
-class QPoint;
+#include <QString>
+#include <QPoint>
 
 namespace MessageViewer {
 namespace Interface {

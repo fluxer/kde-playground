@@ -27,9 +27,9 @@
 #include <kabc/contactgroup.h>
 #include <klineedit.h>
 
-class QAbstractItemModel;
-class QCompleter;
-class QModelIndex;
+#include <QAbstractItemModel>
+#include <QCompleter>
+#include <QModelIndex>
 
 class KJob;
 

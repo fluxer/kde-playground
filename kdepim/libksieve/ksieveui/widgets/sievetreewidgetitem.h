@@ -23,9 +23,9 @@
 
 #include "ksieveui_export.h"
 
-class QTimer;
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QTimer>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 
 namespace KSieveUi {
 class SieveTreeWidgetProgress;

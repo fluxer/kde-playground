@@ -22,8 +22,8 @@
 #include <QNetworkReply>
 #include "storageservice/storageserviceabstract.h"
 
-class QFile;
-class QNetworkAccessManager;
+#include <QFile>
+#include <QNetworkAccessManager>
 namespace PimCommon {
 class AccountInfo;
 class StorageServiceAbstractJob : public QObject

@@ -25,7 +25,7 @@
 #include <QtCore/QAbstractItemModel>
 #include <QtCore/QVector>
 
-class QDBusInterface;
+#include <QDBusInterface>
 
 class AgentConfigModel : public QAbstractTableModel
 {

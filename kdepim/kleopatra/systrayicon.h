@@ -40,7 +40,7 @@
 #include <utils/pimpl_ptr.h>
 
 class MainWindow;
-class QDialog;
+#include <QDialog>
 
 class SysTrayIcon : public Kleo::SystemTrayIcon {
     Q_OBJECT

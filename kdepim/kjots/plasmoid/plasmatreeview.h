@@ -23,7 +23,7 @@
 
 #include <QGraphicsProxyWidget>
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 
 namespace Akonadi
 {

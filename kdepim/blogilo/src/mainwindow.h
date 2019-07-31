@@ -33,8 +33,8 @@
 #include <QPointer>
 
 class KStatusNotifierItem;
-class QProgressBar;
-class QToolButton;
+#include <QProgressBar>
+#include <QToolButton>
 class Toolbox;
 class KSelectAction;
 class PostEntry;

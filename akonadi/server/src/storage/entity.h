@@ -26,8 +26,8 @@
 #include <QtCore/QString>
 #include <QtCore/QStringList>
 
-class QVariant;
-class QSqlDatabase;
+#include <QVariant>
+#include <QSqlDatabase>
 
 namespace Akonadi {
 namespace Server {

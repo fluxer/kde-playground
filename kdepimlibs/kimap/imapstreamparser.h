@@ -29,7 +29,7 @@
 #include <QtCore/QList>
 #include <QtCore/QString>
 
-class QIODevice;
+#include <QIODevice>
 
 namespace KIMAP {
 

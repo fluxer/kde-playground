@@ -21,7 +21,7 @@
 
 #include "abstractaddressbook.h"
 #include <QHash>
-class QSettings;
+#include <QSettings>
 
 
 class ImportWizard;

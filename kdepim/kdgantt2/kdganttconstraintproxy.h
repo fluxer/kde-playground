@@ -29,7 +29,7 @@
 
 #include <QPointer>
 
-class QAbstractProxyModel;
+#include <QAbstractProxyModel>
 
 namespace KDGantt {
     class Constraint;

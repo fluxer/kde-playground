@@ -27,7 +27,7 @@ namespace NoteShared {
 class NotesChangeRecorder;
 class NotesAkonadiTreeModel;
 }
-class QModelIndex;
+#include <QModelIndex>
 class KNoteAkonadiNote;
 class KNotesAkonadiApp : public QWidget
 {

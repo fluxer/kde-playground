@@ -48,12 +48,12 @@
 
 #include <vector>
 
-class QVBoxLayout;
-class QCheckBox;
-class QPixmap;
-class QTimer;
-class QRegExp;
-class QPoint;
+#include <QVBoxLayout>
+#include <QCheckBox>
+#include <QPixmap>
+#include <QTimer>
+#include <QRegExp>
+#include <QPoint>
 
 namespace Kleo {
   class KeyListView;

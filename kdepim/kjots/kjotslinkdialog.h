@@ -23,11 +23,11 @@
 
 #include <KDialog>
 
-class QLabel;
-class QAbstractItemModel;
-class QString;
-class QRadioButton;
-class QTreeView;
+#include <QLabel>
+#include <QAbstractItemModel>
+#include <QString>
+#include <QRadioButton>
+#include <QTreeView>
 
 class KComboBox;
 class KLineEdit;

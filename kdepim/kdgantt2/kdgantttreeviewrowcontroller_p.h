@@ -29,7 +29,7 @@
 
 #include <QTreeView>
 
-class QAbstractProxyModel;
+#include <QAbstractProxyModel>
 
 namespace KDGantt {
     class TreeViewRowController::Private {

@@ -41,9 +41,9 @@ namespace GpgME {
   class Key;
 }
 
-class QFont;
-class QColor;
-class QString;
+#include <QFont>
+#include <QColor>
+#include <QString>
 
 namespace Kleo {
 

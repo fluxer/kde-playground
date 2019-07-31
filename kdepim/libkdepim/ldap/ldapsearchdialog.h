@@ -29,7 +29,7 @@
 #include <kabc/addressee.h>
 #include <kdialog.h>
 
-class QCloseEvent;
+#include <QCloseEvent>
 
 namespace KLDAP {
 

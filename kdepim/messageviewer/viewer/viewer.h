@@ -38,10 +38,10 @@ class KAction;
 class KToggleAction;
 class KUrl;
 
-class QAbstractItemModel;
-class QCloseEvent;
-class QEvent;
-class QResizeEvent;
+#include <QAbstractItemModel>
+#include <QCloseEvent>
+#include <QEvent>
+#include <QResizeEvent>
 
 namespace MessageViewer {
 

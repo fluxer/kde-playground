@@ -22,7 +22,7 @@
 
 #include "ui_dbbrowser.h"
 
-class QSqlTableModel;
+#include <QSqlTableModel>
 
 class DbBrowser : public QWidget
 {

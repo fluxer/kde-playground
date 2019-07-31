@@ -21,8 +21,8 @@
 #include <QObject>
 #include <KUrl>
 #include "ksieveui_export.h"
-class QDomDocument;
-class QDomElement;
+#include <QDomDocument>
+#include <QDomElement>
 namespace KManageSieve {
 class SieveJob;
 }

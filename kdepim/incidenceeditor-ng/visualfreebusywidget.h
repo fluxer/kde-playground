@@ -34,7 +34,7 @@ namespace KDGantt {
 
 class KComboBox;
 
-class QTreeView;
+#include <QTreeView>
 
 namespace IncidenceEditorNG {
 

@@ -23,8 +23,8 @@
 
 #include <QStyledItemDelegate>
 
-class QAbstractItemView;
-class QTreeView;
+#include <QAbstractItemView>
+#include <QTreeView>
 
 namespace Akonadi {
 

@@ -22,8 +22,8 @@
 #define RADIOBUTTON_H
 
 #include <QRadioButton>
-class QMouseEvent;
-class QKeyEvent;
+#include <QMouseEvent>
+#include <QKeyEvent>
 
 
 /**

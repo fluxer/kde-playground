@@ -20,7 +20,7 @@
 
 #include <QObject>
 class KActionMenu;
-class QAction;
+#include <QAction>
 class MainWindow;
 namespace Kleo {
 class Command;

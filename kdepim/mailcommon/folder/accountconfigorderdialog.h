@@ -21,9 +21,9 @@
 #include <KDialog>
 #include "mailcommon_export.h"
 
-class QListWidget;
+#include <QListWidget>
 class KPushButton;
-class QCheckBox;
+#include <QCheckBox>
 namespace MailCommon {
 
 class MAILCOMMON_EXPORT AccountConfigOrderDialog : public KDialog

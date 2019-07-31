@@ -47,12 +47,12 @@
 #include "kleo/enum.h"
 #include <composer/composerviewbase.h>
 
-class QByteArray;
-class QCheckBox;
-class QGridLayout;
-class QLabel;
-class QPushButton;
-class QSplitter;
+#include <QByteArray>
+#include <QCheckBox>
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QSplitter>
 
 class CodecAction;
 class KMComposeWin;

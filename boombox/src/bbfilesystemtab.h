@@ -27,10 +27,10 @@
 #include <KDirOperator>
 #include <KFileItem>
 
-class QFileSystemModel;
-class QHBoxLayout;
-class QModelIndex;
-class QVBoxLayout;
+#include <QFileSystemModel>
+#include <QHBoxLayout>
+#include <QModelIndex>
+#include <QVBoxLayout>
 class KCategorizedSortFilterProxyModel;
 class KDirModel;
 class KFilePlacesModel;

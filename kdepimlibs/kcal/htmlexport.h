@@ -28,7 +28,7 @@
 #include <QtCore/QString>
 #include <QtCore/QTextStream>
 
-class QTextStream;
+#include <QTextStream>
 
 namespace KCal {
 

@@ -30,7 +30,7 @@
 
 #include <memory>
 
-class QIODevice;
+#include <QIODevice>
 
 namespace Akonadi {
 

@@ -31,10 +31,10 @@
 #include "timetrackerstorage.h"
 #include "reportcriteria.h"
 
-class QMouseEvent;
-class QString;
-class QTableWidget;
-class QTimer;
+#include <QMouseEvent>
+#include <QString>
+#include <QTableWidget>
+#include <QTimer>
 
 class DesktopTracker;
 class IdleTimeDetector;

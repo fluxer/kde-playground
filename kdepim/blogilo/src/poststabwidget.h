@@ -19,7 +19,7 @@
 #define POSTSTABWIDGET_H
 
 #include <KTabWidget>
-class QToolButton;
+#include <QToolButton>
 
 class PostsTabWidget : public KTabWidget
 {

@@ -41,7 +41,7 @@
 
 #include <vector>
 
-class QString;
+#include <QString>
 
 namespace GpgME {
     class Key;

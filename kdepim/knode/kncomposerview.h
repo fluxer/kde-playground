@@ -21,7 +21,7 @@
 
 class KComboBox;
 class KNComposerEditor;
-class QGroupBox;
+#include <QGroupBox>
 namespace KPIMIdentities {
   class IdentityCombo;
 }

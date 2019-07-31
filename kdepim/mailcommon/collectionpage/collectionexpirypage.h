@@ -27,9 +27,9 @@
 class KIntSpinBox;
 class KJob;
 
-class QCheckBox;
-class QPushButton;
-class QRadioButton;
+#include <QCheckBox>
+#include <QPushButton>
+#include <QRadioButton>
 
 namespace MailCommon {
 

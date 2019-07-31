@@ -26,10 +26,10 @@
 
 #include "docmetainfo.h"
 
-class QTreeWidgetItem;
-class QTreeWidget;
-class QTreeWidgetItem;
-class QComboBox;
+#include <QTreeWidgetItem>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QComboBox>
 
 class KConfig;
 

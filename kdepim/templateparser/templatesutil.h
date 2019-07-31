@@ -20,8 +20,8 @@
 
 #include "templateparser_export.h"
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QStringList>
 namespace TemplateParser {
 
 namespace Util {

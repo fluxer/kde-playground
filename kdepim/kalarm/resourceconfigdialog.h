@@ -27,7 +27,7 @@
 #include <kdialog.h>
 
 class KLineEdit;
-class QCheckBox;
+#include <QCheckBox>
 
 namespace KRES {
     class ConfigWidget;

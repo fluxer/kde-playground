@@ -32,10 +32,10 @@ class KComboBox;
 class KLineEdit;
 class KUrlRequester;
 
-class QButtonGroup;
-class QCheckBox;
+#include <QButtonGroup>
+#include <QCheckBox>
 class QCsvModel;
-class QTableView;
+#include <QTableView>
 
 class CSVImportDialog : public KDialog
 {

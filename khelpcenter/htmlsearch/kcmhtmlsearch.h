@@ -28,13 +28,13 @@
 #include <QVariantList>
 
 
-class QCheckBox;
-class QPushButton;
+#include <QCheckBox>
+#include <QPushButton>
 class KListWidget;
 class K3Process;
 class KLanguageCombo;
 class KUrlRequester;
-class QStringList;
+#include <QStringList>
 
 class KHTMLSearchConfig : public KCModule
 {

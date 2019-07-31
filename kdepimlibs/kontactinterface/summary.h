@@ -26,9 +26,9 @@
 #include <QWidget>
 
 class KStatusBar;
-class QMouseEvent;
-class QDragEnterEvent;
-class QDropEvent;
+#include <QMouseEvent>
+#include <QDragEnterEvent>
+#include <QDropEvent>
 
 namespace KontactInterface {
 

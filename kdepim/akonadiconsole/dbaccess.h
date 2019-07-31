@@ -20,7 +20,7 @@
 #ifndef AKONADICONSOLE_DBACCESS_H
 #define AKONADICONSOLE_DBACCESS_H
 
-class QSqlDatabase;
+#include <QSqlDatabase>
 
 namespace DbAccess
 {

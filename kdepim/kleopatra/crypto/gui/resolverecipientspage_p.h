@@ -39,13 +39,13 @@
 
 #include <QHash>
 
-class QComboBox;
-class QLabel;
-class QListWidget;
-class QListWidgetItem;
-class QPushButton;
-class QStringList;
-class QToolButton;
+#include <QComboBox>
+#include <QLabel>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QPushButton>
+#include <QStringList>
+#include <QToolButton>
 
 class Kleo::Crypto::Gui::ResolveRecipientsPage::ListWidget : public QWidget {
     Q_OBJECT

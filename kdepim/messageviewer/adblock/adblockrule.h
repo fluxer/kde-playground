@@ -34,8 +34,8 @@
 #include <QSharedPointer>
 
 // Forward Includes
-class QNetworkRequest;
-class QString;
+#include <QNetworkRequest>
+#include <QString>
 
 namespace MessageViewer {
 enum RuleTypes

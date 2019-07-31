@@ -24,8 +24,8 @@
 
 #include "object.h"
 
-class QDomDocument;
-class QDomElement;
+#include <QDomDocument>
+#include <QDomElement>
 
 namespace OXA {
 

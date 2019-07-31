@@ -37,7 +37,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-class QString;
+#include <QString>
 
 namespace Kleo {
 namespace Dialogs {

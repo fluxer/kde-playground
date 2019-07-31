@@ -27,7 +27,7 @@
 #include "ui_warningconfiguration.h"
 #include "ui_smimeconfiguration.h"
 
-class QButtonGroup;
+#include <QButtonGroup>
 namespace MessageViewer {
 class AdBlockSettingWidget;
 }

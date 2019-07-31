@@ -27,8 +27,8 @@
 #include <QObject>
 #include <QDBusConnection>
 
-class QReadWriteLock;
-class QWaitCondition;
+#include <QReadWriteLock>
+#include <QWaitCondition>
 class OrgFreedesktopAkonadiResourceInterface;
 
 namespace Akonadi {

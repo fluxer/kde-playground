@@ -27,15 +27,15 @@
 #include <kdialog.h>
 
 class KConfig;
-class QString;
-class QListView;
-class QStackedWidget;
-class QComboBox;
-class QLineEdit;
-class QRadioButton;
-class QGroupBox;
-class QStandardItemModel;
-class QModelIndex;
+#include <QString>
+#include <QListView>
+#include <QStackedWidget>
+#include <QComboBox>
+#include <QLineEdit>
+#include <QRadioButton>
+#include <QGroupBox>
+#include <QStandardItemModel>
+#include <QModelIndex>
 
 class KCamera : public QObject {
 	friend class KameraDeviceSelectDialog;

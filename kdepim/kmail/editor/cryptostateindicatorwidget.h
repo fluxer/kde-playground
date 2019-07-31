@@ -19,7 +19,7 @@
 #define CRYPTOSTATEINDICATORWIDGET_H
 
 #include <QWidget>
-class QLabel;
+#include <QLabel>
 
 class CryptoStateIndicatorWidget : public QWidget
 {

@@ -33,9 +33,9 @@
 
 #include "holiday.h"
 
-class QDate;
-class QStringList;
-class QFileInfo;
+#include <QDate>
+#include <QStringList>
+#include <QFileInfo>
 
 namespace KHolidays {
 

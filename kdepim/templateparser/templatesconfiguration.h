@@ -21,7 +21,7 @@
 
 #include "templateparser_export.h"
 #include "ui_templatesconfiguration_base.h"
-class QTextEdit;
+#include <QTextEdit>
 namespace TemplateParser {
 
 class TEMPLATEPARSER_EXPORT TemplatesConfiguration : public QWidget, Ui::TemplatesConfigurationBase

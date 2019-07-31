@@ -28,8 +28,8 @@
 #include <QWidget>
 #include "tracedata.h"
 
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 class TraceFunction;
 class TraceData;
 class StackBrowser;

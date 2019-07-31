@@ -20,7 +20,7 @@
 
 #include <KDialog>
 #include <Akonadi/Item>
-class QListWidget;
+#include <QListWidget>
 class KNote;
 class KNotePrintObject;
 class KNotePrintSelectThemeComboBox;

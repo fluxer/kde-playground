@@ -29,7 +29,7 @@
 
 #include <QtCore/QtAlgorithms>
 
-class QStringList;
+#include <QStringList>
 
 class KDateTime;
 class KUrl;

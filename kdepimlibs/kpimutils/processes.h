@@ -36,7 +36,7 @@
 
 #include <QtCore/QList>
 
-class QString;
+#include <QString>
 
 namespace KPIMUtils {
 

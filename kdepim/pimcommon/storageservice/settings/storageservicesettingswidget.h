@@ -23,11 +23,11 @@
 #include "pimcommon_export.h"
 #include "storageservice/storageserviceabstract.h"
 #include "storageservice/storageservicemanager.h"
-class QListWidget;
-class QPushButton;
-class QLabel;
+#include <QListWidget>
+#include <QPushButton>
+#include <QLabel>
 class KTextBrowser;
-class QStackedWidget;
+#include <QStackedWidget>
 namespace PimCommon {
 class StorageListWidgetItem;
 

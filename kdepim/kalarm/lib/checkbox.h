@@ -22,8 +22,8 @@
 #define CHECKBOX_H
 
 #include <QCheckBox>
-class QMouseEvent;
-class QKeyEvent;
+#include <QMouseEvent>
+#include <QKeyEvent>
 
 
 /**

@@ -33,7 +33,7 @@
 #include "mailcommon_export.h"
 
 #include <KDialog>
-class QFormLayout;
+#include <QFormLayout>
 
 namespace MessageComposer {
 class ComposerLineEdit;

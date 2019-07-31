@@ -25,7 +25,7 @@
 
 #include <QWidget>
 
-class QAbstractItemView;
+#include <QAbstractItemView>
 namespace Akonadi {
 
 class AgentInstance;

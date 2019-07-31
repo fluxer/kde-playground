@@ -22,7 +22,7 @@
 
 #include "xxport.h"
 
-class QFile;
+#include <QFile>
 
 class CsvXXPort : public XXPort
 {

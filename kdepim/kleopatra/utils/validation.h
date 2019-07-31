@@ -33,9 +33,9 @@
 #ifndef __KLEOPATRA_UTILS_VALIDATION_H__
 #define __KLEOPATRA_UTILS_VALIDATION_H__
 
-class QValidator;
-class QRegExp;
-class QObject;
+#include <QValidator>
+#include <QRegExp>
+#include <QObject>
 
 namespace Kleo {
 namespace Validation {

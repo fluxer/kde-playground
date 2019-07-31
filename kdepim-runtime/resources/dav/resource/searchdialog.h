@@ -24,7 +24,7 @@
 #include <KDialog>
 
 class KJob;
-class QStandardItemModel;
+#include <QStandardItemModel>
 
 class SearchDialog : public KDialog
 {

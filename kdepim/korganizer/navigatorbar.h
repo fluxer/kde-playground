@@ -28,7 +28,7 @@
 
 #include <QWidget>
 
-class QToolButton;
+#include <QToolButton>
 
 class NavigatorBar: public QWidget
 {

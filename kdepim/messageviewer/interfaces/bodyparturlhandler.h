@@ -33,8 +33,8 @@
 #ifndef __KMAIL_INTERFACE_BODYPARTURLHANDLER_H__
 #define __KMAIL_INTERFACE_BODYPARTURLHANDLER_H__
 
-class QString;
-class QPoint;
+#include <QString>
+#include <QPoint>
 
 namespace MessageViewer {
 

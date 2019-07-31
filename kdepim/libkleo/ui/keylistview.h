@@ -42,10 +42,10 @@
 #include <QHeaderView>
 #include <KIcon>
 
-class QPainter;
+#include <QPainter>
 class QColorGroup;
-class QFont;
-class QColor;
+#include <QFont>
+#include <QColor>
 
 namespace Kleo {
 

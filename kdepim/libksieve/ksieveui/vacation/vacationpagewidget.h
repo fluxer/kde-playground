@@ -20,7 +20,7 @@
 
 #include <QWidget>
 #include <KUrl>
-class QStackedWidget;
+#include <QStackedWidget>
 namespace KManageSieve {
 class SieveJob;
 }

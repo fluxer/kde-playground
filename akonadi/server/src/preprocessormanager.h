@@ -31,8 +31,8 @@
 
 #include <deque>
 
-class QTimer;
-class QMutex;
+#include <QTimer>
+#include <QMutex>
 
 #include "preprocessorinstance.h"
 

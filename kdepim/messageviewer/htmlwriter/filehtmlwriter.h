@@ -38,7 +38,7 @@
 #include <QFile>
 #include <QTextStream>
 
-class QString;
+#include <QString>
 
 namespace MessageViewer {
 

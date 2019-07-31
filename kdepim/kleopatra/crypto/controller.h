@@ -42,7 +42,7 @@
 
 #include <boost/shared_ptr.hpp>
 
-class QDialog;
+#include <QDialog>
 
 namespace Kleo {
 namespace Crypto {

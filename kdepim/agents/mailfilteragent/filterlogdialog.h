@@ -31,9 +31,9 @@
 
 #include <kdialog.h>
 
-class QCheckBox;
-class QSpinBox;
-class QGroupBox;
+#include <QCheckBox>
+#include <QSpinBox>
+#include <QGroupBox>
 
 /**
   @short KMail Filter Log Collector.

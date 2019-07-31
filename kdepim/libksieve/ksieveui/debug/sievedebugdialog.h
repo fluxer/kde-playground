@@ -19,7 +19,7 @@
 #include <kdialog.h>
 #include <kurl.h>
 
-class QStringList;
+#include <QStringList>
 
 namespace KManageSieve {
 class SieveJob;

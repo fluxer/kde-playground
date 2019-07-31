@@ -30,7 +30,7 @@
 
 #include <boost/function.hpp>
 
-class QLabel;
+#include <QLabel>
 class KActionCollection;
 
 namespace MessageViewer {

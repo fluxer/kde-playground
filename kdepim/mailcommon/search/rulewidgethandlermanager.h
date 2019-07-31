@@ -36,9 +36,9 @@
 #include <QByteArray>
 #include <QVector>
 
-class QObject;
-class QString;
-class QStackedWidget;
+#include <QObject>
+#include <QString>
+#include <QStackedWidget>
 
 namespace MailCommon {
 

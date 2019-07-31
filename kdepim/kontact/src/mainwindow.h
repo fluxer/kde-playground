@@ -36,9 +36,9 @@ class KWebView;
 class KPluginInfo;
 class KSqueezedTextLabel;
 
-class QFrame;
-class QSplitter;
-class QStackedWidget;
+#include <QFrame>
+#include <QSplitter>
+#include <QStackedWidget>
 
 typedef QList<KontactInterface::Plugin *> PluginList;
 typedef QList<QAction*> ActionPluginList;

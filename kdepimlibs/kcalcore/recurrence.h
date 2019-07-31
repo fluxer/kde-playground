@@ -27,7 +27,7 @@
 #include "kcalcore_export.h"
 #include "recurrencerule.h"
 
-class QBitArray;
+#include <QBitArray>
 
 namespace KCalCore {
 

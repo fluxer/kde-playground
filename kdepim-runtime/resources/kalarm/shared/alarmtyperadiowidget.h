@@ -29,7 +29,7 @@
 
 using namespace KAlarmCal;
 
-class QButtonGroup;
+#include <QButtonGroup>
 
 class AlarmTypeRadioWidget : public Akonadi::SingleFileValidatingWidget
 {

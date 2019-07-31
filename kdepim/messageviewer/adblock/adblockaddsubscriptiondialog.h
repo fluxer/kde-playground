@@ -20,7 +20,7 @@
 
 #include <KDialog>
 
-class QComboBox;
+#include <QComboBox>
 
 namespace MessageViewer {
 

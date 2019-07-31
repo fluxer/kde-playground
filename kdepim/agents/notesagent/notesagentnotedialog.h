@@ -21,8 +21,8 @@
 
 #include <KDialog>
 #include <Akonadi/Item>
-class QTextEdit;
-class QLineEdit;
+#include <QTextEdit>
+#include <QLineEdit>
 class KJob;
 namespace PimCommon {
 class RichTextEditorWidget;

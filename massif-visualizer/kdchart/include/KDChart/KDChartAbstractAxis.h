@@ -34,8 +34,8 @@
 #include "KDChartRulerAttributes.h"
 
 QT_BEGIN_NAMESPACE
-class QPainter;
-class QSizeF;
+#include <QPainter>
+#include <QSizeF>
 QT_END_NAMESPACE
 
 

@@ -24,7 +24,7 @@
 
 #include <QSortFilterProxyModel>
 
-template <class T> class QVector;
+#include <QVector>
 
 namespace Akonadi
 {

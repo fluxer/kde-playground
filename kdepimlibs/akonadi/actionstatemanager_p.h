@@ -23,7 +23,7 @@
 #include <akonadi/collection.h>
 #include <akonadi/item.h>
 
-class QObject;
+#include <QObject>
 
 namespace Akonadi {
 

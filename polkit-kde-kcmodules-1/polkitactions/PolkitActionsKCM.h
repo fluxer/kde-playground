@@ -15,7 +15,7 @@
 #include <PolkitQt1/Authority>
 #include <QtCore/QPointer>
 
-class QModelIndex;
+#include <QModelIndex>
 namespace PolkitKde {
 class PoliciesModel;
 class AuthorizationsFilterModel;

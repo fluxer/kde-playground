@@ -41,7 +41,7 @@ namespace Kleo {
     class Job;
 }
 
-class QString;
+#include <QString>
 
 namespace Kleo {
 namespace ProgressManager {

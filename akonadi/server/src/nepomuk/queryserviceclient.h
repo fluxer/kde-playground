@@ -24,7 +24,7 @@
 #include <QtCore/QObject>
 #include <QtCore/QHash>
 
-class QUrl;
+#include <QUrl>
 
 namespace Nepomuk {
     namespace Query {

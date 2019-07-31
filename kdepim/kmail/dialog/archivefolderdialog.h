@@ -21,7 +21,7 @@
 
 #include <kdialog.h>
 
-class QCheckBox;
+#include <QCheckBox>
 class KUrlRequester;
 class KComboBox;
 class KUrl;

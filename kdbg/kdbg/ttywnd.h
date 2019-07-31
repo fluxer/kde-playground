@@ -9,7 +9,7 @@
 
 #include <QPlainTextEdit>
 
-class QSocketNotifier;
+#include <QSocketNotifier>
 
 /**
  * This class is cortesy Judin Max <novaprint@mtu-net.ru>.

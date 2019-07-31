@@ -22,7 +22,7 @@
 #include <KDialog>
 #include "pimcommon_export.h"
 class KLineEdit;
-class QLabel;
+#include <QLabel>
 namespace PimCommon {
 class PIMCOMMON_EXPORT StorageServiceCheckNameDialog : public KDialog
 {

@@ -24,7 +24,7 @@
 
 #include <QtCore/QObject>
 
-class QTreeView;
+#include <QTreeView>
 class KConfigGroup;
 
 namespace Akonadi {

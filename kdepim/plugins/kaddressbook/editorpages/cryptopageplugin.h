@@ -31,7 +31,7 @@ class KeyRequester;
 }
 
 class KComboBox;
-class QCheckBox;
+#include <QCheckBox>
 
 using namespace Akonadi;
 

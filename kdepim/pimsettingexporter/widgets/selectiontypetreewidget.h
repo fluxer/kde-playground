@@ -22,7 +22,7 @@
 #include <QHash>
 #include "utils.h"
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 class SelectionTypeTreeWidget : public QTreeWidget
 {

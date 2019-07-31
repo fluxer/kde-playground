@@ -35,11 +35,11 @@
 #include "toplevelbase.h"
 
 class MultiView;
-class QLineEdit;
-class QDockWidget;
-class QLabel;
-class QProgressBar;
-class QMenu;
+#include <QLineEdit>
+#include <QDockWidget>
+#include <QLabel>
+#include <QProgressBar>
+#include <QMenu>
 
 class KUrl;
 class KSelectAction;

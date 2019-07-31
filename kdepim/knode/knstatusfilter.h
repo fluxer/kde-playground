@@ -21,7 +21,7 @@
 #include <QComboBox>
 #include <QBitArray>
 
-class QCheckBox;
+#include <QCheckBox>
 
 namespace KNode {
 

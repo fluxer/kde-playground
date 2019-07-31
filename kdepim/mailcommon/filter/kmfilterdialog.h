@@ -40,12 +40,12 @@ class KActionCollection;
 class KIconButton;
 class KKeySequenceWidget;
 
-class QCheckBox;
-class QLabel;
-class QListWidget;
-class QModelIndex;
-class QPushButton;
-class QRadioButton;
+#include <QCheckBox>
+#include <QLabel>
+#include <QListWidget>
+#include <QModelIndex>
+#include <QPushButton>
+#include <QRadioButton>
 
 namespace MailCommon {
 class SearchPatternEdit;

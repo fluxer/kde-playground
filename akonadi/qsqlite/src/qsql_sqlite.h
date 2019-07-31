@@ -63,7 +63,7 @@ class QSQLiteDriver;
 
 class QSQLiteResult : public QSqlCachedResult
 {
-    friend class QSQLiteDriver;
+    friend class <QSQLiteDriver>
     friend class QSQLiteResultPrivate;
 public:
     explicit QSQLiteResult(const QSQLiteDriver* db);

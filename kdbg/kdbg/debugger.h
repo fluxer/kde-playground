@@ -22,7 +22,7 @@ class KTreeViewItem;
 class KConfig;
 class KConfigBase;
 class KConfigGroup;
-class QListWidget;
+#include <QListWidget>
 class RegisterInfo;
 class ThreadInfo;
 class DebuggerDriver;

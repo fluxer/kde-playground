@@ -26,8 +26,8 @@
 #ifndef ADBLOCKRULEIMPL_H
 #define ADBLOCKRULEIMPL_H
 
-class QString;
-class QNetworkRequest;
+#include <QString>
+#include <QNetworkRequest>
 
 class AdBlockRuleImpl
 {

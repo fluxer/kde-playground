@@ -37,10 +37,10 @@
 #include <QWidget>
 #include <QtNetwork/QTcpServer>
 
-class QLabel;
-class QLineEdit;
-class QTcpServer;
-class QTextEdit;
+#include <QLabel>
+#include <QLineEdit>
+#include <QTcpServer>
+#include <QTextEdit>
 
 class InteractiveSMTPServerWindow : public QWidget
 {

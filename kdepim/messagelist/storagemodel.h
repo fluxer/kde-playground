@@ -31,8 +31,8 @@
 
 #include <messagelist/messagelist_export.h>
 
-class QAbstractItemModel;
-class QItemSelectionModel;
+#include <QAbstractItemModel>
+#include <QItemSelectionModel>
 
 namespace MessageList
 {

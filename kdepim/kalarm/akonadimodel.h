@@ -37,7 +37,7 @@
 namespace Akonadi {
     class AgentInstance;
 }
-class QPixmap;
+#include <QPixmap>
 class KJob;
 
 using namespace KAlarmCal;

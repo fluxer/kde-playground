@@ -24,9 +24,9 @@
 
 #include <QWidget>
 
-class QStackedWidget;
-class QLineEdit;
-class QAction;
+#include <QStackedWidget>
+#include <QLineEdit>
+#include <QAction>
 namespace KSieveUi {
 class SieveEditorTextModeWidget;
 class SieveEditorGraphicalModeWidget;

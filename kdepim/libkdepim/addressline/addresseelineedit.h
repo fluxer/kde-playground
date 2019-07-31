@@ -33,12 +33,12 @@
 
 #include <KLineEdit>
 
-class QDropEvent;
-class QEvent;
-class QKeyEvent;
-class QMenu;
-class QMouseEvent;
-class QObject;
+#include <QDropEvent>
+#include <QEvent>
+#include <QKeyEvent>
+#include <QMenu>
+#include <QMouseEvent>
+#include <QObject>
 
 namespace Akonadi {
 class Item;

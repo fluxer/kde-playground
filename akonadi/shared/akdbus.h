@@ -20,7 +20,7 @@
 #ifndef AKDBUS_H
 #define AKDBUS_H
 
-class QString;
+#include <QString>
 
 /**
  * Helper methods for obtaining D-Bus identifiers.

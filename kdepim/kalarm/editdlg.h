@@ -31,13 +31,13 @@
 
 #include <kdialog.h>
 
-class QLabel;
-class QShowEvent;
-class QResizeEvent;
-class QAbstractButton;
-class QGroupBox;
-class QFrame;
-class QVBoxLayout;
+#include <QLabel>
+#include <QShowEvent>
+#include <QResizeEvent>
+#include <QAbstractButton>
+#include <QGroupBox>
+#include <QFrame>
+#include <QVBoxLayout>
 class KLineEdit;
 class KTabWidget;
 #ifndef USE_AKONADI

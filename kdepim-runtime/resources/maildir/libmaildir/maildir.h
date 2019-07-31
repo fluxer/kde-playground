@@ -27,7 +27,7 @@
 #include <QStringList>
 #include <akonadi/item.h>
 
-class QDateTime;
+#include <QDateTime>
 
 namespace KPIM {
 

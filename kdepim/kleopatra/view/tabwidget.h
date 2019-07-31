@@ -41,7 +41,7 @@
 
 #include <boost/shared_ptr.hpp>
 
-class QAbstractItemView;
+#include <QAbstractItemView>
 
 class KConfigGroup;
 class KActionCollection;

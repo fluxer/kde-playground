@@ -25,7 +25,7 @@
 #include <KPixmapSequence>
 #include <QPixmap>
 
-class QTimer;
+#include <QTimer>
 namespace PimCommon {
 class PIMCOMMON_EXPORT StorageServiceProgressIndicator : public QObject
 {

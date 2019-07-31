@@ -22,7 +22,7 @@
 #define SPINBOX_H
 
 #include <QSpinBox>
-class QEvent;
+#include <QEvent>
 class QStyleOptionSpinBox;
 
 

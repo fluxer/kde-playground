@@ -28,7 +28,7 @@
 
 class KConfig;
 
-class QModelIndex;
+#include <QModelIndex>
 
 /**
   This class provides a multi-column list view of events.  It can

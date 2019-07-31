@@ -25,8 +25,8 @@
 
 class KPushButton;
 
-class QListWidget;
-class QWidget;
+#include <QListWidget>
+#include <QWidget>
 
 namespace MailCommon {
 

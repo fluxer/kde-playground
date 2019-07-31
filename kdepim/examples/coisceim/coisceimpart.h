@@ -26,7 +26,7 @@
 #include <kparts/statusbarextension.h>
 #include "coisceimwidget.h"
 
-class QWidget;
+#include <QWidget>
 class KAboutData;
 
 class CoisceimPart : public KParts::ReadOnlyPart

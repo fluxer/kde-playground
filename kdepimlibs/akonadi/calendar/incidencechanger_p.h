@@ -38,7 +38,7 @@
 #include <QVector>
 
 class KJob;
-class QWidget;
+#include <QWidget>
 
 namespace Akonadi {
 

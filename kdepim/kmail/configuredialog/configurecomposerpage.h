@@ -22,15 +22,15 @@
 #include <config-enterprise.h>
 #include "configuredialog_p.h"
 #include "ui_customtemplates_base.h"
-class QCheckBox;
+#include <QCheckBox>
 class KIntSpinBox;
 class KIntNumInput;
 class KComboBox;
 class KUrlRequester;
 class KLineEdit;
 class ListView;
-class QPushButton;
-class QLabel;
+#include <QPushButton>
+#include <QLabel>
 class ConfigureStorageServiceWidget;
 
 namespace TemplateParser {

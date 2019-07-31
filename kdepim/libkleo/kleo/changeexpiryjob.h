@@ -40,7 +40,7 @@ namespace GpgME {
     class Key;
 }
 
-class QDateTime;
+#include <QDateTime>
 
 namespace Kleo {
 

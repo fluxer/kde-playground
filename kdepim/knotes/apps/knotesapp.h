@@ -47,7 +47,7 @@ namespace DNSSD {
 class PublicService;
 }
 class KJob;
-class QModelIndex;
+#include <QModelIndex>
 class KNotesApp
         : public QWidget, public KSessionManager, virtual public KXMLGUIClient
 {

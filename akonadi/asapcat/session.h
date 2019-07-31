@@ -24,8 +24,8 @@
 #include <QLocalSocket>
 #include <QTime>
 
-class QIODevice;
-class QSocketNotifier;
+#include <QIODevice>
+#include <QSocketNotifier>
 
 /** ASAP CLI session. */
 class Session : public QObject

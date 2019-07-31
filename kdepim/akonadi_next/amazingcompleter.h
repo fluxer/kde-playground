@@ -26,7 +26,7 @@
 
 #include "akonadi_next_export.h"
 
-class QAbstractItemView;
+#include <QAbstractItemView>
 
 
 namespace Akonadi

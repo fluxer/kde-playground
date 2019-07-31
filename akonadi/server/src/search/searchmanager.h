@@ -28,8 +28,8 @@
 
 #include <libs/notificationmessagev3_p.h>
 
-class QWaitCondition;
-class QTimer;
+#include <QWaitCondition>
+#include <QTimer>
 
 namespace Akonadi {
 

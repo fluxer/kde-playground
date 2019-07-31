@@ -23,7 +23,7 @@
 
 class ImportWizard;
 class KConfigGroup;
-class QFile;
+#include <QFile>
 
 class SylpheedSettings : public AbstractSettings
 {

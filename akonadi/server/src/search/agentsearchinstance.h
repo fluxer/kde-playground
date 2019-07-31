@@ -23,7 +23,7 @@
 #include <QObject>
 #include <QString>
 
-class QDBusServiceWatcher;
+#include <QDBusServiceWatcher>
 class OrgFreedesktopAkonadiAgentSearchInterface;
 
 namespace Akonadi {

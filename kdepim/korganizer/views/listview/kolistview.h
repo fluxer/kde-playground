@@ -39,7 +39,7 @@ namespace Akonadi {
   class IncidenceChanger;
 }
 
-class QModelIndex;
+#include <QModelIndex>
 
 class KOListView : public KOEventView
 {

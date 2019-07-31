@@ -34,7 +34,7 @@ class StatisticsProxyModel;
 class KLineEdit;
 class KXMLGUIClient;
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 
 namespace MailCommon {
 

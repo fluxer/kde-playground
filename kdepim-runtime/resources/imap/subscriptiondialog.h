@@ -29,15 +29,15 @@
 
 #include <QtCore/QMap>
 
-class QKeyEvent;
-class QStandardItemModel;
-class QStandardItem;
+#include <QKeyEvent>
+#include <QStandardItemModel>
+#include <QStandardItem>
 
 class KLineEdit;
-class QCheckBox;
+#include <QCheckBox>
 class ImapAccount;
-class QTreeView;
-class QListView;
+#include <QTreeView>
+#include <QListView>
 
 
 class SubscriptionFilterProxyModel : public KRecursiveFilterProxyModel

@@ -32,8 +32,8 @@
 
 #include <KDialog>
 
-class QButtonGroup;
-class QLabel;
+#include <QButtonGroup>
+#include <QLabel>
 
 namespace KPIM {
 

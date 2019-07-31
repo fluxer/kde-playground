@@ -32,9 +32,9 @@
 #include <KUrl>
 #include <kleo/enum.h>
 
-class QTimer;
+#include <QTimer>
 class KJob;
-class QWidget;
+#include <QWidget>
 
 namespace SendLater {
 class SendLaterInfo;

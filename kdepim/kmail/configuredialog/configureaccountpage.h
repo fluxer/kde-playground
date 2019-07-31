@@ -22,7 +22,7 @@
 #include "configuredialog_p.h"
 #include "ui_accountspagereceivingtab.h"
 
-class QCheckBox;
+#include <QCheckBox>
 class KComboBox;
 class KLineEdit;
 class OrgFreedesktopAkonadiNewMailNotifierInterface;

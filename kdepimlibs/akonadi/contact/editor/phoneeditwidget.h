@@ -30,11 +30,11 @@
 
 class KLineEdit;
 
-class QButtonGroup;
-class QCheckBox;
-class QScrollArea;
-class QSignalMapper;
-class QVBoxLayout;
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QScrollArea>
+#include <QSignalMapper>
+#include <QVBoxLayout>
 
 /**
  * @short A combobox to select a phone number type.

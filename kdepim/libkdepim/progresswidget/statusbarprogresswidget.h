@@ -41,12 +41,12 @@
 
 #include <QFrame>
 
-class QEvent;
-class QProgressBar;
-class QPushButton;
-class QStackedWidget;
-class QLabel;
-class QTimer;
+#include <QEvent>
+#include <QProgressBar>
+#include <QPushButton>
+#include <QStackedWidget>
+#include <QLabel>
+#include <QTimer>
 
 namespace KPIM {
 class SSLLabel;

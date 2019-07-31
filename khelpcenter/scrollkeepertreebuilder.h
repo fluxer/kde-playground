@@ -24,7 +24,7 @@
 
 #include "navigatoritem.h"
 
-class QDomNode;
+#include <QDomNode>
 
 namespace KHC {
 

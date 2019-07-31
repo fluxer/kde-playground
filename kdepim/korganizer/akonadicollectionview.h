@@ -40,8 +40,8 @@ namespace Akonadi {
 
 class KAction;
 class KJob;
-class QAbstractProxyModel;
-class QModelIndex;
+#include <QAbstractProxyModel>
+#include <QModelIndex>
 
 /**
  * The factory for AkonadiCollectionView instances.

@@ -27,8 +27,8 @@
 
 #include "kdganttabstractrowcontroller.h"
 
-class QAbstractProxyModel;
-class QTreeView;
+#include <QAbstractProxyModel>
+#include <QTreeView>
 
 namespace KDGantt {
     class KDGANTT_EXPORT TreeViewRowController :  public AbstractRowController {

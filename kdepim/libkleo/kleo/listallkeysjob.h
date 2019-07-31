@@ -44,7 +44,7 @@ namespace GpgME {
   class KeyListResult;
 }
 
-class QStringList;
+#include <QStringList>
 
 namespace Kleo {
 

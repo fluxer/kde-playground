@@ -42,9 +42,9 @@
 
 #include <vector>
 
-class QModelIndex;
-template <typename T> class QList;
-class QAbstractItemView;
+#include <QModelIndex>
+#include <QList>
+#include <QAbstractItemView>
 
 namespace GpgME {
     class Key;

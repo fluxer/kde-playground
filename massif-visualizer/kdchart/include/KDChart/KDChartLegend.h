@@ -27,7 +27,7 @@
 #include "KDChartPosition.h"
 #include "KDChartMarkerAttributes.h"
 
-class QTextTable;
+#include <QTextTable>
 
 namespace KDChart {
 

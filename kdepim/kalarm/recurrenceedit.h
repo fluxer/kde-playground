@@ -31,14 +31,14 @@
 #include <QFrame>
 
 class KDateComboBox;
-class QDate;
-class QShowEvent;
-class QStackedWidget;
-class QGroupBox;
-class QLabel;
-class QListWidget;
-class QAbstractButton;
-class QPushButton;
+#include <QDate>
+#include <QShowEvent>
+#include <QStackedWidget>
+#include <QGroupBox>
+#include <QLabel>
+#include <QListWidget>
+#include <QAbstractButton>
+#include <QPushButton>
 class SpinBox;
 class CheckBox;
 class RadioButton;

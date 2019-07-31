@@ -46,7 +46,7 @@
 
 #include <libical/ical.h>
 
-class QDate;
+#include <QDate>
 
 namespace KCalCore {
 

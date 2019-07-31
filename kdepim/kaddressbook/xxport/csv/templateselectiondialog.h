@@ -22,7 +22,7 @@
 
 #include <KDialog>
 
-class QListView;
+#include <QListView>
 
 class TemplateSelectionDialog : public KDialog
 {

@@ -27,7 +27,7 @@
 #include <QStringList>
 #include "dvbtransponder.h"
 
-class QTreeView;
+#include <QTreeView>
 class DvbBackendDevice;
 class DvbChannelModel;
 class DvbConfig;

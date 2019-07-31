@@ -29,9 +29,9 @@
 #include "KDChartMeasure.h"
 
 QT_BEGIN_NAMESPACE
-class QPen;
-class QFont;
-class QTextDocument;
+#include <QPen>
+#include <QFont>
+#include <QTextDocument>
 QT_END_NAMESPACE
 
 namespace KDChart {

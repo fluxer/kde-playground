@@ -26,10 +26,10 @@
 #include <QtCore/QMetaType>
 #include <QtCore/QSharedDataPointer>
 
-class QIcon;
-class QString;
-class QStringList;
-class QVariant;
+#include <QIcon>
+#include <QString>
+#include <QStringList>
+#include <QVariant>
 typedef QMap<QString, QVariant> QVariantMap;
 
 namespace Akonadi

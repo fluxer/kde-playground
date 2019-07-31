@@ -20,9 +20,9 @@
 
 #include <QtCore/QObject>
 
-class QString;
-class QStringList;
-template <typename T> class QList;
+#include <QString>
+#include <QStringList>
+#include <QList>
 
 namespace KManageSieve {
 class SieveJob;

@@ -31,7 +31,7 @@ class KUrl;
 class KXMLGUIClient;
 class KXMLGUIFactory;
 
-class QWidget;
+#include <QWidget>
 
 namespace KOrg {
 

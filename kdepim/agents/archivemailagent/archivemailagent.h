@@ -21,7 +21,7 @@
 #include <akonadi/agentbase.h>
 
 #include <Akonadi/Collection>
-class QTimer;
+#include <QTimer>
 
 
 class ArchiveMailManager;

@@ -22,7 +22,7 @@
 
 #include "findbarbase.h"
 
-class QPlainTextEdit;
+#include <QPlainTextEdit>
 
 namespace MessageViewer
 {

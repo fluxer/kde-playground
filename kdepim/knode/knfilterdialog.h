@@ -20,8 +20,8 @@
 class KNFilterConfigWidget;
 class KNArticleFilter;
 class KLineEdit;
-class QComboBox;
-class QCheckBox;
+#include <QComboBox>
+#include <QCheckBox>
 
 
 /** Filter configuration dialog. */

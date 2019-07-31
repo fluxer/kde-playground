@@ -22,8 +22,8 @@
 
 class KComboBox;
 class KLineEdit;
-class QStackedWidget;
-class QSpinBox;
+#include <QStackedWidget>
+#include <QSpinBox>
 class KDateComboBox;
 class KTimeComboBox;
 namespace KSieveUi {

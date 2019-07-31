@@ -37,7 +37,7 @@
 
 #include "kmime_codecs.h"
 
-class QByteArray;
+#include <QByteArray>
 
 namespace KMime {
 

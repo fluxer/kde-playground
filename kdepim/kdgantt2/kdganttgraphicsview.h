@@ -29,10 +29,10 @@
 
 #include "kdganttglobal.h"
 
-class QModelIndex;
-class QAbstractItemModel;
-class QAbstractProxyModel;
-class QItemSelectionModel;
+#include <QModelIndex>
+#include <QAbstractItemModel>
+#include <QAbstractProxyModel>
+#include <QItemSelectionModel>
 
 namespace KDGantt {
     class AbstractRowController;

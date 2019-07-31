@@ -22,9 +22,9 @@
 #include <libkdepim/widgets/kwidgetlister.h>
 
 class KPushButton;
-class QGridLayout;
-class QToolButton;
-class QDomElement;
+#include <QGridLayout>
+#include <QToolButton>
+#include <QDomElement>
 
 namespace PimCommon {
 class MinimumComboBox;

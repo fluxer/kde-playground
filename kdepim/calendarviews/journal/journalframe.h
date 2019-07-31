@@ -36,7 +36,7 @@
 #include <QFrame>
 
 class KTextBrowser;
-class QPushButton;
+#include <QPushButton>
 
 namespace EventViews {
 

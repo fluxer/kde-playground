@@ -21,7 +21,7 @@
 #include <KDialog>
 #include "sendlater_export.h"
 
-class QCheckBox;
+#include <QCheckBox>
 
 namespace Ui {
 class SendLaterWidget;

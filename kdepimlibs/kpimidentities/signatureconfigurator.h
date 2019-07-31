@@ -27,16 +27,16 @@
 
 using KPIMIdentities::Signature;
 
-class QCheckBox;
+#include <QCheckBox>
 class KComboBox;
 class KUrlRequester;
 class KLineEdit;
 class KToolBar;
 class KRichTextWidget;
-class QString;
-class QPushButton;
-class QTextEdit;
-class QTextCharFormat;
+#include <QString>
+#include <QPushButton>
+#include <QTextEdit>
+#include <QTextCharFormat>
 
 namespace KPIMIdentities {
 

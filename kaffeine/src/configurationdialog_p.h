@@ -23,8 +23,8 @@
 
 #include <KDialog>
 
-class QPlainTextEdit;
-class QProcess;
+#include <QPlainTextEdit>
+#include <QProcess>
 
 class DmesgDialog : public KDialog
 {

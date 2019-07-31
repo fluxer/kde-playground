@@ -39,8 +39,8 @@ namespace KPIMIdentities
   class Signature;
 }
 class KConfigGroup;
-class QDataStream;
-class QMimeData;
+#include <QDataStream>
+#include <QMimeData>
 
 namespace KPIMIdentities
 {

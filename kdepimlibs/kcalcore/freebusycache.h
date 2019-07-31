@@ -33,7 +33,7 @@
 
 #include "freebusy.h"
 
-class QString;
+#include <QString>
 
 namespace KCalCore {
 

@@ -24,7 +24,7 @@
 
 #include <QStyledItemDelegate>
 
-class QTextDocument;
+#include <QTextDocument>
 
 /**
  * @short A delegate for listing the accounts in the account list with kmail specific options.

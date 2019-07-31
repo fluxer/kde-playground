@@ -20,7 +20,7 @@
 #ifndef AKONADI_SERVERMANAGER_P_H
 #define AKONADI_SERVERMANAGER_P_H
 
-class QString;
+#include <QString>
 
 namespace Akonadi {
 

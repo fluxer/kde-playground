@@ -27,7 +27,7 @@
 #include <QWidget>
 #include <QMap>
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 namespace KManageSieve {
 class SieveJob;

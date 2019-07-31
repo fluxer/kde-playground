@@ -22,7 +22,7 @@
 
 #include "ui_rawsocketconsole.h"
 
-class QLocalSocket;
+#include <QLocalSocket>
 
 class RawSocketConsole : public QWidget
 {

@@ -26,7 +26,7 @@
 
 #include "globalsettings_base.h"
 
-class QTimer;
+#include <QTimer>
 
 class GlobalSettings : public GlobalSettingsBase
 {

@@ -25,8 +25,8 @@
 
 #include <QGraphicsView>
 
-class QMouseEvent;
-class QPaintEvent;
+#include <QMouseEvent>
+#include <QPaintEvent>
 
 
 /*=============================================================================

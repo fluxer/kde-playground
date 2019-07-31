@@ -24,8 +24,8 @@
 #include "spinbox.h"
 
 #include <QFrame>
-class QShowEvent;
-class QResizeEvent;
+#include <QShowEvent>
+#include <QResizeEvent>
 class SpinMirror;
 class ExtraSpinBox;
 

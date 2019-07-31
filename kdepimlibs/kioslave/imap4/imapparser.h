@@ -39,7 +39,7 @@
 #include <QByteArray>
 
 class KUrl;
-class QString;
+#include <QString>
 class mailAddress;
 class mimeHeader;
 

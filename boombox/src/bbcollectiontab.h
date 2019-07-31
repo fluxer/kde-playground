@@ -29,8 +29,8 @@
 
 #include <KSharedConfig>
 
-class QHBoxLayout;
-class QComboBox;
+#include <QHBoxLayout>
+#include <QComboBox>
 
 class KUiServerJobTracker;
 class KActionCollection;

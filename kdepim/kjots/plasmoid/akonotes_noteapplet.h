@@ -25,7 +25,7 @@
 #include <akonadi/collection.h>
 #include <akonadi/item.h>
 
-class QGraphicsLinearLayout;
+#include <QGraphicsLinearLayout>
 
 class KJob;
 

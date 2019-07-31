@@ -32,9 +32,9 @@
 
 class KNoteDisplaySettings;
 
-class QLabel;
-class QLayout;
-class QSizeGrip;
+#include <QLabel>
+#include <QLayout>
+#include <QSizeGrip>
 
 class KMenu;
 class KNoteButton;

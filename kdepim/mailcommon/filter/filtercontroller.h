@@ -25,9 +25,9 @@
 
 #include <QObject>
 
-class QAbstractItemModel;
-class QAction;
-class QItemSelectionModel;
+#include <QAbstractItemModel>
+#include <QAction>
+#include <QItemSelectionModel>
 
 namespace MailCommon {
 

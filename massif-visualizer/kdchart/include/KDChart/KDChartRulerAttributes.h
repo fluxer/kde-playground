@@ -28,7 +28,7 @@
 #include "KDChartEnums.h"
 
 QT_BEGIN_NAMESPACE
-class QPen;
+#include <QPen>
 QT_END_NAMESPACE
 
 namespace KDChart {

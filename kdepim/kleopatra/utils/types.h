@@ -35,7 +35,7 @@
 
 #include <utils/pimpl_ptr.h>
 
-class QWidget;
+#include <QWidget>
 
 namespace boost {
     template <typename T> class shared_ptr;

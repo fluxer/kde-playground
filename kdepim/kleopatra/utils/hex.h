@@ -35,7 +35,7 @@
 
 #include <string>
 
-class QByteArray;
+#include <QByteArray>
 
 namespace Kleo {
 

@@ -21,7 +21,7 @@
 
 #include <QWidget>
 #include <QUrl>
-class QProgressBar;
+#include <QProgressBar>
 namespace PimCommon {
 class StorageAuthWebView;
 class StorageAuthViewWidget : public QWidget

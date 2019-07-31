@@ -39,7 +39,7 @@ namespace EventViews
   typedef boost::shared_ptr<Prefs> PrefsPtr;
 }
 
-class QAction;
+#include <QAction>
 class Settings;
 
 class MainWindow : public QMainWindow

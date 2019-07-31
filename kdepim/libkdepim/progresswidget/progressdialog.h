@@ -43,10 +43,10 @@
 #include <QMap>
 #include <KVBox>
 
-class QProgressBar;
-class QFrame;
-class QLabel;
-class QPushButton;
+#include <QProgressBar>
+#include <QFrame>
+#include <QLabel>
+#include <QPushButton>
 
 namespace KPIM {
 class TransactionItem;

@@ -32,7 +32,7 @@
 #include <QSet>
 
 class KUrl;
-class QTextCodec;
+#include <QTextCodec>
 
 namespace MessageViewer {
   namespace Interface {

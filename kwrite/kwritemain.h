@@ -30,7 +30,7 @@
 
 #include <QtGui/QKeyEvent>
 
-class QLabel;
+#include <QLabel>
 
 namespace KTextEditor { class EditorChooser; }
 

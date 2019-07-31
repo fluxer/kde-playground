@@ -26,7 +26,7 @@
 #include <QList>
 #include <QString>
 
-class QIODevice;
+#include <QIODevice>
 class TraceData;
 class Loader;
 class Logger;

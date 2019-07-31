@@ -27,7 +27,7 @@
 
 #include <messagelist/messagelist_export.h>
 
-class QPushButton;
+#include <QPushButton>
 
 namespace MessageList
 {

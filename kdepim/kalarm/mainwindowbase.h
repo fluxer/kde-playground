@@ -23,7 +23,7 @@
 
 #include <kxmlguiwindow.h>
 
-class QCloseEvent;
+#include <QCloseEvent>
 
 
 /**

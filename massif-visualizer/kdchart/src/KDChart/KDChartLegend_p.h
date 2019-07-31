@@ -47,9 +47,9 @@
 #include <KDABLibFakes>
 
 QT_BEGIN_NAMESPACE
-class QGridLayout;
+#include <QGridLayout>
 class KDTextDocument;
-class QTextDocument;
+#include <QTextDocument>
 QT_END_NAMESPACE
 
 namespace KDChart {

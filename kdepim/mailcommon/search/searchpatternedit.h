@@ -31,9 +31,9 @@
 class KComboBox;
 class KPushButton;
 
-class QAbstractButton;
-class QRadioButton;
-class QStackedWidget;
+#include <QAbstractButton>
+#include <QRadioButton>
+#include <QStackedWidget>
 
 namespace MailCommon {
 

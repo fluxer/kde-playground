@@ -40,7 +40,7 @@
 #include <QContextMenuEvent>
 #include <QMouseEvent>
 
-class QMenu;
+#include <QMenu>
 class TreeMapWidget;
 class TreeMapItem;
 class TreeMapItemList;

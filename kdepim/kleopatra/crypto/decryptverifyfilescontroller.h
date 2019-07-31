@@ -43,7 +43,7 @@
 
 #include <vector>
 
-class QFile;
+#include <QFile>
 
 namespace GpgME {
     class VerificationResult;

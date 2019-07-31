@@ -41,7 +41,7 @@
 
 #include <cstdio>
 
-class QString;
+#include <QString>
 
 namespace Kleo {
 

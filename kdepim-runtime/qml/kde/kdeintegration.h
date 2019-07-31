@@ -24,10 +24,10 @@
 #include <QVariant>
 #include <QStringList>
 
-class QIcon;
-class QPixmap;
-class QScriptValue;
-class QScriptContext;
+#include <QIcon>
+#include <QPixmap>
+#include <QScriptValue>
+#include <QScriptContext>
 
 class KDEIntegration : public QObject
 {

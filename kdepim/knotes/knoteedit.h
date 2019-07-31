@@ -27,7 +27,7 @@
 
 #include "pimcommon/widgets/customtextedit.h"
 
-class QFont;
+#include <QFont>
 
 class KAction;
 class KActionCollection;

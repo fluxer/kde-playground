@@ -20,7 +20,7 @@
 
 #include "abstractimportexportjob.h"
 
-class QWidget;
+#include <QWidget>
 class ArchiveStorage;
 
 class ExportJotJob : public AbstractImportExportJob

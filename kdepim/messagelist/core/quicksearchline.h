@@ -27,9 +27,9 @@
 
 class KLineEdit;
 class KComboBox;
-class QToolButton;
-class QPushButton;
-class QSignalMapper;
+#include <QToolButton>
+#include <QPushButton>
+#include <QSignalMapper>
 class KPushButton;
 namespace MessageList {
 namespace Core {

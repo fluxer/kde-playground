@@ -24,8 +24,8 @@
 
 #include <QtCore/QSharedDataPointer>
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QStringList>
 
 namespace Akonadi {
 class Collection;

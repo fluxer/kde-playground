@@ -27,8 +27,8 @@
 #include <QHash>
 #include <QVector>
 
-class QAction;
-class QTreeView;
+#include <QAction>
+#include <QTreeView>
 
 class KMenu;
 

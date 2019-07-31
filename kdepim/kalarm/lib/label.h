@@ -22,8 +22,8 @@
 #define LABEL_H
 
 #include <QLabel>
-class QFocusEvent;
-class QRadioButton;
+#include <QFocusEvent>
+#include <QRadioButton>
 class LabelFocusWidget;
 
 /**

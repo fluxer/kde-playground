@@ -50,7 +50,7 @@
 #include <QtCore/QString>
 #include <QtCore/QList>
 
-class QByteArray;
+#include <QByteArray>
 
 namespace KMime {
 

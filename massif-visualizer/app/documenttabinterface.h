@@ -29,7 +29,7 @@
 
 #include "visualizer/modelitem.h"
 
-class QMenu;
+#include <QMenu>
 
 namespace Massif {
 class FileData;

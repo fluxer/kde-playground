@@ -25,9 +25,9 @@
 #include <kdialog.h>
 #include <QString>
 
-class QPushButton;
-class QShowEvent;
-class QResizeEvent;
+#include <QPushButton>
+#include <QShowEvent>
+#include <QResizeEvent>
 class KHBox;
 namespace Phonon { class MediaObject; }
 class GroupBox;

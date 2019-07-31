@@ -35,11 +35,11 @@
 #include <QList>
 #include <akonadi/collection.h>
 
-class QLabel;
-class QTextEdit;
-class QCheckBox;
-class QBoxLayout;
-class QListWidget;
+#include <QLabel>
+#include <QTextEdit>
+#include <QCheckBox>
+#include <QBoxLayout>
+#include <QListWidget>
 
 namespace MailCommon {
 class FolderTreeWidget;

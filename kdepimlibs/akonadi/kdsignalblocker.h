@@ -26,7 +26,7 @@
 #include <qglobal.h>
 
 QT_BEGIN_NAMESPACE
-class QObject;
+#include <QObject>
 QT_END_NAMESPACE
 
 namespace Akonadi {

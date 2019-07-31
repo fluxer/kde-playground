@@ -29,12 +29,12 @@ class KJob;
 class KLineEdit;
 class KTextBrowser;
 
-class QButtonGroup;
-class QCheckBox;
-class QComboBox;
-class QFormLayout;
-class QLabel;
-class QRadioButton;
+#include <QButtonGroup>
+#include <QCheckBox>
+#include <QComboBox>
+#include <QFormLayout>
+#include <QLabel>
+#include <QRadioButton>
 
 class SetupWizard : public QWizard
 {

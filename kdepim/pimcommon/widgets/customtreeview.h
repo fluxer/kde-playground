@@ -21,7 +21,7 @@
 
 #include <QTreeWidget>
 #include "pimcommon_export.h"
-class QPaintEvent;
+#include <QPaintEvent>
 namespace PimCommon {
 class PIMCOMMON_EXPORT CustomTreeView : public QTreeWidget
 {

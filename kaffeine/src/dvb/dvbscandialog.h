@@ -25,9 +25,9 @@
 #include <QTimer>
 #include <KDialog>
 
-class QCheckBox;
-class QProgressBar;
-class QTreeView;
+#include <QCheckBox>
+#include <QProgressBar>
+#include <QTreeView>
 class KComboBox;
 class KLed;
 class DvbChannelModel;

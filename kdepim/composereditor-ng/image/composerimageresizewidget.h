@@ -23,8 +23,8 @@
 #include <QWidget>
 #include <QWebElement>
 
-class QPaintEvent;
-class QMouseEvent;
+#include <QPaintEvent>
+#include <QMouseEvent>
 
 namespace ComposerEditorNG
 {

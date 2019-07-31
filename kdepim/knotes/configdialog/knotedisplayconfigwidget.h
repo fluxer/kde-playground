@@ -20,7 +20,7 @@
 
 #include <QWidget>
 class KColorButton;
-class QCheckBox;
+#include <QCheckBox>
 class KIntNumInput;
 namespace NoteShared {
 class NoteDisplayAttribute;

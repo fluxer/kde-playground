@@ -33,7 +33,7 @@ namespace MessageComposer {
 class AkonadiSender;
 }
 
-class QTimer;
+#include <QTimer>
 class SendLaterJob;
 class SendLaterManager : public QObject
 {

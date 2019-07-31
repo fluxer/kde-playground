@@ -26,7 +26,7 @@
 #include <Akonadi/Collection>
 
 class FolderContentsWidget;
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 
 class Trip;
 

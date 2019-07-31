@@ -22,7 +22,7 @@
 #include "grantleetheme_export.h"
 #include <QObject>
 #include <QMap>
-class QActionGroup;
+#include <QActionGroup>
 class KActionCollection;
 class KToggleAction;
 class KActionMenu;

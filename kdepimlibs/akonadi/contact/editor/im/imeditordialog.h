@@ -27,8 +27,8 @@ License along with this library.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "immodel.h"
 
-class QPushButton;
-class QTreeView;
+#include <QPushButton>
+#include <QTreeView>
 
 class IMEditorDialog : public KDialog
 {

@@ -25,10 +25,10 @@
 
 
 class Q3ListViewItem;
-class QLineEdit;
-class QSplitter;
-class QTreeWidget;
-class QTreeWidgetItem;
+#include <QLineEdit>
+#include <QSplitter>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
 class K3ListView;
 class KAction;
 class KToggleAction;

@@ -21,7 +21,7 @@
 #include "noteshared_export.h"
 #include <KCModule>
 class KLineEdit;
-class QCheckBox;
+#include <QCheckBox>
 class KComponentData;
 class KIntNumInput;
 namespace NoteShared {

@@ -29,7 +29,7 @@
 #include <krecursivefilterproxymodel.h>
 
 
-class QTreeView;
+#include <QTreeView>
 class EntityTreeWidget;
 
 class UnreadMailsTree : public KRecursiveFilterProxyModel

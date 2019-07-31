@@ -21,9 +21,9 @@
 #include <q3listview.h>
 
 class KLineEdit;
-class QCheckBox;
-class QLabel;
-class QGridLayout;
+#include <QCheckBox>
+#include <QLabel>
+#include <QGridLayout>
 
 class KNNntpAccount;
 

@@ -26,8 +26,8 @@
 #include <KDialog>
 #include <KLocalizedString>
 
-class QStandardItem;
-class QStandardItemModel;
+#include <QStandardItem>
+#include <QStandardItemModel>
 
 namespace Akonadi {
 

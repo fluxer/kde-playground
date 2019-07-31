@@ -27,7 +27,7 @@
 #include <kconfig.h>
 #include <KConfigGroup>
 
-class QFile;
+#include <QFile>
 
 class NullableConfigGroup
 {

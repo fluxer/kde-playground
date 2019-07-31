@@ -28,10 +28,10 @@
 class KComboBox;
 class KUrlRequester;
 
-class QAbstractItemModel;
-class QListWidget;
-class QListWidgetItem;
-class QModelIndex;
+#include <QAbstractItemModel>
+#include <QListWidget>
+#include <QListWidgetItem>
+#include <QModelIndex>
 
 namespace MailCommon {
 class FolderRequester;

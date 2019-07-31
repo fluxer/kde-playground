@@ -25,7 +25,7 @@
 
 class KXMLGUIClient;
 class KXmlGuiWindow;
-class QDragMoveEvent;
+#include <QDragMoveEvent>
 
 namespace Akonadi {
 

@@ -24,10 +24,10 @@
 
 #include "kabc_export.h"
 
-class QIODevice;
-class QString;
+#include <QIODevice>
+#include <QString>
 
-template <class T> class QList;
+#include <QList>
 
 namespace KABC {
 

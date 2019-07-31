@@ -39,7 +39,7 @@ namespace GpgME {
 
 struct _GIOChannel;
 typedef struct _GIOChannel      GIOChannel;
-class QIODevice;
+#include <QIODevice>
 
 namespace GpgME {
 

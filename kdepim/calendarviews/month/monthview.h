@@ -29,7 +29,7 @@
 
 #include <KDateTime>
 
-class QModelIndex;
+#include <QModelIndex>
 
 namespace EventViews {
 

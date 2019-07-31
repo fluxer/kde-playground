@@ -49,11 +49,11 @@ namespace Akonadi {
   class ETMViewStateSaver;
 }
 
-class QItemSelection;
-class QMenu;
-class QModelIndex;
-class QToolButton;
-class QTimer;
+#include <QItemSelection>
+#include <QMenu>
+#include <QModelIndex>
+#include <QToolButton>
+#include <QTimer>
 
 namespace EventViews {
 

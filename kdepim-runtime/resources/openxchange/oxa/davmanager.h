@@ -28,7 +28,7 @@ namespace KIO {
 class DavJob;
 }
 
-class QDomDocument;
+#include <QDomDocument>
 
 namespace OXA {
 

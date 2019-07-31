@@ -29,8 +29,8 @@ class KJob;
 class KActionCollection;
 class KXMLGUIClient;
 class KToggleAction;
-class QAction;
-class QSignalMapper;
+#include <QAction>
+#include <QSignalMapper>
 class KAction;
 namespace Akonadi {
 class Item;

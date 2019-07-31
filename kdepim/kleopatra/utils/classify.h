@@ -35,8 +35,8 @@
 #ifndef __KLEOPATRA_UISERVER_CLASSIFY_H__
 #define __KLEOPATRA_UISERVER_CLASSIFY_H__
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QStringList>
 
 namespace Kleo {
 

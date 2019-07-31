@@ -37,7 +37,7 @@
 
 #include <QWidget>
 
-class QKeyEvent;
+#include <QKeyEvent>
 
 class KJob;
 

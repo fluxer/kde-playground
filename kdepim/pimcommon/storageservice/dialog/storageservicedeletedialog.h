@@ -23,8 +23,8 @@
 #include "pimcommon_export.h"
 #include "storageservice/widgets/storageservicetreewidget.h"
 
-class QTreeWidgetItem;
-class QLabel;
+#include <QTreeWidgetItem>
+#include <QLabel>
 class KMenu;
 namespace PimCommon {
 class StorageServiceAbstract;

@@ -38,7 +38,7 @@
 #include <QList>
 #include <QStringList>
 
-class QWidget;
+#include <QWidget>
 
 namespace MailCommon
 {

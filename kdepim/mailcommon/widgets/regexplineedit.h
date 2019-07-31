@@ -38,8 +38,8 @@
 class KDialog;
 class KLineEdit;
 
-class QPushButton;
-class QString;
+#include <QPushButton>
+#include <QString>
 
 namespace MailCommon {
 

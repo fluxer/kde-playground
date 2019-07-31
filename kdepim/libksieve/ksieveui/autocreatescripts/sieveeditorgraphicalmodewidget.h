@@ -22,9 +22,9 @@
 
 #include "editor/sieveeditorabstractwidget.h"
 
-class QSplitter;
-class QStackedWidget;
-class QDomDocument;
+#include <QSplitter>
+#include <QStackedWidget>
+#include <QDomDocument>
 
 namespace KSieveUi {
 class SieveScriptPage;

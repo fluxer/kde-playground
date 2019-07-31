@@ -22,7 +22,7 @@
 
 #include "kdepim_export.h"
 
-class QWidget;
+#include <QWidget>
 class KConfigGroup;
 
 namespace KPIM {

@@ -21,7 +21,7 @@
 
 #include "notesharedglobalconfig.h"
 #include "noteshared_export.h"
-class QTimer;
+#include <QTimer>
 namespace NoteShared {
 class NOTESHARED_EXPORT GlobalSettings : public NoteSharedGlobalConfig
 {

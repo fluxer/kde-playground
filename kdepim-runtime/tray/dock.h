@@ -27,8 +27,8 @@
 
 #include <akonadi/agentinstance.h>
 
-class QLabel;
-class QAction;
+#include <QLabel>
+#include <QAction>
 
 class Tray : public QWidget
 {

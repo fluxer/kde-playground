@@ -22,7 +22,7 @@
 
 #include <QWidget>
 
-class QTimeLine;
+#include <QTimeLine>
 class CountdownWidget : public QWidget
 {
 Q_OBJECT

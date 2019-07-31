@@ -31,7 +31,7 @@
 #include <QCheckBox>
 #include <QToolButton>
 
-class QKeyEvent;
+#include <QKeyEvent>
 
 namespace IncidenceEditorNG {
 

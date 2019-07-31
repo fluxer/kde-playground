@@ -26,7 +26,7 @@
 
 #include <QWidget>
 
-class QListView;
+#include <QListView>
 
 class EntityTreeWidget;
 

@@ -43,7 +43,7 @@
 #include <io.h>
 #endif
 
-class QString;
+#include <QString>
 
 namespace Kleo {
 namespace _detail {

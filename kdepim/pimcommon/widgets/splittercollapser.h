@@ -27,7 +27,7 @@ License along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <QToolButton>
 #include "pimcommon_export.h"
 
-class QSplitter;
+#include <QSplitter>
 
 namespace PimCommon
 {

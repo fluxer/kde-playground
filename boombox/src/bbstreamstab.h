@@ -25,8 +25,8 @@
 #include <QAbstractItemModel>
 #include <QDomDocument>
 
-class QHBoxLayout;
-class QTreeView;
+#include <QHBoxLayout>
+#include <QTreeView>
 class KActionCollection;
 class KToolBar;
 

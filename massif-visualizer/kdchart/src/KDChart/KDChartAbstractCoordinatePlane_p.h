@@ -45,7 +45,7 @@
 #include <QStack>
 
 QT_BEGIN_NAMESPACE
-class QRubberBand;
+#include <QRubberBand>
 QT_END_NAMESPACE
 
 namespace KDChart {

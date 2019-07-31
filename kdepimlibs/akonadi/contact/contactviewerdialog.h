@@ -26,7 +26,7 @@
 
 #include <kdialog.h>
 
-class QUrl;
+#include <QUrl>
 
 namespace KABC {
 class Address;

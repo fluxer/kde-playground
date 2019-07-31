@@ -43,9 +43,9 @@
 #include <QStandardItemModel>
 #include <QWizardPage>
 
-class QListView;
-class QLabel;
-class QCheckBox;
+#include <QListView>
+#include <QLabel>
+#include <QCheckBox>
 
 namespace Kleo {
     namespace Dialogs {

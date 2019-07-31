@@ -22,11 +22,11 @@
 
 #include <QWidget>
 
-class QAction;
+#include <QAction>
 class KLineEdit;
-class QPushButton;
-class QMenu;
-class QLabel;
+#include <QPushButton>
+#include <QMenu>
+#include <QLabel>
 
 namespace MessageViewer
 {

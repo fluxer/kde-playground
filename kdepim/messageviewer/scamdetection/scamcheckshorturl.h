@@ -29,8 +29,8 @@
 #include <QNetworkReply>
 #include <Solid/Networking>
 
-class QNetworkAccessManager;
-class QNetworkReply;
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 namespace MessageViewer {
 class MESSAGEVIEWER_EXPORT ScamCheckShortUrl : public QObject
 {

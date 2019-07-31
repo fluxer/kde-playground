@@ -37,9 +37,9 @@
 
 #include <utils/pimpl_ptr.h>
 
-class QRegExp;
-class QString;
-class QStringList;
+#include <QRegExp>
+#include <QString>
+#include <QStringList>
 
 namespace Kleo {
 namespace NewCertificateUi {

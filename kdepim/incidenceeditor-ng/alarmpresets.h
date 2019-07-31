@@ -23,7 +23,7 @@
 
 #include <KCalCore/Alarm>
 
-class QStringList;
+#include <QStringList>
 
 namespace IncidenceEditorNG {
 

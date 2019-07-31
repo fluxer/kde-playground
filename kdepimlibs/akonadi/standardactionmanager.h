@@ -30,9 +30,9 @@
 class KAction;
 class KActionCollection;
 class KLocalizedString;
-class QItemSelectionModel;
-class QWidget;
-class QMenu;
+#include <QItemSelectionModel>
+#include <QWidget>
+#include <QMenu>
 
 namespace Akonadi {
 

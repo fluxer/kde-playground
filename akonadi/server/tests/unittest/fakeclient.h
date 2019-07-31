@@ -23,7 +23,7 @@
 #include <QThread>
 #include <QMutex>
 
-class QLocalSocket;
+#include <QLocalSocket>
 
 namespace Akonadi {
 namespace Server {

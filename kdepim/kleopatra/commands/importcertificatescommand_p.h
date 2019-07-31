@@ -50,7 +50,7 @@ namespace Kleo {
     class AbstractImportJob;
 }
 
-class QByteArray;
+#include <QByteArray>
 
 class Kleo::ImportCertificatesCommand::Private : public Command::Private {
     friend class ::Kleo::ImportCertificatesCommand;

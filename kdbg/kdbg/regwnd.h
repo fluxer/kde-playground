@@ -11,10 +11,10 @@
 #include <list>
 #include <map>
 
-class QMenu;
+#include <QMenu>
 class RegisterViewItem;
 class GroupingViewItem;
-class QContextMenuEvent;
+#include <QContextMenuEvent>
 struct RegisterInfo;
 
 

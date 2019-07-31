@@ -23,7 +23,7 @@
 #ifndef MASSIF_PARSER_H
 #define MASSIF_PARSER_H
 
-class QIODevice;
+#include <QIODevice>
 
 #include <QObject>
 #include <QString>

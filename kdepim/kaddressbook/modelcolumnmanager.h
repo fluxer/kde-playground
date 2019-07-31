@@ -25,7 +25,7 @@
 
 #include <QtCore/QObject>
 
-class QWidget;
+#include <QWidget>
 
 /**
  * @short A manager for the contacts model columns.

@@ -33,12 +33,12 @@
 
 #include <grantlee/templateloader.h>
 
-class QCheckBox;
-class QTextEdit;
-class QTextCharFormat;
-class QSplitter;
-class QStackedWidget;
-class QModelIndex;
+#include <QCheckBox>
+#include <QTextEdit>
+#include <QTextCharFormat>
+#include <QSplitter>
+#include <QStackedWidget>
+#include <QModelIndex>
 
 class KActionMenu;
 class KFindDialog;

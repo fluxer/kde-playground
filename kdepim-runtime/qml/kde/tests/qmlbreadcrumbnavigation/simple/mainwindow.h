@@ -25,9 +25,9 @@
 #include <QWidget>
 #include <QDeclarativeContext>
 
-class QDeclarativeView;
-class QTreeView;
-class QStandardItemModel;
+#include <QDeclarativeView>
+#include <QTreeView>
+#include <QStandardItemModel>
 
 class KBreadcrumbNavigationFactory;
 

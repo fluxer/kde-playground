@@ -22,7 +22,7 @@
 #define FILEDIALOG_H
 
 #include <kfiledialog.h>
-class QCheckBox;
+#include <QCheckBox>
 
 
 class FileDialog : public KFileDialog

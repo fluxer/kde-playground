@@ -28,10 +28,10 @@
 #include <akonadi/collection.h>
 
 
-class QCheckBox;
-class QPushButton;
+#include <QCheckBox>
+#include <QPushButton>
 
-template <typename T> class QSharedPointer;
+#include <QSharedPointer>
 
 class KComboBox;
 class KJob;

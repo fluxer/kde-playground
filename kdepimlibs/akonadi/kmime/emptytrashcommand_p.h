@@ -25,7 +25,7 @@
 #include "akonadi/agentinstance.h"
 #include "akonadi/collection.h"
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 class KJob;
 
 class EmptyTrashCommand : public CommandBase

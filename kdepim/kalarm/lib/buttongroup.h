@@ -22,7 +22,7 @@
 
 #include <QButtonGroup>
 #include <QMap>
-class QAbstractButton;
+#include <QAbstractButton>
 
 
 /**

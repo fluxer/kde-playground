@@ -27,7 +27,7 @@
 #include <QWidget>
 
 class EntityTreeWidget;
-class QTreeView;
+#include <QTreeView>
 
 class DescTabWidget : public QWidget
 {

@@ -41,7 +41,7 @@ namespace Kleo {
   class DNAttributeMapper;
 }
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 namespace Kleo {
 

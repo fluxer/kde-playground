@@ -28,7 +28,7 @@
 #include <messagelist/core/theme.h>
 #include <messagelist/core/item.h>
 
-class QAbstractItemView;
+#include <QAbstractItemView>
 
 namespace MessageList
 {

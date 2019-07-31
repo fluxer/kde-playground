@@ -26,8 +26,8 @@
 #include <QSignalSpy>
 
 
-class QLocalServer;
-class QEventLoop;
+#include <QLocalServer>
+#include <QEventLoop>
 
 Q_DECLARE_METATYPE(QList<QByteArray>)
 

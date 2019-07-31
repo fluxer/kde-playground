@@ -26,7 +26,7 @@
 #include "kalarmcal_export.h"
 #include <qglobal.h>
 
-class QString;
+#include <QString>
 
 namespace KPIMIdentities { class IdentityManager; }
 

@@ -29,7 +29,7 @@
 #include <messagelist/messagelist_export.h>
 
 class KXMLGUIClient;
-class QWidget;
+#include <QWidget>
 
 namespace MessageList
 {

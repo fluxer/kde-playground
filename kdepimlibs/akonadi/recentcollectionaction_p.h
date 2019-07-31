@@ -23,9 +23,9 @@
 #include <akonadi/collection.h>
 #include <ksharedconfig.h>
 #include <akonadi/standardactionmanager.h>
-class QMenu;
-class QAbstractItemModel;
-class QAction;
+#include <QMenu>
+#include <QAbstractItemModel>
+#include <QAction>
 /**
  * @short A class to manage recent selected folder.
  *

@@ -27,7 +27,7 @@
 #include <QTreeView>
 
 class KXMLGUIClient;
-class QDragMoveEvent;
+#include <QDragMoveEvent>
 
 namespace Akonadi
 {

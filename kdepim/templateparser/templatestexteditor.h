@@ -18,8 +18,8 @@
 #ifndef TEMPLATESTEXTEDITOR_H
 #define TEMPLATESTEXTEDITOR_H
 #include "pimcommon/texteditor/richtexteditor/richtexteditor.h"
-class QCompleter;
-class QKeyEvent;
+#include <QCompleter>
+#include <QKeyEvent>
 namespace TemplateParser {
 class TemplatesTextEditor : public PimCommon::RichTextEditor
 {

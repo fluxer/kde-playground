@@ -32,7 +32,7 @@
 #include <QTreeWidget>
 #include <QFrame>
 
-class QPushButton;
+#include <QPushButton>
 class KLineEdit;
 class KCMHelpCenter;
 

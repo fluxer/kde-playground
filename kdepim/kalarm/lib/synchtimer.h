@@ -27,7 +27,7 @@
 #include <QList>
 #include <QByteArray>
 #include <QDateTime>
-class QTimer;
+#include <QTimer>
 
 /** SynchTimer is a virtual base class for application-wide timers synchronized
  *  to a time boundary.

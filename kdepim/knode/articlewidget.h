@@ -24,7 +24,7 @@
 #include <kurl.h>
 #include <kmime/kmime_content.h>
 
-class QTimer;
+#include <QTimer>
 class KAction;
 class KActionCollection;
 class KActionMenu;

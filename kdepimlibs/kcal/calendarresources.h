@@ -39,7 +39,7 @@
 
 #include "kcal_export.h"
 
-class QWidget;
+#include <QWidget>
 
 namespace KCal {
 

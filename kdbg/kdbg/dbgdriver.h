@@ -18,7 +18,7 @@ class VarTree;
 class ExprValue;
 class ExprWnd;
 class KDebugger;
-class QStringList;
+#include <QStringList>
 
 
 /**

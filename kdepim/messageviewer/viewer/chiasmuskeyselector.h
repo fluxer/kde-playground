@@ -6,7 +6,7 @@
 
 class KListWidget;
 class KLineEdit;
-class QLabel;
+#include <QLabel>
 
 namespace MessageViewer {
 

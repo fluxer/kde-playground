@@ -36,10 +36,10 @@ namespace Akonadi {
 
 class KAction;
 class KDialog;
-class QCheckBox;
-class QDialogButtonBox;
-class QLabel;
-class QPushButton;
+#include <QCheckBox>
+#include <QDialogButtonBox>
+#include <QLabel>
+#include <QPushButton>
 
 class ResourceConfigBase : public KRES::ConfigWidget
 {

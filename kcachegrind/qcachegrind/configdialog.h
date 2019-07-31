@@ -30,10 +30,10 @@
 
 #include "configpage.h"
 
-class QWidget;
-class QLabel;
-class QListWidget;
-class QStackedWidget;
+#include <QWidget>
+#include <QLabel>
+#include <QListWidget>
+#include <QStackedWidget>
 
 class TraceData;
 

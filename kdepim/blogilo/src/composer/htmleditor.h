@@ -32,7 +32,7 @@ namespace KTextEditor
     class Editor;
     class View;
 }
-class QWidget;
+#include <QWidget>
 class HtmlEditorPrivate;
 
 /**

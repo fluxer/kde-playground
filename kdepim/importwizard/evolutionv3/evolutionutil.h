@@ -18,8 +18,8 @@
 #ifndef EVOLUTIONUTIL_H
 #define EVOLUTIONUTIL_H
 #include <QString>
-class QFile;
-class QDomDocument;
+#include <QFile>
+#include <QDomDocument>
 
 namespace EvolutionUtil {
 bool loadInDomDocument( QFile *file, QDomDocument & doc );

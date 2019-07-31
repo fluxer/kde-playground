@@ -26,7 +26,7 @@
 
 #include <KDE/KCompositeJob>
 
-class QBuffer;
+#include <QBuffer>
 
 namespace MailTransport {
 

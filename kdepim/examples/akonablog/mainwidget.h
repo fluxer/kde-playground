@@ -23,8 +23,8 @@
 #include "blogmodel.h"
 #include <QWidget>
 
-class QTreeView;
-class QListView;
+#include <QTreeView>
+#include <QListView>
 class AkonadiTabBar;
 class MainWindow;
 

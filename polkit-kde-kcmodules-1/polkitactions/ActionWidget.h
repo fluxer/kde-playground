@@ -16,7 +16,7 @@
 #include <PolkitQt1/ActionDescription>
 
 class KComboBox;
-class QListWidgetItem;
+#include <QListWidgetItem>
 namespace Ui {
 class ActionWidget;
 }

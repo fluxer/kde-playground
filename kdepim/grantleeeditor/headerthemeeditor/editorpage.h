@@ -24,7 +24,7 @@
 
 class ThemeTemplateWidget;
 class EditorWidget;
-class QSplitter;
+#include <QSplitter>
 namespace GrantleeThemeEditor {
 class EditorWidget;
 class PreviewWidget;

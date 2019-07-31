@@ -22,8 +22,8 @@
 
 #include <QObject>
 
-class QDBusAbstractInterface;
-class QDBusError;
+#include <QDBusAbstractInterface>
+#include <QDBusError>
 
 namespace Akonadi {
 namespace Server {

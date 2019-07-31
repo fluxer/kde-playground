@@ -25,7 +25,7 @@
 #include <QtCore/QDateTime>
 #include <QtCore/QVector>
 
-class QTemporaryFile;
+#include <QTemporaryFile>
 namespace Akonadi {
 namespace Server {
 

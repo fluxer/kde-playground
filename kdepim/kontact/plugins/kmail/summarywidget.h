@@ -45,10 +45,10 @@ class Plugin;
 
 class KCheckableProxyModel;
 
-class QGridLayout;
-class QItemSelectionModel;
-class QLabel;
-class QModelIndex;
+#include <QGridLayout>
+#include <QItemSelectionModel>
+#include <QLabel>
+#include <QModelIndex>
 
 class SummaryWidget : public KontactInterface::Summary
 {

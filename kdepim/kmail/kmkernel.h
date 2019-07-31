@@ -25,7 +25,7 @@
 #define kmconfig KMKernel::config()
 
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 namespace Akonadi {
 class Collection;
 class ChangeRecorder;
@@ -75,7 +75,7 @@ class KMFilterDialog;
 }
 
 class KComponentData;
-class QTimer;
+#include <QTimer>
 class KMMainWin;
 class KMainWindow;
 class KMMainWidget;

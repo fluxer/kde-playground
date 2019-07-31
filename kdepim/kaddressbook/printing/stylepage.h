@@ -30,8 +30,8 @@
 #include <QWidget>
 #include "contactfields.h"
 
-class QLabel;
-class QPixmap;
+#include <QLabel>
+#include <QPixmap>
 class KComboBox;
 
 class StylePage : public QWidget

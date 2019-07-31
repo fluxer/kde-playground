@@ -39,7 +39,7 @@
 #include <QPainter>
 
 class PrintCellItem;
-class QWidget;
+#include <QWidget>
 
 #define PORTRAIT_HEADER_HEIGHT 72   // header height, for portrait orientation
 #define LANDSCAPE_HEADER_HEIGHT 54  // header height, for landscape orientation

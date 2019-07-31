@@ -29,7 +29,7 @@
 #include <khbox.h>
 #include <QString>
 
-class QStackedWidget;
+#include <QStackedWidget>
 class ComboBox;
 class SpinBox;
 class TimeSpinBox;

@@ -36,8 +36,8 @@
 #include <QColor>
 #include <QFont>
 
-class QString;
-class QPaintDevice;
+#include <QString>
+#include <QPaintDevice>
 
 namespace MessageViewer {
 

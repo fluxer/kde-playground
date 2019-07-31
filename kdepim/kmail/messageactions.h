@@ -24,8 +24,8 @@
 
 #include <qobject.h>
 
-class QWidget;
-class QAction;
+#include <QWidget>
+#include <QAction>
 class KJob;
 class KAction;
 class KActionMenu;

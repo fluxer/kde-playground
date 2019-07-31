@@ -23,8 +23,8 @@
 
 #include <string.h>
 
-class QDataStream;
-class QString;
+#include <QDataStream>
+#include <QString>
 class DvbTransponder;
 
 class DvbTransponderBase

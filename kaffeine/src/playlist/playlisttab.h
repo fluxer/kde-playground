@@ -25,7 +25,7 @@
 #include "../mediawidget.h"
 #include "../tabbase.h"
 
-class QSplitter;
+#include <QSplitter>
 class Playlist;
 class PlaylistBrowserView;
 class PlaylistModel;

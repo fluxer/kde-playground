@@ -27,9 +27,9 @@
 #include <QtCore/QObject>
 #include <QWidget> // only for WId, doesn't prevent linking against QtCore-only
 
-class QString;
-class QByteArray;
-class QVariant;
+#include <QString>
+#include <QByteArray>
+#include <QVariant>
 
 namespace KLEOPATRACLIENT_NAMESPACE {
 

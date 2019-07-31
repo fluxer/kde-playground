@@ -43,7 +43,7 @@
 class KUrl;
 
 template <typename T>
-class QVector;
+#include <QVector>
 
 namespace Akonadi {
 

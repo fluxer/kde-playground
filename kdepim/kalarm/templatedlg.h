@@ -23,8 +23,8 @@
 #include "editdlg.h"
 #include <kdialog.h>
 
-class QResizeEvent;
-class QPushButton;
+#include <QResizeEvent>
+#include <QPushButton>
 class NewAlarmAction;
 #ifdef USE_AKONADI
 class TemplateListModel;

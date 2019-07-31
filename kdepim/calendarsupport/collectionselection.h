@@ -30,8 +30,8 @@
 
 #include <Akonadi/Collection>
 
-class QItemSelection;
-class QItemSelectionModel;
+#include <QItemSelection>
+#include <QItemSelectionModel>
 
 namespace CalendarSupport {
 

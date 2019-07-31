@@ -23,10 +23,10 @@
 
 #include <QtCore/qglobal.h>
 
-class QObject;
-class QString;
+#include <QObject>
+#include <QString>
 template <typename T>
-class QVector;
+#include <QVector>
 
 namespace Akonadi {
 class ItemSerializerPlugin;

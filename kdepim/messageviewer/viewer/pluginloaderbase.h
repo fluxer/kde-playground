@@ -26,7 +26,7 @@
 #include <QMap>
 #include <KLibrary>
 
-class QStringList;
+#include <QStringList>
 
 class PluginMetaData
 {

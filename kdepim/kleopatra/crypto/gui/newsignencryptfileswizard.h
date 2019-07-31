@@ -42,9 +42,9 @@
 
 #include <vector>
 
-class QFileInfo;
-class QStringList;
-template <typename T> class QList;
+#include <QFileInfo>
+#include <QStringList>
+#include <QList>
 
 namespace boost {
     template <typename T> class shared_ptr;

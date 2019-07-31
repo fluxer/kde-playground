@@ -21,7 +21,7 @@
 
 #include "pimcommon/texteditor/plaintexteditor/plaintexteditor.h"
 
-class QCompleter;
+#include <QCompleter>
 namespace KPIMTextEdit {
 class HtmlHighlighter;
 }

@@ -9,8 +9,8 @@
 
 #include <KPageDialog>
 
-class QButtonGroup;
-class QLineEdit;
+#include <QButtonGroup>
+#include <QLineEdit>
 
 
 class ChooseDriver : public QWidget

@@ -42,7 +42,7 @@
 
 #include <gpgme++/error.h>
 
-class QWidget;
+#include <QWidget>
 
 namespace Kleo {
 

@@ -19,7 +19,7 @@
 #define SELECTCONVERTPARAMETERWIDGET_H
 
 #include <QWidget>
-class QSpinBox;
+#include <QSpinBox>
 namespace KSieveUi {
 class SelectConvertParameterWidget : public QWidget
 {

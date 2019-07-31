@@ -38,8 +38,8 @@
 #include <QtCore/QString>
 #include <QtCore/QVector>
 
-class QStringList;
-class QWidget;
+#include <QStringList>
+#include <QWidget>
 
 namespace Kleo {
   class DNAttributeOrderConfigWidget;

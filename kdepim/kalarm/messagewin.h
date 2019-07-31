@@ -40,14 +40,14 @@
 #include <QMap>
 #include <QPointer>
 
-class QShowEvent;
-class QMoveEvent;
-class QResizeEvent;
-class QCloseEvent;
+#include <QShowEvent>
+#include <QMoveEvent>
+#include <QResizeEvent>
+#include <QCloseEvent>
 class PushButton;
 class MessageText;
-class QCheckBox;
-class QLabel;
+#include <QCheckBox>
+#include <QLabel>
 class DeferAlarmDlg;
 class EditAlarmDlg;
 class ShellProcess;

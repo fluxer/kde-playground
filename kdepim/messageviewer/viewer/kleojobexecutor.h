@@ -27,7 +27,7 @@
 
 #include <utility>
 
-class QEventLoop;
+#include <QEventLoop>
 
 namespace Kleo {
 class DecryptVerifyJob;

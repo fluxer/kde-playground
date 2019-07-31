@@ -25,7 +25,7 @@
 #include <KDialog>
 #include <Akonadi/Item>
 
-class QTreeView;
+#include <QTreeView>
 
 namespace CalendarSupport {
 class IncidenceViewer;

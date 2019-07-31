@@ -23,8 +23,8 @@
 
 #include "pimcommon/texteditor/plaintexteditor/plaintexteditor.h"
 
-class QCompleter;
-class QMenu;
+#include <QCompleter>
+#include <QMenu>
 namespace PimCommon {
 class SieveSyntaxHighlighter;
 }

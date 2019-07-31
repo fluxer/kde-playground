@@ -45,9 +45,9 @@
 #include "tracedata.h"
 #include "traceitemview.h"
 
-class QProcess;
-class QTemporaryFile;
-class QIODevice;
+#include <QProcess>
+#include <QTemporaryFile>
+#include <QIODevice>
 
 class CanvasNode;
 class CanvasEdge;

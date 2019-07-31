@@ -17,8 +17,8 @@
 
 #include <kpagedialog.h>
 
-class QCheckBox;
-class QComboBox;
+#include <QCheckBox>
+#include <QComboBox>
 
 class KLineEdit;
 

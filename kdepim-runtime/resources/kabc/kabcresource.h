@@ -32,7 +32,7 @@ namespace Akonadi {
   class MimeTypeChecker;
 }
 
-class QTimer;
+#include <QTimer>
 
 class KABCResource : public Akonadi::ResourceBase, public Akonadi::AgentBase::Observer
 {

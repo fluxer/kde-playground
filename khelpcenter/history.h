@@ -30,7 +30,7 @@
 class KActionCollection;
 class KXmlGuiWindow;
 class KToolBarPopupAction;
-class QMenu;
+#include <QMenu>
 
 namespace KHC {
 

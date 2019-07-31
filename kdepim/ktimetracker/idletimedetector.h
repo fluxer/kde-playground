@@ -28,7 +28,7 @@
 #include <QObject>
 #include <config-ktimetracker.h> // HAVE_LIBXSS
 
-class QTimer;
+#include <QTimer>
 
 #if defined(HAVE_LIBXSS) && defined(Q_WS_X11)
  #include <X11/Xlib.h>

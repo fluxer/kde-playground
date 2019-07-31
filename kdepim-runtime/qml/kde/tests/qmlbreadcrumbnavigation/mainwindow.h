@@ -5,8 +5,8 @@
 #include <QWidget>
 #include <QDeclarativeContext>
 
-class QDeclarativeView;
-class QTreeView;
+#include <QDeclarativeView>
+#include <QTreeView>
 
 #include "dynamictreemodel.h"
 

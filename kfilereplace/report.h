@@ -20,12 +20,12 @@
 #define REPORT_H
 
 // QT
-class QString;
+#include <QString>
 
 // KDE
 #include <klocale.h>
 #include "configurationclasses.h"
-class QListWidget;
+#include <QListWidget>
 
 /** Report class is used to create a pair of files (a xml and a css file) which are
   * a short statistical report of the operations.

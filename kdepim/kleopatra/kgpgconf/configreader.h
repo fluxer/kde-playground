@@ -35,7 +35,7 @@
 
 #include <QString>
 
-class QStringList;
+#include <QStringList>
 
 class Config;
 

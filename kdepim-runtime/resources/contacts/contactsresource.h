@@ -30,7 +30,7 @@
 namespace Akonadi_Contacts_Resource {
 class ContactsResourceSettings;
 }
-class QDir;
+#include <QDir>
 
 class ContactsResource : public Akonadi::ResourceBase, public Akonadi::AgentBase::ObserverV2
 {

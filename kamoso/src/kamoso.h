@@ -29,19 +29,19 @@
 
 class KDirModel;
 class KamosoJobTracker;
-class QToolButton;
-class QRadioButton;
+#include <QToolButton>
+#include <QRadioButton>
 class ShootMode;
 class WhiteWidgetManager;
 class WebcamWidget;
 class WebcamRetriever;
 class CountdownWidget;
-class QItemSelection;
-class QStackedLayout;
-class QSplitter;
-class QPushButton;
-class QToolButton;
-class QModelIndex;
+#include <QItemSelection>
+#include <QStackedLayout>
+#include <QSplitter>
+#include <QPushButton>
+#include <QToolButton>
+#include <QModelIndex>
 class ThumbnailView;
 class KFileItem;
 class WebcamWidget;

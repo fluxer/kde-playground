@@ -28,7 +28,7 @@
 
 using namespace KAlarmCal;
 
-class QGroupBox;
+#include <QGroupBox>
 class ButtonGroup;
 class RadioButton;
 class SpinBox;

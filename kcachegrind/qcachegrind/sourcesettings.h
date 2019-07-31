@@ -27,7 +27,7 @@
 #include "ui_sourcesettings.h"
 
 class TraceData;
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 class SourceSettings: public ConfigPage
 {

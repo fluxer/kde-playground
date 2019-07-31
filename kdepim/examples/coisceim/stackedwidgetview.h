@@ -24,9 +24,9 @@
 
 #include <QStackedWidget>
 
-class QAbstractItemModel;
-class QItemSelectionModel;
-class QModelIndex;
+#include <QAbstractItemModel>
+#include <QItemSelectionModel>
+#include <QModelIndex>
 
 class StackedWidgetView : public QStackedWidget
 {

@@ -20,7 +20,7 @@
 
 #include <QListWidget>
 
-class QPaintEvent;
+#include <QPaintEvent>
 namespace MessageViewer {
 class AdBlockListWidget : public QListWidget
 {

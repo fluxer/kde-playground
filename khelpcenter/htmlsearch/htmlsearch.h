@@ -5,7 +5,7 @@
 
 
 
-class QWidget;
+#include <QWidget>
 
 
 class K3Process;

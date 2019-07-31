@@ -20,7 +20,7 @@
 
 #include <QObject>
 #include "storageservice/job/storageserviceabstractjob.h"
-class QNetworkReply;
+#include <QNetworkReply>
 namespace PimCommon {
 class WebDavJob : public PimCommon::StorageServiceAbstractJob
 {

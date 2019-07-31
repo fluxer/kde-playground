@@ -41,7 +41,7 @@
 
 #include <vector>
 
-class QDir;
+#include <QDir>
 
 namespace boost {
     template <typename T> class shared_ptr;

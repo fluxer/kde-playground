@@ -26,11 +26,11 @@
 class KJob;
 class Device;
 class KUrl;
-class QVBoxLayout;
-class QPushButton;
-class QTimer;
-class QFrame;
-class QSlider;
+#include <QVBoxLayout>
+#include <QPushButton>
+#include <QTimer>
+#include <QFrame>
+#include <QSlider>
 
 class WebcamWidget : public QGst::Ui::VideoWidget
 {

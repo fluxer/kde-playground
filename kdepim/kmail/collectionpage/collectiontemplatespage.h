@@ -20,12 +20,12 @@
 #define COLLECTIONTEMPLATESPAGE_H
 #include <akonadi/collectionpropertiespage.h>
 
-class QCheckBox;
+#include <QCheckBox>
 namespace TemplateParser {
 class TemplatesConfiguration;
 }
 
-template <typename T> class QSharedPointer;
+#include <QSharedPointer>
 
 class CollectionTemplatesPage : public Akonadi::CollectionPropertiesPage
 {

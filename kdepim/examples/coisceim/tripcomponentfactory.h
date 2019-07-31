@@ -22,8 +22,8 @@
 #ifndef TRIPCOMPONENTFACTORY_H
 #define TRIPCOMPONENTFACTORY_H
 
-class QObject;
-class QAbstractItemModel;
+#include <QObject>
+#include <QAbstractItemModel>
 
 namespace Akonadi {
 class ChangeRecorder;

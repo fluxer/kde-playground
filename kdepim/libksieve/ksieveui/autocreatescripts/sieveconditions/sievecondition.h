@@ -19,7 +19,7 @@
 #define SIEVECONDITION_H
 
 #include <QObject>
-class QDomElement;
+#include <QDomElement>
 namespace KSieveUi {
 class SieveCondition : public QObject
 {

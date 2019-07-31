@@ -33,8 +33,8 @@
 #ifndef __KLEOPATRA_GNUPGHELPER_H__
 #define __KLEOPATRA_GNUPGHELPER_H__
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QStringList>
 
 namespace Kleo {
 

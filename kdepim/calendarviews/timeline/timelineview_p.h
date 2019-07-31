@@ -33,8 +33,8 @@
 #include <QModelIndex>
 #include <QObject>
 
-class QStandardItem;
-class QTreeWidget;
+#include <QStandardItem>
+#include <QTreeWidget>
 
 namespace KDGantt {
   class GraphicsView;

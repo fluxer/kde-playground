@@ -24,7 +24,7 @@
 #include <handler.h>
 #include <scope.h>
 
-template <typename T> class QStack;
+#include <QStack>
 
 namespace Akonadi {
 namespace Server {

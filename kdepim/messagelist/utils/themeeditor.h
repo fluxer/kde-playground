@@ -31,8 +31,8 @@
 
 #include <KDialog>
 
-class QPaintDevice;
-class QCheckBox;
+#include <QPaintDevice>
+#include <QCheckBox>
 
 class KComboBox;
 class KIntSpinBox;

@@ -22,8 +22,8 @@
 #define SIEVEEDITORCONFIGUREDIALOG_H
 
 #include <KDialog>
-class QTabWidget;
-class QCheckBox;
+#include <QTabWidget>
+#include <QCheckBox>
 class SieveEditorConfigureServerWidget;
 class SieveEditorConfigureDialog : public KDialog
 {

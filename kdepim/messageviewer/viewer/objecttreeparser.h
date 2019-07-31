@@ -45,7 +45,7 @@
 #include <QList>
 #include "objecttreeemptysource.h"
 
-class QString;
+#include <QString>
 
 namespace KMime {
 class Content;

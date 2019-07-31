@@ -27,8 +27,8 @@
 
 #include "tracedata.h"
 
-class QWidget;
-class QMenu;
+#include <QWidget>
+#include <QMenu>
 
 class TopLevelBase;
 class TraceItemView;

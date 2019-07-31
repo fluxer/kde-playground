@@ -27,7 +27,7 @@
 #include <KDE/KUrl>
 
 class KJob;
-class QImage;
+#include <QImage>
 class KImageCache;
 
 namespace KIO {

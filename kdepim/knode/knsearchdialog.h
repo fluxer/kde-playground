@@ -17,8 +17,8 @@
 
 #include <kdialog.h>
 
-class QCloseEvent;
-class QCheckBox;
+#include <QCloseEvent>
+#include <QCheckBox>
 class KNFilterConfigWidget;
 class KNArticleFilter;
 

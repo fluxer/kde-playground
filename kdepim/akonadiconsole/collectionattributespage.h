@@ -24,8 +24,8 @@
 
 #include <akonadi/collectionpropertiespage.h>
 
-class QStandardItem;
-class QStandardItemModel;
+#include <QStandardItem>
+#include <QStandardItemModel>
 
 class CollectionAttributePage : public Akonadi::CollectionPropertiesPage
 {

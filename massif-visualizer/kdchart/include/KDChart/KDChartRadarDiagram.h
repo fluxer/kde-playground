@@ -29,7 +29,7 @@
 #include "KDChartRadarCoordinatePlane.h"
 
 QT_BEGIN_NAMESPACE
-class QPolygonF;
+#include <QPolygonF>
 QT_END_NAMESPACE
 
 namespace KDChart {

@@ -36,8 +36,8 @@
 
 #include <QtCore/QtGlobal> // for Q_DISABLE_COPY()
 
-class QDate;
-class QString;
+#include <QDate>
+#include <QString>
 
 namespace KCalCore {
 

@@ -22,8 +22,8 @@
 
 class KTempDir;
 class KZip;
-class QDomDocument;
-class QFile;
+#include <QDomDocument>
+#include <QFile>
 class KArchiveDirectory;
 
 namespace PimCommon {

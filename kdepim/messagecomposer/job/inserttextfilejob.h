@@ -26,7 +26,7 @@
 
 #include <QPointer>
 
-class QTextEdit;
+#include <QTextEdit>
 
 namespace KIO {
 class Job;

@@ -28,8 +28,8 @@
 
 #include <solid/networking.h>
 
-class QSettings;
-class QTimer;
+#include <QSettings>
+#include <QTimer>
 
 namespace Akonadi {
 

@@ -49,11 +49,11 @@ class ReminderTreeItem;
 
 class KComboBox;
 
-class QDateTime;
-class QTreeWidget;
-class QTreeWidgetItem;
-class QSpinBox;
-class QVBoxLayout;
+#include <QDateTime>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QSpinBox>
+#include <QVBoxLayout>
 
 class AlarmDialog : public KDialog
 {

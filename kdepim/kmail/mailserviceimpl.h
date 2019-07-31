@@ -30,8 +30,8 @@
 #ifndef MAILSERVICEIMPL_H
 #define MAILSERVICEIMPL_H
 
-class QByteArray;
-class QString;
+#include <QByteArray>
+#include <QString>
 #include <QObject>
 
 namespace KMail {

@@ -33,8 +33,8 @@
 
 class KAction;
 class KActionCollection;
-class QItemSelectionModel;
-class QWidget;
+#include <QItemSelectionModel>
+#include <QWidget>
 
 namespace Akonadi
 {

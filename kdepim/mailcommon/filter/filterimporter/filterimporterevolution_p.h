@@ -22,7 +22,7 @@
 
 #include <QDomElement>
 
-class QFile;
+#include <QFile>
 
 namespace MailCommon {
 

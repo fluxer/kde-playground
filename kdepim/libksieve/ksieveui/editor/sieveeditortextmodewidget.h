@@ -21,7 +21,7 @@
 
 #include "sieveeditorabstractwidget.h"
 
-class QSplitter;
+#include <QSplitter>
 class KTabWidget;
 
 namespace PimCommon {

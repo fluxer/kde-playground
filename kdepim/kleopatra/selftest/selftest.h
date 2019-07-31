@@ -33,7 +33,7 @@
 #ifndef __KLEOPATRA_SELFTEST_SELFTEST_H__
 #define __KLEOPATRA_SELFTEST_SELFTEST_H__
 
-class QString;
+#include <QString>
 
 namespace Kleo {
 

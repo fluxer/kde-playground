@@ -17,7 +17,7 @@
 namespace Ui {
     class ExplicitAuthorizationWidget;
 }
-class QVBoxLayout;
+#include <QVBoxLayout>
 
 namespace PolkitKde {
 

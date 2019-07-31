@@ -21,7 +21,7 @@
 #include "grantleethemeeditor_export.h"
 #include <KDialog>
 
-class QListWidget;
+#include <QListWidget>
 class KPushButton;
 namespace GrantleeThemeEditor {
 

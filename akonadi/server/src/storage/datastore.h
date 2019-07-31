@@ -28,8 +28,8 @@
 #include <QtCore/QThreadStorage>
 #include <QtSql/QSqlDatabase>
 
-class QSqlQuery;
-class QTimer;
+#include <QSqlQuery>
+#include <QTimer>
 
 #include "entities.h"
 #include "notificationcollector.h"

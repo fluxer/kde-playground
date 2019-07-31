@@ -25,7 +25,7 @@
 
 #include "config.h"
 
-class QSettings;
+#include <QSettings>
 class QCGConfigStorage;
 
 class QCGConfigGroup: public ConfigGroup

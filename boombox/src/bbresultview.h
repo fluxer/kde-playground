@@ -24,9 +24,9 @@
 #include <QModelIndex>
 #include <KDE/KLineEdit>
 
-class QTreeView;
-class QPushButton;
-class QMenu;
+#include <QTreeView>
+#include <QPushButton>
+#include <QMenu>
 class BBCollectionTab;
 class BBAlbumSongModel;
 class BBSongListItem;

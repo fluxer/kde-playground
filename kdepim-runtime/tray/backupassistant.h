@@ -22,8 +22,8 @@
 
 #include <KAssistantDialog>
 class Backup;
-class QLabel;
-class QPushButton;
+#include <QLabel>
+#include <QPushButton>
 
 /**
  * Use this class to create a backup assistant.

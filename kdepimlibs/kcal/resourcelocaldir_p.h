@@ -24,7 +24,7 @@
 #include <kurl.h>
 #include <kdirwatch.h>
 
-class QString;
+#include <QString>
 namespace KABC { class Lock; }
 
 namespace KCal {

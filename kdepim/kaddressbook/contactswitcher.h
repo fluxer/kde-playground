@@ -22,9 +22,9 @@
 
 #include <QWidget>
 
-class QAbstractItemView;
-class QLabel;
-class QPushButton;
+#include <QAbstractItemView>
+#include <QLabel>
+#include <QPushButton>
 
 /**
  * @short A widget to switch between the contacts of an contact view.

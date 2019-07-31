@@ -26,7 +26,7 @@
 #include <QtCore/QVariant>
 
 template <typename T>
-class QVector;
+#include <QVector>
 
 /**
  * @short A class that represents non-standard contact fields.

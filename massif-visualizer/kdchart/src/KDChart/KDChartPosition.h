@@ -30,9 +30,9 @@
 #include "KDChartEnums.h"
 
 QT_BEGIN_NAMESPACE
-class QStringList;
-class QByteArray;
-template <typename T> class QList;
+#include <QStringList>
+#include <QByteArray>
+#include <QList>
 QT_END_NAMESPACE
 
 namespace KDChart {

@@ -36,7 +36,7 @@
 #include "noteshared_export.h"
 class KDateComboBox;
 class KTimeComboBox;
-class QButtonGroup;
+#include <QButtonGroup>
 class KDateTime;
 namespace NoteShared {
 class NOTESHARED_EXPORT NoteAlarmDialog : public KDialog

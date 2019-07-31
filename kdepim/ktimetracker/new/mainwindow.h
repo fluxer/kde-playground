@@ -31,8 +31,8 @@ class KAccel;
 class KAccelMenuWatch;
 class KAction;
 class TrayIcon;
-class QPoint;
-class QString;
+#include <QPoint>
+#include <QString>
 
 class Task;
 class TimetrackerWidget;

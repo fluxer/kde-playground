@@ -31,8 +31,8 @@
 
 #include "kmime_export.h"
 
-template <typename K, typename V> class QMap;
-class QStringList;
+#include <QMap>
+#include <QStringList>
 
 namespace KMime {
 

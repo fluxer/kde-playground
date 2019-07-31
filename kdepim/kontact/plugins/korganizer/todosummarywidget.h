@@ -39,8 +39,8 @@ namespace Akonadi {
   class IncidenceChanger;
 }
 
-class QGridLayout;
-class QLabel;
+#include <QGridLayout>
+#include <QLabel>
 
 class TodoSummaryWidget : public KontactInterface::Summary
 {

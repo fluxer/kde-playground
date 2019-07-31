@@ -21,7 +21,7 @@
 
 #include <QWidget>
 #include "storageservice/storageserviceabstract.h"
-class QTextEdit;
+#include <QTextEdit>
 
 namespace PimCommon {
 class StorageServiceAbstract;

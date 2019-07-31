@@ -29,7 +29,7 @@
 
 #include <boost/shared_ptr.hpp>
 
-class QIODevice;
+#include <QIODevice>
 
 namespace QGpgME {
 

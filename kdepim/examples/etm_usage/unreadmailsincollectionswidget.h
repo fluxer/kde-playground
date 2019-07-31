@@ -27,7 +27,7 @@
 #include <QWidget>
 #include <QSortFilterProxyModel>
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 
 class KCheckableProxyModel;
 

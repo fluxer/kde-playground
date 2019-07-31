@@ -28,7 +28,7 @@
 
 using namespace KAlarmCal;
 
-class QResizeEvent;
+#include <QResizeEvent>
 class KLineEdit;
 class CheckBox;
 

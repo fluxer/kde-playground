@@ -24,8 +24,8 @@
 #include <ktextedit.h>
 #include <ktabwidget.h>
 #include <QFrame>
-class QDragEnterEvent;
-class QShowEvent;
+#include <QDragEnterEvent>
+#include <QShowEvent>
 class CheckBox;
 class LineEdit;
 

@@ -29,8 +29,8 @@
 
 #include "reportcriteria.h"
 
-class QString;
-class QDate;
+#include <QString>
+#include <QDate>
 
 class Task;
 class TaskView;

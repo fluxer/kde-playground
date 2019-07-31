@@ -25,7 +25,7 @@
 
 #include <KDialog>
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 namespace Ui {
   class CategoryEditDialog_base;

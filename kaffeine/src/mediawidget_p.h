@@ -25,7 +25,7 @@
 #include <KDialog>
 #include "mediawidget.h"
 
-class QTimeEdit;
+#include <QTimeEdit>
 
 class JumpToPositionDialog : public KDialog
 {

@@ -40,10 +40,10 @@
 
 #include <vector>
 
-class QAbstractItemView;
-class QAction;
-class QPoint;
-class QItemSelectionModel;
+#include <QAbstractItemView>
+#include <QAction>
+#include <QPoint>
+#include <QItemSelectionModel>
 class KActionCollection;
 
 namespace Kleo {

@@ -40,9 +40,9 @@
 
 #include <cstdio>
 
-class QIODevice;
-class QFile;
-class QString;
+#include <QIODevice>
+#include <QFile>
+#include <QString>
 
 namespace Kleo {
 

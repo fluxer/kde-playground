@@ -22,8 +22,8 @@
 
 #include "exception.h"
 
-class QSqlError;
-class QSqlQuery;
+#include <QSqlError>
+#include <QSqlQuery>
 
 namespace Akonadi {
 namespace Server {

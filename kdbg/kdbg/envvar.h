@@ -12,7 +12,7 @@
  * is given as the key in the map, so we don't repeat it here.
  */
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 struct EnvVar {
     QString value;

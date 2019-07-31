@@ -22,9 +22,9 @@
 
 #include <QWidget>
 
-class QModelIndex;
+#include <QModelIndex>
 class NotificationModel;
-class QFile;
+#include <QFile>
 
 class NotificationMonitor : public QWidget
 {

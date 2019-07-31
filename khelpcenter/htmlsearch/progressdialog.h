@@ -3,8 +3,8 @@
 
 #include <kdialog.h>
 
-class QLabel;
-class QProgressBar;
+#include <QLabel>
+#include <QProgressBar>
 
 class ProgressDialog : public KDialog
 {

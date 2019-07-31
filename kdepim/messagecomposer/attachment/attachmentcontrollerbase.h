@@ -34,7 +34,7 @@
 #include <KService>
 #include "messagecomposer_export.h"
 class KActionCollection;
-class QAction;
+#include <QAction>
 namespace MessageCore {
 class AttachmentFromUrlBaseJob;
 }

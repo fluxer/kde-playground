@@ -24,7 +24,7 @@
 #include <QToolBar>
 #include "storageservicemanagerutil.h"
 
-class QAction;
+#include <QAction>
 
 class StorageServiceNavigationButtons : public QToolBar
 {

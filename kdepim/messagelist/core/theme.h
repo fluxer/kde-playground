@@ -32,7 +32,7 @@
 #include <messagelist/core/optionset.h>
 #include <messagelist/core/sortorder.h>
 
-class QPaintDevice;
+#include <QPaintDevice>
 
 namespace MessageList
 {

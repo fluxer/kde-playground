@@ -31,15 +31,15 @@
 #include <QBitArray>
 #include <QAbstractButton>
 
-class QLabel;
-class QWidget;
-class QVBoxLayout;
+#include <QLabel>
+#include <QWidget>
+#include <QVBoxLayout>
 class ButtonGroup;
 class ComboBox;
 class CheckBox;
 class SpinBox;
 class TimeSpinBox;
-class QString;
+#include <QString>
 
 using namespace KAlarmCal;
 

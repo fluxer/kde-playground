@@ -21,7 +21,7 @@
 
 #include <QObject>
 #include <QStringList>
-class QProcess;
+#include <QProcess>
 namespace PimCommon {
 class BalooDebugSearchJob : public QObject
 {

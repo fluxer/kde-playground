@@ -20,7 +20,7 @@
 
 #include <QString>
 
-class QObject;
+#include <QObject>
 
 namespace Global
 {

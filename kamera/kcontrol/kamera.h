@@ -27,11 +27,11 @@
 #include <gphoto2.h>
 #include <KPluginFactory>
 
-class QWidget;
-class QPushButton;
-class QListView;
-class QStandardItemModel;
-class QModelIndex;
+#include <QWidget>
+#include <QPushButton>
+#include <QListView>
+#include <QStandardItemModel>
+#include <QModelIndex>
 
 class KCamera;
 class KameraDeviceSelectDialog;

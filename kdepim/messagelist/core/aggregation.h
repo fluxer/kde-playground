@@ -21,7 +21,7 @@
 #ifndef __MESSAGELIST_CORE_AGGREGATION_H__
 #define __MESSAGELIST_CORE_AGGREGATION_H__
 
-class QDataStream;
+#include <QDataStream>
 
 #include <QList>
 #include <QPair>

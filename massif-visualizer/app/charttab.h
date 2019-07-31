@@ -26,8 +26,8 @@
 #include "documenttabinterface.h"
 #include <QSpinBox>
 
-class QLabel;
-class QModelIndex;
+#include <QLabel>
+#include <QModelIndex>
 
 class KAction;
 

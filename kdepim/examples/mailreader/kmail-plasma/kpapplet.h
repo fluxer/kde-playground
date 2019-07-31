@@ -26,7 +26,7 @@
 
 
 
-class QGraphicsProxyWidget;
+#include <QGraphicsProxyWidget>
 
 namespace KP
 {

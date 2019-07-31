@@ -24,9 +24,9 @@
 #include <KDialog>
 #include "dvbchannel.h"
 
-class QLabel;
-class QModelIndex;
-class QTreeView;
+#include <QLabel>
+#include <QModelIndex>
+#include <QTreeView>
 class DvbEpgChannelTableModel;
 class DvbEpgTableModel;
 class DvbManager;

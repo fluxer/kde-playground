@@ -35,8 +35,8 @@
 
 #include <commands/command.h>
 
-class QStringList;
-class QString;
+#include <QStringList>
+#include <QString>
 
 namespace Kleo {
 namespace Commands {

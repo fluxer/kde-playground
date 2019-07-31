@@ -29,8 +29,8 @@
 class KAction;
 class KActionCollection;
 class KLocalizedString;
-class QItemSelectionModel;
-class QWidget;
+#include <QItemSelectionModel>
+#include <QWidget>
 
 namespace Akonadi {
 

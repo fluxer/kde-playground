@@ -29,7 +29,7 @@
 #include <QDate>
 #include <QWidget>
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 
 namespace Akonadi {
   class ETMCalendar;

@@ -21,7 +21,7 @@
 #include "abstractsettings.h"
 
 class ImportWizard;
-class QSettings;
+#include <QSettings>
 
 class TrojitaSettings : public AbstractSettings
 {

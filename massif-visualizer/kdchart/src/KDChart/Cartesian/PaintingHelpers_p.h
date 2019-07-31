@@ -29,10 +29,10 @@
 #include <QPointF>
 #include <QVector>
 
-class QBrush;
-class QModelIndex;
-class QPen;
-class QPolygonF;
+#include <QBrush>
+#include <QModelIndex>
+#include <QPen>
+#include <QPolygonF>
 
 namespace KDChart {
 

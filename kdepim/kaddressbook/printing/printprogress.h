@@ -26,8 +26,8 @@
 
 #include <QWidget>
 
-class QProgressBar;
-class QString;
+#include <QProgressBar>
+#include <QString>
 
 class KTextBrowser;
 

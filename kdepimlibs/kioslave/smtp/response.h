@@ -36,7 +36,7 @@
 #include <QString>
 typedef QList<QByteArray> QCStringList;
 
-class QString;
+#include <QString>
 
 namespace KioSMTP {
 

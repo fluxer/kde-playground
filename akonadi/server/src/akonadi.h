@@ -25,7 +25,7 @@
 
 #include <QtNetwork/QLocalServer>
 
-class QProcess;
+#include <QProcess>
 
 namespace Akonadi {
 namespace Server {

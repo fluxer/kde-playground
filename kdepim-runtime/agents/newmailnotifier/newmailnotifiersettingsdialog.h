@@ -24,7 +24,7 @@
 #include <Akonadi/Collection>
 
 class KNotifyConfigWidget;
-class QCheckBox;
+#include <QCheckBox>
 class KLineEdit;
 class KAboutData;
 class NewMailNotifierSelectCollectionWidget;

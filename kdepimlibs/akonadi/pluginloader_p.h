@@ -26,7 +26,7 @@
 #include <QtCore/QString>
 #include <QtCore/QObject>
 
-class QPluginLoader;
+#include <QPluginLoader>
 
 namespace Akonadi {
 

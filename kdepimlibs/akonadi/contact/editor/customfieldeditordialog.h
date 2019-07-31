@@ -28,7 +28,7 @@
 
 class KComboBox;
 class KLineEdit;
-class QCheckBox;
+#include <QCheckBox>
 
 class CustomFieldEditorDialog : public KDialog
 {

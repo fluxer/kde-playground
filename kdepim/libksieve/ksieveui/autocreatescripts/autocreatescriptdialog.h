@@ -22,7 +22,7 @@
 
 #include <KDialog>
 
-class QDomDocument;
+#include <QDomDocument>
 
 namespace KSieveUi {
 class SieveEditorGraphicalModeWidget;

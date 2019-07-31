@@ -34,8 +34,8 @@
 
 #include <stdio.h>
 
-class QCheckBox;
-class QGridLayout;
+#include <QCheckBox>
+#include <QGridLayout>
 
 class KConfig;
 

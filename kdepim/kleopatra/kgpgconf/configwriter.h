@@ -33,7 +33,7 @@
 #ifndef KGPGCONF_CONFIGWRITER_H
 #define KGPGCONF_CONFIGWRITER_H 
 
-class QIODevice;
+#include <QIODevice>
 
 class Config;
 

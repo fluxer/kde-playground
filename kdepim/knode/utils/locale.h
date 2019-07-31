@@ -26,9 +26,9 @@
 #include "knode_export.h"
 #include "kngroup.h"
 
-class QByteArray;
-class QString;
-class QStringList;
+#include <QByteArray>
+#include <QString>
+#include <QStringList>
 
 namespace KNode {
 

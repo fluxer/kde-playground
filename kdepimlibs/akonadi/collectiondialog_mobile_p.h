@@ -23,8 +23,8 @@
 #include "collectiondialog.h"
 
 class KJob;
-class QDeclarativeView;
-class QSortFilterProxyModel;
+#include <QDeclarativeView>
+#include <QSortFilterProxyModel>
 
 namespace Akonadi {
 

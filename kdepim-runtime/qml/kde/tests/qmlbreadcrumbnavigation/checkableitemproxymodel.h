@@ -26,7 +26,7 @@
 
 #include <QItemSelection>
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 
 class CheckableItemProxyModelPrivate;
 

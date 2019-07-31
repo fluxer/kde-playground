@@ -33,7 +33,7 @@
 #include "resourcestateinterface.h"
 #include "resourcestate.h"
 
-class QTimer;
+#include <QTimer>
 
 class ResourceTask;
 namespace KIMAP

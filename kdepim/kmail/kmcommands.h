@@ -28,7 +28,7 @@ using Akonadi::MessageStatus;
 class KProgressDialog;
 class KMMainWidget;
 
-template <typename T> class QSharedPointer;
+#include <QSharedPointer>
 
 namespace MessageViewer {
 class HeaderStyle;

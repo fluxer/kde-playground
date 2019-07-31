@@ -34,7 +34,7 @@
 
 #include <kdialog.h>
 
-class QCheckBox;
+#include <QCheckBox>
 
 namespace PimCommon {
 class SimpleStringListEditor;

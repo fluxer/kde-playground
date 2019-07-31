@@ -13,7 +13,7 @@
 
 #include <kcmodule.h>
 
-class QVBoxLayout;
+#include <QVBoxLayout>
 namespace Ui {
     class PolkitConfig;
 }

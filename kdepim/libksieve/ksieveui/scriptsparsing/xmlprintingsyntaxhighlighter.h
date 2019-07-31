@@ -22,7 +22,7 @@
 #include <QRegExp>
 #include <QSyntaxHighlighter>
 
-class QTextDocument;
+#include <QTextDocument>
 
 class XMLPrintingSyntaxHighLighter : public QSyntaxHighlighter
 {

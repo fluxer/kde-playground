@@ -28,10 +28,10 @@
 #include "kdganttglobal.h"
 #include "kdganttconstraint.h"
 
-class QPainter;
-class QRectF;
-class QAbstractItemModel;
-class QModelIndex;
+#include <QPainter>
+#include <QRectF>
+#include <QAbstractItemModel>
+#include <QModelIndex>
 
 namespace KDGantt {
     class AbstractRowController;

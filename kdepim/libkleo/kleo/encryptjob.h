@@ -39,8 +39,8 @@
 
 #include <vector>
 
-class QByteArray;
-class QIODevice;
+#include <QByteArray>
+#include <QIODevice>
 
 namespace GpgME {
   class Error;

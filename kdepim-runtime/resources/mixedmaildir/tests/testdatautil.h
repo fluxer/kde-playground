@@ -21,8 +21,8 @@
 #ifndef TESTDATAUTIL_H
 #define TESTDATAUTIL_H
 
-class QString;
-class QStringList;
+#include <QString>
+#include <QStringList>
 
 namespace TestDataUtil
 {

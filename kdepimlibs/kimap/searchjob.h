@@ -25,7 +25,7 @@
 
 #include "job.h"
 
-class QDate;
+#include <QDate>
 
 namespace KIMAP {
 

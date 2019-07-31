@@ -5,8 +5,8 @@
 #include <QtCore/QString>
 #include <QtCore/QVector>
 
-class QByteArray;
-class QIODevice;
+#include <QByteArray>
+#include <QIODevice>
 class KComponentData;
 
 QString transform(const QString &file, const QString& stylesheet,

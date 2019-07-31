@@ -25,7 +25,7 @@
 #include <QtCore/QList>
 
 class KJob;
-class QMimeData;
+#include <QMimeData>
 
 namespace Akonadi {
 

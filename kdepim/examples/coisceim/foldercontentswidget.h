@@ -24,7 +24,7 @@
 
 #include <QWidget>
 
-class QItemSelectionModel;
+#include <QItemSelectionModel>
 
 namespace Akonadi
 {

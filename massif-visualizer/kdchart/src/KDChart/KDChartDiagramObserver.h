@@ -30,7 +30,7 @@
 #include <QModelIndex>
 
 QT_BEGIN_NAMESPACE
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 QT_END_NAMESPACE
 
 namespace KDChart {

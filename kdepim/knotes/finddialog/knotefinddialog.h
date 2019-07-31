@@ -23,9 +23,9 @@
 #include "knotes_export.h"
 class KPushButton;
 class KLineEdit;
-class QListWidgetItem;
-class QListWidget;
-class QLabel;
+#include <QListWidgetItem>
+#include <QListWidget>
+#include <QLabel>
 namespace NoteShared {
 class NoteListWidget;
 }

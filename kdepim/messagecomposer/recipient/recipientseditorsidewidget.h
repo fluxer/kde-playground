@@ -27,8 +27,8 @@
 
 #include "recipientseditor.h"
 
-class QLabel;
-class QPushButton;
+#include <QLabel>
+#include <QPushButton>
 
 namespace MessageComposer {
 class KWindowPositioner;

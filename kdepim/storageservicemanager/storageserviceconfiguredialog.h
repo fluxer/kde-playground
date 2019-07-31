@@ -23,7 +23,7 @@
 
 #include "pimcommon/storageservice/dialog/storageserviceconfiguredialog.h"
 
-class QCheckBox;
+#include <QCheckBox>
 
 class StorageServiceConfigureDialog : public PimCommon::StorageServiceConfigureDialog
 {

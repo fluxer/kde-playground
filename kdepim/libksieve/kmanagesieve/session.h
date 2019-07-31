@@ -29,7 +29,7 @@
 #include <QtCore/QQueue>
 #include <QStringList>
 
-class QTimer;
+#include <QTimer>
 class KTcpSocket;
 
 namespace KManageSieve {

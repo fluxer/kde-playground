@@ -22,7 +22,7 @@
 
 #include <akonadi/monitor.h>
 
-class QSettings;
+#include <QSettings>
 
 namespace Akonadi {
 

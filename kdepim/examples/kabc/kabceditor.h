@@ -24,7 +24,7 @@
 
 #include "kdialog.h"
 
-class QLineEdit;
+#include <QLineEdit>
 
 namespace Akonadi {
   class ContactEditor;

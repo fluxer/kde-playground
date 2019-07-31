@@ -31,7 +31,7 @@
 #ifndef LZFU_H
 #define LZFU_H
 
-class QIODevice;
+#include <QIODevice>
 
 /**
  * @acronym LZFU decompress data in compressed Rich Text Format (@acronym RTF).

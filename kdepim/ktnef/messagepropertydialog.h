@@ -24,7 +24,7 @@ namespace KTnef {
 }
 using namespace KTnef;
 
-class QTreeWidget;
+#include <QTreeWidget>
 
 class MessagePropertyDialog : public KDialog
 {

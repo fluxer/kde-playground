@@ -22,8 +22,8 @@ class SnippetDialog;
 
 class KActionCollection;
 
-class QAbstractItemModel;
-class QModelIndex;
+#include <QAbstractItemModel>
+#include <QModelIndex>
 
 namespace MailCommon {
 

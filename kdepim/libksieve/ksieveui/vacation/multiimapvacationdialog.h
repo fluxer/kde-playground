@@ -23,7 +23,7 @@
 #include "ksieveui_export.h"
 
 class KTabWidget;
-class QStackedWidget;
+#include <QStackedWidget>
 namespace KSieveUi {
 class VacationCreateScriptJob;
 class KSIEVEUI_EXPORT MultiImapVacationDialog : public KDialog

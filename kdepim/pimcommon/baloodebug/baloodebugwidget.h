@@ -23,7 +23,7 @@
 #include "baloodebugsearchpathcombobox.h"
 #include <Akonadi/Item>
 class KLineEdit;
-class QPushButton;
+#include <QPushButton>
 namespace PimCommon {
 class PlainTextEditorWidget;
 class PIMCOMMON_EXPORT BalooDebugWidget : public QWidget

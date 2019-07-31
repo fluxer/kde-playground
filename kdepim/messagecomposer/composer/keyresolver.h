@@ -46,7 +46,7 @@
 
 #include <vector>
 
-class QStringList;
+#include <QStringList>
 
 namespace KABC {
 class Addressee;

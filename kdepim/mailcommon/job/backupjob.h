@@ -36,7 +36,7 @@
 class KArchive;
 class KJob;
 
-class QWidget;
+#include <QWidget>
 
 namespace Akonadi {
 class ItemFetchJob;

@@ -22,7 +22,7 @@
 
 #include "tag.h"
 
-class QModelIndex;
+#include <QModelIndex>
 
 namespace Akonadi
 {

@@ -25,7 +25,7 @@
 #include "kcal_export.h"
 #include <QtCore/QString>
 
-class QMimeData;
+#include <QMimeData>
 
 namespace KCal {
 

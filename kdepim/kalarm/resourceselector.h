@@ -43,8 +43,8 @@
 
 using namespace KAlarmCal;
 
-class QPushButton;
-class QResizeEvent;
+#include <QPushButton>
+#include <QResizeEvent>
 class KAction;
 class KActionCollection;
 class KToggleAction;

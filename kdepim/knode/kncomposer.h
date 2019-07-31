@@ -27,8 +27,8 @@
 class KSelectAction;
 class KTemporaryFile;
 class KToggleAction;
-class QComboBox;
-class QFile;
+#include <QComboBox>
+#include <QFile>
 namespace KNode {
   namespace Composer {
     class View;

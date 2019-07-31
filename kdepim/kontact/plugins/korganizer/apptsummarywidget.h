@@ -37,9 +37,9 @@ namespace Akonadi {
   class IncidenceChanger;
 }
 
-class QDate;
-class QGridLayout;
-class QLabel;
+#include <QDate>
+#include <QGridLayout>
+#include <QLabel>
 
 class ApptSummaryWidget : public KontactInterface::Summary
 {

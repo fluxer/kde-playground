@@ -42,9 +42,9 @@
 
 #include <KDE/KDateTime>
 
-class QDrag;
-class QDropEvent;
-class QMimeData;
+#include <QDrag>
+#include <QDropEvent>
+#include <QMimeData>
 
 namespace KCalUtils {
 

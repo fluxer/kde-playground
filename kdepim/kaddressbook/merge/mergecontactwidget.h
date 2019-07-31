@@ -23,8 +23,8 @@
 #include <Akonadi/Item>
 #include "kaddressbook_export.h"
 
-class QListWidget;
-class QPushButton;
+#include <QListWidget>
+#include <QPushButton>
 namespace Akonadi {
 class CollectionComboBox;
 }

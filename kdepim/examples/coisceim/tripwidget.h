@@ -24,9 +24,9 @@
 
 #include <QWidget>
 
-class QLabel;
-class QTextBrowser;
-class QModelIndex;
+#include <QLabel>
+#include <QTextBrowser>
+#include <QModelIndex>
 
 class Trip;
 class FolderContentsWidget;

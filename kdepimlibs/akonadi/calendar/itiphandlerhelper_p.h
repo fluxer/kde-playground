@@ -35,7 +35,7 @@
 
 #include <QObject>
 
-class QWidget;
+#include <QWidget>
 
 namespace Akonadi {
 

@@ -24,10 +24,10 @@
 #include <Akonadi/Item>
 #include <QWidget>
 
-class QCheckBox;
-class QItemSelectionModel;
-class QLabel;
-class QRadioButton;
+#include <QCheckBox>
+#include <QItemSelectionModel>
+#include <QLabel>
+#include <QRadioButton>
 
 namespace Akonadi {
 class Collection;

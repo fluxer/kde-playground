@@ -25,7 +25,7 @@
 #include "../tablemodel.h"
 #include "dvbrecording.h"
 
-class QCheckBox;
+#include <QCheckBox>
 class KComboBox;
 class KLineEdit;
 class DateTimeEdit;

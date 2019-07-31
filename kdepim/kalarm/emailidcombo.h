@@ -24,8 +24,8 @@
 #include "combobox.h"
 #include <kpimidentities/identitycombo.h>
 
-class QMouseEvent;
-class QKeyEvent;
+#include <QMouseEvent>
+#include <QKeyEvent>
 
 
 class EmailIdCombo : public KPIMIdentities::IdentityCombo

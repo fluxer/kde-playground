@@ -69,8 +69,8 @@ namespace Akonadi {
 
 class KVBox;
 
-class QSplitter;
-class QStackedWidget;
+#include <QSplitter>
+#include <QStackedWidget>
 
 using namespace KOrg;
 

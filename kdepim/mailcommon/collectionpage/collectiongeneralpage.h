@@ -25,9 +25,9 @@
 class KComboBox;
 class KLineEdit;
 
-class QCheckBox;
+#include <QCheckBox>
 
-template <typename T> class QSharedPointer;
+#include <QSharedPointer>
 
 namespace KPIMIdentities {
 class IdentityCombo;

@@ -18,7 +18,7 @@
 #include <kurl.h>
 
 class KTemporaryFile;
-class QFile;
+#include <QFile>
 
 //*****************************************************************************
 // utility classes

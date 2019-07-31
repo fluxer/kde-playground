@@ -28,8 +28,8 @@
 #include <QtCore/QString>
 
 class KJob;
-class QModelIndex;
-class QStandardItemModel;
+#include <QModelIndex>
+#include <QStandardItemModel>
 
 class UrlConfigurationDialog : public KDialog
 {

@@ -35,8 +35,8 @@
  */
 
 QT_BEGIN_NAMESPACE
-class QObject;
-class QPaintDevice;
+#include <QObject>
+#include <QPaintDevice>
 QT_END_NAMESPACE
 
 namespace KDChart {

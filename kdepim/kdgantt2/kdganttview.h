@@ -28,13 +28,13 @@
 #include <QWidget>
 #include "kdganttglobal.h"
 
-class QAbstractItemModel;
-class QAbstractProxyModel;
-class QAbstractItemView;
-class QModelIndex;
-class QItemSelectionModel;
-class QPrinter;
-class QSplitter;
+#include <QAbstractItemModel>
+#include <QAbstractProxyModel>
+#include <QAbstractItemView>
+#include <QModelIndex>
+#include <QItemSelectionModel>
+#include <QPrinter>
+#include <QSplitter>
 
 namespace KDGantt {
     class ItemDelegate;

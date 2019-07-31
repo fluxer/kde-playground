@@ -34,8 +34,8 @@
 
 #include <kurl.h>
 
-class QString;
-class QPoint;
+#include <QString>
+#include <QPoint>
 
 namespace MessageViewer {
 

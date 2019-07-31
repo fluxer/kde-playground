@@ -23,7 +23,7 @@
 
 #include <KIcon>
 
-class QStyleOptionViewItem;
+#include <QStyleOptionViewItem>
 
 namespace PolkitKde {
 

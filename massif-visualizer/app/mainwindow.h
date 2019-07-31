@@ -31,8 +31,8 @@
 #include "ui_mainwindow.h"
 #include "documentwidget.h"
 
-class QSpinBox;
-class QStringListModel;
+#include <QSpinBox>
+#include <QStringListModel>
 
 namespace KDChart {
 class Chart;

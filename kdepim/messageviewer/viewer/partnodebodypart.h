@@ -37,7 +37,7 @@
 #include "interfaces/bodypart.h"
 #include <akonadi/item.h>
 
-class QTextCodec;
+#include <QTextCodec>
 
 namespace KMime {
 class Content;

@@ -21,7 +21,7 @@
 #include <QWidget>
 
 class KComboBox;
-class QStackedWidget;
+#include <QStackedWidget>
 class AttachmentListWidget;
 class KUrlRequester;
 class MailMergeWidget : public QWidget

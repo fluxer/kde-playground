@@ -26,7 +26,7 @@ namespace Akonadi {
 class ETMViewStateSaver;
 }
 
-class QCheckBox;
+#include <QCheckBox>
 
 namespace PimCommon {
 class CheckedCollectionWidget;

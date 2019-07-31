@@ -24,7 +24,7 @@
 #include <QAbstractProxyModel>
 #include <QtCore/QModelIndex>
 
-class QModelIndex;
+#include <QModelIndex>
 
 namespace Akonadi {
 

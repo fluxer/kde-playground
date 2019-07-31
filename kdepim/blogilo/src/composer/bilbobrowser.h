@@ -30,8 +30,8 @@
 
 #include "kurl.h"
 
-class QCheckBox;
-class QProgressBar;
+#include <QCheckBox>
+#include <QProgressBar>
 class KWebView;
 class KPushButton;
 class KStatusBar;

@@ -42,7 +42,7 @@ namespace GpgME {
   class Key;
 }
 
-class QStringList;
+#include <QStringList>
 
 namespace Kleo {
 

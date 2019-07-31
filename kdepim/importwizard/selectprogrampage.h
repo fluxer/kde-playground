@@ -20,7 +20,7 @@
 
 #include <QWidget>
 
-class QListWidgetItem;
+#include <QListWidgetItem>
 
 namespace Ui {
 class SelectProgramPage;

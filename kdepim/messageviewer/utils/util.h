@@ -45,8 +45,8 @@
 #include <KService>
 
 class KUrl;
-class QWidget;
-class QActionGroup;
+#include <QWidget>
+#include <QActionGroup>
 class KAction;
 
 namespace KMime {

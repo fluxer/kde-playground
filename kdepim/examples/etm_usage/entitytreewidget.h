@@ -25,9 +25,9 @@
 #include <QWidget>
 #include <QModelIndex>
 
-class QTreeView;
-class QLineEdit;
-class QComboBox;
+#include <QTreeView>
+#include <QLineEdit>
+#include <QComboBox>
 
 namespace Akonadi
 {

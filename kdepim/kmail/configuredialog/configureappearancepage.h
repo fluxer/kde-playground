@@ -22,17 +22,17 @@
 #include "tag.h"
 #include <QListWidgetItem>
 
-class QPushButton;
-class QCheckBox;
+#include <QPushButton>
+#include <QCheckBox>
 class KComboBox;
 class KFontChooser;
 class ColorListBox;
-class QButtonGroup;
-class QGroupBox;
-class QSpinBox;
+#include <QButtonGroup>
+#include <QGroupBox>
+#include <QSpinBox>
 class KButtonGroup;
 class KLineEdit;
-class QModelIndex;
+#include <QModelIndex>
 namespace MessageViewer {
 class ConfigureWidget;
 }

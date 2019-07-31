@@ -31,7 +31,7 @@
 
 #include <QSortFilterProxyModel>
 
-class QModelIndex;
+#include <QModelIndex>
 
 namespace KMail {
 class KMSearchFilterProxyModel : public QSortFilterProxyModel

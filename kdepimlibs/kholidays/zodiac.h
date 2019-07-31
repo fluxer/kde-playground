@@ -55,8 +55,8 @@
 
 #include <QtCore/QSharedDataPointer>
 
-class QDate;
-class QString;
+#include <QDate>
+#include <QString>
 
 namespace KHolidays {
 

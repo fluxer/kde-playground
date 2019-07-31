@@ -41,10 +41,10 @@
 #include <QGraphicsView>
 #include <QPointer>
 
-class QAbstractProxyModel;
-class QGraphicsView;
-class QGraphicsScene;
-class QGraphicsRectItem;
+#include <QAbstractProxyModel>
+#include <QGraphicsView>
+#include <QGraphicsScene>
+#include <QGraphicsRectItem>
 
 namespace KDGantt {
     class GraphicsItem;

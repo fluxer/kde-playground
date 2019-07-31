@@ -22,7 +22,7 @@
 #include "pimcommonsetting_base.h"
 
 
-class QTimer;
+#include <QTimer>
 
 namespace PimCommon {
 

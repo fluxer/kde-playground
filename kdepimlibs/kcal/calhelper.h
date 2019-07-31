@@ -32,7 +32,7 @@
 #include "kcal_export.h"
 #include <QtCore/QPair>
 
-class QString;
+#include <QString>
 
 namespace KCal {
 class Calendar;

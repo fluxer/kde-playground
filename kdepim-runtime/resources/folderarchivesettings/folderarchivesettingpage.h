@@ -23,7 +23,7 @@
 #include <QWidget>
 #include <QComboBox>
 
-class QCheckBox;
+#include <QCheckBox>
 namespace Akonadi {
 class CollectionRequester;
 }

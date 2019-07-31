@@ -21,7 +21,7 @@
 #include "abstractimportexportjob.h"
 
 class ArchiveStorage;
-class QWidget;
+#include <QWidget>
 class KArchiveFile;
 
 class ImportAddressbookJob : public AbstractImportExportJob

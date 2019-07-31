@@ -32,7 +32,7 @@
 #include <QtCore/QThreadStorage>
 #include <QFile>
 
-class QIODevice;
+#include <QIODevice>
 
 namespace Akonadi {
 

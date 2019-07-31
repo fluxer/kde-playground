@@ -23,7 +23,7 @@
 
 #include <KDialog>
 
-class QButtonGroup;
+#include <QButtonGroup>
 
 class ConfigDialog : public KDialog
 {

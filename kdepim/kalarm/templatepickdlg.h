@@ -24,7 +24,7 @@
 
 #include <kdialog.h>
 
-class QResizeEvent;
+#include <QResizeEvent>
 namespace KCal { class Event; }
 #ifdef USE_AKONADI
 class TemplateListModel;

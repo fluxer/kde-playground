@@ -29,7 +29,7 @@
 #include "im/immodel.h"
 
 class KLineEdit;
-class QToolButton;
+#include <QToolButton>
 
 /**
  * This widget displays an input field for changing

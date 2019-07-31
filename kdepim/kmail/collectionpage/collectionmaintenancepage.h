@@ -21,8 +21,8 @@
 #include <akonadi/collectionpropertiespage.h>
 #include <akonadi/collection.h>
 
-class QCheckBox;
-class QLabel;
+#include <QCheckBox>
+#include <QLabel>
 namespace Akonadi {
 class CollectionStatistics;
 }

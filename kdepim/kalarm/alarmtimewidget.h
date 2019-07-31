@@ -24,7 +24,7 @@
 #include <kalarmcal/datetime.h>
 #include <QFrame>
 
-class QAbstractButton;
+#include <QAbstractButton>
 class KDateComboBox;
 class KHBox;
 class ButtonGroup;

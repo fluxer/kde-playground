@@ -24,9 +24,9 @@
 #include <Akonadi/Collection>
 
 class KComboBox;
-class QCheckBox;
+#include <QCheckBox>
 class KUrlRequester;
-class QSpinBox;
+#include <QSpinBox>
 class KIntSpinBox;
 
 namespace MailCommon {

@@ -27,8 +27,8 @@
 #include "../tabbase.h"
 #include "dvbrecording.h"
 
-class QModelIndex;
-class QSplitter;
+#include <QModelIndex>
+#include <QSplitter>
 class KAction;
 class KActionCollection;
 class KMenu;

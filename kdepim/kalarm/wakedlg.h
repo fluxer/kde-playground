@@ -23,7 +23,7 @@
 
 #include <kdialog.h>
 
-class QTimer;
+#include <QTimer>
 class MainWindow;
 class Ui_WakeFromSuspendDlgWidget;
 

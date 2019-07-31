@@ -45,7 +45,7 @@
 
 #include <vector>
 
-class QFile;
+#include <QFile>
 
 namespace KMime {
 namespace Types {

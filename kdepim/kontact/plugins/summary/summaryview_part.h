@@ -36,9 +36,9 @@ namespace KontactInterface {
 class KAboutData;
 class KAction;
 
-class QFrame;
-class QLabel;
-class QVBoxLayout;
+#include <QFrame>
+#include <QLabel>
+#include <QVBoxLayout>
 
 class SummaryViewPart : public KParts::ReadOnlyPart
 {

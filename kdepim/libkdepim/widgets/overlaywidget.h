@@ -34,8 +34,8 @@
 
 #include <KHBox>
 
-class QResizeEvent;
-class QEvent;
+#include <QResizeEvent>
+#include <QEvent>
 
 namespace KPIM {
 

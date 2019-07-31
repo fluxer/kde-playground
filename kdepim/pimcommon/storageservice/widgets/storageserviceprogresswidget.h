@@ -21,9 +21,9 @@
 #include "pimcommon_export.h"
 
 #include <QFrame>
-class QProgressBar;
-class QLabel;
-class QToolButton;
+#include <QProgressBar>
+#include <QLabel>
+#include <QToolButton>
 namespace PimCommon {
 class StorageServiceAbstract;
 class PIMCOMMON_EXPORT StorageServiceProgressWidget : public QFrame

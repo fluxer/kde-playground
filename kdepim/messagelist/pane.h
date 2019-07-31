@@ -30,11 +30,11 @@
 #include <messagelist/messagelist_export.h>
 
 class KXMLGUIClient;
-class QAbstractItemModel;
-class QAbstractProxyModel;
-class QItemSelectionModel;
-class QItemSelection;
-class QToolButton;
+#include <QAbstractItemModel>
+#include <QAbstractProxyModel>
+#include <QItemSelectionModel>
+#include <QItemSelection>
+#include <QToolButton>
 
 namespace KPIM
 {

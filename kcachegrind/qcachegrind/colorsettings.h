@@ -28,7 +28,7 @@
 #include "ui_colorsettings.h"
 
 class TraceData;
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 class ColorSettings: public ConfigPage
 {

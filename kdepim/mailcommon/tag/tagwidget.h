@@ -29,7 +29,7 @@ class KColorCombo;
 class KFontRequester;
 class KIconButton;
 class KKeySequenceWidget;
-class QCheckBox;
+#include <QCheckBox>
 class KActionCollection;
 
 namespace MailCommon {

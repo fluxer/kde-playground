@@ -35,7 +35,7 @@
 #include <Akonadi/EntityTreeModel>
 #include <QAbstractProxyModel>
 
-class QMimeData;
+#include <QMimeData>
 
 class TodoModel : public QAbstractProxyModel
 {

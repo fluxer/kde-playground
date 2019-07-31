@@ -26,7 +26,7 @@
 #include <QObject>
 
 class KCoreConfigSkeleton;
-class QColor;
+#include <QColor>
 
 namespace CalendarSupport {
 

@@ -27,12 +27,12 @@
 #include "KDChartGlobal.h"
 
 QT_BEGIN_NAMESPACE
-class QColor;
-class QSizeF;
-class QPen;
-class QPainterPath;
-class QDebug;
-template <typename T, typename K> class QMap;
+#include <QColor>
+#include <QSizeF>
+#include <QPen>
+#include <QPainterPath>
+#include <QDebug>
+#include <QMap>
 QT_END_NAMESPACE
 
 namespace KDChart {

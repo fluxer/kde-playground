@@ -54,12 +54,12 @@
 #include <map>
 #include <vector>
 
-class QVariant;
-class QIODevice;
-class QObject;
-class QStringList;
-class QDialog;
-class QFile;
+#include <QVariant>
+#include <QIODevice>
+#include <QObject>
+#include <QStringList>
+#include <QDialog>
+#include <QFile>
 
 struct assuan_context_s;
 

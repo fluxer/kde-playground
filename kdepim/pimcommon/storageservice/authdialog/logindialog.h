@@ -21,7 +21,7 @@
 #include <KDialog>
 
 class KLineEdit;
-class QLabel;
+#include <QLabel>
 namespace PimCommon {
 class LoginDialog : public KDialog
 {

@@ -19,8 +19,8 @@
 #define SPLITTERCOLLAPSERTEST_H
 
 #include <QWidget>
-class QSplitter;
-class QTextEdit;
+#include <QSplitter>
+#include <QTextEdit>
 
 class TestSplitter : public QWidget
 {

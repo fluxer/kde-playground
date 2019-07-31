@@ -22,7 +22,7 @@
 #include <qobject.h>
 #include <ktcpsocket.h>
 
-class QIODevice;
+#include <QIODevice>
 class KUrl;
 
 namespace MailTransport {

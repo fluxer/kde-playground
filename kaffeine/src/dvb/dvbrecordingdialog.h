@@ -23,7 +23,7 @@
 
 #include <KDialog>
 
-class QTreeView;
+#include <QTreeView>
 class DvbManager;
 class DvbRecordingTableModel;
 

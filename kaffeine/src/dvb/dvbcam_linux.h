@@ -24,7 +24,7 @@
 #include <QMap>
 #include <QTimer>
 
-class QSocketNotifier;
+#include <QSocketNotifier>
 class DvbLinuxCamService;
 class DvbPmtSection;
 

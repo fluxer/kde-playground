@@ -51,8 +51,8 @@ namespace Kleo {
     class Job;
 }
 
-class QWidget;
-class QString;
+#include <QWidget>
+#include <QString>
 
 namespace Kleo {
 

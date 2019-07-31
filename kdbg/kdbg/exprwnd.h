@@ -16,7 +16,7 @@ class ProgramTypeTable;
 class TypeInfo;
 struct ExprValue;
 class ExprWnd;
-class QStringList;
+#include <QStringList>
 
 /*! \brief a variable's value is the tree of sub-variables */
 class VarTree : public QTreeWidgetItem

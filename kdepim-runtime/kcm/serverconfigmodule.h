@@ -27,8 +27,8 @@
 
 #include <KCModule>
 
-class QComboBox;
-class QStackedWidget;
+#include <QComboBox>
+#include <QStackedWidget>
 
 class ServerConfigModule : public KCModule
 {

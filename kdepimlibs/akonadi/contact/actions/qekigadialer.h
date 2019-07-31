@@ -22,7 +22,7 @@
 #define QEKIGADIALER_H
 
 #include "qdialer.h"
-class QDBusInterface;
+#include <QDBusInterface>
 
 class QEkigaDialer : public QDialer
 {

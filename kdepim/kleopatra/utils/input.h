@@ -37,12 +37,12 @@
 
 #include <boost/shared_ptr.hpp>
 
-class QIODevice;
-class QString;
-class QStringList;
-class QByteArray;
-class QFile;
-class QDir;
+#include <QIODevice>
+#include <QString>
+#include <QStringList>
+#include <QByteArray>
+#include <QFile>
+#include <QDir>
 
 namespace Kleo {
 

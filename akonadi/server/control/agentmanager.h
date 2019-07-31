@@ -28,9 +28,9 @@
 #include "agenttype.h"
 #include "agentinstance.h"
 
-class QDir;
+#include <QDir>
 #ifndef QT_NO_DEBUG
-class QFileSystemWatcher;
+#include <QFileSystemWatcher>
 #endif
 
 namespace Akonadi {

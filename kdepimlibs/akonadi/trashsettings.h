@@ -23,7 +23,7 @@
 #include "akonadi_export.h"
 #include <akonadi/collection.h>
 
-class QString;
+#include <QString>
 
 namespace Akonadi {
 

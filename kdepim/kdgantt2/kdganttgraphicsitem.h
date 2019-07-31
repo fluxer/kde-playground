@@ -32,7 +32,7 @@
 #include <QDateTime>
 #include <QPersistentModelIndex>
 
-class QGraphicsLineItem;
+#include <QGraphicsLineItem>
 
 namespace KDGantt {
     class GraphicsScene;

@@ -24,9 +24,9 @@
 #include "entities.h"
 #include "../exception.h"
 
-class QString;
-class QVariant;
-class QFile;
+#include <QString>
+#include <QVariant>
+#include <QFile>
 
 namespace Akonadi {
 namespace Server {

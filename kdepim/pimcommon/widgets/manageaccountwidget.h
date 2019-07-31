@@ -26,8 +26,8 @@ class ManageAccountWidget;
 namespace Akonadi {
 class AgentInstance;
 }
-class QAbstractItemDelegate;
-class QAbstractItemView;
+#include <QAbstractItemDelegate>
+#include <QAbstractItemView>
 namespace PimCommon {
 class PIMCOMMON_EXPORT ManageAccountWidget : public QWidget
 {

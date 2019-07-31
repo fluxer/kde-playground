@@ -16,7 +16,7 @@
 
 #include <kdemacros.h>
 
-class QDBusArgument;
+#include <QDBusArgument>
 
 class KDE_EXPORT PKLAEntry {
     public:

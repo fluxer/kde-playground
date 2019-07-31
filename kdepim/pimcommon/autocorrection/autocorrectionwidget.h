@@ -22,7 +22,7 @@
 #include "autocorrection/autocorrection.h"
 #include <QWidget>
 
-class QTreeWidgetItem;
+#include <QTreeWidgetItem>
 
 namespace Ui {
 class AutoCorrectionWidget;

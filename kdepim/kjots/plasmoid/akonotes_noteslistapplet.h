@@ -26,7 +26,7 @@
 
 #include <akonadi/collection.h>
 
-class QAbstractItemModel;
+#include <QAbstractItemModel>
 
 
 namespace Akonadi

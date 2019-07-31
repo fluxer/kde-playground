@@ -21,7 +21,7 @@
 
 #include <QList>
 
-class QByteArray;
+#include <QByteArray>
 
 namespace KMime {
 

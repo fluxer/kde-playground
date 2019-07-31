@@ -24,7 +24,7 @@
 #include <KDialog>
 
 class KTextEdit;
-class QCheckBox;
+#include <QCheckBox>
 
 namespace MailCommon {
 

@@ -19,8 +19,8 @@
 #define NOTEEDITORUTILS_H
 
 #include "noteshared_export.h"
-class QTextCursor;
-class QTextEdit;
+#include <QTextCursor>
+#include <QTextEdit>
 namespace NoteShared
 {
 namespace NoteEditorUtils {
