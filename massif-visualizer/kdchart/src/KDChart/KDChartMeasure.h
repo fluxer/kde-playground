@@ -25,6 +25,8 @@
 
 #include <QDebug>
 #include <QStack>
+#include <QObject>
+#include <QPaintDevice>
 #include "KDChartGlobal.h"
 #include "KDChartEnums.h"
 
@@ -33,11 +35,6 @@
  *
  *
  */
-
-QT_BEGIN_NAMESPACE
-#include <QObject>
-#include <QPaintDevice>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

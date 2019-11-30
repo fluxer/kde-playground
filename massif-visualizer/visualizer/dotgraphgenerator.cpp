@@ -52,7 +52,9 @@ struct GraphNode {
 
 }
 
+QT_BEGIN_NAMESPACE
 Q_DECLARE_TYPEINFO(Massif::GraphNode, Q_MOVABLE_TYPE);
+QT_END_NAMESPACE
 
 using namespace Massif;
 

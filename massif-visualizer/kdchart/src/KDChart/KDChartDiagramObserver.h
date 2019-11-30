@@ -28,10 +28,7 @@
 #include <QObject>
 #include <QPointer>
 #include <QModelIndex>
-
-QT_BEGIN_NAMESPACE
 #include <QAbstractItemModel>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

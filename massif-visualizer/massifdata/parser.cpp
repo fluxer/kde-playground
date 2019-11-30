@@ -27,6 +27,7 @@
 #include "snapshotitem.h"
 
 #include <QtCore/QIODevice>
+#include <QtCore/QScopedPointer>
 
 using namespace Massif;
 

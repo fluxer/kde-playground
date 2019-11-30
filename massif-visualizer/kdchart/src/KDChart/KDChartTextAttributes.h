@@ -25,14 +25,11 @@
 
 #include <QDebug>
 #include <QMetaType>
-#include "KDChartGlobal.h"
-#include "KDChartMeasure.h"
-
-QT_BEGIN_NAMESPACE
 #include <QPen>
 #include <QFont>
 #include <QTextDocument>
-QT_END_NAMESPACE
+#include "KDChartGlobal.h"
+#include "KDChartMeasure.h"
 
 namespace KDChart {
 

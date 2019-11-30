@@ -26,14 +26,11 @@
 #include "KDChartGlobal.h"
 
 #include <QWidget>
+#include <QVector>
+#include <QPair>
 
 #include "KDChartEnums.h"
 #include "KDChartHeaderFooter.h"
-
-QT_BEGIN_NAMESPACE
-#include <QVector>
-#include <QPair>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

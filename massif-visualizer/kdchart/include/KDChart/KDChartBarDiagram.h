@@ -23,12 +23,10 @@
 #ifndef KDCHARTBARDIAGRAM_H
 #define KDCHARTBARDIAGRAM_H
 
+#include <QPainter>
+
 #include "KDChartAbstractCartesianDiagram.h"
 #include "KDChartBarAttributes.h"
-
-QT_BEGIN_NAMESPACE
-#include <QPainter>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

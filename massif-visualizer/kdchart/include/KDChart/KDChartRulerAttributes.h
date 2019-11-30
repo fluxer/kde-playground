@@ -24,12 +24,9 @@
 #define KDCHARTRULERATTRIBUTES_H
 
 #include <QMetaType>
+#include <QPen>
 #include "KDChartGlobal.h"
 #include "KDChartEnums.h"
-
-QT_BEGIN_NAMESPACE
-#include <QPen>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

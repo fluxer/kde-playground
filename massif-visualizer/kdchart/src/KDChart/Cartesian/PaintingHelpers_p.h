@@ -28,7 +28,6 @@
 
 #include <QPointF>
 #include <QVector>
-
 #include <QBrush>
 #include <QModelIndex>
 #include <QPen>

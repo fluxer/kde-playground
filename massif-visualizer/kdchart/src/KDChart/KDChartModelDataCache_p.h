@@ -28,12 +28,9 @@
 #include <QObject>
 #include <QModelIndex>
 #include <QVector>
+#include <QAbstractItemModel>
 
 #include "kdchart_export.h"
-
-QT_BEGIN_NAMESPACE
-#include <QAbstractItemModel>
-QT_END_NAMESPACE
 
 namespace KDChart
 {

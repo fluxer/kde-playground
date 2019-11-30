@@ -29,14 +29,12 @@
 #include <QLayout>
 #include <QLayoutItem>
 #include <QPen>
+#include <QPainter>
 
 #include "KDChartTextAttributes.h"
 #include "KDChartMarkerAttributes.h"
 
-QT_BEGIN_NAMESPACE
-#include <QPainter>
 class KDTextDocument;
-QT_END_NAMESPACE
 
 // TODO remove
 QRectF rotatedRect( const QRectF& pt, qreal rotation );

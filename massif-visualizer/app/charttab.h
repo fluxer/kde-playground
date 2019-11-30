@@ -28,6 +28,7 @@
 
 #include <QLabel>
 #include <QModelIndex>
+#include <QPrinter>
 
 class KAction;
 

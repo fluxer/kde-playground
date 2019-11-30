@@ -23,14 +23,10 @@
 #ifndef KDCHARTRADARDIAGRAM_H
 #define KDCHARTRADARDIAGRAM_H
 
-
+#include <QPolygonF>
 #include "KDChartPosition.h"
 #include "KDChartPolarDiagram.h"
 #include "KDChartRadarCoordinatePlane.h"
-
-QT_BEGIN_NAMESPACE
-#include <QPolygonF>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

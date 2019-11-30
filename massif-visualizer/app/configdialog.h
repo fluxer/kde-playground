@@ -25,9 +25,11 @@
 
 #include <KConfigDialog>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class Config;
 }
+QT_END_NAMESPACE
 
 namespace Massif {
 

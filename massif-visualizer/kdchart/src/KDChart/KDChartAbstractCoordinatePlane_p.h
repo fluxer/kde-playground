@@ -43,10 +43,7 @@
 #include <KDABLibFakes>
 
 #include <QStack>
-
-QT_BEGIN_NAMESPACE
 #include <QRubberBand>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

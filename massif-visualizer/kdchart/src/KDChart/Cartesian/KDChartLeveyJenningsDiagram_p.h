@@ -35,15 +35,12 @@
 //
 
 #include <QDateTime>
+#include <QSvgRenderer>
 
 #include "KDChartThreeDLineAttributes.h"
 #include "KDChartLineDiagram_p.h"
 
 #include <KDABLibFakes>
-
-QT_BEGIN_NAMESPACE
-#include <QSvgRenderer>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

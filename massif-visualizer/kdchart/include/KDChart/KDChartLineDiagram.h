@@ -23,14 +23,11 @@
 #ifndef KDCHARTLINEDIAGRAM_H
 #define KDCHARTLINEDIAGRAM_H
 
+#include <QPainter>
+#include <QPolygonF>
 #include "KDChartAbstractCartesianDiagram.h"
 #include "KDChartLineAttributes.h"
 #include "KDChartValueTrackerAttributes.h"
-
-QT_BEGIN_NAMESPACE
-#include <QPainter>
-#include <QPolygonF>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

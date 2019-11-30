@@ -307,7 +307,7 @@ void ParserPrivate::parseHeapTreeLeaf(const QByteArray& line)
         }
         if (belowThreshold) {
             QByteArray label = belowThreshold->label();
-            label.replace(oldPlaces, QByteArray::number(places));
+            label.replace(oldPlaces.toUtf8(), QByteArray::number(places));
             belowThreshold->setLabel(label);
         }
         qSort(newChildren.begin(), newChildren.end(), sortLeafsByCost);

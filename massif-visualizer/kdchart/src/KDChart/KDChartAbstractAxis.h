@@ -26,18 +26,14 @@
 // #include <QObject>
 // #include <QRectF>
 // #include <QWidget>
+#include <QPainter>
+#include <QSizeF>
 
 #include "kdchart_export.h"
 #include "KDChartGlobal.h"
 #include "KDChartAbstractArea.h"
 #include "KDChartTextAttributes.h"
 #include "KDChartRulerAttributes.h"
-
-QT_BEGIN_NAMESPACE
-#include <QPainter>
-#include <QSizeF>
-QT_END_NAMESPACE
-
 
 namespace KDChart {
 

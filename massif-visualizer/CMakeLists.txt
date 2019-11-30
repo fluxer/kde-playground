@@ -25,7 +25,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}/kdchart/include/KDChart
 )
 
-add_definitions(-Wall)
+add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 add_subdirectory(kdchart)
 add_subdirectory(massifdata)

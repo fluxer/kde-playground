@@ -41,6 +41,7 @@
 #include <QObject>
 #include <QPointer>
 #include <QModelIndex>
+#include <QAbstractItemModel>
 
 #include "KDChartDataValueAttributes.h"
 #include "KDChartModelDataCache_p.h"
@@ -48,9 +49,6 @@
 #include "kdchart_export.h"
 
 class CartesianDiagramDataCompressorTests;
-QT_BEGIN_NAMESPACE
-#include <QAbstractItemModel>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

@@ -24,16 +24,13 @@
 #define KDCHARTMARKERATTRIBUTES_H
 
 #include <QMetaType>
-#include "KDChartGlobal.h"
-
-QT_BEGIN_NAMESPACE
 #include <QColor>
 #include <QSizeF>
 #include <QPen>
 #include <QPainterPath>
 #include <QDebug>
 #include <QMap>
-QT_END_NAMESPACE
+#include "KDChartGlobal.h"
 
 namespace KDChart {
 

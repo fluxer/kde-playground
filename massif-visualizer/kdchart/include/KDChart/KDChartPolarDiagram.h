@@ -23,13 +23,9 @@
 #ifndef KDCHARTPOLARDIAGRAM_H
 #define KDCHARTPOLARDIAGRAM_H
 
-
+#include <QPolygonF>
 #include "KDChartPosition.h"
 #include "KDChartAbstractPolarDiagram.h"
-
-QT_BEGIN_NAMESPACE
-#include <QPolygonF>
-QT_END_NAMESPACE
 
 namespace KDChart {
 

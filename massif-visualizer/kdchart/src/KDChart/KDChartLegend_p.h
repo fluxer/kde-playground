@@ -43,14 +43,12 @@
 #include <QAbstractTextDocumentLayout>
 #include <QPainter>
 #include <QVector>
+#include <QGridLayout>
+#include <QTextDocument>
 
 #include <KDABLibFakes>
 
-QT_BEGIN_NAMESPACE
-#include <QGridLayout>
 class KDTextDocument;
-#include <QTextDocument>
-QT_END_NAMESPACE
 
 namespace KDChart {
     class AbstractDiagram;

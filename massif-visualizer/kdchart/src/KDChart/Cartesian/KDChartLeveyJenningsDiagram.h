@@ -23,14 +23,11 @@
 #ifndef KDCHARTLEVEYJENNINGSDIAGRAM_H
 #define KDCHARTLEVEYJENNINGSDIAGRAM_H
 
-#include "KDChartLineDiagram.h"
-#include "KDChartLeveyJenningsCoordinatePlane.h"
-
-QT_BEGIN_NAMESPACE
 #include <QPainter>
 #include <QPolygonF>
 #include <QSvgRenderer>
-QT_END_NAMESPACE
+#include "KDChartLineDiagram.h"
+#include "KDChartLeveyJenningsCoordinatePlane.h"
 
 namespace KDChart {
 

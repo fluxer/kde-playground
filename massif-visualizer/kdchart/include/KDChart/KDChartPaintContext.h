@@ -24,11 +24,8 @@
 #define PAINTCONTEXT_H
 
 #include <QRectF>
-#include "KDChartGlobal.h"
-
-QT_BEGIN_NAMESPACE
 #include <QPainter>
-QT_END_NAMESPACE
+#include "KDChartGlobal.h"
 
 namespace KDChart {
 

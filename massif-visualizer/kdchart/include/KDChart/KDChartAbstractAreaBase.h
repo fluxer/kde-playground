@@ -26,17 +26,13 @@
 #include <QPointF>
 #include <QSizeF>
 #include <QRectF>
+#include <QPainter>
+#include <QString>
 
 #include "KDChartGlobal.h"
 #include "KDChartLayoutItems.h"
 #include "KDChartRelativePosition.h"
 #include "KDChartAbstractAreaBase.h"
-
-
-QT_BEGIN_NAMESPACE
-#include <QPainter>
-#include <QString>
-QT_END_NAMESPACE
 
 namespace KDChart {
     class TextAttributes;
