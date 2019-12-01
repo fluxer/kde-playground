@@ -1180,7 +1180,7 @@ void DebuggerMainWnd::slotFileExe()
     {
 	// open a new executable
 	QString executable = myGetFileName(i18n("Select the executable to debug"),
-					   m_lastDirectory, 0, this);
+					   m_lastDirectory, QString(), this);
 	if (executable.isEmpty())
 	    return;
 
@@ -1193,7 +1193,7 @@ void DebuggerMainWnd::slotFileCore()
     if (m_debugger->canStart())
     {
 	QString corefile = myGetFileName(i18n("Select core dump"),
-					 m_lastDirectory, 0, this);
+					 m_lastDirectory, QString(), this);
 	if (!corefile.isEmpty()) {
 	    m_debugger->useCoreFile(corefile, false);
 	}

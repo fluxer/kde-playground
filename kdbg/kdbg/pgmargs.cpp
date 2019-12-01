@@ -199,7 +199,7 @@ void PgmArgs::on_insertFile_clicked()
 
     // use the selection as default
     QString f = programArgs->selectedText();
-    f = KFileDialog::getSaveFileName(f, QString::null,
+    f = KFileDialog::getSaveFileName(f, QString(),
 				     this, caption);
     // don't clear the selection if no file was selected
     if (!f.isEmpty()) {

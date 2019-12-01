@@ -106,7 +106,7 @@ static XsldbgCmdInfo cmds[] = {
 XsldbgDriver::XsldbgDriver():
 	DebuggerDriver()
 {
-    m_haveDataFile = FALSE;
+    m_haveDataFile = false;
 
 #ifndef NDEBUG
     // check command info array

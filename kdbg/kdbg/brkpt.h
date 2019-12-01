@@ -31,7 +31,7 @@ protected:
     std::vector<QIcon> m_icons;
 
     void insertBreakpoint(int num, bool temp, bool enabled, QString location,
-			  QString fileName = 0, int lineNo = -1,
+			  QString fileName = QString(), int lineNo = -1,
 			  int hits = 0, uint ignoreCount = 0,
 			  QString condition = QString());
     void initListAndIcons();
