@@ -6,7 +6,7 @@ find_package(KDE4)
 include(KDE4Defaults)
 
 include_directories(${KDE4_INCLUDES})
-add_definitions(${KDE4_DEFINITIONS})
+add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 
 set(kemu_sources
     main.cpp

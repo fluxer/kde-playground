@@ -24,7 +24,10 @@
 #include <QSettings>
 #include <QProcess>
 
+QT_BEGIN_NAMESPACE
 class Ui_KEmuWindow;
+QT_END_NAMESPACE
+
 class KEmuMainWindow: public KXmlGuiWindow
 {
     Q_OBJECT
