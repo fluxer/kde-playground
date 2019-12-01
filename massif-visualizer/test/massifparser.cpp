@@ -25,6 +25,7 @@
 
 #include <QCoreApplication>
 #include <QElapsedTimer>
+#include <QScopedPointer>
 #include <QDebug>
 
 #include "massifdata/parser.h"
