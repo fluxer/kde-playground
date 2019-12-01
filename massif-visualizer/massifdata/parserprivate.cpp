@@ -40,7 +40,7 @@ using namespace Massif;
 
 static QByteArray midRef(const QByteArray& line, int offset, int length = -1)
 {
-    return QByteArray::fromRawData(line.data() + offset, length == -1 ? (line.length() - offset) : length);
+    return line.mid(offset, length == -1 ? (line.length() - offset) : length);
 }
 
 ParserPrivate::ParserPrivate(Parser* parser, QIODevice* file, FileData* data,
@@ -186,7 +186,7 @@ void ParserPrivate::parseFileTimeUnit(const QByteArray& line)
 
 void ParserPrivate::parseSnapshot(const QByteArray& line)
 {
-    VALIDATE(line, line == "#-----------")
+    VALIDATE(line, line.startsWith("#-----------"))
 
     // snapshot=N
     QByteArray nextLine = readLine();
@@ -195,7 +195,7 @@ void ParserPrivate::parseSnapshot(const QByteArray& line)
     uint number = midRef(nextLine, 9).toUInt(&ok);
     VALIDATE(nextLine, ok)
     nextLine = readLine();
-    VALIDATE(nextLine, nextLine == "#-----------")
+    VALIDATE(nextLine, nextLine.startsWith("#-----------"))
 
     m_snapshot = new SnapshotItem;
     m_data->addSnapshot(m_snapshot);
