@@ -232,10 +232,9 @@ void PartView::refresh()
     clear();
 
     QList<QTreeWidgetItem*> items;
-    QTreeWidgetItem* item;
     foreach(TracePart* part, _data->parts()) {
         if (hidden.contains(part)) continue;
-        item = new PartListItem(0, f, _eventType, _groupType, part);
+        QTreeWidgetItem* item = new PartListItem(0, f, _eventType, _groupType, part);
         items.append(item);
     }
     setSortingEnabled(false);
@@ -244,7 +243,7 @@ void PartView::refresh()
     header()->setSortIndicatorShown(false);
     header()->resizeSections(QHeaderView::ResizeToContents);
 
-    foreach(item, items) {
+    foreach(QTreeWidgetItem* item, items) {
         TracePart* part = ((PartListItem*)item)->part();
         if (hidden.contains(part)) continue;
         if (part->isActive()) {

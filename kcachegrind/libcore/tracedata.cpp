@@ -3659,13 +3659,12 @@ ProfileCostArray* TraceData::search(ProfileContext::Type t, QString name,
 
 TraceFunctionCycle* TraceData::functionCycle(TraceFunction* f)
 {
-    TraceFunctionCycle* cycle;
-    foreach(cycle, _functionCycles)
+    foreach(TraceFunctionCycle* cycle, _functionCycles)
         if (cycle->base() == f)
             return cycle;
 
     _functionCycleCount++;
-    cycle = new TraceFunctionCycle(f, _functionCycleCount);
+    TraceFunctionCycle* cycle = new TraceFunctionCycle(f, _functionCycleCount);
 
     _functionCycles.append(cycle);
     return cycle;

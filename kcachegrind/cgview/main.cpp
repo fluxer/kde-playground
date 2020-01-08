@@ -130,11 +130,10 @@ int main(int argc, char** argv)
     for ( it = d->functionMap().begin(); it != d->functionMap().end(); ++it )
         flist.append(&(*it));
 
-    TraceFunction *f;
-    foreach(f, d->functionCycles())
+    foreach(TraceFunction *f, d->functionCycles())
         flist.append(f);
 
-    foreach(f, flist) {
+    foreach(TraceFunction *f, flist) {
         if (sortByCount)
             hc.addCost(f, f->calledCount());
         else if (sortByExcl)
@@ -149,7 +148,7 @@ int main(int argc, char** argv)
 
     out.setFieldAlignment(QTextStream::AlignRight);
     for(int i=0; i<hc.realCount(); i++) {
-	f = (TraceFunction*)hc[i];
+        TraceFunction *f = (TraceFunction*)hc[i];
 
         if (showCalls) {
             if (i>0) out << endl;
