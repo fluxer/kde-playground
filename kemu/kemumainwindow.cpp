@@ -25,6 +25,7 @@
 #include <KStandardDirs>
 #include <KStatusBar>
 #include <KDebug>
+#include <ksettings.h>
 #include <QApplication>
 #include <QMessageBox>
 #include <QThread>
@@ -99,9 +100,23 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
         }
     }
 
-    m_settings = new QSettings("KEmu", "kemu");
+    m_settings = new KSettings("kemu", KSettings::SimpleConfig);
+#ifndef QT_KATIE
     foreach(const QString machine, m_settings->childGroups()) {
-        if (m_settings->value(machine + "/enable") == true) {
+#else
+    QStringList addedmachines;
+    foreach(const QString key, m_settings->keys()) {
+        const int sepindex = key.indexOf("/");
+        if (sepindex < 1) {
+            continue;
+        }
+        QString machine = key.left(sepindex);
+        if (addedmachines.contains(machine)) {
+            continue;
+        }
+        addedmachines.append(machine);
+#endif
+        if (m_settings->value(machine + "/enable").toBool() == true) {
             m_kemuui->machinesList->insertItem(machine);
             machineLoad(machine);
         } else {
@@ -119,7 +134,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
         return;
     }
 
-    QFile kvmdev("/dev/kvm");
+    QFileInfo kvmdev("/dev/kvm");
     if (!kvmdev.exists()) {
         const QString modprobeBin = KStandardDirs::findExe("modprobe");
         if (!modprobeBin.isEmpty()) {
@@ -277,7 +292,7 @@ void KEmuMainWindow::machineChanged(QItemSelection ignored, QItemSelection ignor
     Q_UNUSED(ignored2);
     const QString machine = m_kemuui->machinesList->currentText();
     if (!machine.isEmpty()) {
-        QFile kvmdev("/dev/kvm");
+        QFileInfo kvmdev("/dev/kvm");
         m_kemuui->KVMCheckBox->setEnabled(kvmdev.exists());
 
         m_kemuui->startStopButton->setEnabled(m_installed);
