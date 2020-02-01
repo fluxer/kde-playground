@@ -66,7 +66,14 @@ QList<Action> parse(QSettings &ini)
     descriptionExp.setCaseSensitivity(Qt::CaseInsensitive);
     nameExp.setCaseSensitivity(Qt::CaseInsensitive);
 
+#ifndef QT_KATIE
     foreach(const QString &name, ini.childGroups()) {
+#else
+    foreach(const QString &name, ini.keys()) {
+        if (name.contains("/")) {
+            continue;
+        }
+#endif
         Action action;
 
         if (name == "Domain") {
@@ -81,7 +88,11 @@ QList<Action> parse(QSettings &ini)
         action.name = name;
         ini.beginGroup(name);
 
+#ifndef QT_KATIE
         foreach(const QString &key, ini.childKeys()) {
+#else
+        foreach(const QString &key, ini.groupKeys()) {
+#endif
             if (descriptionExp.exactMatch(key)) {
                 QString lang = descriptionExp.capturedTexts().at(1);
 
@@ -133,7 +144,9 @@ QHash<QString, QString> parseDomain(QSettings& ini)
 {
     QHash<QString, QString> rethash;
 
+#ifndef QT_KATIE
     if (ini.childGroups().contains("Domain")) {
+#endif
         if (ini.contains("Domain/Name")) {
             rethash["vendor"] = ini.value("Domain/Name").toString();
         }
@@ -143,7 +156,9 @@ QHash<QString, QString> parseDomain(QSettings& ini)
         if (ini.contains("Domain/Icon")) {
             rethash["icon"] = ini.value("Domain/Icon").toString();
         }
+#ifndef QT_KATIE
     }
+#endif
 
     return rethash;
 }
