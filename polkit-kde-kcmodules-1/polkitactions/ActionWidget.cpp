@@ -45,7 +45,9 @@ ActionWidget::ActionWidget(QWidget* parent)
     m_ui->moveUpButton->setIcon(KIcon("go-up"));
 
     m_ui->localAuthListWidget->setItemDelegate(new PKLAItemDelegate);
-    this->setEnabled(false);
+    m_ui->removeButton->setEnabled(false);
+    m_ui->moveDownButton->setEnabled(false);
+    m_ui->moveUpButton->setEnabled(false);
 
     connect(m_ui->localAuthListWidget, SIGNAL(itemDoubleClicked(QListWidgetItem*)),
             this, SLOT(editExplicitPKLAEntry(QListWidgetItem*)));
