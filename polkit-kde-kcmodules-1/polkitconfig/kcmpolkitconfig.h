@@ -14,9 +14,12 @@
 #include <kcmodule.h>
 
 #include <QVBoxLayout>
+
+QT_BEGIN_NAMESPACE
 namespace Ui {
     class PolkitConfig;
 }
+QT_END_NAMESPACE
 
 class KCMPolkitConfig : public KCModule
 {

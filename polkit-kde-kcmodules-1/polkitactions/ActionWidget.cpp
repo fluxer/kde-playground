@@ -339,8 +339,7 @@ void ActionWidget::addNewPKLAEntry(const PKLAEntry& entry)
     PKLAEntry toInsert(entry);
     // Match it to the current config value
     QSettings settings("/etc/polkit-1/polkit-kde-1.conf", QSettings::IniFormat);
-    settings.beginGroup("General");
-    toInsert.filePriority = settings.value("PoliciesPriority", 75).toInt();
+    toInsert.filePriority = settings.value("General/PoliciesPriority", 75).toInt();
 
     // If there's no file order, append it to the end of the current entries
     if (toInsert.fileOrder < 0) {

@@ -12,14 +12,18 @@
 #define ACTIONWIDGET_H
 
 #include <QtGui/QWidget>
-#include "PKLAEntry.h"
+#include <QtGui/QListWidgetItem>
 #include <PolkitQt1/ActionDescription>
 
+#include "PKLAEntry.h"
+
 class KComboBox;
-#include <QListWidgetItem>
+
+QT_BEGIN_NAMESPACE
 namespace Ui {
 class ActionWidget;
 }
+QT_END_NAMESPACE
 
 namespace PolkitKde {
 

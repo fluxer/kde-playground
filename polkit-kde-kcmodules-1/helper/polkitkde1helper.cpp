@@ -12,14 +12,15 @@
 
 #include "helperadaptor.h"
 
+#include <QtCore/QDebug>
+#include <QtCore/QDir>
 #include <QtCore/QTimer>
 #include <QtCore/QSettings>
+#include <QtCore/QCoreApplication>
 #include <QtXml/QDomDocument>
-
 #include <QtDBus/QDBusConnection>
 
 #include <PolkitQt1/Authority>
-#include <QDir>
 #include <KLocalizedString>
 
 bool orderByPriorityLessThan(const PKLAEntry &e1, const PKLAEntry &e2)
@@ -75,10 +76,9 @@ void PolkitKde1Helper::saveGlobalConfiguration(const QString& adminIdentities, i
 
     // Ok, let's see what we have to save here.
     QSettings kdesettings("/etc/polkit-1/polkit-kde-1.conf", QSettings::IniFormat);
-    kdesettings.beginGroup("General");
 
-    kdesettings.setValue("ConfigPriority", systemPriority);
-    kdesettings.setValue("PoliciesPriority", policiesPriority);
+    kdesettings.setValue("General/ConfigPriority", systemPriority);
+    kdesettings.setValue("General/PoliciesPriority", policiesPriority);
 
     QString contents = QString("[Configuration]\nAdminIdentities=%1\n").arg(adminIdentities);
 
@@ -316,10 +316,9 @@ void PolkitKde1Helper::writePolicy(const QList<PKLAEntry>& policy)
     qSort(entries.begin(), entries.end(), orderByPriorityLessThan);
 
     QSettings kdesettings("/etc/polkit-1/polkit-kde-1.conf", QSettings::IniFormat);
-    kdesettings.beginGroup("General");
 
     QString pathName = QString("/var/lib/polkit-1/localauthority/%1-polkitkde.d/")
-                            .arg(kdesettings.value("PoliciesPriority",75).toInt());
+                            .arg(kdesettings.value("General/PoliciesPriority",75).toInt());
 
     foreach(const PKLAEntry &entry, entries) {
         QString fullPath;

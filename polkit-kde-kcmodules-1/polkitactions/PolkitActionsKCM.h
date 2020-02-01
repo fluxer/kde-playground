@@ -14,17 +14,19 @@
 #include <kcmodule.h>
 #include <PolkitQt1/Authority>
 #include <QtCore/QPointer>
+#include <QtCore/QModelIndex>
 
-#include <QModelIndex>
 namespace PolkitKde {
 class PoliciesModel;
 class AuthorizationsFilterModel;
 class ActionWidget;
 }
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
     class PolkitActionsMainView;
 }
+QT_END_NAMESPACE
 
 class PolkitActionsKCM : public KCModule
 {

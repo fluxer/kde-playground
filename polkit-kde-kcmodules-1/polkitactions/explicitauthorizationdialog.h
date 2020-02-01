@@ -11,13 +11,16 @@
 #ifndef EXPLICITAUTHORIZATIONDIALOG_H
 #define EXPLICITAUTHORIZATIONDIALOG_H
 
+#include <QVBoxLayout>
 #include <KDialog>
+
 #include "PKLAEntry.h"
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
     class ExplicitAuthorizationWidget;
 }
-#include <QVBoxLayout>
+QT_END_NAMESPACE
 
 namespace PolkitKde {
 

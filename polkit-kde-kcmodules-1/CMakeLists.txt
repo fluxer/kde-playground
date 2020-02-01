@@ -5,6 +5,9 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
 find_package(KDE4 REQUIRED)
 include(KDE4Defaults)
 
+include_directories(${KDE4_INCLUDES})
+add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+
 function(dbus_add_activation_system_service _sources)
     pkg_search_module( DBUS dbus-1 )
     foreach (_i ${_sources})

@@ -15,9 +15,11 @@
 
 #include <kdemacros.h>
 
+QT_BEGIN_NAMESPACE
 namespace Ui {
     class IdentityWidget;
 }
+QT_END_NAMESPACE
 
 class KDE_EXPORT IdentityWidget : public QWidget
 {

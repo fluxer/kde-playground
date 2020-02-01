@@ -22,6 +22,7 @@
 
 #include <QCoreApplication>
 #include <QSettings>
+#include <QTextCodec>
 #include <QRegExp>
 #include <QStringList>
 #include <QDebug>
@@ -41,7 +42,11 @@ int main(int argc, char **argv)
     }
 
     QSettings ini(argv[1], QSettings::IniFormat);
+#ifndef QT_KATIE // Katie uses C-strings codec which is UTF-8
     ini.setIniCodec("UTF-8");
+#else
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+#endif
     if (ini.status()) {
         qCritical("Error loading file: %s", argv[1]);
         return 1;

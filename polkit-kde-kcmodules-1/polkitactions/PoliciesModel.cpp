@@ -224,7 +224,7 @@ void PoliciesModel::insertOrUpdate(const QStringList &actionPath, const PolkitQt
         QString path = actionPath.join(".");
         PolicyItem *action = 0;
         for (int i = 0; i < parent->childCount(); i++) {
-            if (!parent->child(i)->isGroup() && path == parent->child(i)->data(PathRole)) {
+            if (!parent->child(i)->isGroup() && path == parent->child(i)->data(PathRole).toString()) {
                 action = parent->child(i);
                 break;
             }
@@ -253,7 +253,7 @@ void PoliciesModel::insertOrUpdate(const QStringList &actionPath, const PolkitQt
         QString path = actionPath.at(level);
         PolicyItem *group = 0;
         for (int i = 0; i < parent->childCount(); i++) {
-            if (parent->child(i)->isGroup() && path == parent->child(i)->data(PathRole)) {
+            if (parent->child(i)->isGroup() && path == parent->child(i)->data(PathRole).toString()) {
                 group = parent->child(i);
                 break;
             }

@@ -79,9 +79,8 @@ void KCMPolkitConfig::load()
 {
     // Load the first tab
     QSettings settings("/etc/polkit-1/polkit-kde-1.conf", QSettings::IniFormat);
-    settings.beginGroup("General");
 
-    int priority = settings.value("ConfigPriority", 75).toInt();
+    int priority = settings.value("General/ConfigPriority", 75).toInt();
     int highestPriority = -1;
     QString highestFilename;
 
@@ -134,7 +133,7 @@ void KCMPolkitConfig::load()
 
     // Set up the other tab
     m_ui->configPrioritySpin->setValue(priority);
-    m_ui->policyPrioritySpin->setValue(settings.value("PoliciesPriority", 75).toInt());
+    m_ui->policyPrioritySpin->setValue(settings.value("General/PoliciesPriority", 75).toInt());
 }
 
 void KCMPolkitConfig::save()
