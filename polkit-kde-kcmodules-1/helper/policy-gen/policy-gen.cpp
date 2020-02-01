@@ -69,10 +69,15 @@ QList<Action> parse(QSettings &ini)
 #ifndef QT_KATIE
     foreach(const QString &name, ini.childGroups()) {
 #else
-    foreach(const QString &name, ini.keys()) {
+    QStringList seennames;
+    foreach(QString name, ini.keys()) {
         if (name.contains("/")) {
+            name = name.split("/").first();
+        }
+        if (seennames.contains(name)) {
             continue;
         }
+        seennames.append(name);
 #endif
         Action action;
 
