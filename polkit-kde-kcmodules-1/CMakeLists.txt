@@ -15,7 +15,7 @@ function(dbus_add_activation_system_service _sources)
         string(REGEX REPLACE "\\.service.*$" ".service" _output_file ${_i})
         set(_target ${CMAKE_CURRENT_BINARY_DIR}/${_output_file})
         configure_file(${_service_file} ${_target})
-        install(FILES ${_target} DESTINATION ${DBUS_SYSTEM_SERVICES_INSTALL_DIR} )
+        install(FILES ${_target} DESTINATION ${KDE4_DBUS_SYSTEM_SERVICES_INSTALL_DIR} )
     endforeach (_i ${ARGN})
 endfunction(dbus_add_activation_system_service _sources)
 
@@ -33,4 +33,7 @@ add_subdirectory(polkitactions)
 add_subdirectory(polkitconfig)
 add_subdirectory(helper)
 
-install( FILES settings-system-policies.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install(
+    FILES settings-system-policies.desktop
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
+)

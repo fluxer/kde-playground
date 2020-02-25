@@ -13,10 +13,14 @@ target_link_libraries(kcm_polkitconfig
      polkitkdekcmodulesprivate
 )
 
-install(TARGETS kcm_polkitconfig  DESTINATION ${PLUGIN_INSTALL_DIR} )
-
-
 ########### install files ###############
 
-install( FILES kcm_polkitconfig.desktop  DESTINATION  ${SERVICES_INSTALL_DIR} )
+install(
+    TARGETS kcm_polkitconfig
+    DESTINATION ${KDE4_PLUGIN_INSTALL_DIR}
+)
 
+install(
+    FILES kcm_polkitconfig.desktop
+    DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
+)
