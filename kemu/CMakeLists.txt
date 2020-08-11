@@ -16,6 +16,6 @@ set(kemu_sources
 add_executable(kemu ${kemu_sources})
 target_link_libraries(kemu KDE4::kdeui KDE4::kfile)
 
-install(TARGETS kemu DESTINATION ${BIN_INSTALL_DIR})
-install(FILES kemuui.rc DESTINATION ${DATA_INSTALL_DIR}/kemu)
-install(PROGRAMS kemu.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(TARGETS kemu DESTINATION ${KDE4_BIN_INSTALL_DIR})
+install(FILES kemuui.rc DESTINATION ${KDE4_DATA_INSTALL_DIR}/kemu)
+install(PROGRAMS kemu.desktop DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR})
