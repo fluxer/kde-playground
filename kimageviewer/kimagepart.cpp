@@ -43,7 +43,7 @@ K_EXPORT_PLUGIN(KImageViewerPartFactory(KAboutData(
                "1.0.0",
                ki18n("Simple image viewer for KDE."),
                KAboutData::License_GPL_V2,
-               ki18n("(c) 2014 Ivailo Monev"),
+               ki18n("(c) 2014-2020 Ivailo Monev"),
                KLocalizedString(),
                "http://github.com/fluxer/kde-playground",
                "xakepa10@gmail.com").

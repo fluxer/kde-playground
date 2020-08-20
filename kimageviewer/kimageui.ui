@@ -14,6 +14,25 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="7" column="0">
+    <widget class="QComboBox" name="m_view">
+     <item>
+      <property name="text">
+       <string>Ignore</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Keep</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Expanding</string>
+      </property>
+     </item>
+    </widget>
+   </item>
    <item row="2" column="0">
     <widget class="QPushButton" name="m_open">
      <property name="sizePolicy">
@@ -59,6 +78,21 @@
      </property>
     </widget>
    </item>
+   <item row="10" column="0">
+    <widget class="QPushButton" name="m_quit">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="text">
+      <string>Quit</string>
+     </property>
+     <property name="icon">
+      <iconset theme="application-exit">
+       <normaloff/>
+      </iconset>
+     </property>
+    </widget>
+   </item>
    <item row="5" column="0">
     <widget class="QPushButton" name="m_rotateleft">
      <property name="enabled">
@@ -74,7 +108,7 @@
      </property>
     </widget>
    </item>
-   <item row="8" column="0">
+   <item row="9" column="0">
     <spacer name="verticalSpacer">
      <property name="orientation">
       <enum>Qt::Vertical</enum>
@@ -87,37 +121,7 @@
      </property>
     </spacer>
    </item>
-   <item row="6" column="0">
-    <widget class="QPushButton" name="m_rotateright">
-     <property name="enabled">
-      <bool>false</bool>
-     </property>
-     <property name="text">
-      <string>Rotate right</string>
-     </property>
-     <property name="icon">
-      <iconset theme="object-rotate-right">
-       <normaloff/>
-      </iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="9" column="0">
-    <widget class="QPushButton" name="m_quit">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="text">
-      <string>Quit</string>
-     </property>
-     <property name="icon">
-      <iconset theme="application-exit">
-       <normaloff/>
-      </iconset>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="1" rowspan="10">
+   <item row="0" column="1" rowspan="11">
     <widget class="QLabel" name="m_image">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -136,26 +140,7 @@
      </property>
     </widget>
    </item>
-   <item row="7" column="0">
-    <widget class="QComboBox" name="m_view">
-     <item>
-      <property name="text">
-       <string>Ignore</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Keep</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>Expanding</string>
-      </property>
-     </item>
-    </widget>
-   </item>
-   <item row="10" column="0" colspan="2">
+   <item row="11" column="0" colspan="2">
     <widget class="QListWidget" name="m_thumbnail">
      <property name="verticalScrollBarPolicy">
       <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -163,6 +148,105 @@
      <property name="flow">
       <enum>QListView::LeftToRight</enum>
      </property>
+    </widget>
+   </item>
+   <item row="6" column="0">
+    <widget class="QPushButton" name="m_rotateright">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="text">
+      <string>Rotate right</string>
+     </property>
+     <property name="icon">
+      <iconset theme="object-rotate-right">
+       <normaloff/>
+      </iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="8" column="0">
+    <widget class="QComboBox" name="m_format">
+     <item>
+      <property name="text">
+       <string>Keep</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Mono</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>MonoLSB</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Indexed8</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RGB32</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ARGB32</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ARGB32_Premultiplied</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RGB16</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ARGB8565_Premultiplied</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RGB666</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ARGB6666_Premultiplied</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RGB555</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ARGB8555_Premultiplied</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RGB888</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>RGB444</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>ARGB4444_Premultiplied</string>
+      </property>
+     </item>
     </widget>
    </item>
   </layout>

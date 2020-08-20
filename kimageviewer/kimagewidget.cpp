@@ -44,6 +44,7 @@ KImageWidget::KImageWidget(QWidget *parent)
     connect(m_ui->m_rotateleft, SIGNAL(clicked()), this, SLOT(rotateLeft()));
     connect(m_ui->m_rotateright, SIGNAL(clicked()), this, SLOT(rotateRight()));
     connect(m_ui->m_view, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeMode(QString)));
+    connect(m_ui->m_format, SIGNAL(currentIndexChanged(QString)), this, SLOT(changeFormat(QString)));
     connect(m_ui->m_quit, SIGNAL(clicked()), qApp, SLOT(quit()));
 }
 
@@ -101,6 +102,22 @@ bool KImageWidget::changeMode(QString mode)
         return true;
     } else if (mode == QLatin1String("Expanding")) {
         m_ui->m_image->setPixmap(resizeIfNeeded(m_original, Qt::KeepAspectRatioByExpanding));
+        return true;
+    }
+    return false;
+}
+
+bool KImageWidget::changeFormat(QString format)
+{
+    qDebug() << format;
+    if (format == QLatin1String("Keep")) {
+        m_ui->m_image->setPixmap(resizeIfNeeded(m_original, m_mode));
+        return true;
+    } else {
+        QImage temp = resizeIfNeeded(m_original, m_mode).toImage();
+        QImage::Format imgformat = QImage::Format(m_ui->m_format->currentIndex());
+        m_ui->m_image->setPixmap(QPixmap::fromImage(temp.convertToFormat(imgformat)));
+        qDebug() << imgformat << m_ui->m_image->pixmap()->toImage().format();
         return true;
     }
     return false;
@@ -202,8 +219,8 @@ QSize KImageWidget::sizeHint() const
 
 QPixmap KImageWidget::resizeIfNeeded(QPixmap pixmap, Qt::AspectRatioMode mode)
 {
-    if (pixmap.height() > m_ui->m_image->height()) {
-        return pixmap.scaled(m_ui->m_image->size(), mode);
+    if (pixmap.height() > m_ui->m_image->height() || pixmap.width() > m_ui->m_image->width()) {
+        return pixmap.scaled(m_ui->m_image->size() - QSize(3, 3), mode);
     }
     return pixmap;
 }
@@ -215,6 +232,7 @@ void KImageWidget::resizeEvent(QResizeEvent *event)
         return;
     }
     m_ui->m_image->setPixmap(resizeIfNeeded(m_original, m_mode));
+    QWidget::resizeEvent(event);
 }
 
 } //namespace KImageViewer

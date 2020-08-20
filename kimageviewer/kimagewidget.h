@@ -57,11 +57,15 @@ public slots:
     bool rotateLeft();
     bool rotateRight();
     bool changeMode(QString mode);
+    bool changeFormat(QString mode);
+
+protected:
+    // reimplementation
+    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui_KImageUI *m_ui;
     QPixmap resizeIfNeeded(QPixmap pixmap, Qt::AspectRatioMode mode);
-    void resizeEvent(QResizeEvent *event);
     int m_resizehits;
     QPixmap m_original;
     Qt::AspectRatioMode m_mode;
