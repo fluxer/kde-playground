@@ -24,7 +24,9 @@
 #include <QWidget>
 #include <QEvent>
 
+QT_BEGIN_NAMESPACE
 class Ui_KImageUI;
+QT_END_NAMESPACE
 
 namespace KImageViewer
 {
