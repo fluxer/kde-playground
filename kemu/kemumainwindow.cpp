@@ -91,6 +91,7 @@ KEmuMainWindow::KEmuMainWindow(QWidget *parent, Qt::WindowFlags flags)
         << "qemu-system-sparc64"
         << "qemu-system-tricore"
         << "qemu-system-unicore32"
+        << "qemu-system-x86_64"
         << "qemu-system-xtensa"
         << "qemu-system-xtensaeb";
     foreach (const QString bin, qemuBins) {
