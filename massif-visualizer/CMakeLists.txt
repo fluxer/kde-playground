@@ -12,11 +12,11 @@ include (KDE4Defaults)
 include (MacroLibrary)
 
 macro_optional_find_package(KGraphViewer 2.1)
-macro_log_feature(KGRAPHVIEWER_FOUND "KGraphViewer" "KPart to view callgraph dot files."
-                  "http://extragear.kde.org/apps/kgraphviewer/" FALSE ""
-                  "Required for detailed snapshot analysis. From KDE SDK Extragear package, KGraphViewer 2.1 or higher is required.")
-
-macro_display_feature_log()
+set_package_properties(KGraphViewer PROPERTIES
+    DESCRIPTION "KPart to view callgraph dot files."
+    URL "http://extragear.kde.org/apps/kgraphviewer/"
+    PURPOSE "Required for detailed snapshot analysis. From KDE SDK Extragear package, KGraphViewer 2.1 or higher is required."
+)
 
 include_directories(
     ${KDE4_INCLUDES}

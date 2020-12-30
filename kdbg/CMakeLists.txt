@@ -1,3 +1,5 @@
+project(kdbg)
+
 cmake_minimum_required(VERSION 2.6)
 
 set(KDBG_VERSION 2.5.5)
