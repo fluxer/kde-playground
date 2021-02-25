@@ -1,0 +1,10 @@
+[Desktop Entry]
+Icon=help-browser
+Name=KMan
+GenericName=KMan
+Comment=Simple manual page reader for KDE
+Exec=kman --icon '%i' --caption '%c' %U
+Terminal=false
+Type=Application
+Categories=Qt;KDE;System;
+MimeType=text/troff;
