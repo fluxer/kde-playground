@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     for (int pos = 0; pos < args->count(); ++pos) {
-        kmanwin->changePath(args->url(pos).prettyUrl());
+        kmanwin->changePath(args->url(pos).toLocalFile());
     }
 
     return kmanapp->exec();

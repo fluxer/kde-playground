@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>KManPageApp</string>
+   <string>KMan</string>
   </property>
   <property name="windowIcon">
    <iconset theme="help-browser">
