@@ -37,7 +37,6 @@
 #include "ui_kman.h"
 
 static QMap<QString,QString> s_mans;
-static QFileSystemWatcher s_watcher;
 
 class KManLister : public QThread {
     Q_OBJECT
@@ -57,6 +56,9 @@ class KManLister : public QThread {
     protected:
         // reimplementation
         virtual void run();
+
+    private:
+        QFileSystemWatcher m_watcher;
 };
 
 KManLister::KManLister(QObject *parent)
@@ -73,10 +75,10 @@ KManLister::KManLister(QObject *parent)
         }
         m_paths << path;
         kDebug() << "watching" << path;
-        s_watcher.addPath(path);
+        m_watcher.addPath(path);
     }
 
-    connect(&s_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(slotScan(QString)));
+    connect(&m_watcher, SIGNAL(directoryChanged(QString)), this, SLOT(slotScan(QString)));
 }
 
 void KManLister::slotScan(QString path) {
