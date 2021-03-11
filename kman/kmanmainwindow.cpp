@@ -44,9 +44,6 @@ class KManLister : public QThread {
     public:
         KManLister(QObject *parent = Q_NULLPTR);
 
-        QList<QByteArray> m_paths;
-        bool m_interrupt;
-
     public Q_SLOTS:
         void slotScan(QString path);
 
@@ -58,7 +55,9 @@ class KManLister : public QThread {
         virtual void run();
 
     private:
+        QList<QByteArray> m_paths;
         QFileSystemWatcher m_watcher;
+        bool m_interrupt;
 };
 
 KManLister::KManLister(QObject *parent)
@@ -363,10 +362,12 @@ QString KManMainWindow::manContent(const QString path) {
     QByteArray content;
     if (path.endsWith(".gz") || path.endsWith(".bz2") || path.endsWith(".xz")) {
         QIODevice *archivedevice = KFilterDev::deviceForFile(path);
-        if (archivedevice && archivedevice->open(QFile::ReadOnly)) {
-            content = archivedevice->readAll();
+        if (archivedevice) {
+            if (archivedevice->open(QFile::ReadOnly)) {
+                content = archivedevice->readAll();
+            }
+            archivedevice->deleteLater();
         }
-        archivedevice->deleteLater();
     } else {
         if (pathfile.open(QFile::ReadOnly)) {
             content = pathfile.readAll();
