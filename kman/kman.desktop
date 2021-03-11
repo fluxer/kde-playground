@@ -6,5 +6,5 @@ Comment=Simple manual page reader for KDE
 Exec=kman --icon '%i' --caption '%c' %U
 Terminal=false
 Type=Application
-Categories=Qt;KDE;System;
+Categories=Qt;KDE;System;Viewer;Documentation;
 MimeType=text/troff;
