@@ -1,0 +1,10 @@
+[Desktop Entry]
+Icon=package-x-generic
+Name=KArchiveManager
+GenericName=Archive Manager
+Comment=Simple archive manager for KDE
+Exec=karchivemanager --icon '%i' --caption '%c' %U
+Terminal=false
+Type=Application
+Categories=Qt;KDE;System;
+MimeType=application/x-archive;application/x-deb;application/x-cd-image;application/x-bcpio;application/x-cpio;application/x-cpio-compressed;application/x-sv4cpio;application/x-sv4crc;application/x-rpm;application/x-source-rpm;application/vnd.ms-cab-compressed;application/x-servicepack;application/x-lzop;application/x-lz4;application/x-tar;application/x-compressed-tar;application/x-bzip;application/x-gzip;application/x-bzip-compressed-tar;application/x-gzip-compressed-tar;application/x-tarz;application/x-xz;application/x-xz-compressed-tar;application/x-lzma-compressed-tar;application/x-java-archive;application/zip;application/x-7z-compressed;application/x-iso9660-image;application/x-raw-disk-image;
