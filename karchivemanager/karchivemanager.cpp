@@ -123,7 +123,7 @@ QString KArchiveInfo::fancyMode() const {
         return QString("---------");
     }
 
-    char buffer[11];
+    char buffer[20];
     ::strmode(mode, buffer);
 
     return QString::fromLatin1(buffer);
@@ -1257,7 +1257,6 @@ void KArchiveModelPrivate::requestInterruption() {
 KArchiveModel::KArchiveModel(QObject *parent)
     : QStandardItemModel(parent),
     d(new KArchiveModelPrivate(this)) {
-
     connect(d, SIGNAL(finished()), this, SLOT(slotLoadFinished()));
 }
 
