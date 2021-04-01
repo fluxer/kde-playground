@@ -112,6 +112,7 @@ class KArchiveManagerPrivate;
 
     @todo encrypted paths handling
     @todo make listing consistent by faking dir info?
+    @todo set permissions on file after copy, same as the original
     @todo error reporting
 */
 class KArchiveManager {

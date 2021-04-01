@@ -639,7 +639,7 @@ bool KArchiveManager::add(const QStringList &paths, const QByteArray &strip, con
                 break;
             }
 
-            if (archive_write_data(m_write, data, data.size()) != statistic.st_size) {
+            if (archive_write_data(m_write, data.constData(), data.size()) != statistic.st_size) {
                 kWarning() << "archive_write_data" << archive_error_string(m_write);
                 result = false;
                 break;
