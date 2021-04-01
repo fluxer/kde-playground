@@ -40,7 +40,7 @@ extern "C" { void strmode(mode_t mode, char *str); };
 
 #define KARCHIVEMANAGER_BUFFSIZE 10240
 
-static const QStringList s_readwrite = QStringList()
+static const QStringList s_writemimes = QStringList()
 #if ARCHIVE_VERSION_NUMBER > 3000004
     << "application/x-lzop"
 #endif
@@ -455,7 +455,7 @@ KArchiveManager::KArchiveManager(const QString &path)
     const KMimeType::Ptr mime = KMimeType::findByPath(path);
     if (mime) {
         foreach (const QString &parentmime, mime->allParentMimeTypes()) {
-            if (s_readwrite.contains(parentmime)) {
+            if (s_writemimes.contains(parentmime)) {
                 d->m_writable = true;
                 break;
             }

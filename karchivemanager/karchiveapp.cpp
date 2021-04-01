@@ -28,6 +28,37 @@
 #include "karchiveapp.hpp"
 #include "ui_karchiveapp.h"
 
+static const QStringList s_readwritemimes = QStringList()
+    << "application/x-archive"
+    << "application/x-deb"
+    << "application/x-cd-image"
+    << "application/x-bcpio"
+    << "application/x-cpio"
+    << "application/x-cpio-compressed"
+    << "application/x-sv4cpio"
+    << "application/x-sv4crc"
+    << "application/x-rpm"
+    << "application/x-source-rpm"
+    << "application/vnd.ms-cab-compressed"
+    << "application/x-servicepack"
+    << "application/x-lzop"
+    << "application/x-lz4"
+    << "application/x-tar"
+    << "application/zstd"
+    << "application/x-zstd-compressed-tar"
+    << "application/x-compressed-tar"
+    << "application/x-bzip-compressed-tar"
+    << "application/x-gzip-compressed-tar"
+    << "application/x-tarz"
+    << "application/x-xz"
+    << "application/x-xz-compressed-tar"
+    << "application/x-lzma-compressed-tar"
+    << "application/x-java-archive"
+    << "application/zip"
+    << "application/x-7z-compressed"
+    << "application/x-iso9660-image"
+    << "application/x-raw-disk-image";
+
 class KArchiveAppPrivate {
 
     public:
@@ -83,8 +114,18 @@ void KArchiveApp::changePath(const QString path) {
 }
 
 void KArchiveApp::slotOpenAction() {
-    // TODO: MIMEs
-    const QString path = KFileDialog::getOpenFileName(KUrl(), QString(), this, i18n("Archive path"));
+    QString mimespattern;
+    foreach(const QString &mimetype, s_readwritemimes) {
+        const KMimeType::Ptr mime = KMimeType::mimeType(mimetype);
+        if (mime) {
+            if (!mimespattern.isEmpty()) {
+                mimespattern.append(" ");
+            }
+            mimespattern.append(mime->patterns().join(" "));
+        }
+    }
+
+    const QString path = KFileDialog::getOpenFileName(KUrl("kfiledialog:///KArchiveManager"), mimespattern, this, i18n("Archive path"));
     if (!path.isEmpty()) {
         changePath(path);
     }
