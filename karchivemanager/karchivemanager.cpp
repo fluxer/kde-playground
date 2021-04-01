@@ -178,14 +178,11 @@ QIcon KArchiveInfo::fancyIcon() const {
 }
 
 bool KArchiveInfo::isNull() const {
-    if (type == KArchiveType::None) {
-        return true;
-    }
-    return false;
+    return (type == KArchiveType::None);
 }
 
 bool KArchiveInfo::operator==(const KArchiveInfo &info) const {
-    return pathname == info.pathname;
+    return (pathname == info.pathname);
 }
 
 KArchiveInfo& KArchiveInfo::operator=(const KArchiveInfo &info) {
@@ -397,7 +394,9 @@ bool KArchiveManagerPrivate::copyData(struct archive* aread, QByteArray &buffer)
             return false;
         }
 
-        buffer.append(readbuffer, readsize);
+        // QByteArray::append() will attempt to copy the null terminator but this is raw data not
+        // string so instruct it to copy one less bit and will do the right thing
+        buffer.append(readbuffer, readsize - 1);
 
         readsize = archive_read_data(aread, readbuffer, sizeof(readbuffer));
     }
