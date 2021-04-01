@@ -27,6 +27,7 @@
 #include <KDebug>
 #include <KMimeType>
 #include <KIconLoader>
+#include <KLocale>
 
 #include "karchivemanager.hpp"
 
@@ -102,25 +103,8 @@ QString KArchiveInfo::fancyEncrypted() const {
     return QString("No");
 }
 
-// it does not make very accurate estimations but is good enough
 QString KArchiveInfo::fancySize() const {
-    QString result;
-
-    const int64_t bsize = 1024;
-    const int64_t kbsize = 1024 * 1024;
-    const int64_t mbsize = 1024 * 1024 * 1024;
-
-    if (size < bsize) {
-        result = QString::number(size) + " bytes";
-    } else if (size < kbsize) {
-        result = QString::number(size / bsize) + " Kb";
-    } else if (size < mbsize) {
-        result = QString::number(size / kbsize) + " Mb";
-    } else {
-        result = QString::number(size / mbsize) + " Gb";
-    }
-
-    return result;
+    return KGlobal::locale()->formatByteSize(size, 1);
 }
 
 QString KArchiveInfo::fancyMode() const {
