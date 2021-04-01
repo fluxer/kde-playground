@@ -86,9 +86,6 @@ KArchiveInfo::KArchiveInfo(const KArchiveInfo &info)
     gid(info.gid),
     uid(info.uid),
     mode(info.mode),
-    atime(info.atime),
-    ctime(info.ctime),
-    mtime(info.mtime),
     hardlink(info.hardlink),
     symlink(info.symlink),
     pathname(info.pathname),
@@ -98,9 +95,9 @@ KArchiveInfo::KArchiveInfo(const KArchiveInfo &info)
 
 QString KArchiveInfo::fancyEncrypted() const {
     if (encrypted) {
-        return QString("yes");
+        return QString::fromLatin1("yes");
     }
-    return QString("No");
+    return QString::fromLatin1("No");
 }
 
 QString KArchiveInfo::fancySize() const {
@@ -109,7 +106,7 @@ QString KArchiveInfo::fancySize() const {
 
 QString KArchiveInfo::fancyMode() const {
     if (mode == 0) {
-        return QString("---------");
+        return QString::fromLatin1("---------");
     }
 
     char buffer[20];
@@ -199,9 +196,6 @@ KArchiveInfo& KArchiveInfo::operator=(const KArchiveInfo &info) {
     gid = info.gid;
     uid = info.uid;
     mode = info.mode;
-    atime = info.atime;
-    ctime = info.ctime;
-    mtime = info.mtime;
     hardlink = info.hardlink;
     symlink = info.symlink;
     pathname = info.pathname;
@@ -218,9 +212,6 @@ QDebug operator<<(QDebug d, const KArchiveInfo &info)
         << ", gid:" << info.gid
         << ", uid:" << info.uid
         << ", mode:" << info.fancyMode()
-        << ", atime:" << info.atime
-        << ", ctime:" << info.ctime
-        << ", mtime:" << info.mtime
         << ", hardlink:" << info.hardlink
         << ", symlink:" << info.symlink
         << ", pathname:" << info.pathname
@@ -238,9 +229,6 @@ const QDBusArgument &operator<<(QDBusArgument &argument, const KArchiveInfo &inf
     argument << qlonglong(info.gid);
     argument << qlonglong(info.uid);
     argument << info.mode;
-    argument << uint(info.atime);
-    argument << uint(info.ctime);
-    argument << uint(info.mtime);
     argument << info.hardlink;
     argument << info.symlink;
     argument << info.pathname;
@@ -252,9 +240,6 @@ const QDBusArgument &operator<<(QDBusArgument &argument, const KArchiveInfo &inf
 
 const QDBusArgument &operator>>(const QDBusArgument &argument, KArchiveInfo &info) {
     int typebuf;
-    uint atimebuff;
-    uint ctimebuff;
-    uint mtimebuff;
     qlonglong sizebuff;
     qlonglong gidbuff;
     qlonglong uidbuff;
@@ -267,12 +252,6 @@ const QDBusArgument &operator>>(const QDBusArgument &argument, KArchiveInfo &inf
     argument >> uidbuff;
     info.uid = int64_t(uidbuff);
     argument >> info.mode;
-    argument >> atimebuff;
-    info.atime = time_t(atimebuff);
-    argument >> ctimebuff;
-    info.ctime = time_t(ctimebuff);
-    argument >> mtimebuff;
-    info.mtime = time_t(mtimebuff);
     argument >> info.hardlink;
     argument >> info.symlink;
     argument >> info.pathname;
@@ -433,7 +412,7 @@ QByteArray KArchiveManagerPrivate::getMime(struct archive* aread) {
     copyData(aread, buffer);
     const KMimeType::Ptr mime = KMimeType::findByContent(buffer);
     if (mime) {
-        return mime->name().toUtf8();
+        return mime->name().toLatin1();
     }
     return QByteArray("application/octet-stream");
 }
@@ -513,7 +492,7 @@ bool KArchiveManager::add(const QStringList &paths, const QByteArray &strip, con
         return result;
     }
 
-    const QByteArray tmppath = tmpfile.fileName().toUtf8();
+    const QByteArray tmppath = tmpfile.fileName().toLocal8Bit();
     struct archive* m_write = d->openWrite(tmppath);
     if (!m_write) {
         kWarning() << "could not open temporary archive" << tmppath;
@@ -538,7 +517,7 @@ bool KArchiveManager::add(const QStringList &paths, const QByteArray &strip, con
 
         replace = true;
 
-        struct archive* m_read = d->openRead(d->m_path.toUtf8());
+        struct archive* m_read = d->openRead(d->m_path.toLocal8Bit());
         if (!m_read) {
             kWarning() << "could not open archive" << d->m_path;
             return result;
@@ -585,16 +564,16 @@ bool KArchiveManager::add(const QStringList &paths, const QByteArray &strip, con
     }
 
     foreach (const QString &path, recursivepaths) {
-        const QByteArray utfpath = path.toUtf8();
+        const QByteArray localpath = path.toLocal8Bit();
 
         struct stat statistic;
-        if (::lstat(utfpath, &statistic) != 0) {
+        if (::lstat(localpath, &statistic) != 0) {
             kWarning() << "stat error" << ::strerror(errno);
             result = false;
             break;
         }
 
-        QByteArray pathname = utfpath;
+        QByteArray pathname = localpath;
         if (pathname.startsWith(strip)) {
             pathname.remove(0, strip.size());
         }
@@ -622,7 +601,7 @@ bool KArchiveManager::add(const QStringList &paths, const QByteArray &strip, con
 
         if (S_ISLNK(statistic.st_mode)) {
             QByteArray linkbuffer(PATH_MAX + 1, Qt::Uninitialized);
-            if (::readlink(utfpath, linkbuffer.data(), PATH_MAX) == -1) {
+            if (::readlink(localpath, linkbuffer.data(), PATH_MAX) == -1) {
                 kWarning() << "readlink error" << ::strerror(errno);
                 result = false;
                 break;
@@ -713,7 +692,7 @@ bool KArchiveManager::remove(const QStringList &paths) const {
         return result;
     }
 
-    struct archive* m_read = d->openRead(d->m_path.toUtf8());
+    struct archive* m_read = d->openRead(d->m_path.toLocal8Bit());
     if (!m_read) {
         kWarning() << "could not open archive" << d->m_path;
         return result;
@@ -726,7 +705,7 @@ bool KArchiveManager::remove(const QStringList &paths) const {
         return result;
     }
 
-    const QByteArray tmppath = tmpfile.fileName().toUtf8();
+    const QByteArray tmppath = tmpfile.fileName().toLocal8Bit();
     struct archive* m_write = d->openWrite(tmppath);
     if (!m_write) {
         kWarning() << "could not open temporary archive" << tmppath;
@@ -809,7 +788,7 @@ bool KArchiveManager::extract(const QStringList &paths, const QString &destinati
         return result;
     }
 
-    struct archive* m_read = d->openRead(d->m_path.toUtf8());
+    struct archive* m_read = d->openRead(d->m_path.toLocal8Bit());
     if (!m_read) {
         kWarning() << "could not open archive" << d->m_path;
         return result;
@@ -893,7 +872,7 @@ QList<KArchiveInfo> KArchiveManager::list() const {
         return result;
     }
 
-    struct archive* m_read = d->openRead(d->m_path.toUtf8());
+    struct archive* m_read = d->openRead(d->m_path.toLocal8Bit());
     if (!m_read) {
         kWarning() << "could not open archive" << d->m_path;
         return result;
@@ -914,9 +893,6 @@ QList<KArchiveInfo> KArchiveManager::list() const {
         info.gid = archive_entry_gid(entry);
         info.uid = archive_entry_uid(entry);
         info.mode = archive_entry_mode(entry);
-        info.atime = archive_entry_atime(entry);
-        info.ctime = archive_entry_ctime(entry);
-        info.mtime = archive_entry_mtime(entry);
         info.hardlink =  QByteArray(archive_entry_hardlink(entry));
         info.symlink = QByteArray(archive_entry_symlink(entry));
         info.pathname = archive_entry_pathname(entry);
@@ -941,7 +917,7 @@ KArchiveInfo KArchiveManager::info(const QString &path) const {
         return result;
     }
 
-    struct archive* m_read = d->openRead(d->m_path.toUtf8());
+    struct archive* m_read = d->openRead(d->m_path.toLocal8Bit());
     if (!m_read) {
         kWarning() << "could not open archive" << d->m_path;
         return result;
@@ -963,9 +939,6 @@ KArchiveInfo KArchiveManager::info(const QString &path) const {
             result.gid = archive_entry_gid(entry);
             result.uid = archive_entry_uid(entry);
             result.mode = archive_entry_mode(entry);
-            result.atime = archive_entry_atime(entry);
-            result.ctime = archive_entry_ctime(entry);
-            result.mtime = archive_entry_mtime(entry);
             result.hardlink =  QByteArray(archive_entry_hardlink(entry));
             result.symlink = QByteArray(archive_entry_symlink(entry));
             result.pathname = pathname;
@@ -995,7 +968,7 @@ bool KArchiveManager::writable() const {
 bool KArchiveManager::supported(const QString &path) {
     bool result = false;
 
-    struct archive* m_read = KArchiveManagerPrivate::openRead(path.toUtf8());
+    struct archive* m_read = KArchiveManagerPrivate::openRead(path.toLocal8Bit());
     if (m_read) {
         result = true;
     }
@@ -1008,14 +981,15 @@ bool KArchiveManager::supported(const QString &path) {
 bool KArchiveManager::gzipRead(const QString &path, QByteArray &buffer) {
     bool result = true;
 
-    gzFile gzip = gzopen(path.toUtf8(), "r");
+    buffer.clear();
+
+    gzFile gzip = gzopen(path.toLocal8Bit(), "r");
 
     if (gzip) {
-        buffer.clear();
         char gzbuffer[KARCHIVEMANAGER_BUFFSIZE];
         int readbytes = gzread(gzip, gzbuffer, sizeof(gzbuffer));
         while (readbytes > 0) {
-            buffer += gzbuffer;
+            buffer.append(gzbuffer, readbytes);
 
             readbytes = gzread(gzip, gzbuffer, sizeof(gzbuffer));
         }
@@ -1038,7 +1012,7 @@ bool KArchiveManager::gzipRead(const QString &path, QByteArray &buffer) {
 bool KArchiveManager::gzipWrite(const QString &path, const QByteArray &data) {
     bool result = true;
 
-    gzFile gzip = gzopen(path.toUtf8(), "w");
+    gzFile gzip = gzopen(path.toLocal8Bit(), "w");
 
     if (gzip) {
         const int writebytes = gzwrite(gzip, data.constData(), data.size());
@@ -1059,14 +1033,15 @@ bool KArchiveManager::gzipWrite(const QString &path, const QByteArray &data) {
 bool KArchiveManager::bzipRead(const QString &path, QByteArray &buffer) {
     bool result = true;
 
-    BZFILE* bzip = BZ2_bzopen(path.toUtf8(), "r");
+    buffer.clear();
+
+    BZFILE* bzip = BZ2_bzopen(path.toLocal8Bit(), "r");
 
     if (bzip) {
-        buffer.clear();
         char bzbuffer[KARCHIVEMANAGER_BUFFSIZE];
         int readbytes = BZ2_bzread(bzip, bzbuffer, sizeof(bzbuffer));
         while (readbytes > 0) {
-            buffer += bzbuffer;
+            buffer.append(bzbuffer, readbytes);
 
             readbytes = BZ2_bzread(bzip, bzbuffer, sizeof(bzbuffer));
         }
@@ -1089,7 +1064,7 @@ bool KArchiveManager::bzipRead(const QString &path, QByteArray &buffer) {
 bool KArchiveManager::bzipWrite(const QString &path, QByteArray data) {
     bool result = true;
 
-    BZFILE* bzip = BZ2_bzopen(path.toUtf8(), "w");
+    BZFILE* bzip = BZ2_bzopen(path.toLocal8Bit(), "w");
 
     if (bzip) {
         const int writebytes = BZ2_bzwrite(bzip, data.data(), data.size());
@@ -1300,7 +1275,7 @@ QString KArchiveModel::path(const QModelIndex &index) const {
 QStringList KArchiveModel::paths(const QModelIndex &index) const {
     QStringList result;
 
-    const QByteArray indexpath = path(index).toUtf8();
+    const QByteArray indexpath = path(index).toLocal8Bit();
     if (!indexpath.isEmpty() && index.isValid()) {
         const QStandardItem *item = itemFromIndex(index);
         if (item->whatsThis() == ("Directory")) {

@@ -59,9 +59,6 @@ class KArchiveInfo {
         int64_t gid;
         int64_t uid;
         mode_t mode;
-        time_t atime;
-        time_t ctime;
-        time_t mtime;
         QByteArray hardlink;
         QByteArray symlink;
         QByteArray pathname;
@@ -74,7 +71,6 @@ class KArchiveInfo {
         QString fancySize() const;
         //! @brief Fancy mode for the purpose of widgets
         QString fancyMode() const;
-
         //! @brief Fancy type for the purpose of widgets
         QString fancyType() const;
         //! @brief Fancy icon for the purpose of widgets
@@ -147,10 +143,10 @@ class KArchiveManager {
         */
         QList<KArchiveInfo> list() const;
 
-        //! @brief Get info for archive entry
+        //! @brief Get information for path in archive
         KArchiveInfo info(const QString &path) const;
 
-        //! @brief Report if path is writable archive
+        //! @brief Report if archive is writable
         bool writable() const;
         //! @brief Report if path is supported archive
         static bool supported(const QString &path);
