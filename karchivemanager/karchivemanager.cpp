@@ -48,6 +48,10 @@ static const QStringList s_readwrite = QStringList()
 #if ARCHIVE_VERSION_NUMBER > 3001002
     << "application/x-lz4"
 #endif
+#if ARCHIVE_VERSION_NUMBER > 3003002
+    << "application/zstd"
+    << "application/x-zstd-compressed-tar"
+#endif
     << "application/x-tar"
     << "application/x-compressed-tar"
     << "application/x-bzip"
@@ -309,7 +313,7 @@ class KArchiveManagerPrivate {
         static bool closeWrite(struct archive*);
 
         static bool copyData(struct archive* aread, struct archive* awrite);
-        static bool copyData(struct archive* aread, QByteArray &awrite);
+        static bool copyData(struct archive* aread, QByteArray &buffer);
 
         static QByteArray getMime(struct archive* aread);
         static KArchiveInfo::KArchiveType getType(const mode_t mode);
@@ -422,9 +426,9 @@ bool KArchiveManagerPrivate::copyData(struct archive* aread, struct archive* awr
 }
 
 
-bool KArchiveManagerPrivate::copyData(struct archive* aread, QByteArray &awrite) {
-    char buffer[KARCHIVEMANAGER_BUFFSIZE];
-    ssize_t readsize = archive_read_data(aread, buffer, sizeof(buffer));
+bool KArchiveManagerPrivate::copyData(struct archive* aread, QByteArray &buffer) {
+    char readbuffer[KARCHIVEMANAGER_BUFFSIZE];
+    ssize_t readsize = archive_read_data(aread, readbuffer, sizeof(readbuffer));
     while (readsize > 0) {
         const int result = archive_errno(aread);
         if (result != ARCHIVE_OK) {
@@ -432,9 +436,9 @@ bool KArchiveManagerPrivate::copyData(struct archive* aread, QByteArray &awrite)
             return false;
         }
 
-        awrite.append(buffer, readsize);
+        buffer.append(readbuffer, readsize);
 
-        readsize = archive_read_data(aread, buffer, sizeof(buffer));
+        readsize = archive_read_data(aread, readbuffer, sizeof(readbuffer));
     }
 
     return true;
