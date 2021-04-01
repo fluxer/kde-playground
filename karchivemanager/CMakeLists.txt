@@ -8,16 +8,18 @@ if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
 endif()
 
 set(karchivemanager_sources
-    strmode.c
     karchiveapp.cpp
     karchivemanager.cpp
     main.cpp
+    # TODO: only if system does not have strmode()
+    strmode.c
 )
 
 add_executable(karchivemanager ${karchivemanager_sources})
 target_link_libraries(karchivemanager
     ${KDE4_KDEUI_LIBS}
     ${KDE4_KFILE_LIBS}
+    # TODO: lookup via find_package()
     z
     bz2
     archive

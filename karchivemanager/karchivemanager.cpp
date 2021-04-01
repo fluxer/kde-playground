@@ -389,8 +389,8 @@ bool KArchiveManagerPrivate::closeWrite(struct archive* m_archive) {
 }
 
 bool KArchiveManagerPrivate::copyData(struct archive* aread, struct archive* awrite) {
-    char buffer[KARCHIVEMANAGER_BUFFSIZE];
-    ssize_t readsize = archive_read_data(aread, buffer, sizeof(buffer));
+    char readbuffer[KARCHIVEMANAGER_BUFFSIZE];
+    ssize_t readsize = archive_read_data(aread, readbuffer, sizeof(readbuffer));
     while (readsize > 0) {
         const int result = archive_errno(aread);
         if (result != ARCHIVE_OK) {
@@ -398,12 +398,12 @@ bool KArchiveManagerPrivate::copyData(struct archive* aread, struct archive* awr
             return false;
         }
 
-        if (archive_write_data(awrite, buffer, readsize) != readsize) {
+        if (archive_write_data(awrite, readbuffer, readsize) != readsize) {
             kWarning() << "archive_write_data" << archive_error_string(awrite);
             return false;
         }
 
-        readsize = archive_read_data(aread, buffer, sizeof(buffer));
+        readsize = archive_read_data(aread, readbuffer, sizeof(readbuffer));
     }
 
     return true;
