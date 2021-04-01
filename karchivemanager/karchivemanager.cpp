@@ -26,6 +26,7 @@
 #include <QDBusMetaType>
 #include <KDebug>
 #include <KMimeType>
+#include <KIconLoader>
 
 #include "karchivemanager.hpp"
 
@@ -169,7 +170,7 @@ QIcon KArchiveInfo::fancyIcon() const {
         case KArchiveType::File: {
             const KMimeType::Ptr mime = KMimeType::mimeType(mimetype);
             if (mime) {
-                return QIcon::fromTheme(mime->iconName());
+                return QIcon(KIconLoader::global()->loadMimeTypeIcon(mime->iconName(), KIconLoader::Small));
             }
             return QIcon::fromTheme("unknown");
         }
@@ -431,7 +432,7 @@ bool KArchiveManagerPrivate::copyData(struct archive* aread, QByteArray &awrite)
             return false;
         }
 
-        awrite += buffer;
+        awrite.append(buffer, readsize);
 
         readsize = archive_read_data(aread, buffer, sizeof(buffer));
     }
@@ -444,8 +445,7 @@ QByteArray KArchiveManagerPrivate::getMime(struct archive* aread) {
     copyData(aread, buffer);
     const KMimeType::Ptr mime = KMimeType::findByContent(buffer);
     if (mime) {
-        // FIXME: first parent mime?
-        mime->defaultMimeType();
+        return mime->name().toUtf8();
     }
     return QByteArray("application/octet-stream");
 }
@@ -1192,7 +1192,7 @@ void KArchiveModelPrivate::appendDirectory(const QString &path) {
 
         QList<QStandardItem*> diritems;
         QStandardItem* diritem = new QStandardItem(dir);
-        // TODO: diritem->setIcon(info.fancyIcon());
+        diritem->setIcon(info.fancyIcon());
         diritem->setWhatsThis("Directory");
         diritem->setStatusTip(dirsofar);
         diritems << diritem;
@@ -1217,7 +1217,7 @@ void KArchiveModelPrivate::appendSpecial(const KArchiveInfo &info) {
 
     QList<QStandardItem*> specialitems;
     QStandardItem* specialitem = new QStandardItem(infoname);
-    // TODO: specialitem->setIcon(info.fancyIcon());
+    specialitem->setIcon(info.fancyIcon());
     specialitem->setStatusTip(info.pathname);
     specialitems << specialitem;
     specialitems << makeRow(info.fancyType());
