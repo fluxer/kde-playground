@@ -20,8 +20,6 @@ target_link_libraries(karchivemanager
     ${KDE4_KDEUI_LIBS}
     ${KDE4_KFILE_LIBS}
     # TODO: lookup via find_package()
-    z
-    bz2
     archive
 )
 

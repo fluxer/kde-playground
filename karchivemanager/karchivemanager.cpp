@@ -35,8 +35,6 @@
 #include <sys/stat.h>
 #include <archive.h>
 #include <archive_entry.h>
-#include <zlib.h>
-#include <bzlib.h>
 
 extern "C" { void strmode(mode_t mode, char *str); };
 
@@ -591,8 +589,7 @@ bool KArchiveManager::add(const QStringList &paths, const QByteArray &strip, con
         archive_entry_set_ctime(newentry, statistic.st_ctim.tv_sec, statistic.st_ctim.tv_nsec);
         archive_entry_set_mtime(newentry, statistic.st_mtim.tv_sec, statistic.st_mtim.tv_nsec);
 
-        // filetype and mode are supposedly the same
-        // permissions are set when mode is set, same for filetyp?
+        // filetype and mode are supposedly the same, permissions are set when mode is set
         archive_entry_set_mode(newentry, statistic.st_mode);
 
         if (statistic.st_nlink > 1) {
@@ -978,110 +975,6 @@ bool KArchiveManager::supported(const QString &path) {
     return result;
 }
 
-bool KArchiveManager::gzipRead(const QString &path, QByteArray &buffer) {
-    bool result = true;
-
-    buffer.clear();
-
-    gzFile gzip = gzopen(path.toLocal8Bit(), "r");
-
-    if (gzip) {
-        char gzbuffer[KARCHIVEMANAGER_BUFFSIZE];
-        int readbytes = gzread(gzip, gzbuffer, sizeof(gzbuffer));
-        while (readbytes > 0) {
-            buffer.append(gzbuffer, readbytes);
-
-            readbytes = gzread(gzip, gzbuffer, sizeof(gzbuffer));
-        }
-
-        if (readbytes == -1) {
-            kWarning() << "gzip read error" << path;
-            buffer.clear();
-            result = false;
-        }
-    } else {
-        kWarning() << "could not open gzip" << path;
-        result = false;
-    }
-
-    gzclose(gzip);
-
-    return result;
-}
-
-bool KArchiveManager::gzipWrite(const QString &path, const QByteArray &data) {
-    bool result = true;
-
-    gzFile gzip = gzopen(path.toLocal8Bit(), "w");
-
-    if (gzip) {
-        const int writebytes = gzwrite(gzip, data.constData(), data.size());
-        if (writebytes != data.size()) {
-            kWarning() << "gzip write error" << path;
-            result = false;
-        }
-    } else {
-        kWarning() << "could not open gzip" << path;
-        result = false;
-    }
-
-    gzclose(gzip);
-
-    return result;
-}
-
-bool KArchiveManager::bzipRead(const QString &path, QByteArray &buffer) {
-    bool result = true;
-
-    buffer.clear();
-
-    BZFILE* bzip = BZ2_bzopen(path.toLocal8Bit(), "r");
-
-    if (bzip) {
-        char bzbuffer[KARCHIVEMANAGER_BUFFSIZE];
-        int readbytes = BZ2_bzread(bzip, bzbuffer, sizeof(bzbuffer));
-        while (readbytes > 0) {
-            buffer.append(bzbuffer, readbytes);
-
-            readbytes = BZ2_bzread(bzip, bzbuffer, sizeof(bzbuffer));
-        }
-
-        if (readbytes == -1) {
-            kWarning() << "bzip read error" << path;
-            buffer.clear();
-            result = false;
-        }
-    } else {
-        kWarning() << "could not open bzip" << path;
-        result = false;
-    }
-
-    BZ2_bzclose(bzip);
-
-    return result;
-}
-
-bool KArchiveManager::bzipWrite(const QString &path, QByteArray data) {
-    bool result = true;
-
-    BZFILE* bzip = BZ2_bzopen(path.toLocal8Bit(), "w");
-
-    if (bzip) {
-        const int writebytes = BZ2_bzwrite(bzip, data.data(), data.size());
-        if (writebytes != data.size()) {
-            kWarning() << "bzip write error" << path;
-            result = false;
-        }
-    } else {
-        kWarning() << "could not open bzip" << path;
-        result = false;
-    }
-
-        BZ2_bzclose(bzip);
-
-    return result;
-}
-
 class KArchiveModelPrivate : public QThread {
     Q_OBJECT
 
@@ -1089,7 +982,7 @@ class KArchiveModelPrivate : public QThread {
         KArchiveModelPrivate(QObject *parent = Q_NULLPTR);
 
         QString joinDir(const QString &dir1, const QString &dir2) const;
-        QStandardItem* makeRow(const QString &string) const;
+        QStandardItem* makeColumn(const QString &string) const;
 
         void appendDirectory(const QString &path);
         void appendSpecial(const KArchiveInfo &info);
@@ -1119,7 +1012,7 @@ QString KArchiveModelPrivate::joinDir(const QString &dir1, const QString &dir2) 
     return dir1 + "/" + dir2;
 }
 
-QStandardItem* KArchiveModelPrivate::makeRow(const QString &string) const {
+QStandardItem* KArchiveModelPrivate::makeColumn(const QString &string) const {
     QStandardItem* item = new QStandardItem(string);
     item->setSelectable(false);
     item->setTextAlignment(Qt::AlignRight);
@@ -1159,10 +1052,10 @@ void KArchiveModelPrivate::appendDirectory(const QString &path) {
         diritem->setWhatsThis("Directory");
         diritem->setStatusTip(dirsofar);
         diritems << diritem;
-        diritems << makeRow(info.fancyType());
-        diritems << makeRow(info.fancySize());
-        diritems << makeRow(info.fancyMode());
-        diritems << makeRow(info.fancyEncrypted());
+        diritems << makeColumn(info.fancyType());
+        diritems << makeColumn(info.fancySize());
+        diritems << makeColumn(info.fancyMode());
+        diritems << makeColumn(info.fancyEncrypted());
 
         lastitem->appendRow(diritems);
 
@@ -1183,10 +1076,10 @@ void KArchiveModelPrivate::appendSpecial(const KArchiveInfo &info) {
     specialitem->setIcon(info.fancyIcon());
     specialitem->setStatusTip(info.pathname);
     specialitems << specialitem;
-    specialitems << makeRow(info.fancyType());
-    specialitems << makeRow(info.fancySize());
-    specialitems << makeRow(info.fancyMode());
-    specialitems << makeRow(info.fancyEncrypted());
+    specialitems << makeColumn(info.fancyType());
+    specialitems << makeColumn(info.fancySize());
+    specialitems << makeColumn(info.fancyMode());
+    specialitems << makeColumn(info.fancyEncrypted());
 
     QStandardItem* diritem = m_directories.value(infopath);
     if (diritem) {
@@ -1265,7 +1158,7 @@ QString KArchiveModel::path(const QModelIndex &index) const {
     const QStandardItem *item = itemFromIndex(index);
     result = item->statusTip();
 
-    if (item->whatsThis() == ("Directory")) {
+    if (item->whatsThis() == "Directory") {
         result += "/";
     }
 
@@ -1278,7 +1171,7 @@ QStringList KArchiveModel::paths(const QModelIndex &index) const {
     const QByteArray indexpath = path(index).toLocal8Bit();
     if (!indexpath.isEmpty() && index.isValid()) {
         const QStandardItem *item = itemFromIndex(index);
-        if (item->whatsThis() == ("Directory")) {
+        if (item->whatsThis() == "Directory") {
             foreach (const KArchiveInfo &info, d->m_list) {
                 if (info.pathname.startsWith(indexpath)) {
                     result << info.pathname;
@@ -1300,7 +1193,7 @@ QString KArchiveModel::dir(const QModelIndex &index) const {
     }
 
     const QStandardItem *item = itemFromIndex(index);
-    if (item->whatsThis() == ("Directory")) {
+    if (item->whatsThis() == "Directory") {
         result = item->statusTip();
     } else {
         QFileInfo iteminfo(item->statusTip());

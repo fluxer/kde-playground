@@ -151,15 +151,6 @@ class KArchiveManager {
         //! @brief Report if path is supported archive
         static bool supported(const QString &path);
 
-        //! @brief Read gzip compressed path into buffer
-        static bool gzipRead(const QString &path, QByteArray &buffer);
-        //! @brief Compress data as gzip and write it to path
-        static bool gzipWrite(const QString &path, const QByteArray &data);
-        //! @brief Read bzip2 compressed path into buffer
-        static bool bzipRead(const QString &path, QByteArray &buffer);
-        //! @brief Compress data as bzip2 and write it to path
-        static bool bzipWrite(const QString &path, QByteArray data);
-
     private:
         KArchiveManagerPrivate *d;
 };
@@ -180,6 +171,8 @@ class KArchiveModelPrivate;
     \endcode
 
     @see KArchiveManager, KArchiveInfo
+
+    @todo sorting by column values is borked
 */
 class KArchiveModel : public QStandardItemModel {
     Q_OBJECT
