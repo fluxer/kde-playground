@@ -454,11 +454,9 @@ KArchiveManager::KArchiveManager(const QString &path)
 
     const KMimeType::Ptr mime = KMimeType::findByPath(path);
     if (mime) {
-        foreach (const QString &parentmime, mime->allParentMimeTypes()) {
-            if (s_writemimes.contains(parentmime)) {
-                d->m_writable = true;
-                break;
-            }
+        if (s_writemimes.contains(mime->name())) {
+            d->m_writable = true;
+            kDebug() << "path is writable" << path << mime->name();
         }
     } else {
         d->m_writable = false;
