@@ -71,7 +71,6 @@ class KArchiveAppPrivate {
 KArchiveApp::KArchiveApp()
     :  d(new KArchiveAppPrivate()) {
     d->ui.setupUi(this);
-    show();
 
     d->ui.archiveView->setModel(&d->m_model);
 

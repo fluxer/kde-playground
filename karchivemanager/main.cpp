@@ -46,12 +46,12 @@ int main(int argc, char** argv)
     KCmdLineArgs::addCmdLineOptions(option);
 
     KApplication *karchiveapp = new KApplication();
-    KArchiveApp *karchivewin = new KArchiveApp();
-    karchivewin->show();
+    KArchiveApp karchivewin;
+    karchivewin.show();
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     for (int pos = 0; pos < args->count(); ++pos) {
-        karchivewin->changePath(args->url(pos).toLocalFile());
+        karchivewin.changePath(args->url(pos).toLocalFile());
     }
 
     return karchiveapp->exec();
