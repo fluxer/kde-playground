@@ -788,7 +788,7 @@ bool KArchiveManager::extract(const QStringList &paths, const QString &destinati
         return result;
     }
 
-    const QString currendir = QDir::currentPath();
+    const QString currentdir = QDir::currentPath();
     if (!QDir::setCurrent(destination)) {
         kWarning() << "could not change to destination directory" << destination;
         return result;
@@ -844,8 +844,9 @@ bool KArchiveManager::extract(const QStringList &paths, const QString &destinati
     d->closeWrite(m_write);
     d->closeRead(m_read);
 
-    if (!QDir::setCurrent(currendir)) {
-        kWarning() << "could not change to orignal directory" << currendir;
+    Q_ASSERT_X(currentdir == QDir::currentPath(), "KArchiveManager::extract", "Current directory changed");
+    if (!QDir::setCurrent(currentdir)) {
+        kWarning() << "could not change to orignal directory" << currentdir;
     }
 
     if (!notfound.isEmpty()) {
