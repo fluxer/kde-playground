@@ -23,6 +23,7 @@
 #include <KFileDialog>
 #include <KDebug>
 #include <KLocale>
+#include <ksettings.h>
 
 #include "karchivemanager.hpp"
 #include "karchiveapp.hpp"
@@ -70,9 +71,13 @@ class KArchiveAppPrivate {
 
 KArchiveApp::KArchiveApp()
     :  d(new KArchiveAppPrivate()) {
+    // setupUi() will set the object name required by KSettings save/restore
     d->ui.setupUi(this);
 
     d->ui.archiveView->setModel(&d->m_model);
+
+    KSettings settings("karchivemanagerrc", KSettings::SimpleConfig);
+    settings.restore(this);
 
     connect(d->ui.actionOpen, SIGNAL(triggered()), this, SLOT(slotOpenAction()));
     d->ui.actionOpen->setShortcut(QKeySequence::Open);
@@ -90,6 +95,9 @@ KArchiveApp::KArchiveApp()
 }
 
 KArchiveApp::~KArchiveApp() {
+    KSettings settings("karchivemanagerrc", KSettings::SimpleConfig);
+    settings.save(this);
+
     if (d->m_archive) {
         delete d->m_archive;
     }
