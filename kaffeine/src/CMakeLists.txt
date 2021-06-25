@@ -43,6 +43,6 @@ add_executable(kaffeine ${kaffeinedvb_SRCS} ${kaffeine_SRCS})
 target_link_libraries(kaffeine ${QT_QTSQL_LIBRARY} ${KDE4_KFILE_LIBS} ${KDE4_KIO_LIBS}
                       ${KDE4_SOLID_LIBS} ${X11_Xscreensaver_LIB} ${VLC_LIBRARY})
 install(TARGETS kaffeine ${INSTALL_TARGETS_DEFAULT_ARGS})
-install(FILES scanfile.dvb DESTINATION ${DATA_INSTALL_DIR}/kaffeine)
-install(PROGRAMS kaffeine.desktop DESTINATION ${XDG_APPS_INSTALL_DIR})
+install(FILES scanfile.dvb DESTINATION ${KDE4_DATA_INSTALL_DIR}/kaffeine)
+install(PROGRAMS kaffeine.desktop DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR})
 install(FILES kaffeine.appdata.xml DESTINATION share/appdata/)

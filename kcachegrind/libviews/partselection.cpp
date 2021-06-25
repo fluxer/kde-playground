@@ -68,8 +68,8 @@ PartSelection::PartSelection( TopLevelBase* top,
   _partAreaWidget->setSelectionMode(TreeMapWidget::Extended);
   _partAreaWidget->setSplitMode(TreeMapItem::HAlternate);
   _partAreaWidget->setVisibleWidth(2, true);
-  _partAreaWidget->setFieldType(0, tr("Name", "A thing's name"));
-  _partAreaWidget->setFieldType(1, tr("Cost" ));
+  _partAreaWidget->setFieldType(0, tr("Name"));
+  _partAreaWidget->setFieldType(1, tr("Cost"));
   vboxLayout->addWidget(_partAreaWidget);
 
   _rangeLabel = new QLabel(this);

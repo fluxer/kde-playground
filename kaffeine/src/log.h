@@ -64,6 +64,12 @@ public:
 		return (*this);
 	}
 
+        Log &operator<<(quintptr value)
+        {
+                append(value);
+                return (*this);
+        }
+
 	Log &operator<<(const QString &string)
 	{
 		append(string);
@@ -76,10 +82,11 @@ private:
 	static void begin(const char *message);
 	static void append(qint64 value);
 	static void append(quint64 value);
+        static void append(quintptr value);
 	static void append(const QString &string);
 	static void end();
 
-	static QBasicAtomicPointer<LogPrivate> data;
+	static QAtomicPointer<LogPrivate> data;
 };
 
 #endif /* LOG_H */

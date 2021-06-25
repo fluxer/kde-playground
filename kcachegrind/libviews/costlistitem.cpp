@@ -58,7 +58,7 @@ CostListItem::CostListItem(QTreeWidget* parent, int skipped,
 
   setTextAlignment(0, Qt::AlignRight);
 
-  setText(1, QObject::tr("(%n item(s) skipped)", "", _skipped));
+  setText(1, QObject::tr("(%1 item(s) skipped)").arg(_skipped));
 }
 
 void CostListItem::setEventType(EventType* et)

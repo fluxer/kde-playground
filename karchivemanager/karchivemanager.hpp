@@ -91,7 +91,7 @@ const QDBusArgument &operator>>(const QDBusArgument &, KArchiveInfo &i);
 class KArchiveManagerPrivate;
 
 /*!
-    Archive manager with support for many formats, provides plain GZip and BZip2 support aswell
+    Archive manager with support for many formats
 
     Example:
     \code

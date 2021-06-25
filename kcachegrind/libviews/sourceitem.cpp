@@ -95,7 +95,7 @@ SourceItem::SourceItem(SourceView* sv, QTreeWidgetItem* parent,
       callStr += QObject::tr("Active call to '%1'")
           .arg(_lineCall->call()->calledName());
   else
-      callStr += QObject::tr("%n call(s) to '%2'", "", (uint64)cc)
+      callStr += QObject::tr("%1 call(s) to '%2'").arg((uint64)cc)
           .arg(_lineCall->call()->calledName());
 
   TraceFunction* calledF = _lineCall->call()->called();

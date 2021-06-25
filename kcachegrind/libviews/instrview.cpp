@@ -1071,7 +1071,7 @@ bool InstrView::fillInstrRange(TraceFunction* function,
         // trace cost not matching code
 
 	new InstrItem(this, this, 1,
-		      tr("There are %n cost line(s) without machine code.", "", noAssLines));
+		      tr("There are %1 cost line(s) without machine code.").arg(noAssLines));
 	new InstrItem(this, this, 2,
 		      tr("This happens because the code of"));
 	new InstrItem(this, this, 3, QString("    %1").arg(objfile));

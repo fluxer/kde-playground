@@ -63,6 +63,12 @@ public:
 		buffer.append(QString::number(value));
 	}
 
+        void append(quintptr value)
+        {
+                buffer.append(QLatin1Char(' '));
+                buffer.append(QString::number(value));
+        }
+
 	void append(const QString &string)
 	{
 		buffer.append(QLatin1String(" \""));
@@ -117,9 +123,14 @@ void Log::append(quint64 value)
 	data->append(value);
 }
 
+void Log::append(quintptr value)
+{
+	data->append(value);
+}
+
 void Log::append(const QString &string)
 {
-	data->append(string);
+        data->append(string);
 }
 
 void Log::end()
@@ -127,4 +138,4 @@ void Log::end()
 	data->end();
 }
 
-QBasicAtomicPointer<LogPrivate> Log::data = Q_BASIC_ATOMIC_INITIALIZER(0);
+QAtomicPointer<LogPrivate> Log::data = QAtomicPointer<LogPrivate>(0);

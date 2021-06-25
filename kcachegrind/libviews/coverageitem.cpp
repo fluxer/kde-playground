@@ -63,7 +63,7 @@ CallerCoverageItem::CallerCoverageItem(QTreeWidget* parent, int skipped, Coverag
   _base = base;
   _groupType = ProfileContext::InvalidType;
 
-  setText(3, QObject::tr("(%n function(s) skipped)", "", _skipped));
+  setText(3, QObject::tr("(%1 function(s) skipped)").arg(_skipped));
   setTextAlignment(0, Qt::AlignRight);
   setTextAlignment(1, Qt::AlignRight);
   setTextAlignment(2, Qt::AlignRight);
@@ -200,7 +200,7 @@ CalleeCoverageItem::CalleeCoverageItem(QTreeWidget* parent, int skipped, Coverag
   _base = base;
   _groupType = ProfileContext::InvalidType;
 
-  setText(4, QObject::tr("(%n function(s) skipped)", "", _skipped));
+  setText(4, QObject::tr("(%1 function(s) skipped)").arg(_skipped));
 
   setTextAlignment(0, Qt::AlignRight);
   setTextAlignment(1, Qt::AlignRight);

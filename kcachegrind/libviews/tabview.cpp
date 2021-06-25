@@ -112,19 +112,19 @@ void TabBar::context(QWidget* page, const QPoint & pos)
 		TraceItemView::Position p = _tabView->tabPosition(page);
 		if (p != TraceItemView::Top) {
 			pageToTopAction = popup.addAction(tr("Move to Top"));
-			areaToTopAction = popup2.addAction(tr("Top", "Move to Top"));
+			areaToTopAction = popup2.addAction(tr("Move to Top"));
 		}
 		if (p != TraceItemView::Right) {
 			pageToRightAction = popup.addAction(tr("Move to Right"));
-			areaToRightAction = popup2.addAction(tr("Right", "Move to Right"));
+			areaToRightAction = popup2.addAction(tr("Move to Right"));
 		}
 		if (p != TraceItemView::Bottom) {
 			pageToBottomAction = popup.addAction(tr("Move to Bottom"));
-			areaToBottomAction = popup2.addAction(tr("Bottom", "Move to Bottom"));
+			areaToBottomAction = popup2.addAction(tr("Move to Bottom"));
 		}
 		if (p != TraceItemView::Left) {
 			pageToLeftAction = popup.addAction(tr("Move to Bottom Left"));
-			areaToLeftAction = popup2.addAction(tr("Bottom Left", "Move to Bottom Left"));
+			areaToLeftAction = popup2.addAction(tr( "Move to Bottom Left"));
 		}
 		popup2.setTitle(tr("Move Area To"));
 		popup.addMenu(&popup2);
@@ -139,10 +139,10 @@ void TabBar::context(QWidget* page, const QPoint & pos)
 			hideAreaAction->setEnabled(false);
 	}
 
-	showOnTopAction = popup3.addAction(tr("Top", "Show on Top"));
-	showOnRightAction = popup3.addAction(tr("Right", "Show on Right"));
-	showOnBottomAction = popup3.addAction(tr("Bottom", "Show on Bottom"));
-	showOnLeftAction = popup3.addAction(tr("Bottom Left", "Show on Bottom Left"));
+	showOnTopAction = popup3.addAction(tr("Show on Top"));
+	showOnRightAction = popup3.addAction(tr("Show on Right"));
+	showOnBottomAction = popup3.addAction(tr("Show on Bottom"));
+	showOnLeftAction = popup3.addAction(tr("Show on Bottom Left"));
 	popup3.setTitle(tr("Show Hidden On"));
 	popup.addMenu(&popup3);
 

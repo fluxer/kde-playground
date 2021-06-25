@@ -59,7 +59,7 @@ CallMapView::CallMapView(bool showCallers, TraceItemView* parentView,
   setObjectName(name);
   _showCallers = showCallers;
 
-  setFieldType(0, tr("A thing's name", "Name" ));
+  setFieldType(0, tr( "Name" ));
   setFieldType(1, tr( "Cost" ));
   setFieldType(2, tr( "Location" ));
   setFieldPosition(2, TreeMapItem::TopLeft);

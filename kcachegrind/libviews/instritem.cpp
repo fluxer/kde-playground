@@ -116,7 +116,7 @@ InstrItem::InstrItem(InstrView* iv, QTreeWidgetItem* parent, Addr addr,
     callStr += QObject::tr("Active call to '%1'")
                .arg(_instrCall->call()->calledName());
   else
-    callStr += QObject::tr("%n call(s) to '%2'", "", (uint64)cc)
+    callStr += QObject::tr("%1 call(s) to '%2'").arg((uint64)cc)
                .arg(_instrCall->call()->calledName());
 
   TraceFunction* calledF = _instrCall->call()->called();

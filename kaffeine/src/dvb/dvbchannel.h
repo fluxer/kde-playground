@@ -55,8 +55,10 @@ public:
 	bool isScrambled;
 };
 
-typedef ExplicitlySharedDataPointer<const DvbChannel> DvbSharedChannel;
+typedef ExplicitlySharedDataPointer<DvbChannel> DvbSharedChannel;
+QT_BEGIN_NAMESPACE
 Q_DECLARE_TYPEINFO(DvbSharedChannel, Q_MOVABLE_TYPE);
+QT_END_NAMESPACE
 
 class DvbChannelId
 {

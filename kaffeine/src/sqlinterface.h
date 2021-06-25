@@ -61,7 +61,9 @@ public:
 	quint32 sqlKey;
 };
 
+QT_BEGIN_NAMESPACE
 Q_DECLARE_TYPEINFO(SqlKey, Q_MOVABLE_TYPE);
+QT_END_NAMESPACE
 
 class SqlInterface
 {
