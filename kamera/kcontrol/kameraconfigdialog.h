@@ -28,26 +28,25 @@
 #include <qtabwidget.h>
 
 extern "C" {
-	#include <gphoto2.h>
+    #include <gphoto2.h>
 }
 
 class KameraConfigDialog : public KDialog
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	KameraConfigDialog(Camera *camera, CameraWidget *widget,
-			   QWidget *parent = 0);
+    KameraConfigDialog(Camera *camera, CameraWidget *widget, QWidget *parent = 0);
 
 private slots:
-	void slotOk();
+    void slotOk();
 
 private:
-	void appendWidget(QWidget *parent, CameraWidget *widget);
-	void updateWidgetValue(CameraWidget *widget);
-	
-	QMap<CameraWidget *, QWidget *> m_wmap;
-	CameraWidget *m_widgetRoot;
-	QTabWidget *m_tabWidget;
+    void appendWidget(QWidget *parent, CameraWidget *widget);
+    void updateWidgetValue(CameraWidget *widget);
+    
+    QMap<CameraWidget *, QWidget *> m_wmap;
+    CameraWidget *m_widgetRoot;
+    QTabWidget *m_tabWidget;
 };
 
 #endif
