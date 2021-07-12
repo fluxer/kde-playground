@@ -1,5 +1,7 @@
 project(kamera)
 
+set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
+
 find_package(KDE4 4.14.3 REQUIRED)
 include(CMakePushCheckState)
 include(CheckSymbolExists)
@@ -8,13 +10,17 @@ include(MacroLibrary)
 include(MacroOptionalAddSubdirectory)
 
 find_package(Gphoto2)
-macro_log_feature(GPHOTO2_FOUND "gphoto2" "Required to build kamera" "http://heanet.dl.sourceforge.net/sourceforge/gphoto" TRUE "" "")
+set_package_properties(Gphoto2 PROPERTIES
+    URL "http://heanet.dl.sourceforge.net/sourceforge/gphoto"
+    PURPOSE "Required to build kamera"
+    TYPE REQUIRED
+)
 
-cmake_push_check_state()
+cmake_reset_check_state()
 set(CMAKE_REQUIRED_INCLUDES "${GPHOTO2_INCLUDE_DIR}")
 set(CMAKE_REQUIRED_LIBRARIES "${GPHOTO2_LIBRARIES}")
-check_symbol_exists(gp_port_info_get_name "gphoto2.h" HAVE_GPHOTO2_5)
-cmake_pop_check_state()
+check_symbol_exists(gp_port_info_get_name "gphoto2/gphoto2.h" HAVE_GPHOTO2_5)
+cmake_reset_check_state()
 
 if(HAVE_GPHOTO2_5)
     message(STATUS "Detected libgphoto2 2.5.0 or newer")
@@ -24,17 +30,28 @@ endif()
 
 include(ConfigureChecks.cmake)
 
-configure_file(config-kamera.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-kamera.h)
+configure_file(
+    config-kamera.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/config-kamera.h
+)
 
-add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
-add_definitions (-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
-include_directories (${CMAKE_CURRENT_BINARY_DIR} ${KDE4_INCLUDES} ${GPHOTO2_INCLUDE_DIRS})
+add_definitions(
+    ${QT_DEFINITIONS}
+    ${KDE4_DEFINITIONS}
+)
 
-add_subdirectory( kcontrol ) 
-add_subdirectory( kioslave ) 
+include_directories(
+    ${CMAKE_CURRENT_BINARY_DIR}
+    ${KDE4_INCLUDES}
+    ${GPHOTO2_INCLUDE_DIR}
+)
 
-install(FILES
-  solid_camera.desktop
-  DESTINATION ${DATA_INSTALL_DIR}/solid/actions)
+add_subdirectory(kcontrol) 
+add_subdirectory(kioslave) 
 
-macro_display_feature_log()
+install(
+    FILES solid_camera.desktop
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/solid/actions
+)
+
+feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
