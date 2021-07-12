@@ -75,8 +75,9 @@ KCamera::~KCamera()
 
 bool KCamera::initInformation()
 {
-    if (m_model.isNull())
-            return false;
+    if (m_model.isNull()) {
+        return false;
+    }
 
     if (gp_abilities_list_new(&m_abilitylist) != GP_OK) {
         emit error(i18n("Could not allocate memory for the abilities list."));
@@ -286,11 +287,11 @@ CameraAbilities KCamera::abilities()
 KameraDeviceSelectDialog::KameraDeviceSelectDialog(QWidget *parent, KCamera *device)
     : KDialog(parent)
 {
-    setCaption( i18n("Select Camera Device") );
-    setButtons( Ok | Cancel );
-    setDefaultButton( Ok );
-    setModal( true );
-    showButtonSeparator( true );
+    setCaption(i18n("Select Camera Device"));
+    setButtons(Ok | Cancel);
+    setDefaultButton(Ok);
+    setModal(true);
+    showButtonSeparator(true);
     m_device = device;
     connect(m_device, SIGNAL(error(const QString &)),
             SLOT(slot_error(const QString &)));

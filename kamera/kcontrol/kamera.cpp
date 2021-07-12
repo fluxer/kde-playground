@@ -41,7 +41,6 @@
 #include <KDebug>
 #include <KActionCollection>
 
-#include "kameraconfigdialog.h"
 #include "kameradevice.h"
 
 K_PLUGIN_FACTORY(KKameraConfigFactory, registerPlugin<KKameraConfig>();)

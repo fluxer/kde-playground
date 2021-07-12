@@ -22,13 +22,13 @@
 */
 #include <qlayout.h>
 #include <qlabel.h>
-#include <Q3GroupBox>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
 #include <qlineedit.h>
 #include <qcombobox.h>
 #include <qslider.h>
-#include <Q3ButtonGroup>
+#include <QGroupBox>
+#include <QButtonGroup>
 
 #include <kvbox.h>
 #include <qtabwidget.h>
@@ -122,6 +122,8 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
 
             break;
         }
+#warning FIXME: GP_WIDGET_RANGE
+#if 0
         case GP_WIDGET_RANGE: {
             float widget_low;
             float widget_high;
@@ -144,6 +146,7 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
 
             break;
         }
+#endif
         case GP_WIDGET_TOGGLE: {
             gp_widget_get_value(widget, &widget_value_int);
 
@@ -158,8 +161,9 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
 
             break;
         }
-        case GP_WIDGET_RADIO:
-        {
+#warning FIXME: GP_WIDGET_RADIO
+#if 0
+        case GP_WIDGET_RADIO: {
             gp_widget_get_value(widget, &widget_value_string);
 
             int count = gp_widget_count_choices(widget);
@@ -190,6 +194,7 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
 
             break;
         }
+#endif
         case GP_WIDGET_MENU: {
             gp_widget_get_value(widget, &widget_value_string);
 
@@ -287,12 +292,15 @@ void KameraConfigDialog::updateWidgetValue(CameraWidget *widget)
 
             break;
         }
+#warning FIXME: GP_WIDGET_RADIO
+#if 0
         case GP_WIDGET_RADIO: {
             Q3ButtonGroup *buttonGroup = static_cast<Q3VButtonGroup *>(m_wmap[widget]);
             gp_widget_set_value(widget, (void *)buttonGroup->selected()->text().toLocal8Bit().data());
 
             break;
         }
+#endif
         case GP_WIDGET_MENU: {
             QComboBox *comboBox = static_cast<QComboBox *>(m_wmap[widget]);
             gp_widget_set_value(widget, (void *)comboBox->currentText().toLocal8Bit().data());
