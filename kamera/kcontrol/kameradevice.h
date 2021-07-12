@@ -1,9 +1,9 @@
 /*
 
     Copyright (C) 2001 The Kompany
-		  2002-2003	Ilya Konstantinov <kde-devel@future.shiny.co.il>
-		  2002-2003	Marcus Meissner <marcus@jet.franken.de>
-		  2003		Nadeem Hasan <nhasan@nadmm.com>
+                  2002-2003 Ilya Konstantinov <kde-devel@future.shiny.co.il>
+                  2002-2003 Marcus Meissner <marcus@jet.franken.de>
+                  2003 Nadeem Hasan <nhasan@nadmm.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -24,9 +24,6 @@
 #define __kameradevice_h__
 
 #include <qmap.h>
-#include <kdialog.h>
-
-class KConfig;
 #include <QString>
 #include <QListView>
 #include <QStackedWidget>
@@ -36,6 +33,9 @@ class KConfig;
 #include <QGroupBox>
 #include <QStandardItemModel>
 #include <QModelIndex>
+#include <kdialog.h>
+
+class KConfig;
 
 class KCamera : public QObject {
     friend class KameraDeviceSelectDialog;

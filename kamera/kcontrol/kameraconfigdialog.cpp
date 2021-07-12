@@ -1,9 +1,9 @@
 /*
 
     Copyright (C) 2001 The Kompany
-		  2002-2003	Ilya Konstantinov <kde-devel@future.shiny.co.il>
-		  2002-2003	Marcus Meissner <marcus@jet.franken.de>
-		  2003		Nadeem Hasan <nhasan@nadmm.com>
+                  2002-2003 Ilya Konstantinov <kde-devel@future.shiny.co.il>
+                  2002-2003 Marcus Meissner <marcus@jet.franken.de>
+                  2003 Nadeem Hasan <nhasan@nadmm.com>
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
 #include <qlineedit.h>
 #include <qcombobox.h>
 #include <qslider.h>
+#include <qdebug.h>
 #include <QGroupBox>
 #include <QButtonGroup>
 
@@ -41,6 +42,19 @@
 
 #include "kameraconfigdialog.h"
 #include "moc_kameraconfigdialog.cpp"
+
+class KameraGroupBox : public QGroupBox
+{
+    Q_OBJECT
+public:
+    KameraGroupBox(const QString &title, QWidget* parent) : QGroupBox(title, parent), m_buttonGroup(0) { }
+
+    void setButtonGroup(QButtonGroup *buttonGroup) { m_buttonGroup = buttonGroup; }
+    QButtonGroup *buttonGroup() const { return m_buttonGroup; }
+
+private:
+    QButtonGroup* m_buttonGroup;
+};
 
 KameraConfigDialog::KameraConfigDialog(Camera */*camera*/, CameraWidget *widget, QWidget *parent) :
     KDialog(parent),
@@ -122,8 +136,6 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
 
             break;
         }
-#warning FIXME: GP_WIDGET_RANGE
-#if 0
         case GP_WIDGET_RANGE: {
             float widget_low;
             float widget_high;
@@ -131,7 +143,8 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
             gp_widget_get_range(widget, &widget_low, &widget_high, &widget_increment);
             gp_widget_get_value(widget, &widget_value_float);
 
-            Q3GroupBox *groupBox = new Q3GroupBox(1, Qt::Horizontal,QString::fromLocal8Bit(widget_label), parent);
+            QGroupBox *groupBox = new QGroupBox(QString::fromLocal8Bit(widget_label), parent);
+            groupBox->setAlignment(Qt::Horizontal);
             parent->layout()->addWidget(groupBox);
             QSlider *slider = new QSlider(Qt::Horizontal, groupBox);
             slider->setMinimum((int)widget_low);
@@ -146,7 +159,6 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
 
             break;
         }
-#endif
         case GP_WIDGET_TOGGLE: {
             gp_widget_get_value(widget, &widget_value_int);
 
@@ -161,40 +173,40 @@ void KameraConfigDialog::appendWidget(QWidget *parent, CameraWidget *widget)
 
             break;
         }
-#warning FIXME: GP_WIDGET_RADIO
-#if 0
         case GP_WIDGET_RADIO: {
             gp_widget_get_value(widget, &widget_value_string);
 
             int count = gp_widget_count_choices(widget);
 
+            KameraGroupBox *buttonBox = new KameraGroupBox(QString::fromLocal8Bit(widget_label), parent);
             // for less than 5 options, align them horizontally
-            Q3ButtonGroup *buttonGroup;
             if (count > 4) {
-                buttonGroup = new Q3VButtonGroup(QString::fromLocal8Bit(widget_label), parent);
+                buttonBox->setAlignment(Qt::Vertical);
             } else {
-                buttonGroup = new Q3HButtonGroup(QString::fromLocal8Bit(widget_label), parent);
+                buttonBox->setAlignment(Qt::Horizontal);
             }
-            parent->layout()->addWidget(buttonGroup);
+            QButtonGroup *buttonGroup = new QButtonGroup(buttonBox);
+            buttonBox->setButtonGroup(buttonGroup);
+            parent->layout()->addWidget(buttonBox);
 
+            // TODO: which button should be checked?
             for(int i = 0; i < count; ++i) {
                 const char *widget_choice;
                 gp_widget_get_choice(widget, i, &widget_choice);
 
-                new QRadioButton(widget_choice, buttonGroup);
+                QRadioButton* button = new QRadioButton(widget_choice, buttonBox);
                 if (widget_value_string && !strcmp(widget_value_string, widget_choice)) {
-                    buttonGroup->setButton(i);
+                    buttonGroup->addButton(button, i);
                 }
             }
-            m_wmap.insert(widget, buttonGroup);
+            m_wmap.insert(widget, buttonBox);
 
             if (!whats_this.isEmpty()) {
-                buttonGroup->setWhatsThis(whats_this);
+                buttonBox->setWhatsThis(whats_this);
             }
 
             break;
         }
-#endif
         case GP_WIDGET_MENU: {
             gp_widget_get_value(widget, &widget_value_string);
 
@@ -292,15 +304,12 @@ void KameraConfigDialog::updateWidgetValue(CameraWidget *widget)
 
             break;
         }
-#warning FIXME: GP_WIDGET_RADIO
-#if 0
         case GP_WIDGET_RADIO: {
-            Q3ButtonGroup *buttonGroup = static_cast<Q3VButtonGroup *>(m_wmap[widget]);
-            gp_widget_set_value(widget, (void *)buttonGroup->selected()->text().toLocal8Bit().data());
+            KameraGroupBox *buttonGroup = static_cast<KameraGroupBox *>(m_wmap[widget]);
+            gp_widget_set_value(widget, (void *)buttonGroup->buttonGroup()->checkedButton()->text().toLocal8Bit().data());
 
             break;
         }
-#endif
         case GP_WIDGET_MENU: {
             QComboBox *comboBox = static_cast<QComboBox *>(m_wmap[widget]);
             gp_widget_set_value(widget, (void *)comboBox->currentText().toLocal8Bit().data());
@@ -333,3 +342,5 @@ void KameraConfigDialog::slotOk()
     // 'ok' dialog
     accept();
 }
+
+#include "kameraconfigdialog.moc"
