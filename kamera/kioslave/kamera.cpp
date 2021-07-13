@@ -119,8 +119,8 @@ void KameraProtocol::special(const QByteArray&) {
     kDebug(7123) << "KameraProtocol::special() at " << getpid();
 
     if (!actiondone && cameraopen) {
-        struct stat	stbuf;
-        if ((-1!=::stat(m_lockfile.toUtf8(),&stbuf)) || (idletime++ >= MAXIDLETIME)) {
+        struct stat stbuf;
+        if (::stat(m_lockfile.toUtf8(), &stbuf) != -1 || idletime++ >= MAXIDLETIME) {
             kDebug(7123) << "KameraProtocol::special() closing camera.";
             closeCamera();
             setTimeoutSpecialCommand(-1);
@@ -154,22 +154,24 @@ bool KameraProtocol::openCamera(QString &str) {
         reparseConfiguration();
     } else {
         if (!cameraopen) {
-            int ret, tries = 15;
+            int gpr, tries = 15;
             kDebug(7123) << "KameraProtocol::openCamera at " << getpid();
             while (tries--) {
-                ret = gp_camera_init(m_camera, m_context);
-                if (ret == GP_ERROR_IO_USB_CLAIM || ret == GP_ERROR_IO_LOCK) {
+                gpr = gp_camera_init(m_camera, m_context);
+                if (gpr == GP_ERROR_IO_USB_CLAIM || gpr == GP_ERROR_IO_LOCK) {
                     // just create / touch if not there
                     int fd = ::open(m_lockfile.toUtf8(),O_CREAT|O_WRONLY,0600);
-                    if (fd != -1) ::close(fd);
+                    if (fd != -1) {
+                        ::close(fd);
+                    }
                     ::sleep(1);
-                    kDebug(7123) << "openCamera at " << getpid() << "- busy, ret " << ret << ", trying again.";
+                    kDebug(7123) << "openCamera at " << ::getpid() << "- busy, ret " << gpr << ", trying again.";
                     continue;
                 }
-                if (ret == GP_OK) {
+                if (gpr == GP_OK) {
                     break;
                 }
-                str = gp_result_as_string(ret);
+                str = gp_result_as_string(gpr);
                 return false;
             }
             ::unlink(m_lockfile.toUtf8());
@@ -191,7 +193,7 @@ void KameraProtocol::closeCamera(void)
     }
 
     kDebug(7123) << "KameraProtocol::closeCamera at " << getpid();
-    if ((gpr=gp_camera_exit(m_camera,m_context))!=GP_OK) {
+    if (gpr = gp_camera_exit(m_camera,m_context) != GP_OK) {
         kDebug(7123) << "closeCamera failed with " << gp_result_as_string(gpr);
     }
     // HACK: gp_camera_exit() in gp 2.0 does not close the port if there
@@ -206,8 +208,9 @@ void KameraProtocol::closeCamera(void)
 static QString fix_foldername(QString ofolder) {
     QString folder = ofolder;
     if (folder.length() > 1) {
-        while ((folder.length()>1) && (folder.right(1) == "/"))
+        while (folder.length() >1 && folder.right(1) == "/") {
             folder = folder.left(folder.length()-1);
+        }
     }
     if (folder.length() == 0) {
         folder = "/";
@@ -264,7 +267,7 @@ void KameraProtocol::get(const KUrl &url)
     gpr = gp_camera_file_get_info(m_camera, tocstr(fix_foldername(directory)), tocstr(file), &info, m_context);
     if (gpr != GP_OK) {
         gp_file_unref(m_file);
-        if ((gpr == GP_ERROR_FILE_NOT_FOUND) || (gpr == GP_ERROR_DIRECTORY_NOT_FOUND)) {
+        if (gpr == GP_ERROR_FILE_NOT_FOUND || gpr == GP_ERROR_DIRECTORY_NOT_FOUND) {
             error(KIO::ERR_DOES_NOT_EXIST, url.path());
         } else {
             error(KIO::ERR_UNKNOWN, QString::fromLocal8Bit(gp_result_as_string(gpr)));
@@ -398,7 +401,7 @@ void KameraProtocol::statRoot(void)
 {
     KIO::UDSEntry entry;
 
-    entry.insert( KIO::UDSEntry::UDS_NAME, QString::fromLocal8Bit("/"));
+    entry.insert(KIO::UDSEntry::UDS_NAME, QString::fromLocal8Bit("/"));
 
     entry.insert(KIO::UDSEntry::UDS_FILE_TYPE,S_IFDIR);
 
@@ -414,7 +417,7 @@ void KameraProtocol::split_url2camerapath(QString url, QString &directory, QStri
     QStringList components, camarr;
     QString cam, camera, port;
 
-    components	= url.split('/', QString::SkipEmptyParts);
+    components = url.split('/', QString::SkipEmptyParts);
     if (components.size() == 0) {
         return;
     }
@@ -544,11 +547,10 @@ void KameraProtocol::del(const KUrl &url, bool isFile)
     if (isFile){
         CameraList *list;
         gp_list_new(&list);
-        int ret;
+        int gpr;
 
-        ret = gp_camera_file_delete(m_camera, tocstr(fix_foldername(directory)), tocstr(file), m_context);
-
-        if(ret != GP_OK) {
+        gpr = gp_camera_file_delete(m_camera, tocstr(fix_foldername(directory)), tocstr(file), m_context);
+        if(gpr != GP_OK) {
             error(KIO::ERR_CANNOT_DELETE, file);
         } else {
             finished();
@@ -586,8 +588,8 @@ void KameraProtocol::listDir(const KUrl &yurl)
          * - List all saved and possible offline cameras.
          * - List all autodetected and not yet printed cameras.
          */
-        QMap<QString,QString>	ports, names;
-        QMap<QString,int>	modelcnt;
+        QMap<QString,QString> ports, names;
+        QMap<QString,int> modelcnt;
 
         /* Autodetect USB cameras ... */
         GPContext *glob_context = NULL;
@@ -596,14 +598,14 @@ void KameraProtocol::listDir(const KUrl &yurl)
         CameraAbilitiesList *al;
         GPPortInfoList *il;
 
-        gp_list_new (&list);
-        gp_abilities_list_new (&al);
-        gp_abilities_list_load (al, glob_context);
-        gp_port_info_list_new (&il);
-        gp_port_info_list_load (il);
-        gp_abilities_list_detect (al, il, list, glob_context);
-        gp_abilities_list_free (al);
-        gp_port_info_list_free (il);
+        gp_list_new(&list);
+        gp_abilities_list_new(&al);
+        gp_abilities_list_load(al, glob_context);
+        gp_port_info_list_new(&il);
+        gp_port_info_list_load(il);
+        gp_abilities_list_detect(al, il, list, glob_context);
+        gp_abilities_list_free(al);
+        gp_port_info_list_free(il);
 
         count = gp_list_count (list);
 
@@ -615,8 +617,9 @@ void KameraProtocol::listDir(const KUrl &yurl)
 
             ports[value] = model;
             // NOTE: We might get different ports than usb: later!
-            if (strcmp(value,"usb:") != 0)
-                    names[model] = value;
+            if (strcmp(value,"usb:") != 0) {
+                names[model] = value;
+            }
 
             /* Save them, even though we can autodetect them for
              * offline listing.
@@ -628,7 +631,7 @@ void KameraProtocol::listDir(const KUrl &yurl)
 #endif
             modelcnt[model]++;
         }
-        gp_list_free (list);
+        gp_list_free(list);
 
         /* Avoid duplicated entry, that is a camera with both port usb: and usb:001,042 entries. */
         if (ports.contains("usb:") && names.contains(ports["usb:"]) && names[ports["usb:"]] != "usb:") {
@@ -655,10 +658,10 @@ void KameraProtocol::listDir(const KUrl &yurl)
             entry.clear();
             entry.insert(KIO::UDSEntry::UDS_FILE_TYPE,S_IFDIR);
             entry.insert(KIO::UDSEntry::UDS_ACCESS,(S_IRUSR | S_IRGRP | S_IROTH |S_IWUSR | S_IWGRP | S_IWOTH));
-            xname = (*it)+"@"+m_cfgPath;
+            xname = (*it) + "@" + m_cfgPath;
             entry.insert(KIO::UDSEntry::UDS_NAME,path_quote(xname));
             // do not confuse regular users with the @usb... 
-            entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME,*it);
+            entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, *it);
             listEntry(entry, false);
         }
 
@@ -669,7 +672,7 @@ void KameraProtocol::listDir(const KUrl &yurl)
             entry.insert(KIO::UDSEntry::UDS_FILE_TYPE,S_IFDIR);
             // do not confuse regular users with the @usb... 
             entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME,portsit.value());
-            entry.insert(KIO::UDSEntry::UDS_NAME, path_quote(portsit.value()+"@"+portsit.key()));
+            entry.insert(KIO::UDSEntry::UDS_NAME, path_quote(portsit.value() + "@" + portsit.key()));
 
             entry.insert(KIO::UDSEntry::UDS_ACCESS,(S_IRUSR | S_IRGRP | S_IROTH |S_IWUSR | S_IWGRP | S_IWOTH));
             listEntry(entry, false);
@@ -685,7 +688,7 @@ void KameraProtocol::listDir(const KUrl &yurl)
 
         kDebug(7123) << "redirecting to /";
         if (!current_camera.isEmpty() && !current_port.isEmpty()) {
-            rooturl.setPath("/"+current_camera+"@"+current_port+"/");
+            rooturl.setPath("/" + current_camera + "@" + current_port + "/");
         } else {
             rooturl.setPath("/");
         }
@@ -709,13 +712,13 @@ void KameraProtocol::listDir(const KUrl &yurl)
 
     if (!directory.compare("/")) {
         CameraText text;
-        if (GP_OK == gp_camera_get_manual(m_camera, &text, m_context)) {
+        if (gp_camera_get_manual(m_camera, &text, m_context) == GP_OK) {
             gp_list_append(specialList,"manual.txt",NULL);
         }
-        if (GP_OK == gp_camera_get_about(m_camera, &text, m_context)) {
+        if (gp_camera_get_about(m_camera, &text, m_context) == GP_OK) {
             gp_list_append(specialList,"about.txt",NULL);
         }
-        if (GP_OK == gp_camera_get_summary(m_camera, &text, m_context)) {
+        if (gp_camera_get_summary(m_camera, &text, m_context) == GP_OK) {
             gp_list_append(specialList,"summary.txt",NULL);
         }
     }
@@ -752,15 +755,15 @@ void KameraProtocol::listDir(const KUrl &yurl)
     }
     if (!directory.compare("/")) {
         CameraText text;
-        if (GP_OK == gp_camera_get_manual(m_camera, &text, m_context)) {
+        if (gp_camera_get_manual(m_camera, &text, m_context) == GP_OK) {
             translateTextToUDS(entry, "manual.txt", text.text);
             listEntry(entry, false);
         }
-        if (GP_OK == gp_camera_get_about(m_camera, &text, m_context)) {
+        if (gp_camera_get_about(m_camera, &text, m_context) == GP_OK) {
             translateTextToUDS(entry, "about.txt", text.text);
             listEntry(entry, false);
         }
-        if (GP_OK == gp_camera_get_summary(m_camera, &text, m_context)) {
+        if (gp_camera_get_summary(m_camera, &text, m_context) == GP_OK) {
             translateTextToUDS(entry, "summary.txt", text.text);
             listEntry(entry, false);
         }
@@ -834,7 +837,7 @@ void KameraProtocol::setCamera(const QString& camera, const QString& port)
         current_port	= port;
         // create a new camera object
         gpr = gp_camera_new(&m_camera);
-        if(gpr != GP_OK) {
+        if (gpr != GP_OK) {
             gp_port_info_list_free(port_info_list);
             error(KIO::ERR_UNKNOWN, QString::fromLocal8Bit(gp_result_as_string(gpr)));
             return;
@@ -953,11 +956,12 @@ int KameraProtocol::readCameraFolder(const QString &folder, CameraList *dirList,
 {
     kDebug(7123) << "KameraProtocol::readCameraFolder(" << folder << ")";
 
-    int gpr;
-    if ((gpr = gp_camera_folder_list_folders(m_camera, tocstr(folder), dirList, m_context)) != GP_OK) {
+    int gpr = gpr = gp_camera_folder_list_folders(m_camera, tocstr(folder), dirList, m_context);
+    if (gpr != GP_OK) {
         return gpr;
     }
-    if ((gpr = gp_camera_folder_list_files(m_camera, tocstr(folder), fileList, m_context)) != GP_OK) {
+    gpr = gp_camera_folder_list_files(m_camera, tocstr(folder), fileList, m_context);
+    if (gpr != GP_OK) {
         return gpr;
     }
     return GP_OK;

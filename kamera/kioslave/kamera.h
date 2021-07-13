@@ -46,7 +46,7 @@ public:
 
 private:
     Camera *m_camera;
-    QString	current_camera, current_port;
+    QString current_camera, current_port;
     CameraAbilities m_abilities;
     KConfig *m_config;
 
