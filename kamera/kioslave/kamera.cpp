@@ -228,7 +228,7 @@ void KameraProtocol::get(const KUrl &url)
 
 
 #define GPHOTO_TEXT_FILE(xx)                                                                    \
-    if (!directory.compare("/") && !file.compare(#xx ".txt")) {                                 \
+    if (directory != "/" && !file.endsWith(#xx ".txt")) {                                       \
             CameraText xx;                                                                      \
             gpr = gp_camera_get_##xx(m_camera,  &xx, m_context);                                \
             if (gpr != GP_OK) {                                                                 \
@@ -249,7 +249,7 @@ void KameraProtocol::get(const KUrl &url)
 
 #undef GPHOTO_TEXT_FILE
     // emit info message
-    infoMessage( i18n("Retrieving data from camera <b>%1</b>", current_camera) );
+    infoMessage(i18n("Retrieving data from camera <b>%1</b>", current_camera));
 
     // Note: There's no need to re-read directory for each get() anymore
     gp_file_new(&m_file);
@@ -475,7 +475,7 @@ void KameraProtocol::statRegular(const KUrl &xurl)
     }
 
 #define GPHOTO_TEXT_FILE(xx)                                    \
-    if (!directory.compare("/") && !file.compare(#xx".txt")) {  \
+    if (directory != "/" && !file.endsWith(#xx".txt")) {        \
         CameraText xx;                                          \
         gpr = gp_camera_get_about(m_camera,  &xx, m_context);   \
         if (gpr != GP_OK) {                                     \
@@ -495,7 +495,7 @@ void KameraProtocol::statRegular(const KUrl &xurl)
     const char *name;
     for(int i = 0; i < gp_list_count(dirList); i++) {
         gp_list_get_name(dirList, i, &name);
-        if (file.compare(name) == 0) {
+        if (file == name) {
             gp_list_free(dirList);
             KIO::UDSEntry entry;
             translateDirectoryToUDS(entry, file);
@@ -703,7 +703,7 @@ void KameraProtocol::listDir(const KUrl &yurl)
     gp_list_new(&specialList);
     int gpr;
 
-    if (!directory.compare("/")) {
+    if (directory != "/") {
         CameraText text;
         if (gp_camera_get_manual(m_camera, &text, m_context) == GP_OK) {
             gp_list_append(specialList,"manual.txt",NULL);
@@ -746,7 +746,7 @@ void KameraProtocol::listDir(const KUrl &yurl)
         translateFileToUDS(entry, info, QString::fromLocal8Bit(name));
         listEntry(entry, false);
     }
-    if (!directory.compare("/")) {
+    if (directory != "/") {
         CameraText text;
         if (gp_camera_get_manual(m_camera, &text, m_context) == GP_OK) {
             translateTextToUDS(entry, "manual.txt", text.text);
@@ -788,10 +788,10 @@ void KameraProtocol::setCamera(const QString& camera, const QString& port)
             closeCamera();
             gp_camera_unref(m_camera);
             m_camera = NULL;
-            infoMessage( i18n("Reinitializing camera") );
+            infoMessage(i18n("Reinitializing camera"));
         } else {
             kDebug(7123) << "Initializing camera";
-            infoMessage( i18n("Initializing camera") );
+            infoMessage(i18n("Initializing camera"));
         }
         // fetch abilities
         CameraAbilitiesList *abilities_list;

@@ -3,8 +3,6 @@ project(kamera)
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 
 find_package(KDE4 4.14.3 REQUIRED)
-include(CMakePushCheckState)
-include(CheckSymbolExists)
 include(KDE4Defaults)
 include(MacroLibrary)
 include(MacroOptionalAddSubdirectory)
