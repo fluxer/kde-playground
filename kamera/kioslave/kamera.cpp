@@ -160,7 +160,7 @@ bool KameraProtocol::openCamera(QString &str) {
                 gpr = gp_camera_init(m_camera, m_context);
                 if (gpr == GP_ERROR_IO_USB_CLAIM || gpr == GP_ERROR_IO_LOCK) {
                     // just create / touch if not there
-                    int fd = ::open(m_lockfile.toUtf8(),O_CREAT|O_WRONLY,0600);
+                    int fd = ::open(m_lockfile.toUtf8(), O_CREAT|O_WRONLY, 0600);
                     if (fd != -1) {
                         ::close(fd);
                     }
@@ -208,7 +208,7 @@ void KameraProtocol::closeCamera(void)
 static QString fix_foldername(QString ofolder) {
     QString folder = ofolder;
     if (folder.length() > 1) {
-        while (folder.length() >1 && folder.right(1) == "/") {
+        while (folder.length() > 1 && folder.right(1) == "/") {
             folder = folder.left(folder.length()-1);
         }
     }
@@ -456,10 +456,10 @@ void KameraProtocol::statRegular(const KUrl &xurl)
         KIO::UDSEntry entry;
 
         QString xname = current_camera + "@" + current_port;
-        entry.insert( KIO::UDSEntry::UDS_NAME, path_quote(xname));
-        entry.insert( KIO::UDSEntry::UDS_DISPLAY_NAME, current_camera);
-        entry.insert( KIO::UDSEntry::UDS_FILE_TYPE,S_IFDIR);
-        entry.insert( KIO::UDSEntry::UDS_ACCESS,(S_IRUSR | S_IRGRP | S_IROTH));
+        entry.insert(KIO::UDSEntry::UDS_NAME, path_quote(xname));
+        entry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME, current_camera);
+        entry.insert(KIO::UDSEntry::UDS_FILE_TYPE,S_IFDIR);
+        entry.insert(KIO::UDSEntry::UDS_ACCESS,(S_IRUSR | S_IRGRP | S_IROTH));
         statEntry(entry);
         finished();
         return;
@@ -881,13 +881,9 @@ void KameraProtocol::translateTextToUDS(KIO::UDSEntry &udsEntry, const QString &
     udsEntry.clear();
 
     udsEntry.insert(KIO::UDSEntry::UDS_FILE_TYPE,S_IFREG);
-
     udsEntry.insert(KIO::UDSEntry::UDS_NAME,path_quote(fn));
-
     udsEntry.insert(KIO::UDSEntry::UDS_DISPLAY_NAME,fn);
-
     udsEntry.insert(KIO::UDSEntry::UDS_SIZE,strlen(text));
-
     udsEntry.insert(KIO::UDSEntry::UDS_ACCESS,(S_IRUSR | S_IRGRP | S_IROTH));
 }
 
