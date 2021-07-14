@@ -26,11 +26,6 @@ include_directories(
 )
 
 add_subdirectory(kcontrol) 
-add_subdirectory(kioslave) 
 
-install(
-    FILES solid_camera.desktop
-    DESTINATION ${KDE4_DATA_INSTALL_DIR}/solid/actions
-)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
