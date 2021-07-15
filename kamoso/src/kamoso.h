@@ -21,27 +21,29 @@
 #ifndef KAMOSO_H
 #define KAMOSO_H
 
-#include <KMainWindow>
-#include <KUrl>
-#include <KFileItemList>
-#include <KAction>
-#include <libkipi/pluginloader.h>
-
-class KDirModel;
-class KamosoJobTracker;
 #include <QToolButton>
 #include <QRadioButton>
-class ShootMode;
-class WhiteWidgetManager;
-class WebcamWidget;
-class WebcamRetriever;
-class CountdownWidget;
 #include <QItemSelection>
 #include <QStackedLayout>
 #include <QSplitter>
 #include <QPushButton>
 #include <QToolButton>
 #include <QModelIndex>
+
+#include <KMainWindow>
+#include <KUrl>
+#include <KFileItemList>
+#include <KAction>
+#include <libkipi/pluginloader.h>
+
+class KAudioPlayer;
+class KDirModel;
+class KamosoJobTracker;
+class ShootMode;
+class WhiteWidgetManager;
+class WebcamWidget;
+class WebcamRetriever;
+class CountdownWidget;
 class ThumbnailView;
 class KFileItem;
 class WebcamWidget;
@@ -49,7 +51,7 @@ class DeviceManager;
 class KamosoJob;
 class WebcamDialog;
 namespace Ui { class mainWidget; class webcamConfigWidget;}
-namespace Phonon { class MediaObject; }
+
 class Kamoso : public KMainWindow
 {
 Q_OBJECT
@@ -113,7 +115,7 @@ Q_OBJECT
         WhiteWidgetManager *whiteWidgetManager;
         WebcamWidget *m_webcam;
         CountdownWidget *m_countdown;
-        Phonon::MediaObject *player;
+        KAudioPlayer *player;
         Ui::mainWidget *mainWidgetUi;
         Ui::webcamConfigWidget *pageWebcam;
         QWidget *mainWidget;

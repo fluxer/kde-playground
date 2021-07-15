@@ -35,10 +35,6 @@
 #include <ktemporaryfile.h>
 #include <kio/copyjob.h>
 #include <kdebug.h>
-#include <phonon/phononnamespace.h>
-#include <phonon/objectdescription.h>
-#include <phonon/objectdescriptionmodel.h>
-#include <phonon/backendcapabilities.h>
 #include <klocalizedstring.h>
 #include <kjob.h>
 
@@ -359,22 +355,6 @@ void WebcamWidget::stopRecording(const KUrl &destUrl)
     job->start();
 
     d->m_recording = false;
-}
-
-QByteArray WebcamWidget::phononCaptureDevice()
-{
-    const QList<Phonon::AudioCaptureDevice> &m_modelData = Phonon::BackendCapabilities::availableAudioCaptureDevices();
-    QVariant variantList =  m_modelData.first().property("deviceAccessList");
-    Phonon::DeviceAccessList accessList = variantList.value<Phonon::DeviceAccessList>();
-
-    Phonon::DeviceAccessList::const_iterator i, iEnd=accessList.constEnd();
-    for(i=accessList.constBegin(); i!=iEnd; ++i) {
-        if(i->first == "alsa" && !i->second.contains("phonon")) {
-            return i->second.toAscii();
-        }
-    }
-
-    return QByteArray();
 }
 
 QByteArray WebcamWidget::basicPipe()

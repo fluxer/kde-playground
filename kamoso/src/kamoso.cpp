@@ -59,7 +59,7 @@
 #include <KMessageBox>
 #include <KStatusBar>
 #include <KIO/NetAccess>
-#include <Phonon/MediaObject>
+#include <KAudioPlayer>
 #include <kdeversion.h>
 #include <KDirModel>
 #include <kio/copyjob.h>
@@ -159,9 +159,7 @@ Kamoso::Kamoso(QWidget* parent)
     mainWidgetUi->thirdRow->addWidget(m_countdown);
 
     connect(m_countdown, SIGNAL(finished()), SLOT(takePhoto()));
-    const KUrl soundFile = KStandardDirs::locate("sound", "KDE-Im-User-Auth.ogg");
-    player = Phonon::createPlayer(Phonon::NotificationCategory);
-    player->setCurrentSource(soundFile);
+    player = new KAudioPlayer(this);
 
     //TODO: find a better place to init this
     m_exponentialValue = 0;
@@ -446,7 +444,8 @@ void Kamoso::takePhoto()
 
     m_webcam->takePhoto(photoPlace);
     if (Settings::photoSound()) {
-        player->play();
+        const KUrl soundFile = KStandardDirs::locate("sound", "KDE-Im-User-Auth.ogg");
+        player->load(soundFile);
     }
 }
 

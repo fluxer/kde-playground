@@ -22,15 +22,15 @@
 
 #include <QWidget>
 #include <QGst/Ui/VideoWidget>
-
-class KJob;
-class Device;
-class KUrl;
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QTimer>
 #include <QFrame>
 #include <QSlider>
+
+class KJob;
+class Device;
+class KUrl;
 
 class WebcamWidget : public QGst::Ui::VideoWidget
 {
@@ -60,7 +60,6 @@ Q_SIGNALS:
 
 private:
     WebcamWidget(QWidget* parent);
-    QByteArray phononCaptureDevice();
     QByteArray basicPipe();
     void setDevice(const Device &device);
     float convertAdjustValue(int level);
