@@ -43,7 +43,7 @@ class KManLister : public QThread {
     Q_OBJECT
 
     public:
-        KManLister(QObject *parent = Q_NULLPTR);
+        KManLister(QObject *parent = nullptr);
 
     public Q_SLOTS:
         void slotScan(QString path);

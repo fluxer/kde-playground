@@ -977,7 +977,7 @@ class KArchiveModelPrivate : public QThread {
     Q_OBJECT
 
     public:
-        KArchiveModelPrivate(QObject *parent = Q_NULLPTR);
+        KArchiveModelPrivate(QObject *parent = nullptr);
 
         QString joinDir(const QString &dir1, const QString &dir2) const;
         QStandardItem* makeColumn(const QString &string) const;

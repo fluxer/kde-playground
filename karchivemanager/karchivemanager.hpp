@@ -179,7 +179,7 @@ class KArchiveModel : public QStandardItemModel {
     Q_OBJECT
 
     public:
-        KArchiveModel(QObject *parent = Q_NULLPTR);
+        KArchiveModel(QObject *parent = nullptr);
         ~KArchiveModel();
 
         //! @brief Load archive into the model
