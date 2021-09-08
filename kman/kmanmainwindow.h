@@ -35,7 +35,7 @@ public:
     KManMainWindow(QWidget *parent = 0, Qt::WindowFlags flags = 0);
     ~KManMainWindow();
 
-    void changePath(const QString path);
+    void changePath(const QString &path);
 
 public slots:
     void slotOpenAction();
@@ -49,13 +49,13 @@ public slots:
     void slotListChanged(const QString &text);
 
 private slots:
-    void slotListResult(const QString path, const QString fancy);
+    void slotListResult(const QString &path, const QString &fancy);
     void slotBusyStart();
     void slotBusyFinish();
 
 private:
     void listManPages();
-    QString manContent(const QString path);
+    QString manContent(const QString &path);
 
 private:
     Ui_KManWindow *m_kmanui;

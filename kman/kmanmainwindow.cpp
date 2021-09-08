@@ -202,7 +202,7 @@ KManMainWindow::~KManMainWindow()
     delete m_kmanui;
 }
 
-void KManMainWindow::changePath(const QString path) {
+void KManMainWindow::changePath(const QString &path) {
     if (path.isEmpty()) {
         return;
     }
@@ -318,7 +318,7 @@ void KManMainWindow::slotListChanged(const QString &text) {
     }
 }
 
-void KManMainWindow::slotListResult(const QString path, const QString fancy) {
+void KManMainWindow::slotListResult(const QString &path, const QString &fancy) {
     QListWidgetItem* manitem = new QListWidgetItem(KIcon("application-x-troff-man"), fancy, m_kmanui->listWidget);
     m_kmanui->listWidget->addItem(manitem);
 }
@@ -351,7 +351,7 @@ void KManMainWindow::listManPages() {
     }
 }
 
-QString KManMainWindow::manContent(const QString path) {
+QString KManMainWindow::manContent(const QString &path) {
     QString result;
 
     if (QStandardPaths::findExecutable("groff").isEmpty()) {
