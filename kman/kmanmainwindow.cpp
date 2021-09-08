@@ -32,6 +32,7 @@
 #include <QProcess>
 #include <QMessageBox>
 #include <QInputDialog>
+#include <QMenuBar>
 
 #include "kmanmainwindow.h"
 #include "ui_kman.h"
@@ -213,7 +214,7 @@ void KManMainWindow::changePath(const QString path) {
 
     statusBar()->showMessage(path);
 
-    // TODO: m_kmanui->menuFind->setEnabled(!content.isEmpty());
+    menuBar()->actions().at(2)->setEnabled(!content.isEmpty()); // find menu
 
     const QString fancypage = s_mans.value(path);
     if (!fancypage.isEmpty()) {
@@ -323,9 +324,9 @@ void KManMainWindow::slotListResult(const QString path, const QString fancy) {
 }
 
 void KManMainWindow::slotBusyStart() {
-    // TODO: m_kmanui->menuFile->setEnabled(false);
-    // TODO: m_kmanui->menuAction->setEnabled(false);
-    // TODO: m_kmanui->menuFind->setEnabled(false);
+    menuBar()->actions().at(0)->setEnabled(false); // file menu
+    menuBar()->actions().at(1)->setEnabled(false); // view menu
+    menuBar()->actions().at(2)->setEnabled(false); // find menu
     m_kmanui->searchEdit->setEnabled(false);
     m_kmanui->listWidget->setEnabled(false);
     m_kmanui->progressBar->setRange(0, 0);
@@ -340,8 +341,8 @@ void KManMainWindow::slotBusyFinish() {
     m_kmanui->progressBar->setVisible(false);
     m_kmanui->listWidget->setEnabled(true);
     m_kmanui->searchEdit->setEnabled(true);
-    // TODO: m_kmanui->menuAction->setEnabled(true);
-    // TODO: m_kmanui->menuFile->setEnabled(true);
+    menuBar()->actions().at(0)->setEnabled(true); // file menu
+    menuBar()->actions().at(1)->setEnabled(true); // view menu
 }
 
 void KManMainWindow::listManPages() {
