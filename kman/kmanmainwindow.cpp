@@ -389,7 +389,7 @@ QString KManMainWindow::manContent(const QString path) {
 
     QProcess groff;
     groff.setWorkingDirectory(groffWorkingDir);
-    groff.start("groff", QStringList() << "-mandoc" << "-c" << "-Thtml");
+    groff.start("groff", QStringList() << "-mandoc" << "-Kutf-8" << "-c" << "-Thtml");
     groff.waitForStarted();
     groff.write(content);
     groff.closeWriteChannel();
