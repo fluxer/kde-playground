@@ -177,6 +177,8 @@ KManMainWindow::KManMainWindow(QWidget *parent, Qt::WindowFlags flags)
 
     setWindowIcon(KIcon("help-browser"));
 
+    m_kmanui->manView->setOpenExternalLinks(true);
+
     connect(m_kmanui->searchEdit, SIGNAL(textChanged(const QString &)),
         this, SLOT(slotSearchChanged(const QString &)));
     connect(m_kmanui->listWidget, SIGNAL(currentTextChanged(const QString &)),
