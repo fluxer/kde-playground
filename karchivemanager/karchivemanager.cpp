@@ -1005,9 +1005,9 @@ KArchiveModelPrivate::KArchiveModelPrivate(QObject *parent)
 // because altering paths is not easy
 QString KArchiveModelPrivate::joinDir(const QString &dir1, const QString &dir2) const {
     if (dir1.isEmpty()) {
-        return dir2;
+        return QDir::cleanPath("/" + dir2);
     }
-    return dir1 + "/" + dir2;
+    return QDir::cleanPath(dir1 + "/" + dir2);
 }
 
 QStandardItem* KArchiveModelPrivate::makeColumn(const QString &string) const {
@@ -1092,7 +1092,7 @@ void KArchiveModelPrivate::run() {
     m_interrupt = false;
 
     foreach (const KArchiveInfo &info, m_list) {
-        if(m_interrupt) {
+        if (m_interrupt) {
             return;
         }
 
