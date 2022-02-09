@@ -242,7 +242,7 @@ void KManMainWindow::changePath(const QString &path) {
 }
 
 void KManMainWindow::slotOpenAction() {
-    const QString path = KFileDialog::getOpenFileName(KUrl(), QLatin1String("text/troff"), this, i18n("Manual page path"));
+    const QString path = KFileDialog::getOpenFileName(KUrl(), QLatin1String("text/troff application/x-troff-man"), this, i18n("Manual page path"));
     if (!path.isEmpty()) {
         changePath(path);
     }
