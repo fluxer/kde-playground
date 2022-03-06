@@ -244,93 +244,93 @@ QList<KSoundCard> KALSABackend::soundCards()
                 kchannel.m_cardid = alsacard;
                 if (kchannel.m_playback) {
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_FRONT_LEFT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontLeft;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_FRONT_RIGHT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontRight;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_REAR_LEFT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::RearLeft;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_REAR_RIGHT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::RearRight;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_FRONT_CENTER);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontCenter;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_WOOFER);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::Woofer;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_SIDE_LEFT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::SideLeft;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_SIDE_RIGHT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::SideRight;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_REAR_CENTER);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::RearCenter;
                         kcard.m_channels.append(kchannel);
                     }
                 } else if (hascapture) {
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_FRONT_LEFT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontLeft;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_FRONT_RIGHT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontRight;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_REAR_LEFT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::RearLeft;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_REAR_RIGHT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::RearRight;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_FRONT_CENTER);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontCenter;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_WOOFER);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::Woofer;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_SIDE_LEFT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::SideLeft;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_SIDE_RIGHT);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::SideRight;
                         kcard.m_channels.append(kchannel);
                     }
                     alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_REAR_CENTER);
-                    if (alsaresult == 0) {
+                    if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::RearCenter;
                         kcard.m_channels.append(kchannel);
                     }
