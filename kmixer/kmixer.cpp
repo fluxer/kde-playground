@@ -432,13 +432,14 @@ bool KALSABackend::setPlaybackVolume(const KSoundChannel *channel, const int vol
                     snd_mixer_close(alsamixer);
                     return false;
                 }
+                snd_mixer_close(alsamixer);
                 return true;
             }
         }
     }
 
     snd_mixer_close(alsamixer);
-    return true;
+    return false;
 }
 
 int KALSABackend::captureVolume(const KSoundChannel *channel) const
@@ -516,13 +517,14 @@ bool KALSABackend::setCaptureVolume(const KSoundChannel *channel, const int volu
                     snd_mixer_close(alsamixer);
                     return false;
                 }
+                snd_mixer_close(alsamixer);
                 return true;
             }
         }
     }
 
     snd_mixer_close(alsamixer);
-    return true;
+    return false;
 }
 
 bool KALSABackend::mute(const KSoundChannel *channel) const
@@ -562,16 +564,19 @@ snd_mixer_t* KALSABackend::mixerForCard(const int card)
     alsaresult = snd_mixer_attach(alsamixer, alsacardname.constData());
     if (alsaresult != 0) {
         kWarning() << "Could not attach mixer" << snd_strerror(alsaresult);
+        snd_mixer_close(alsamixer);
         return nullptr;
     }
     alsaresult = snd_mixer_selem_register(alsamixer, nullptr, nullptr);
     if (alsaresult != 0) {
         kWarning() << "Could not register mixer" << snd_strerror(alsaresult);
+        snd_mixer_close(alsamixer);
         return nullptr;
     }
     alsaresult = snd_mixer_load(alsamixer);
     if (alsaresult != 0) {
         kWarning() << "Could not load mixer" << snd_strerror(alsaresult);
+        snd_mixer_close(alsamixer);
         return nullptr;
     }
     return alsamixer;
