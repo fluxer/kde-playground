@@ -619,7 +619,7 @@ KMixer::KMixer(QObject *parent)
 
 KMixer::~KMixer()
 {
-    delete m_backend;
+    // backend parented to this
 }
 
 bool KMixer::start(const QString &backend)
