@@ -72,7 +72,7 @@ private:
     bool m_capture;
     int m_cardid;
 
-    friend class KAlsaBackend;
+    friend class KALSABackend;
 };
 
 class KSoundCard {
@@ -93,7 +93,7 @@ private:
     QString m_description;
     QList<KSoundChannel> m_channels;
 
-    friend class KAlsaBackend;
+    friend class KALSABackend;
 };
 
 class KMixerBackend
@@ -111,11 +111,11 @@ public:
     virtual bool setMute(const KSoundChannel *channel, const bool mute) = 0;
 };
 
-class KAlsaBackend : public QObject, public KMixerBackend
+class KALSABackend : public QObject, public KMixerBackend
 {
     Q_OBJECT
 public:
-    KAlsaBackend(QObject *parent);
+    KALSABackend(QObject *parent);
 
     QList<KSoundCard> soundCards() final;
     
