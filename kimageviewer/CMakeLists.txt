@@ -15,7 +15,8 @@ add_executable(kimageviewer ${kimageviewer_SRCS})
 target_link_libraries(kimageviewer
     ${KDE4_KDECORE_LIBS}
     ${KDE4_KPARTS_LIBS}
-    ${KDE4_KDEUI_LIBS} 
+    ${KDE4_KDEUI_LIBS}
+    ${KDE4_KIO_LIBS}
 )
 
 ## part
@@ -30,6 +31,7 @@ target_link_libraries(kimageviewerpart
     ${KDE4_KDECORE_LIBS}
     ${KDE4_KPARTS_LIBS}
     ${KDE4_KDEUI_LIBS}
+    ${KDE4_KIO_LIBS}
 )
 
 ## install everything

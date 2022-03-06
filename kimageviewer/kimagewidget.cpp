@@ -26,10 +26,9 @@
 #include <KMessageBox>
 #include <KLocale>
 #include <KFileMetaDataWidget>
+#include <KImageIO>
 
 namespace KImageViewer {
-
-#define mimefilter "image/gif image/jpeg image/png image/bmp image/x-eps image/x-ico image/x-portable-bitmap image/x-portable-graymap image/x-portable-pixmap image/x-xbitmap image/x-xpixmap image/tiff image/x-psd image/x-webp image/webp"
 
 KImageWidget::KImageWidget(QWidget *parent)
     : QWidget(parent), m_ui(0)
@@ -54,7 +53,7 @@ bool KImageWidget::saveImage()
         return false;
     }
 
-    QString path = KFileDialog::getSaveFileName(KUrl(), QLatin1String(mimefilter), this);
+    QString path = KFileDialog::getSaveFileName(KUrl(), KImageIO::pattern(KImageIO::Writing), this);
     
     if (path.isEmpty()) {
         // probably canceled open request
@@ -68,7 +67,7 @@ bool KImageWidget::saveImage()
 
 bool KImageWidget::openImage()
 {
-    QString path = KFileDialog::getOpenFileName(KUrl(), QLatin1String(mimefilter), this);
+    QString path = KFileDialog::getOpenFileName(KUrl(), KImageIO::pattern(KImageIO::Reading), this);
     
     if (path.isEmpty()) {
         // probably canceled open request
