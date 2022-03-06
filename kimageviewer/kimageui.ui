@@ -184,11 +184,6 @@
      </item>
      <item>
       <property name="text">
-       <string>Indexed8</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
        <string>RGB32</string>
       </property>
      </item>
@@ -205,46 +200,6 @@
      <item>
       <property name="text">
        <string>RGB16</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>ARGB8565_Premultiplied</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>RGB666</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>ARGB6666_Premultiplied</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>RGB555</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>ARGB8555_Premultiplied</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>RGB888</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>RGB444</string>
-      </property>
-     </item>
-     <item>
-      <property name="text">
-       <string>ARGB4444_Premultiplied</string>
       </property>
      </item>
     </widget>

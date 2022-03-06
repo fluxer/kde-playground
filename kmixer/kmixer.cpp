@@ -21,7 +21,6 @@
 #include <KAboutData>
 #include <KCmdLineArgs>
 #include <KApplication>
-#include <KUrl>
 #include <KDebug>
 #include <KAction>
 #include <KActionCollection>
@@ -205,7 +204,7 @@ QList<KSoundCard> KALSABackend::soundCards()
             break;
         }
 
-        QByteArray alsacardname = "hw:" + QByteArray::number(alsacard);
+        const QByteArray alsacardname = "hw:" + QByteArray::number(alsacard);
         snd_ctl_t *alsactl = nullptr;
         alsaresult = snd_ctl_open(&alsactl, alsacardname.constData(), SND_CTL_NONBLOCK);
         if (alsaresult != 0) {
@@ -535,7 +534,7 @@ bool KALSABackend::isAvailable()
 
 snd_mixer_t* KALSABackend::mixerForCard(const int card)
 {
-    QByteArray alsacardname = "hw:" + QByteArray::number(card);
+    const QByteArray alsacardname = "hw:" + QByteArray::number(card);
     snd_mixer_t *alsamixer = nullptr;
     int alsaresult = snd_mixer_open(&alsamixer, 0);
     if (alsaresult != 0) {
