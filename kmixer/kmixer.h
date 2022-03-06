@@ -115,9 +115,6 @@ public:
     virtual int captureVolume(const KSoundChannel *channel) const = 0;
     virtual KVolumeRange captureRange(const KSoundChannel *channel) const = 0;
     virtual bool setCaptureVolume(const KSoundChannel *channel, const int volume) = 0;
-
-    virtual bool mute(const KSoundChannel *channel) const = 0;
-    virtual bool setMute(const KSoundChannel *channel, const bool mute) = 0;
 };
 
 class KALSABackend : public QObject, public KMixerBackend
@@ -135,9 +132,6 @@ public:
     int captureVolume(const KSoundChannel *channel) const final;
     KVolumeRange captureRange(const KSoundChannel *channel) const final;
     bool setCaptureVolume(const KSoundChannel *channel, const int volume) final;
-
-    bool mute(const KSoundChannel *channel) const final;
-    bool setMute(const KSoundChannel *channel, const bool mute) final;
 
     static bool isAvailable();
     

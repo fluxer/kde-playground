@@ -619,18 +619,6 @@ bool KALSABackend::setCaptureVolume(const KSoundChannel *channel, const int volu
     return false;
 }
 
-bool KALSABackend::mute(const KSoundChannel *channel) const
-{
-    // TODO: save volume and set it to 0
-    return false;
-}
-
-bool KALSABackend::setMute(const KSoundChannel *channel, const bool mute)
-{
-    // TODO: restore volume
-    return false;
-}
-
 bool KALSABackend::isAvailable()
 {
     snd_mixer_t *alsamixer = nullptr;
