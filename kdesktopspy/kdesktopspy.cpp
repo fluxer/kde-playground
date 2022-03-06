@@ -1,4 +1,4 @@
-/*  This file is part of KMan
+/*  This file is part of KDesktopSpy
     Copyright (C) 2022 Ivailo Monev <xakepa10@gmail.com>
 
     This library is free software; you can redistribute it and/or
@@ -110,7 +110,7 @@ void KDesktopSpy::handleRequest()
         clientConnection->disconnectFromHost();
     }
 
-    QByteArray request(clientConnection->readAll());
+    const QByteArray request(clientConnection->readAll());
     // qDebug() << Q_FUNC_INFO << "request" << request;
 
     HttpHeaderParser headerparser;
@@ -157,11 +157,10 @@ void KDesktopSpy::handleRequest()
                                                     .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
         block.append("Server: KDestopSpy\r\n");
 
-        QByteArray data("<html>404 Not Found</html>");
+        const QByteArray data("<html>404 Not Found</html>");
 
         block.append("Content-Type: text/html; charset=UTF-8\r\n");
         block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
-        block.append("\r\n");
         block.append(data);
     }
 
