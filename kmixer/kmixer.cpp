@@ -413,14 +413,15 @@ int KALSABackend::playbackVolume(const KSoundChannel *channel) const
 
 KVolumeRange KALSABackend::playbackRange(const KSoundChannel *channel) const
 {
+    KVolumeRange result = { 0, 0 };
     if (!channel->hasPlayback()) {
         kDebug() << "Not playback channel";
-        return KVolumeRange();
+        return result;
     }
 
     snd_mixer_t* alsamixer = KALSABackend::mixerForCard(channel->cardID());
     if (!alsamixer) {
-        return KVolumeRange();
+        return result;
     }
 
     snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
@@ -436,18 +437,19 @@ KVolumeRange KALSABackend::playbackRange(const KSoundChannel *channel) const
                 if (alsaresult != 0) {
                     kWarning() << "Could not get playback channel volume range" << snd_strerror(alsaresult);
                     snd_mixer_close(alsamixer);
-                    return KVolumeRange();
+                    return result;
                 }
                 snd_mixer_close(alsamixer);
-                KVolumeRange volumerange = { int(alsaplaybackvolumemin), int(alsaplaybackvolumemax) };
-                return volumerange;
+                result.minvolume = int(alsaplaybackvolumemin);
+                result.maxvolume = int(alsaplaybackvolumemax);
+                return result;
             }
         }
     }
 
     kWarning() << "Could not find playback channel" << channel->id() << channel->name();
     snd_mixer_close(alsamixer);
-    return KVolumeRange();
+    return result;
 }
 
 bool KALSABackend::setPlaybackVolume(const KSoundChannel *channel, const int volume)
@@ -537,14 +539,15 @@ int KALSABackend::captureVolume(const KSoundChannel *channel) const
 
 KVolumeRange KALSABackend::captureRange(const KSoundChannel *channel) const
 {
+    KVolumeRange result = { 0, 0 };
     if (!channel->hasCapture()) {
         kDebug() << "Not capture channel";
-        return KVolumeRange();
+        return result;
     }
 
     snd_mixer_t* alsamixer = KALSABackend::mixerForCard(channel->cardID());
     if (!alsamixer) {
-        return KVolumeRange();
+        return result;
     }
 
     snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
@@ -560,18 +563,19 @@ KVolumeRange KALSABackend::captureRange(const KSoundChannel *channel) const
                 if (alsaresult != 0) {
                     kWarning() << "Could not get capture channel volume range" << snd_strerror(alsaresult);
                     snd_mixer_close(alsamixer);
-                    return KVolumeRange();
+                    return result;
                 }
                 snd_mixer_close(alsamixer);
-                KVolumeRange volumerange = { int(alsacapturevolumemin), int(alsacapturevolumemax) };
-                return volumerange;
+                result.minvolume = int(alsacapturevolumemin);
+                result.maxvolume = int(alsacapturevolumemax);
+                return result;
             }
         }
     }
 
     kWarning() << "Could not find capture channel" << channel->id() << channel->name();
     snd_mixer_close(alsamixer);
-    return KVolumeRange();
+    return result;
 }
 
 bool KALSABackend::setCaptureVolume(const KSoundChannel *channel, const int volume)
