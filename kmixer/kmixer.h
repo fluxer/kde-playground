@@ -115,6 +115,9 @@ public:
     virtual int captureVolume(const KSoundChannel *channel) const = 0;
     virtual KVolumeRange captureRange(const KSoundChannel *channel) const = 0;
     virtual bool setCaptureVolume(const KSoundChannel *channel, const int volume) = 0;
+
+    virtual bool isAvailable() const = 0;
+    virtual QString errorString() const = 0;
 };
 
 class KALSABackend : public QObject, public KMixerBackend
@@ -133,10 +136,13 @@ public:
     KVolumeRange captureRange(const KSoundChannel *channel) const final;
     bool setCaptureVolume(const KSoundChannel *channel, const int volume) final;
 
-    static bool isAvailable();
-    
+    bool isAvailable() const;
+    QString errorString() const final;
+
 private:
-    static snd_mixer_t* mixerForCard(const int card);
+    mutable int m_alsaresult;
+
+    snd_mixer_t* mixerForCard(const int card) const;
     static snd_mixer_selem_channel_id_t channelType(const KSoundChannel *channel);
 };
 

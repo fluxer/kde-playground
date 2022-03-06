@@ -194,7 +194,8 @@ QList<KSoundChannel> KSoundCard::channels() const
 }
 
 KALSABackend::KALSABackend(QObject *parent)
-    : QObject(parent)
+    : QObject(parent),
+    m_alsaresult(0)
 {
 }
 
@@ -203,11 +204,10 @@ QList<KSoundCard> KALSABackend::soundCards()
     QList<KSoundCard> result;
 
     int alsacard = -1;
-    int alsaresult = 0;
     while (true) {
-        alsaresult = snd_card_next(&alsacard);
-        if (alsaresult != 0) {
-            kWarning() << "Could not get card" << snd_strerror(alsaresult);
+        m_alsaresult = snd_card_next(&alsacard);
+        if (m_alsaresult != 0) {
+            kWarning() << "Could not get card" << snd_strerror(m_alsaresult);
             break;
         }
         if (alsacard < 0) {
@@ -216,16 +216,16 @@ QList<KSoundCard> KALSABackend::soundCards()
 
         const QByteArray alsacardname = "hw:" + QByteArray::number(alsacard);
         snd_ctl_t *alsactl = nullptr;
-        alsaresult = snd_ctl_open(&alsactl, alsacardname.constData(), SND_CTL_NONBLOCK);
-        if (alsaresult != 0) {
-            kWarning() << "Could not open card" << snd_strerror(alsaresult);
+        m_alsaresult = snd_ctl_open(&alsactl, alsacardname.constData(), SND_CTL_NONBLOCK);
+        if (m_alsaresult != 0) {
+            kWarning() << "Could not open card" << snd_strerror(m_alsaresult);
             break;
         }
         snd_ctl_card_info_t *alsacardinfo = nullptr;
         snd_ctl_card_info_alloca(&alsacardinfo);
-        alsaresult = snd_ctl_card_info(alsactl, alsacardinfo);
-        if (alsaresult != 0) {
-            kWarning() << "Could not open card" << snd_strerror(alsaresult);
+        m_alsaresult = snd_ctl_card_info(alsactl, alsacardinfo);
+        if (m_alsaresult != 0) {
+            kWarning() << "Could not open card" << snd_strerror(m_alsaresult);
             break;
         }
         KSoundCard kcard;
@@ -253,7 +253,7 @@ QList<KSoundCard> KALSABackend::soundCards()
                 kchannel.m_capture = hascapture;
                 kchannel.m_cardid = alsacard;
                 if (kchannel.m_playback) {
-                    alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_FRONT_LEFT);
+                    int alsaresult = snd_mixer_selem_has_playback_channel(alsaelement, SND_MIXER_SCHN_FRONT_LEFT);
                     if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontLeft;
                         kcard.m_channels.append(kchannel);
@@ -299,7 +299,7 @@ QList<KSoundCard> KALSABackend::soundCards()
                         kcard.m_channels.append(kchannel);
                     }
                 } else if (hascapture) {
-                    alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_FRONT_LEFT);
+                    int alsaresult = snd_mixer_selem_has_capture_channel(alsaelement, SND_MIXER_SCHN_FRONT_LEFT);
                     if (alsaresult != 0) {
                         kchannel.m_type = KSoundChannel::KSoundChannelType::FrontLeft;
                         kcard.m_channels.append(kchannel);
@@ -394,9 +394,9 @@ int KALSABackend::playbackVolume(const KSoundChannel *channel) const
             if (alsaid == channel->id() && alsaname == channel->name()) {
                 kDebug() << "Device" << channel->id() << channel->name();
                 long alsaplaybackvolume = 0;
-                const int alsaresult = snd_mixer_selem_get_playback_volume(alsaelement, alsachanneltype, &alsaplaybackvolume);
-                if (alsaresult != 0) {
-                    kWarning() << "Could not get playback channel volume" << snd_strerror(alsaresult);
+                m_alsaresult = snd_mixer_selem_get_playback_volume(alsaelement, alsachanneltype, &alsaplaybackvolume);
+                if (m_alsaresult != 0) {
+                    kWarning() << "Could not get playback channel volume" << snd_strerror(m_alsaresult);
                     snd_mixer_close(alsamixer);
                     return 0;
                 }
@@ -419,7 +419,7 @@ KVolumeRange KALSABackend::playbackRange(const KSoundChannel *channel) const
         return result;
     }
 
-    snd_mixer_t* alsamixer = KALSABackend::mixerForCard(channel->cardID());
+    snd_mixer_t* alsamixer = mixerForCard(channel->cardID());
     if (!alsamixer) {
         return result;
     }
@@ -433,9 +433,9 @@ KVolumeRange KALSABackend::playbackRange(const KSoundChannel *channel) const
                 kDebug() << "Device" << channel->id() << channel->name();
                 long alsaplaybackvolumemin = 0;
                 long alsaplaybackvolumemax = 0;
-                const int alsaresult = snd_mixer_selem_get_playback_volume_range(alsaelement, &alsaplaybackvolumemin, &alsaplaybackvolumemax);
-                if (alsaresult != 0) {
-                    kWarning() << "Could not get playback channel volume range" << snd_strerror(alsaresult);
+                m_alsaresult = snd_mixer_selem_get_playback_volume_range(alsaelement, &alsaplaybackvolumemin, &alsaplaybackvolumemax);
+                if (m_alsaresult != 0) {
+                    kWarning() << "Could not get playback channel volume range" << snd_strerror(m_alsaresult);
                     snd_mixer_close(alsamixer);
                     return result;
                 }
@@ -459,7 +459,7 @@ bool KALSABackend::setPlaybackVolume(const KSoundChannel *channel, const int vol
         return false;
     }
 
-    snd_mixer_t* alsamixer = KALSABackend::mixerForCard(channel->cardID());
+    snd_mixer_t* alsamixer = mixerForCard(channel->cardID());
     if (!alsamixer) {
         return false;
     }
@@ -477,9 +477,9 @@ bool KALSABackend::setPlaybackVolume(const KSoundChannel *channel, const int vol
             const QString alsaid = QString::number(snd_mixer_selem_get_index(alsaelement));
             const QString alsaname = QString::fromLocal8Bit(snd_mixer_selem_get_name(alsaelement));
             if (alsaid == channel->id() && alsaname == channel->name()) {
-                const int alsaresult = snd_mixer_selem_set_playback_volume(alsaelement, alsachanneltype, long(volume));
-                if (alsaresult != 0) {
-                    kWarning() << "Could not set playback volume" << snd_strerror(alsaresult);
+                m_alsaresult = snd_mixer_selem_set_playback_volume(alsaelement, alsachanneltype, long(volume));
+                if (m_alsaresult != 0) {
+                    kWarning() << "Could not set playback volume" << snd_strerror(m_alsaresult);
                     snd_mixer_close(alsamixer);
                     return false;
                 }
@@ -489,6 +489,7 @@ bool KALSABackend::setPlaybackVolume(const KSoundChannel *channel, const int vol
         }
     }
 
+    kWarning() << "Could not find playback channel" << channel->id() << channel->name();
     snd_mixer_close(alsamixer);
     return false;
 }
@@ -500,7 +501,7 @@ int KALSABackend::captureVolume(const KSoundChannel *channel) const
         return 0;
     }
 
-    snd_mixer_t* alsamixer = KALSABackend::mixerForCard(channel->cardID());
+    snd_mixer_t* alsamixer = mixerForCard(channel->cardID());
     if (!alsamixer) {
         return 0;
     }
@@ -520,9 +521,9 @@ int KALSABackend::captureVolume(const KSoundChannel *channel) const
             if (alsaid == channel->id() && alsaname == channel->name()) {
                 kDebug() << "Device" << channel->id() << channel->name();
                 long alsacapturevolume = 0;
-                const int alsaresult = snd_mixer_selem_get_capture_volume(alsaelement, alsachanneltype, &alsacapturevolume);
-                if (alsaresult != 0) {
-                    kWarning() << "Could not get capture channel volume" << snd_strerror(alsaresult);
+                m_alsaresult = snd_mixer_selem_get_capture_volume(alsaelement, alsachanneltype, &alsacapturevolume);
+                if (m_alsaresult != 0) {
+                    kWarning() << "Could not get capture channel volume" << snd_strerror(m_alsaresult);
                     snd_mixer_close(alsamixer);
                     return 0;
                 }
@@ -545,7 +546,7 @@ KVolumeRange KALSABackend::captureRange(const KSoundChannel *channel) const
         return result;
     }
 
-    snd_mixer_t* alsamixer = KALSABackend::mixerForCard(channel->cardID());
+    snd_mixer_t* alsamixer = mixerForCard(channel->cardID());
     if (!alsamixer) {
         return result;
     }
@@ -559,9 +560,9 @@ KVolumeRange KALSABackend::captureRange(const KSoundChannel *channel) const
                 kDebug() << "Device" << channel->id() << channel->name();
                 long alsacapturevolumemin = 0;
                 long alsacapturevolumemax = 0;
-                const int alsaresult = snd_mixer_selem_get_capture_volume_range(alsaelement, &alsacapturevolumemin, &alsacapturevolumemax);
-                if (alsaresult != 0) {
-                    kWarning() << "Could not get capture channel volume range" << snd_strerror(alsaresult);
+                m_alsaresult = snd_mixer_selem_get_capture_volume_range(alsaelement, &alsacapturevolumemin, &alsacapturevolumemax);
+                if (m_alsaresult != 0) {
+                    kWarning() << "Could not get capture channel volume range" << snd_strerror(m_alsaresult);
                     snd_mixer_close(alsamixer);
                     return result;
                 }
@@ -585,7 +586,7 @@ bool KALSABackend::setCaptureVolume(const KSoundChannel *channel, const int volu
         return false;
     }
 
-    snd_mixer_t* alsamixer = KALSABackend::mixerForCard(channel->cardID());
+    snd_mixer_t* alsamixer = mixerForCard(channel->cardID());
     if (!alsamixer) {
         return false;
     }
@@ -603,9 +604,9 @@ bool KALSABackend::setCaptureVolume(const KSoundChannel *channel, const int volu
             const QString alsaid = QString::number(snd_mixer_selem_get_index(alsaelement));
             const QString alsaname = QString::fromLocal8Bit(snd_mixer_selem_get_name(alsaelement));
             if (alsaid == channel->id() && alsaname == channel->name()) {
-                const int alsaresult = snd_mixer_selem_set_capture_volume(alsaelement, alsachanneltype, long(volume));
-                if (alsaresult != 0) {
-                    kWarning() << "Could not set capture volume" << snd_strerror(alsaresult);
+                m_alsaresult = snd_mixer_selem_set_capture_volume(alsaelement, alsachanneltype, long(volume));
+                if (m_alsaresult != 0) {
+                    kWarning() << "Could not set capture volume" << snd_strerror(m_alsaresult);
                     snd_mixer_close(alsamixer);
                     return false;
                 }
@@ -615,16 +616,17 @@ bool KALSABackend::setCaptureVolume(const KSoundChannel *channel, const int volu
         }
     }
 
+    kWarning() << "Could not find capture channel" << channel->id() << channel->name();
     snd_mixer_close(alsamixer);
     return false;
 }
 
-bool KALSABackend::isAvailable()
+bool KALSABackend::isAvailable() const
 {
     snd_mixer_t *alsamixer = nullptr;
-    const int alsaresult = snd_mixer_open(&alsamixer, 0);
-    if (alsaresult != 0) {
-        kWarning() << "ALSA is not available" << snd_strerror(alsaresult);
+    m_alsaresult = snd_mixer_open(&alsamixer, 0);
+    if (m_alsaresult != 0) {
+        kWarning() << "ALSA is not available" << snd_strerror(m_alsaresult);
         return false;
     }
     kDebug() << "ALSA is available";
@@ -632,30 +634,36 @@ bool KALSABackend::isAvailable()
     return true;
 }
 
-snd_mixer_t* KALSABackend::mixerForCard(const int card)
+QString KALSABackend::errorString() const
+{
+    // TODO: translate errors
+    return QString::fromLocal8Bit(snd_strerror(m_alsaresult));
+}
+
+snd_mixer_t* KALSABackend::mixerForCard(const int card) const
 {
     const QByteArray alsacardname = "hw:" + QByteArray::number(card);
     snd_mixer_t *alsamixer = nullptr;
-    int alsaresult = snd_mixer_open(&alsamixer, 0);
-    if (alsaresult != 0) {
-        kWarning() << "Could not open mixer" << snd_strerror(alsaresult);
+    m_alsaresult = snd_mixer_open(&alsamixer, 0);
+    if (m_alsaresult != 0) {
+        kWarning() << "Could not open mixer" << snd_strerror(m_alsaresult);
         return nullptr;
     }
-    alsaresult = snd_mixer_attach(alsamixer, alsacardname.constData());
-    if (alsaresult != 0) {
-        kWarning() << "Could not attach mixer" << snd_strerror(alsaresult);
+    m_alsaresult = snd_mixer_attach(alsamixer, alsacardname.constData());
+    if (m_alsaresult != 0) {
+        kWarning() << "Could not attach mixer" << snd_strerror(m_alsaresult);
         snd_mixer_close(alsamixer);
         return nullptr;
     }
-    alsaresult = snd_mixer_selem_register(alsamixer, nullptr, nullptr);
-    if (alsaresult != 0) {
-        kWarning() << "Could not register mixer" << snd_strerror(alsaresult);
+    m_alsaresult = snd_mixer_selem_register(alsamixer, nullptr, nullptr);
+    if (m_alsaresult != 0) {
+        kWarning() << "Could not register mixer" << snd_strerror(m_alsaresult);
         snd_mixer_close(alsamixer);
         return nullptr;
     }
-    alsaresult = snd_mixer_load(alsamixer);
-    if (alsaresult != 0) {
-        kWarning() << "Could not load mixer" << snd_strerror(alsaresult);
+    m_alsaresult = snd_mixer_load(alsamixer);
+    if (m_alsaresult != 0) {
+        kWarning() << "Could not load mixer" << snd_strerror(m_alsaresult);
         snd_mixer_close(alsamixer);
         return nullptr;
     }
@@ -742,31 +750,33 @@ bool KMixer::start(const QString &backend)
 #endif
         return true;
     } else if (backend == "auto") {
-        if (KALSABackend::isAvailable()) {
-            m_backend = new KALSABackend(this);
-#if 1
-            foreach (const KSoundCard &kcard, m_backend->soundCards()) {
-                foreach (KSoundChannel kchannel, kcard.channels()) {
-                    qDebug() << kcard.name() << kcard.description() << kchannel.name() << kchannel.description();
-                    qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
-                    kchannel.setPlaybackVolume(10);
-                    kchannel.setCaptureVolume(10);
-                    qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
-                    qDebug() << "Channel volume range is" << kchannel.playbackRange().minvolume << kchannel.playbackRange().maxvolume;
-                }
-            }
-#endif
-            return true;
+        m_backend = new KALSABackend(this);
+        if (!m_backend->isAvailable()) {
+            return false;
         }
-        return false;
+#if 1
+        foreach (const KSoundCard &kcard, m_backend->soundCards()) {
+            foreach (KSoundChannel kchannel, kcard.channels()) {
+                qDebug() << kcard.name() << kcard.description() << kchannel.name() << kchannel.description();
+                qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
+                kchannel.setPlaybackVolume(10);
+                kchannel.setCaptureVolume(10);
+                qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
+                qDebug() << "Channel volume range is" << kchannel.playbackRange().minvolume << kchannel.playbackRange().maxvolume;
+            }
+        }
+#endif
+        return true;
     }
     return false;
 }
 
 QString KMixer::errorString() const
 {
-    // TODO: error from backend
-    return QString();
+    if (!m_backend) {
+        return i18n("No backend");
+    }
+    return m_backend->errorString();
 }
 
 void KMixer::slotBackend()
