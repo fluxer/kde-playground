@@ -28,6 +28,11 @@
 
 class KMixerBackend;
 
+struct KVolumeRange {
+    int minvolume;
+    int maxvolume;
+};
+
 class KSoundChannel {
 public:
     enum KSoundChannelType {
@@ -57,10 +62,12 @@ public:
     bool hasPlayback() const;
     bool hasCapture() const;
 
-    // TODO: range for widgets
     int playbackVolume() const;
+    KVolumeRange playbackRange() const;
     bool setPlaybackVolume(const int volume);
+
     int captureVolume() const;
+    KVolumeRange captureRange() const;
     bool setCaptureVolume(const int volume);
 
 private:
@@ -102,9 +109,11 @@ public:
     virtual QList<KSoundCard> soundCards() = 0;
 
     virtual int playbackVolume(const KSoundChannel *channel) const = 0;
+    virtual KVolumeRange playbackRange(const KSoundChannel *channel) const = 0;
     virtual bool setPlaybackVolume(const KSoundChannel *channel, const int volume) = 0;
 
     virtual int captureVolume(const KSoundChannel *channel) const = 0;
+    virtual KVolumeRange captureRange(const KSoundChannel *channel) const = 0;
     virtual bool setCaptureVolume(const KSoundChannel *channel, const int volume) = 0;
 
     virtual bool mute(const KSoundChannel *channel) const = 0;
@@ -120,9 +129,11 @@ public:
     QList<KSoundCard> soundCards() final;
     
     int playbackVolume(const KSoundChannel *channel) const final;
+    KVolumeRange playbackRange(const KSoundChannel *channel) const final;
     bool setPlaybackVolume(const KSoundChannel *channel, const int volume) final;
 
     int captureVolume(const KSoundChannel *channel) const final;
+    KVolumeRange captureRange(const KSoundChannel *channel) const final;
     bool setCaptureVolume(const KSoundChannel *channel, const int volume) final;
 
     bool mute(const KSoundChannel *channel) const final;
