@@ -18,6 +18,7 @@ include_directories(${ALSA_INCLUDE_DIR})
 
 set(kmixer_sources
     kmixer.cpp
+    kmixerwidgets.cpp
 )
 
 add_executable(kmixer ${kmixer_sources})

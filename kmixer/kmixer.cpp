@@ -17,6 +17,7 @@
 */
 
 #include "kmixer.h"
+#include "kmixerwidgets.h"
 
 #include <KAboutData>
 #include <KCmdLineArgs>
@@ -392,7 +393,7 @@ int KALSABackend::playbackVolume(const KSoundChannel *channel) const
             const QString alsaid = QString::number(snd_mixer_selem_get_index(alsaelement));
             const QString alsaname = QString::fromLocal8Bit(snd_mixer_selem_get_name(alsaelement));
             if (alsaid == channel->id() && alsaname == channel->name()) {
-                kDebug() << "Device" << channel->id() << channel->name();
+                kDebug() << "Channel" << channel->id() << channel->name();
                 long alsaplaybackvolume = 0;
                 m_alsaresult = snd_mixer_selem_get_playback_volume(alsaelement, alsachanneltype, &alsaplaybackvolume);
                 if (m_alsaresult != 0) {
@@ -430,7 +431,7 @@ KVolumeRange KALSABackend::playbackRange(const KSoundChannel *channel) const
             const QString alsaid = QString::number(snd_mixer_selem_get_index(alsaelement));
             const QString alsaname = QString::fromLocal8Bit(snd_mixer_selem_get_name(alsaelement));
             if (alsaid == channel->id() && alsaname == channel->name()) {
-                kDebug() << "Device" << channel->id() << channel->name();
+                kDebug() << "Channel" << channel->id() << channel->name();
                 long alsaplaybackvolumemin = 0;
                 long alsaplaybackvolumemax = 0;
                 m_alsaresult = snd_mixer_selem_get_playback_volume_range(alsaelement, &alsaplaybackvolumemin, &alsaplaybackvolumemax);
@@ -519,7 +520,7 @@ int KALSABackend::captureVolume(const KSoundChannel *channel) const
             const QString alsaid = QString::number(snd_mixer_selem_get_index(alsaelement));
             const QString alsaname = QString::fromLocal8Bit(snd_mixer_selem_get_name(alsaelement));
             if (alsaid == channel->id() && alsaname == channel->name()) {
-                kDebug() << "Device" << channel->id() << channel->name();
+                kDebug() << "Channel" << channel->id() << channel->name();
                 long alsacapturevolume = 0;
                 m_alsaresult = snd_mixer_selem_get_capture_volume(alsaelement, alsachanneltype, &alsacapturevolume);
                 if (m_alsaresult != 0) {
@@ -557,7 +558,7 @@ KVolumeRange KALSABackend::captureRange(const KSoundChannel *channel) const
             const QString alsaid = QString::number(snd_mixer_selem_get_index(alsaelement));
             const QString alsaname = QString::fromLocal8Bit(snd_mixer_selem_get_name(alsaelement));
             if (alsaid == channel->id() && alsaname == channel->name()) {
-                kDebug() << "Device" << channel->id() << channel->name();
+                kDebug() << "Channel" << channel->id() << channel->name();
                 long alsacapturevolumemin = 0;
                 long alsacapturevolumemax = 0;
                 m_alsaresult = snd_mixer_selem_get_capture_volume_range(alsaelement, &alsacapturevolumemin, &alsacapturevolumemax);
@@ -736,37 +737,10 @@ bool KMixer::start(const QString &backend)
 {
     if (backend == "alsa") {
         m_backend = new KALSABackend(this);
-#if 1
-        foreach (const KSoundCard &kcard, m_backend->soundCards()) {
-            foreach (KSoundChannel kchannel, kcard.channels()) {
-                qDebug() << kcard.name() << kcard.description() << kchannel.name() << kchannel.description();
-                qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
-                kchannel.setPlaybackVolume(10);
-                kchannel.setCaptureVolume(10);
-                qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
-                qDebug() << "Channel volume range is" << kchannel.playbackRange().minvolume << kchannel.playbackRange().maxvolume;
-            }
-        }
-#endif
-        return true;
+        return m_backend->isAvailable();
     } else if (backend == "auto") {
         m_backend = new KALSABackend(this);
-        if (!m_backend->isAvailable()) {
-            return false;
-        }
-#if 1
-        foreach (const KSoundCard &kcard, m_backend->soundCards()) {
-            foreach (KSoundChannel kchannel, kcard.channels()) {
-                qDebug() << kcard.name() << kcard.description() << kchannel.name() << kchannel.description();
-                qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
-                kchannel.setPlaybackVolume(10);
-                kchannel.setCaptureVolume(10);
-                qDebug() << "Channel volume is" << kchannel.playbackVolume() << kchannel.captureVolume();
-                qDebug() << "Channel volume range is" << kchannel.playbackRange().minvolume << kchannel.playbackRange().maxvolume;
-            }
-        }
-#endif
-        return true;
+        return m_backend->isAvailable();
     }
     return false;
 }
@@ -777,6 +751,14 @@ QString KMixer::errorString() const
         return i18n("No backend");
     }
     return m_backend->errorString();
+}
+
+QList<KSoundCard> KMixer::soundCards() const
+{
+    if (!m_backend) {
+        return QList<KSoundCard>();
+    }
+    return m_backend->soundCards();
 }
 
 void KMixer::slotBackend()
@@ -813,6 +795,7 @@ int main(int argc, char** argv)
         kWarning() << kmixer.errorString();
         return 1;
     }
+    KMixerWindow kmixerwin(nullptr, &kmixer);
     qDebug() << "kmixer running, backend is" << args->getOption("backend");
 
     return kmixerapp->exec();

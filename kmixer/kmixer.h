@@ -28,12 +28,14 @@
 
 class KMixerBackend;
 
-struct KVolumeRange {
+struct KVolumeRange
+{
     int minvolume;
     int maxvolume;
 };
 
-class KSoundChannel {
+class KSoundChannel
+{
 public:
     enum KSoundChannelType {
         Unknown = 0,
@@ -82,7 +84,8 @@ private:
     friend class KALSABackend;
 };
 
-class KSoundCard {
+class KSoundCard
+{
 public:
     KSoundCard();
 
@@ -150,11 +153,13 @@ class KMixer : public QObject
 {
     Q_OBJECT
 public:
-    KMixer(QObject *parent = nullptr);
+    KMixer(QObject *parent);
     ~KMixer();
 
     bool start(const QString &backend);
     QString errorString() const;
+
+    QList<KSoundCard> soundCards() const;
 
 public Q_SLOTS:
     void slotBackend();
