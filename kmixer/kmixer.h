@@ -132,6 +132,7 @@ public:
     
 private:
     static snd_mixer_t* mixerForCard(const int card);
+    static snd_mixer_selem_channel_id_t channelType(const KSoundChannel *channel);
 };
 
 class KMixer : public QObject

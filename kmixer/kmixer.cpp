@@ -370,6 +370,13 @@ int KAlsaBackend::playbackVolume(const KSoundChannel *channel) const
         return 0;
     }
 
+    const snd_mixer_selem_channel_id_t alsachanneltype = KAlsaBackend::channelType(channel);
+    if (alsachanneltype == SND_MIXER_SCHN_UNKNOWN) {
+        kWarning() << "Could not determine channel type" << channel->id() << channel->name();
+        snd_mixer_close(alsamixer);
+        return 0;
+    }
+
     snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
     for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
         if (!snd_mixer_elem_empty(alsaelement)) {
@@ -378,7 +385,7 @@ int KAlsaBackend::playbackVolume(const KSoundChannel *channel) const
             if (alsaid == channel->id() && alsaname == channel->name()) {
                 kDebug() << "Device" << channel->id() << channel->name();
                 long alsaplaybackvolume = 0;
-                const int alsaresult = snd_mixer_selem_get_playback_volume(alsaelement, SND_MIXER_SCHN_FRONT_LEFT, &alsaplaybackvolume);
+                const int alsaresult = snd_mixer_selem_get_playback_volume(alsaelement, alsachanneltype, &alsaplaybackvolume);
                 if (alsaresult != 0) {
                     kWarning() << "Could not get playback channel volume" << channel->id() << channel->name();
                     return 0;
@@ -396,32 +403,26 @@ bool KAlsaBackend::setPlaybackVolume(const KSoundChannel *channel, const int vol
 {
     snd_mixer_t* alsamixer = KAlsaBackend::mixerForCard(channel->cardID());
     if (!alsamixer) {
-        return 0;
+        return false;
+    }
+
+    const snd_mixer_selem_channel_id_t alsachanneltype = KAlsaBackend::channelType(channel);
+    if (alsachanneltype == SND_MIXER_SCHN_UNKNOWN) {
+        kWarning() << "Could not determine channel type" << channel->id() << channel->name();
+        snd_mixer_close(alsamixer);
+        return false;
     }
 
     int alsaresult = 0;
-    if (channel->type() == KSoundChannel::KSoundChannelType::FrontLeft) {
-        snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
-        for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
-            if (!snd_mixer_elem_empty(alsaelement)) {
-                alsaresult = snd_mixer_selem_set_playback_volume(alsaelement, SND_MIXER_SCHN_FRONT_LEFT, long(volume));
-                if (alsaresult != 0) {
-                    kWarning() << "Could not set playback volume" << snd_strerror(alsaresult);;
-                }
+    snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
+    for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
+        if (!snd_mixer_elem_empty(alsaelement)) {
+            alsaresult = snd_mixer_selem_set_playback_volume(alsaelement, alsachanneltype, long(volume));
+            if (alsaresult != 0) {
+                kWarning() << "Could not set playback volume" << snd_strerror(alsaresult);
+                return false;
             }
         }
-    } else if (channel->type() == KSoundChannel::KSoundChannelType::FrontRight) {
-        snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
-        for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
-            if (!snd_mixer_elem_empty(alsaelement)) {
-                alsaresult = snd_mixer_selem_set_playback_volume(alsaelement, SND_MIXER_SCHN_FRONT_RIGHT, long(volume));
-                if (alsaresult != 0) {
-                    kWarning() << "Could not set playback volume" << snd_strerror(alsaresult);;
-                }
-            }
-        }
-    } else {
-        // TODO: more channels
     }
     snd_mixer_close(alsamixer);
 
@@ -440,6 +441,13 @@ int KAlsaBackend::captureVolume(const KSoundChannel *channel) const
         return 0;
     }
 
+    const snd_mixer_selem_channel_id_t alsachanneltype = KAlsaBackend::channelType(channel);
+    if (alsachanneltype == SND_MIXER_SCHN_UNKNOWN) {
+        kWarning() << "Could not determine channel type" << channel->id() << channel->name();
+        snd_mixer_close(alsamixer);
+        return 0;
+    }
+    
     snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
     for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
         if (!snd_mixer_elem_empty(alsaelement)) {
@@ -448,7 +456,7 @@ int KAlsaBackend::captureVolume(const KSoundChannel *channel) const
             if (alsaid == channel->id() && alsaname == channel->name()) {
                 kDebug() << "Device" << channel->id() << channel->name();
                 long alsacapturevolume = 0;
-                const int alsaresult = snd_mixer_selem_get_capture_volume(alsaelement, SND_MIXER_SCHN_FRONT_LEFT, &alsacapturevolume);
+                const int alsaresult = snd_mixer_selem_get_capture_volume(alsaelement, alsachanneltype, &alsacapturevolume);
                 if (alsaresult != 0) {
                     kWarning() << "Could not get capture channel volume" << channel->id() << channel->name();
                     return 0;
@@ -466,32 +474,26 @@ bool KAlsaBackend::setCaptureVolume(const KSoundChannel *channel, const int volu
 {
     snd_mixer_t* alsamixer = KAlsaBackend::mixerForCard(channel->cardID());
     if (!alsamixer) {
-        return 0;
+        return false;
+    }
+
+    const snd_mixer_selem_channel_id_t alsachanneltype = KAlsaBackend::channelType(channel);
+    if (alsachanneltype == SND_MIXER_SCHN_UNKNOWN) {
+        kWarning() << "Could not determine channel type" << channel->id() << channel->name();
+        snd_mixer_close(alsamixer);
+        return false;
     }
 
     int alsaresult = 0;
-    if (channel->type() == KSoundChannel::KSoundChannelType::FrontLeft) {
-        snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
-        for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
-            if (!snd_mixer_elem_empty(alsaelement)) {
-                alsaresult = snd_mixer_selem_set_capture_volume(alsaelement, SND_MIXER_SCHN_FRONT_LEFT, long(volume));
-                if (alsaresult != 0) {
-                    kWarning() << "Could not set playback volume" << snd_strerror(alsaresult);;
-                }
+    snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
+    for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
+        if (!snd_mixer_elem_empty(alsaelement)) {
+            alsaresult = snd_mixer_selem_set_capture_volume(alsaelement, alsachanneltype, long(volume));
+            if (alsaresult != 0) {
+                kWarning() << "Could not set playback volume" << snd_strerror(alsaresult);;
+                return false;
             }
         }
-    } else if (channel->type() == KSoundChannel::KSoundChannelType::FrontRight) {
-        snd_mixer_elem_t *alsaelement = snd_mixer_first_elem(alsamixer);
-        for (; alsaelement; alsaelement = snd_mixer_elem_next(alsaelement)) {
-            if (!snd_mixer_elem_empty(alsaelement)) {
-                alsaresult = snd_mixer_selem_set_capture_volume(alsaelement, SND_MIXER_SCHN_FRONT_RIGHT, long(volume));
-                if (alsaresult != 0) {
-                    kWarning() << "Could not set playback volume" << snd_strerror(alsaresult);;
-                }
-            }
-        }
-    } else {
-        // TODO: more channels
     }
     snd_mixer_close(alsamixer);
 
@@ -548,6 +550,43 @@ snd_mixer_t* KAlsaBackend::mixerForCard(const int card)
         return nullptr;
     }
     return alsamixer;
+}
+
+snd_mixer_selem_channel_id_t KAlsaBackend::channelType(const KSoundChannel *channel)
+{
+    switch (channel->type()) {
+        case KSoundChannel::KSoundChannelType::Unknown: {
+            return SND_MIXER_SCHN_UNKNOWN;
+        }
+        case KSoundChannel::KSoundChannelType::FrontLeft: {
+            return SND_MIXER_SCHN_FRONT_LEFT;
+        }
+        case KSoundChannel::KSoundChannelType::FrontRight: {
+            return SND_MIXER_SCHN_FRONT_RIGHT;
+        }
+        case KSoundChannel::KSoundChannelType::RearLeft: {
+            return SND_MIXER_SCHN_REAR_LEFT;
+        }
+        case KSoundChannel::KSoundChannelType::RearRight: {
+            return SND_MIXER_SCHN_REAR_RIGHT;
+        }
+        case KSoundChannel::KSoundChannelType::FrontCenter: {
+            return SND_MIXER_SCHN_FRONT_CENTER;
+        }
+        case KSoundChannel::KSoundChannelType::Woofer: {
+            return SND_MIXER_SCHN_WOOFER;
+        }
+        case KSoundChannel::KSoundChannelType::SideLeft: {
+            return SND_MIXER_SCHN_SIDE_LEFT;
+        }
+        case KSoundChannel::KSoundChannelType::SideRight: {
+            return SND_MIXER_SCHN_SIDE_RIGHT;
+        }
+        case KSoundChannel::KSoundChannelType::RearCenter: {
+            return SND_MIXER_SCHN_REAR_CENTER;
+        }
+    }
+    return SND_MIXER_SCHN_UNKNOWN;
 }
 
 KMixer::KMixer(QObject *parent)
