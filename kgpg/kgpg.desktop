@@ -2,7 +2,7 @@
 Name=KGPG
 GenericName=Encryption and decryption utility
 MimeType=application/pgp-encrypted;application/pgp-signature;application/pgp-keys;
-Exec=kgpg --icon '%i' --caption '%c'
+Exec=kgpg --icon '%i' --caption '%c' %U
 Icon=kgpg
 Type=Application
 Terminal=false

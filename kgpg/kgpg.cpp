@@ -18,6 +18,7 @@
 
 #include <QScopedPointer>
 #include <klocale.h>
+#include <kmimetype.h>
 #include <kpassworddialog.h>
 #include <kmessagebox.h>
 #include <kapplication.h>
@@ -534,10 +535,10 @@ void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret)
         gpgresult = gpgme_op_keylist_next(m_gpgctx, &gpgkey);
     }
 
+    connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
     foreach (const KGPGKey &kgpgkey, m_keys) {
         m_ui.keysbox->addItem(kgpgkey.uidhash);
     }
-    connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
 
     // qDebug() << Q_FUNC_INFO << m_keys.size();
 }
@@ -555,13 +556,25 @@ int main(int argc, char **argv)
     options.add("decrypt", ki18n("Decrypt the specified URL"));
     options.add("sign", ki18n("Sign the specified URL"));
     options.add("verify", ki18n("Verify the specified URL"));
-    options.add("[url]", ki18n("URL to be opened"));
+    options.add("+[url]", ki18n("URL to be opened"));
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
 
     KGPG* kgpg = new KGPG();
+
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    for (int pos = 0; pos < args->count(); ++pos) {
+        const KUrl argurl = args->url(pos);
+        const KMimeType::Ptr argmime = KMimeType::findByUrl(argurl);
+        if (argmime && argmime->is(QString::fromLatin1("application/pgp-encrypted"))) {
+            kgpg->setMode(KGPG::DecryptMode);
+        } else if (argmime && argmime->is(QString::fromLatin1("application/pgp-signature"))) {
+            kgpg->setMode(KGPG::VerifyMode);
+        }
+        kgpg->setSource(argurl.prettyUrl());
+    }
+
     if (args->isSet("encrypt")) {
         kgpg->setMode(KGPG::EncryptMode);
     } else if (args->isSet("decrypt")) {
@@ -574,10 +587,6 @@ int main(int argc, char **argv)
         kgpg->setMode(KGPG::EncryptMode);
     }
 
-    for (int pos = 0; pos < args->count(); ++pos) {
-        kgpg->setSource(args->url(pos).url());
-    }
-    
     kgpg->show();
 
     return app.exec();
