@@ -58,6 +58,7 @@ public:
     void setSource(const QString &source);
     void setError(const char* const error);
     void setError(const QString &error);
+    void setProgress(const int gpgcurrent, const int gpgtotal);
 
     void start();
 

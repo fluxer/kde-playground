@@ -167,6 +167,12 @@ void KGPG::setError(const QString &error)
     m_ui.startbutton->setVisible(true);
 }
 
+void KGPG::setProgress(const int gpgcurrent, const int gpgtotal)
+{
+    m_ui.progressbar->setMaximum(gpgtotal);
+    m_ui.progressbar->setValue(gpgcurrent);
+}
+
 gpgme_error_t KGPG::gpgPasswordCallback(void *opaque, const char *uid_hint,
                                         const char *passphrase_info,
                                         int prev_was_bad, int fd)
@@ -189,7 +195,8 @@ void KGPG::gpgProgressCallback(void *opaque, const char *what,
                                int type, int current, int total)
 {
     // qDebug() << Q_FUNC_INFO << what << type << current << total;
-    // TODO: implement
+    KGPG *kgpg = static_cast<KGPG*>(opaque);
+    kgpg->setProgress(current, total);
 }
 
 void KGPG::start()
