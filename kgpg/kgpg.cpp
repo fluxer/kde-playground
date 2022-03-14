@@ -186,8 +186,14 @@ gpgme_error_t KGPG::gpgPasswordCallback(void *opaque, const char *uid_hint,
     }
 
     const QByteArray bytepassword = kpassdialog->password().toLocal8Bit() + "\n";
-    // TODO: ignoring possible errors here
-    gpgme_io_write(fd, bytepassword.constData(), bytepassword.size());
+    ssize_t gpgresult = 0;
+    do {
+        gpgresult = gpgme_io_write(fd, bytepassword.constData(), bytepassword.size());
+    } while (gpgresult < 0 && errno == EAGAIN);
+
+    if (gpgresult != bytepassword.size()) {
+        return gpgme_error_from_errno(errno);
+    }
     return 0;
 }
 
