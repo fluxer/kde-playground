@@ -54,6 +54,12 @@ KGPG::KGPG(QWidget *parent)
     connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
     connect(m_ui.generatebutton, SIGNAL(clicked()), this, SLOT(slotGenerateKey()));
     connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
+
+    connect(m_ui.actionQuit, SIGNAL(triggered()), this, SLOT(slotQuit()));
+    connect(m_ui.actionEncrypt, SIGNAL(triggered()), this, SLOT(slotEncryptMode()));
+    connect(m_ui.actionDecrypt, SIGNAL(triggered()), this, SLOT(slotDecryptMode()));
+    connect(m_ui.actionSign, SIGNAL(triggered()), this, SLOT(slotSignMode()));
+    connect(m_ui.actionVerify, SIGNAL(triggered()), this, SLOT(slotVerifyMode()));
 }
 
 KGPG::~KGPG()
@@ -67,29 +73,39 @@ KGPG::~KGPG()
 void KGPG::setMode(const KGPGMode mode)
 {
     m_mode = mode;
+
+    m_ui.actionEncrypt->setChecked(false);
+    m_ui.actionDecrypt->setChecked(false);
+    m_ui.actionSign->setChecked(false);
+    m_ui.actionVerify->setChecked(false);
+
     switch (mode) {
         case KGPG::EncryptMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL, true);
             m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.destinationrequester->setVisible(true);
+            m_ui.actionEncrypt->setChecked(true);
             break;
         }
         case KGPG::DecryptMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL, false);
             m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.destinationrequester->setVisible(true);
+            m_ui.actionDecrypt->setChecked(true);
             break;
         }
         case KGPG::SignMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_SIGS, true);
             m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.destinationrequester->setVisible(true);
+            m_ui.actionSign->setChecked(true);
             break;
         }
         case KGPG::VerifyMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_SIGS, false);
             m_ui.startbutton->setEnabled(true);
             m_ui.destinationrequester->setVisible(false);
+            m_ui.actionVerify->setChecked(true);
             break;
         }
         default: {
@@ -97,6 +113,7 @@ void KGPG::setMode(const KGPGMode mode)
             break;
         }
     }
+    
 }
 
 void KGPG::setSource(const QString &source)
@@ -449,8 +466,35 @@ void KGPG::slotStart()
     start();
 }
 
+void KGPG::slotEncryptMode()
+{
+    setMode(KGPG::EncryptMode);
+}
+
+void KGPG::slotDecryptMode()
+{
+    setMode(KGPG::DecryptMode);
+}
+
+void KGPG::slotSignMode()
+{
+    setMode(KGPG::SignMode);
+}
+
+void KGPG::slotVerifyMode()
+{
+    setMode(KGPG::VerifyMode);
+}
+
+void KGPG::slotQuit()
+{
+    qApp->quit();
+}
+
 void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret)
 {
+    disconnect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
+
     m_keys.clear();
     m_ui.keysbox->clear();
 
@@ -493,6 +537,7 @@ void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret)
     foreach (const KGPGKey &kgpgkey, m_keys) {
         m_ui.keysbox->addItem(kgpgkey.uidhash);
     }
+    connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
 
     // qDebug() << Q_FUNC_INFO << m_keys.size();
 }
@@ -506,10 +551,11 @@ int main(int argc, char **argv)
 
     KCmdLineArgs::init(argc, argv, &aboutData);
     KCmdLineOptions options;
-    options.add("encrypt <url>", ki18n("Encrypt the specified URL"));
-    options.add("decrypt <url>", ki18n("Decrypt the specified URL"));
-    options.add("sign <url>", ki18n("Sign the specified URL"));
-    options.add("verify <url>", ki18n("Verify the specified URL"));
+    options.add("encrypt", ki18n("Encrypt the specified URL"));
+    options.add("decrypt", ki18n("Decrypt the specified URL"));
+    options.add("sign", ki18n("Sign the specified URL"));
+    options.add("verify", ki18n("Verify the specified URL"));
+    options.add("[url]", ki18n("URL to be opened"));
     KCmdLineArgs::addCmdLineOptions(options);
 
     KApplication app;
@@ -518,19 +564,20 @@ int main(int argc, char **argv)
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if (args->isSet("encrypt")) {
         kgpg->setMode(KGPG::EncryptMode);
-        kgpg->setSource(args->getOption("encrypt"));
     } else if (args->isSet("decrypt")) {
         kgpg->setMode(KGPG::DecryptMode);
-        kgpg->setSource(args->getOption("decrypt"));
     } else if (args->isSet("sign")) {
         kgpg->setMode(KGPG::SignMode);
-        kgpg->setSource(args->getOption("sign"));
     } else if (args->isSet("verify")) {
         kgpg->setMode(KGPG::VerifyMode);
-        kgpg->setSource(args->getOption("verify"));
     } else {
         kgpg->setMode(KGPG::EncryptMode);
     }
+
+    for (int pos = 0; pos < args->count(); ++pos) {
+        kgpg->setSource(args->url(pos).url());
+    }
+    
     kgpg->show();
 
     return app.exec();

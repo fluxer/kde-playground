@@ -72,6 +72,11 @@ private Q_SLOTS:
     void slotKeysBox(const int index);
     void slotGenerateKey();
     void slotStart();
+    void slotEncryptMode();
+    void slotDecryptMode();
+    void slotSignMode();
+    void slotVerifyMode();
+    void slotQuit();
 
 private:
     void updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret);
