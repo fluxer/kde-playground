@@ -19,6 +19,7 @@
 #include <QScopedPointer>
 #include <klocale.h>
 #include <kpassworddialog.h>
+#include <kmessagebox.h>
 #include <kapplication.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
@@ -158,6 +159,7 @@ void KGPG::setError(const QString &error)
 
     const QString errormessage = i18n("Error: %1", error);
     m_ui.statusbar->showMessage(errormessage);
+    KMessageBox::error(this, errormessage);
 
     m_ui.progressbar->setMinimum(0);
     m_ui.progressbar->setMaximum(100);
