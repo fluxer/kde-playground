@@ -26,17 +26,45 @@
 
 #include "ui_kgpgwidget.h"
 
+struct KGPGKey
+{
+    QByteArray name;
+    QByteArray email;
+    QByteArray comment;
+    bool revoked;
+    bool expired;
+    bool canencrypt;
+    bool cansign;
+};
+
 class KGPG : public KMainWindow
 {
     Q_OBJECT
 public:
+    enum KGPGMode {
+        EncryptMode = 0,
+        DecryptMode = 1,
+        SignMode    = 2,
+        VerifyMode  = 3
+    };
+
     explicit KGPG(QWidget *parent = 0);
     ~KGPG();
 
+    void setMode(const KGPGMode mode);
+    void setSource(const QString &source);
+    void setError(const char* const error);
+
+    void start();
+
 private:
     Ui_KGPGWindow m_ui;
+    KGPGMode m_mode;
+
     bool m_release;
     gpgme_ctx_t m_gpgctx;
+
+    QList<KGPGKey> m_keys;
 };
 
 #endif // KGPG_H
