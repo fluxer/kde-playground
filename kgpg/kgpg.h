@@ -31,6 +31,9 @@ struct KGPGKey
     QByteArray name;
     QByteArray email;
     QByteArray comment;
+    QByteArray uidhash;
+    QByteArray fpr;
+    bool disabled;
     bool revoked;
     bool expired;
     bool canencrypt;
@@ -54,10 +57,13 @@ public:
     void setMode(const KGPGMode mode);
     void setSource(const QString &source);
     void setError(const char* const error);
+    void setError(const QString &error);
 
     void start();
 
 private:
+    void updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret);
+
     Ui_KGPGWindow m_ui;
     KGPGMode m_mode;
 
