@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=KGPG
+GenericName=Encryption and decryption utility
+MimeType=application/pgp-encrypted;application/pgp-signature;application/pgp-keys;
+Exec=kgpg --icon '%i' --caption '%c'
+Icon=kgpg
+Type=Application
+Terminal=false
+StartupNotify=false
+X-DocPath=kgpg/index.html
+X-KDE-StartupNotify=false
+X-DBUS-StartupType=Multi
+Categories=Qt;KDE;Utility;
