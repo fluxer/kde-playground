@@ -16,8 +16,9 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include <QImageWriter>
+#include <QScopedPointer>
 #include <klocale.h>
+#include <kpassworddialog.h>
 #include <kapplication.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
@@ -44,6 +45,10 @@ KGPG::KGPG(QWidget *parent)
         return;
     }
     m_release = true;
+
+    gpgme_set_pinentry_mode(m_gpgctx, GPGME_PINENTRY_MODE_LOOPBACK); // for password callback
+    gpgme_set_passphrase_cb(m_gpgctx, KGPG::gpgPasswordCallback, this);
+    gpgme_set_progress_cb(m_gpgctx, KGPG::gpgProgressCallback, this);
 
     connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
 }
@@ -158,6 +163,31 @@ void KGPG::setError(const QString &error)
     m_ui.progressbar->setMaximum(100);
     m_ui.progressbar->setVisible(false);
     m_ui.startbutton->setVisible(true);
+}
+
+gpgme_error_t KGPG::gpgPasswordCallback(void *opaque, const char *uid_hint,
+                                        const char *passphrase_info,
+                                        int prev_was_bad, int fd)
+{
+    // qDebug() << Q_FUNC_INFO << uid_hint << passphrase_info << prev_was_bad << fd;
+
+    QScopedPointer<KPasswordDialog> kpassdialog(new KPasswordDialog());
+    kpassdialog->setPrompt(i18n("Enter a password"));
+    if (!kpassdialog->exec()) {
+        return 1;
+    }
+
+    const QByteArray bytepassword = kpassdialog->password().toLocal8Bit() + "\n";
+    // TODO: ignoring possible errors here
+    gpgme_io_write(fd, bytepassword.constData(), bytepassword.size());
+    return 0;
+}
+
+void KGPG::gpgProgressCallback(void *opaque, const char *what,
+                               int type, int current, int total)
+{
+    // qDebug() << Q_FUNC_INFO << what << type << current << total;
+    // TODO: implement
 }
 
 void KGPG::start()

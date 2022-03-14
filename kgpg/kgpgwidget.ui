@@ -226,7 +226,7 @@
     <item row="1" column="1" colspan="2">
      <widget class="KUrlRequester" name="destinationrequester">
       <property name="mode">
-       <set>KFile::ExistingOnly|KFile::File|KFile::LocalOnly</set>
+       <set>KFile::File|KFile::LocalOnly</set>
       </property>
      </widget>
     </item>

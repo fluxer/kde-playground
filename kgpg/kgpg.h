@@ -61,6 +61,12 @@ public:
 
     void start();
 
+    static gpgme_error_t gpgPasswordCallback(void *opaque, const char *uid_hint,
+                                             const char *passphrase_info,
+                                             int prev_was_bad, int fd);
+    static void gpgProgressCallback(void *opaque, const char *what,
+                                    int type, int current, int total);
+
 private Q_SLOTS:
     void slotStart();
 
