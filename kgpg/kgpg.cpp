@@ -32,6 +32,8 @@ KGPG::KGPG(QWidget *parent)
     m_release(false)
 {
     m_ui.setupUi(this);
+    m_ui.startbutton->setEnabled(false);
+    m_ui.progressbar->setVisible(false);
 
     // required by context
     kDebug() << gpgme_check_version(NULL);
@@ -42,6 +44,8 @@ KGPG::KGPG(QWidget *parent)
         return;
     }
     m_release = true;
+
+    connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
 }
 
 KGPG::~KGPG()
@@ -58,18 +62,26 @@ void KGPG::setMode(const KGPGMode mode)
     switch (mode) {
         case KGPG::EncryptMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL, true);
+            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
+            m_ui.destinationrequester->setVisible(true);
             break;
         }
         case KGPG::DecryptMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL, false);
+            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
+            m_ui.destinationrequester->setVisible(true);
             break;
         }
         case KGPG::SignMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_SIGS, true);
+            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
+            m_ui.destinationrequester->setVisible(true);
             break;
         }
         case KGPG::VerifyMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL, false);
+            m_ui.startbutton->setEnabled(true);
+            m_ui.destinationrequester->setVisible(false);
             break;
         }
         default: {
@@ -82,8 +94,45 @@ void KGPG::setMode(const KGPGMode mode)
 void KGPG::setSource(const QString &source)
 {
     const KUrl sourceurl(source);
-    m_ui.sourcerequester->setUrl(sourceurl);
-    m_ui.destinationrequester->setUrl(sourceurl.directory());
+    // TODO: invalid source or destination URL should disable start button
+    switch (m_mode) {
+        case KGPG::EncryptMode: {
+            QString destinationstring = sourceurl.prettyUrl();
+            destinationstring.append(QLatin1String(".gpg"));
+            m_ui.sourcerequester->setUrl(sourceurl);
+            m_ui.destinationrequester->setUrl(KUrl(destinationstring));
+            break;
+        }
+        case KGPG::DecryptMode: {
+            QString destinationstring = sourceurl.prettyUrl();
+            if (destinationstring.endsWith(QLatin1String(".gpg"))) {
+                destinationstring.chop(4);
+            }
+            m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-encrypted"));
+            m_ui.destinationrequester->setFilter(QString());
+            m_ui.sourcerequester->setUrl(sourceurl);
+            m_ui.destinationrequester->setUrl(KUrl(destinationstring));
+            break;
+        }
+        case KGPG::SignMode: {
+            QString destinationstring = sourceurl.prettyUrl();
+            destinationstring.append(QLatin1String(".asc"));
+            m_ui.sourcerequester->setFilter(QString());
+            m_ui.destinationrequester->setFilter(QString::fromLatin1("application/pgp-signature"));
+            m_ui.sourcerequester->setUrl(sourceurl);
+            m_ui.destinationrequester->setUrl(KUrl(destinationstring));
+            break;
+        }
+        case KGPG::VerifyMode: {
+            m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-signature"));
+            m_ui.sourcerequester->setUrl(sourceurl);
+            break;
+        }
+        default: {
+            Q_ASSERT(false);
+            break;
+        }
+    }
 }
 
 void KGPG::setError(const char* const error)
@@ -96,19 +145,25 @@ void KGPG::setError(const QString &error)
 
     const QString errormessage = i18n("Error: %1", error);
     m_ui.statusbar->showMessage(errormessage);
+
     m_ui.progressbar->setMinimum(0);
     m_ui.progressbar->setMaximum(100);
+    m_ui.progressbar->setVisible(false);
+    m_ui.startbutton->setVisible(true);
 }
 
 void KGPG::start()
 {
     m_ui.progressbar->setMinimum(0);
     m_ui.progressbar->setMaximum(0);
+    m_ui.progressbar->setVisible(true);
+    m_ui.startbutton->setVisible(false);
+
     switch (m_mode) {
         case KGPG::EncryptMode: {
             if (m_keys.isEmpty()) {
                 setError("No key available");
-                return;
+                break;
             }
 
             const QByteArray kgpgkeyfpr = m_keys.at(m_ui.keysbox->currentIndex()).fpr;
@@ -118,7 +173,7 @@ void KGPG::start()
             gpgme_error_t gpgresult = gpgme_data_new_from_file(&gpgindata, gpginputfile.constData(), 1);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
-                return;
+                break;
             }
 
             gpgme_key_t gpgencryptkey;
@@ -126,7 +181,7 @@ void KGPG::start()
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
-                return;
+                break;
             }
 
             gpgme_data_t gpgoutdata;
@@ -134,7 +189,7 @@ void KGPG::start()
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
-                return;
+                break;
             }
 
             gpgme_key_t gpgkeys[2] = { gpgencryptkey, NULL };
@@ -143,25 +198,26 @@ void KGPG::start()
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
                 gpgme_data_release(gpgoutdata);
-                return;
+                break;
             }
 
             size_t gpgbuffersize = 0;
             char* gpgbuffer = gpgme_data_release_and_get_mem(gpgoutdata, &gpgbuffersize);
 
-            const QString outputfile = m_ui.destinationrequester->url().toLocalFile()
-                    + QDir::separator() + m_ui.sourcerequester->url().fileName() + QLatin1String(".gpg");
+            const QString outputfile = m_ui.destinationrequester->url().toLocalFile();
             QFile encryptedfile(outputfile);
             if (!encryptedfile.open(QFile::WriteOnly)) {
                 setError(encryptedfile.errorString());
                 gpgme_free(gpgbuffer);
                 gpgme_data_release(gpgindata);
+                break;
             }
 
             if (encryptedfile.write(gpgbuffer, gpgbuffersize) != gpgbuffersize) {
                 setError(encryptedfile.errorString());
                 gpgme_free(gpgbuffer);
                 gpgme_data_release(gpgindata);
+                break;
             }
             // qDebug() << Q_FUNC_INFO << "encrypted" << gpgbuffer;
 
@@ -170,42 +226,65 @@ void KGPG::start()
             break;
         }
         case KGPG::DecryptMode: {
-#ifdef kgpg_decrypt
-            gpgme_data_t gpgdecryptoutdata;
-            gpgme_data_new(&gpgdecryptoutdata);
-            if (gpgresult != 0) {
-                setError(gpgme_strerror(gpgresult));
-                gpgme_data_release(gpgindata);
-                gpgme_data_release(gpgoutdata);
-                return;
+            if (m_keys.isEmpty()) {
+                setError("No key available");
+                break;
             }
 
-            gpgme_data_seek(gpgoutdata, 0, SEEK_SET);
-            gpgresult = gpgme_op_decrypt(m_gpgctx, gpgoutdata, gpgdecryptoutdata);
+            const QByteArray gpginputfile = m_ui.sourcerequester->url().toLocalFile().toLocal8Bit();
+
+            gpgme_data_t gpgindata;
+            gpgme_error_t gpgresult = gpgme_data_new_from_file(&gpgindata, gpginputfile.constData(), 1);
+            if (gpgresult != 0) {
+                setError(gpgme_strerror(gpgresult));
+                break;
+            }
+    
+            gpgme_data_t gpgoutdata;
+            gpgresult = gpgme_data_new(&gpgoutdata);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
                 gpgme_data_release(gpgoutdata);
-                gpgme_data_release(gpgdecryptoutdata);
-                return;
+                break;
+            }
+
+            gpgresult = gpgme_op_decrypt(m_gpgctx, gpgindata, gpgoutdata);
+            if (gpgresult != 0) {
+                setError(gpgme_strerror(gpgresult));
+                gpgme_data_release(gpgindata);
+                gpgme_data_release(gpgoutdata);
+                break;
             }
 
             size_t gpgbuffersize = 0;
-            char* gpgbuffer = gpgme_data_release_and_get_mem(gpgdecryptoutdata, &gpgbuffersize);
-            kWarning() << "decryption" << gpgbuffer;
+            char* gpgbuffer = gpgme_data_release_and_get_mem(gpgoutdata, &gpgbuffersize);
+
+            const QString outputfile = m_ui.destinationrequester->url().toLocalFile();
+            QFile encryptedfile(outputfile);
+            if (!encryptedfile.open(QFile::WriteOnly)) {
+                setError(encryptedfile.errorString());
+                gpgme_free(gpgbuffer);
+                gpgme_data_release(gpgindata);
+                break;
+            }
+
+            if (encryptedfile.write(gpgbuffer, gpgbuffersize) != gpgbuffersize) {
+                setError(encryptedfile.errorString());
+                gpgme_free(gpgbuffer);
+                gpgme_data_release(gpgindata);
+                break;
+            }
+            // qDebug() << Q_FUNC_INFO << "decryption" << gpgbuffer;
 
             gpgme_free(gpgbuffer);
             gpgme_data_release(gpgindata);
-            gpgme_data_release(gpgoutdata);
-#endif // kgpg_decrypt
-
-            setError("Not implemented");
             break;
         }
         case KGPG::SignMode: {
             if (m_keys.isEmpty()) {
                 setError("No key available");
-                return;
+                break;
             }
 
             setError("Not implemented");
@@ -220,6 +299,17 @@ void KGPG::start()
             break;
         }
     }
+
+    m_ui.progressbar->setMinimum(1);
+    m_ui.progressbar->setMaximum(100);
+    m_ui.progressbar->setVisible(false);
+    m_ui.startbutton->setVisible(true);
+    m_ui.statusbar->showMessage("Done");
+}
+
+void KGPG::slotStart()
+{
+    start();
 }
 
 void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret)
@@ -290,21 +380,17 @@ int main(int argc, char **argv)
     KGPG* kgpg = new KGPG();
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if (args->isSet("encrypt")) {
-        kgpg->setSource(args->getOption("encrypt"));
         kgpg->setMode(KGPG::EncryptMode);
-        // kgpg->start();
+        kgpg->setSource(args->getOption("encrypt"));
     } else if (args->isSet("decrypt")) {
-        kgpg->setSource(args->getOption("decrypt"));
         kgpg->setMode(KGPG::DecryptMode);
-        kgpg->start();
+        kgpg->setSource(args->getOption("decrypt"));
     } else if (args->isSet("sign")) {
         kgpg->setSource(args->getOption("sign"));
         kgpg->setMode(KGPG::SignMode);
-        // kgpg->start();
     } else if (args->isSet("verify")) {
-        kgpg->setSource(args->getOption("verify"));
         kgpg->setMode(KGPG::VerifyMode);
-        kgpg->start();
+        kgpg->setSource(args->getOption("verify"));
     } else {
         kgpg->setMode(KGPG::EncryptMode);
     }

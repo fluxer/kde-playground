@@ -61,6 +61,9 @@ public:
 
     void start();
 
+private Q_SLOTS:
+    void slotStart();
+
 private:
     void updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret);
 
