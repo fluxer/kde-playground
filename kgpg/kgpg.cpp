@@ -79,7 +79,7 @@ void KGPG::setMode(const KGPGMode mode)
             break;
         }
         case KGPG::VerifyMode: {
-            updateKeys(GPGME_KEYLIST_MODE_LOCAL, false);
+            updateKeys(GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_SIGS, false);
             m_ui.startbutton->setEnabled(true);
             m_ui.destinationrequester->setVisible(false);
             break;
@@ -97,6 +97,8 @@ void KGPG::setSource(const QString &source)
     // TODO: invalid source or destination URL should disable start button
     switch (m_mode) {
         case KGPG::EncryptMode: {
+            gpgme_set_armor(m_gpgctx, 0);
+
             QString destinationstring = sourceurl.prettyUrl();
             destinationstring.append(QLatin1String(".gpg"));
             m_ui.sourcerequester->setUrl(sourceurl);
@@ -104,6 +106,8 @@ void KGPG::setSource(const QString &source)
             break;
         }
         case KGPG::DecryptMode: {
+            gpgme_set_armor(m_gpgctx, 0);
+
             QString destinationstring = sourceurl.prettyUrl();
             if (destinationstring.endsWith(QLatin1String(".gpg"))) {
                 destinationstring.chop(4);
@@ -115,6 +119,8 @@ void KGPG::setSource(const QString &source)
             break;
         }
         case KGPG::SignMode: {
+            gpgme_set_armor(m_gpgctx, 1);
+
             QString destinationstring = sourceurl.prettyUrl();
             destinationstring.append(QLatin1String(".asc"));
             m_ui.sourcerequester->setFilter(QString());
@@ -124,6 +130,8 @@ void KGPG::setSource(const QString &source)
             break;
         }
         case KGPG::VerifyMode: {
+            gpgme_set_armor(m_gpgctx, 1);
+
             m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-signature"));
             m_ui.sourcerequester->setUrl(sourceurl);
             break;
@@ -287,10 +295,72 @@ void KGPG::start()
                 break;
             }
 
-            setError("Not implemented");
+            const QByteArray kgpgkeyfpr = m_keys.at(m_ui.keysbox->currentIndex()).fpr;
+            const QByteArray gpginputfile = m_ui.sourcerequester->url().toLocalFile().toLocal8Bit();
+
+            gpgme_data_t gpgindata;
+            gpgme_error_t gpgresult = gpgme_data_new_from_file(&gpgindata, gpginputfile.constData(), 1);
+            if (gpgresult != 0) {
+                setError(gpgme_strerror(gpgresult));
+                break;
+            }
+
+            gpgme_key_t gpgencryptkey;
+            gpgresult = gpgme_get_key(m_gpgctx, kgpgkeyfpr.constData(), &gpgencryptkey, 1);
+            if (gpgresult != 0) {
+                setError(gpgme_strerror(gpgresult));
+                gpgme_data_release(gpgindata);
+                break;
+            }
+
+            gpgme_data_t gpgoutdata;
+            gpgresult = gpgme_data_new(&gpgoutdata);
+            if (gpgresult != 0) {
+                setError(gpgme_strerror(gpgresult));
+                gpgme_data_release(gpgindata);
+                break;
+            }
+
+            gpgme_key_t gpgkeys[2] = { gpgencryptkey, NULL };
+            // the only important difference from the code for KGPG::EncryptMode mode is the function call bellow
+            gpgresult = gpgme_op_encrypt_sign(m_gpgctx, gpgkeys, GPGME_ENCRYPT_ALWAYS_TRUST, gpgindata, gpgoutdata);
+            if (gpgresult != 0) {
+                setError(gpgme_strerror(gpgresult));
+                gpgme_data_release(gpgindata);
+                gpgme_data_release(gpgoutdata);
+                break;
+            }
+
+            size_t gpgbuffersize = 0;
+            char* gpgbuffer = gpgme_data_release_and_get_mem(gpgoutdata, &gpgbuffersize);
+
+            const QString outputfile = m_ui.destinationrequester->url().toLocalFile();
+            QFile encryptedfile(outputfile);
+            if (!encryptedfile.open(QFile::WriteOnly)) {
+                setError(encryptedfile.errorString());
+                gpgme_free(gpgbuffer);
+                gpgme_data_release(gpgindata);
+                break;
+            }
+
+            if (encryptedfile.write(gpgbuffer, gpgbuffersize) != gpgbuffersize) {
+                setError(encryptedfile.errorString());
+                gpgme_free(gpgbuffer);
+                gpgme_data_release(gpgindata);
+                break;
+            }
+            // qDebug() << Q_FUNC_INFO << "sign" << gpgbuffer;
+
+            gpgme_free(gpgbuffer);
+            gpgme_data_release(gpgindata);
             break;
         }
         case KGPG::VerifyMode: {
+            if (m_keys.isEmpty()) {
+                setError("No key available");
+                break;
+            }
+
             setError("Not implemented");
             break;
         }
@@ -386,8 +456,8 @@ int main(int argc, char **argv)
         kgpg->setMode(KGPG::DecryptMode);
         kgpg->setSource(args->getOption("decrypt"));
     } else if (args->isSet("sign")) {
-        kgpg->setSource(args->getOption("sign"));
         kgpg->setMode(KGPG::SignMode);
+        kgpg->setSource(args->getOption("sign"));
     } else if (args->isSet("verify")) {
         kgpg->setMode(KGPG::VerifyMode);
         kgpg->setSource(args->getOption("verify"));
