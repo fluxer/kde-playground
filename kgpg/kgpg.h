@@ -69,6 +69,8 @@ public:
                                     int type, int current, int total);
 
 private Q_SLOTS:
+    void slotKeysBox(const int index);
+    void slotGenerateKey();
     void slotStart();
 
 private:

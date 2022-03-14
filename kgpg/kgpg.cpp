@@ -51,6 +51,8 @@ KGPG::KGPG(QWidget *parent)
     gpgme_set_passphrase_cb(m_gpgctx, KGPG::gpgPasswordCallback, this);
     gpgme_set_progress_cb(m_gpgctx, KGPG::gpgProgressCallback, this);
 
+    connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
+    connect(m_ui.generatebutton, SIGNAL(clicked()), this, SLOT(slotGenerateKey()));
     connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
 }
 
@@ -406,6 +408,7 @@ void KGPG::start()
                 break;
             }
 
+            // TODO: implement
             setError("Not implemented");
             break;
         }
@@ -420,6 +423,25 @@ void KGPG::start()
     m_ui.progressbar->setVisible(false);
     m_ui.startbutton->setVisible(true);
     m_ui.statusbar->showMessage("Done");
+}
+
+void KGPG::slotKeysBox(const int index)
+{
+    const KGPGKey kgpgkey = m_keys.at(index);
+    m_ui.namelabel->setText(kgpgkey.name);
+    m_ui.emaillabel->setText(kgpgkey.email);
+    m_ui.commentlabel->setText(kgpgkey.comment);
+    m_ui.disabledled->setState(kgpgkey.disabled ? KLed::On : KLed::Off);
+    m_ui.revokedled->setState(kgpgkey.revoked ? KLed::On : KLed::Off);
+    m_ui.expiredled->setState(kgpgkey.expired ? KLed::On : KLed::Off);
+    m_ui.canencryptled->setState(kgpgkey.canencrypt ? KLed::On : KLed::Off);
+    m_ui.cansignled->setState(kgpgkey.cansign ? KLed::On : KLed::Off);
+}
+
+void KGPG::slotGenerateKey()
+{
+    // TODO: implement
+    setError("Not implemented");
 }
 
 void KGPG::slotStart()
