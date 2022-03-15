@@ -38,6 +38,15 @@ KGPG::KGPG(QWidget *parent)
     m_ui.startbutton->setEnabled(false);
     m_ui.progressbar->setVisible(false);
 
+    connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
+    connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
+
+    connect(m_ui.actionQuit, SIGNAL(triggered()), this, SLOT(slotQuit()));
+    connect(m_ui.actionEncrypt, SIGNAL(triggered()), this, SLOT(slotEncryptMode()));
+    connect(m_ui.actionDecrypt, SIGNAL(triggered()), this, SLOT(slotDecryptMode()));
+    connect(m_ui.actionSign, SIGNAL(triggered()), this, SLOT(slotSignMode()));
+    connect(m_ui.actionVerify, SIGNAL(triggered()), this, SLOT(slotVerifyMode()));
+
     // required by context
     kDebug() << gpgme_check_version(NULL);
 
@@ -53,15 +62,6 @@ KGPG::KGPG(QWidget *parent)
     gpgme_set_pinentry_mode(m_gpgctx, GPGME_PINENTRY_MODE_LOOPBACK); // for password callback
     gpgme_set_passphrase_cb(m_gpgctx, KGPG::gpgPasswordCallback, this);
     gpgme_set_progress_cb(m_gpgctx, KGPG::gpgProgressCallback, this);
-
-    connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
-    connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
-
-    connect(m_ui.actionQuit, SIGNAL(triggered()), this, SLOT(slotQuit()));
-    connect(m_ui.actionEncrypt, SIGNAL(triggered()), this, SLOT(slotEncryptMode()));
-    connect(m_ui.actionDecrypt, SIGNAL(triggered()), this, SLOT(slotDecryptMode()));
-    connect(m_ui.actionSign, SIGNAL(triggered()), this, SLOT(slotSignMode()));
-    connect(m_ui.actionVerify, SIGNAL(triggered()), this, SLOT(slotVerifyMode()));
 }
 
 KGPG::~KGPG()

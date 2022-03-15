@@ -19,7 +19,6 @@
 #ifndef KGPG_H
 #define KGPG_H
 
-#include <QResizeEvent>
 #include <kmainwindow.h>
 
 #include <gpgme.h>
