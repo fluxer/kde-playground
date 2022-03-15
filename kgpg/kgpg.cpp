@@ -85,6 +85,7 @@ void KGPG::setMode(const KGPGMode mode)
             m_ui.sourcerequester->setFilter(QString());
             m_ui.destinationrequester->setFilter(QString::fromLatin1("application/pgp-encrypted"));
             m_ui.destinationrequester->setVisible(true);
+            m_ui.startbutton->setText(i18n("Encrypt"));
             m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.actionEncrypt->setChecked(true);
             break;
@@ -94,6 +95,7 @@ void KGPG::setMode(const KGPGMode mode)
             m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-encrypted"));
             m_ui.destinationrequester->setFilter(QString());
             m_ui.destinationrequester->setVisible(true);
+            m_ui.startbutton->setText(i18n("Decrypt"));
             m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.actionDecrypt->setChecked(true);
             break;
@@ -103,6 +105,7 @@ void KGPG::setMode(const KGPGMode mode)
             m_ui.sourcerequester->setFilter(QString());
             m_ui.destinationrequester->setFilter(QString::fromLatin1("application/pgp-signature"));
             m_ui.destinationrequester->setVisible(true);
+            m_ui.startbutton->setText(i18n("Sign"));
             m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.actionSign->setChecked(true);
             break;
@@ -111,6 +114,7 @@ void KGPG::setMode(const KGPGMode mode)
             updateKeys(GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_SIGS, false);
             m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-signature"));
             m_ui.destinationrequester->setVisible(false);
+            m_ui.startbutton->setText(i18n("Verify"));
             m_ui.startbutton->setEnabled(true);
             m_ui.actionVerify->setChecked(true);
             break;
