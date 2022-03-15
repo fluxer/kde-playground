@@ -82,7 +82,7 @@ private:
     Ui_KGPGWindow m_ui;
     KGPGMode m_mode;
 
-    bool m_release;
+    bool m_initialized;
     gpgme_ctx_t m_gpgctx;
 
     QList<KGPGKey> m_keys;

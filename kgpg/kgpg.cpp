@@ -32,7 +32,7 @@
 KGPG::KGPG(QWidget *parent)
     : KMainWindow(parent),
     m_mode(KGPG::EncryptMode),
-    m_release(false)
+    m_initialized(false)
 {
     m_ui.setupUi(this);
     m_ui.startbutton->setEnabled(false);
@@ -55,7 +55,7 @@ KGPG::KGPG(QWidget *parent)
         setError(gpgme_strerror(gpgresult));
         return;
     }
-    m_release = true;
+    m_initialized = true;
 
     gpgme_set_armor(m_gpgctx, 1); // if set at any point later (e.g. from setMode()) it has no effect
     gpgme_set_offline(m_gpgctx, 1);
@@ -67,7 +67,7 @@ KGPG::KGPG(QWidget *parent)
 KGPG::~KGPG()
 {
     // will crash if not initialized
-    if (m_release) {
+    if (m_initialized) {
         gpgme_release(m_gpgctx);
     }
 }
@@ -527,6 +527,10 @@ void KGPG::slotQuit()
 
 void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool gpgsecret)
 {
+    if (!m_initialized) {
+        return;
+    }
+
     disconnect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
 
     m_keys.clear();
