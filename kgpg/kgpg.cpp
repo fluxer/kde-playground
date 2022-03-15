@@ -248,7 +248,7 @@ void KGPG::start()
     switch (m_mode) {
         case KGPG::EncryptMode: {
             if (m_keys.isEmpty()) {
-                setError("No key available");
+                setError(i18n("No key available"));
                 break;
             }
 
@@ -305,7 +305,7 @@ void KGPG::start()
                 gpgme_data_release(gpgindata);
                 break;
             }
-            // qDebug() << Q_FUNC_INFO << "encrypted" << gpgbuffer;
+            // qDebug() << Q_FUNC_INFO << "encrypt" << gpgbuffer;
 
             gpgme_free(gpgbuffer);
             gpgme_data_release(gpgindata);
@@ -313,7 +313,7 @@ void KGPG::start()
         }
         case KGPG::DecryptMode: {
             if (m_keys.isEmpty()) {
-                setError("No key available");
+                setError(i18n("No key available"));
                 break;
             }
 
@@ -361,7 +361,7 @@ void KGPG::start()
                 gpgme_data_release(gpgindata);
                 break;
             }
-            // qDebug() << Q_FUNC_INFO << "decryption" << gpgbuffer;
+            // qDebug() << Q_FUNC_INFO << "decrypt" << gpgbuffer;
 
             gpgme_free(gpgbuffer);
             gpgme_data_release(gpgindata);
@@ -369,7 +369,7 @@ void KGPG::start()
         }
         case KGPG::SignMode: {
             if (m_keys.isEmpty()) {
-                setError("No key available");
+                setError(i18n("No key available"));
                 break;
             }
 
@@ -538,7 +538,7 @@ void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool gpgsecret)
         return;
     }
 
-    // required by key query
+    // required by key iteration
     gpgresult = gpgme_op_keylist_start(m_gpgctx, NULL, gpgsecret);
     if (gpgresult != 0) {
         setError(gpgme_strerror(gpgresult));
