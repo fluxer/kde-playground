@@ -82,29 +82,36 @@ void KGPG::setMode(const KGPGMode mode)
     switch (mode) {
         case KGPG::EncryptMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL, true);
-            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
+            m_ui.sourcerequester->setFilter(QString());
+            m_ui.destinationrequester->setFilter(QString::fromLatin1("application/pgp-encrypted"));
             m_ui.destinationrequester->setVisible(true);
+            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.actionEncrypt->setChecked(true);
             break;
         }
         case KGPG::DecryptMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL, false);
-            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
+            m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-encrypted"));
+            m_ui.destinationrequester->setFilter(QString());
             m_ui.destinationrequester->setVisible(true);
+            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.actionDecrypt->setChecked(true);
             break;
         }
         case KGPG::SignMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_SIGS, true);
-            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
+            m_ui.sourcerequester->setFilter(QString());
+            m_ui.destinationrequester->setFilter(QString::fromLatin1("application/pgp-signature"));
             m_ui.destinationrequester->setVisible(true);
+            m_ui.startbutton->setEnabled(!m_keys.isEmpty());
             m_ui.actionSign->setChecked(true);
             break;
         }
         case KGPG::VerifyMode: {
             updateKeys(GPGME_KEYLIST_MODE_LOCAL | GPGME_KEYLIST_MODE_SIGS, false);
-            m_ui.startbutton->setEnabled(true);
+            m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-signature"));
             m_ui.destinationrequester->setVisible(false);
+            m_ui.startbutton->setEnabled(true);
             m_ui.actionVerify->setChecked(true);
             break;
         }
@@ -137,8 +144,6 @@ void KGPG::setSource(const QString &source)
             if (destinationstring.endsWith(QLatin1String(".gpg"))) {
                 destinationstring.chop(4);
             }
-            m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-encrypted"));
-            m_ui.destinationrequester->setFilter(QString());
             m_ui.sourcerequester->setUrl(sourceurl);
             m_ui.destinationrequester->setUrl(KUrl(destinationstring));
             break;
@@ -148,8 +153,6 @@ void KGPG::setSource(const QString &source)
 
             QString destinationstring = sourceurl.prettyUrl();
             destinationstring.append(QLatin1String(".asc"));
-            m_ui.sourcerequester->setFilter(QString());
-            m_ui.destinationrequester->setFilter(QString::fromLatin1("application/pgp-signature"));
             m_ui.sourcerequester->setUrl(sourceurl);
             m_ui.destinationrequester->setUrl(KUrl(destinationstring));
             break;
@@ -157,7 +160,6 @@ void KGPG::setSource(const QString &source)
         case KGPG::VerifyMode: {
             gpgme_set_armor(m_gpgctx, 1);
 
-            m_ui.sourcerequester->setFilter(QString::fromLatin1("application/pgp-signature"));
             m_ui.sourcerequester->setUrl(sourceurl);
             break;
         }
