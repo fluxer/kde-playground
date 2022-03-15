@@ -48,6 +48,7 @@ KGPG::KGPG(QWidget *parent)
     }
     m_release = true;
 
+    gpgme_set_offline(m_gpgctx, 1);
     gpgme_set_pinentry_mode(m_gpgctx, GPGME_PINENTRY_MODE_LOOPBACK); // for password callback
     gpgme_set_passphrase_cb(m_gpgctx, KGPG::gpgPasswordCallback, this);
     gpgme_set_progress_cb(m_gpgctx, KGPG::gpgProgressCallback, this);
