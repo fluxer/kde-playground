@@ -79,7 +79,7 @@ private Q_SLOTS:
     void slotQuit();
 
 private:
-    void updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret);
+    void updateKeys(const gpgme_keylist_mode_t gpgmode, const bool gpgsecret);
 
     Ui_KGPGWindow m_ui;
     KGPGMode m_mode;

@@ -492,7 +492,7 @@ void KGPG::slotQuit()
     qApp->quit();
 }
 
-void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret)
+void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool gpgsecret)
 {
     disconnect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
 
@@ -506,7 +506,7 @@ void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool secret)
     }
 
     // required by key query
-    gpgresult = gpgme_op_keylist_start(m_gpgctx, NULL, secret);
+    gpgresult = gpgme_op_keylist_start(m_gpgctx, NULL, gpgsecret);
     if (gpgresult != 0) {
         setError(gpgme_strerror(gpgresult));
         return;
@@ -562,6 +562,7 @@ int main(int argc, char **argv)
     KApplication app;
 
     KGPG* kgpg = new KGPG();
+    kgpg->setMode(KGPG::EncryptMode);
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     for (int pos = 0; pos < args->count(); ++pos) {
@@ -583,8 +584,6 @@ int main(int argc, char **argv)
         kgpg->setMode(KGPG::SignMode);
     } else if (args->isSet("verify")) {
         kgpg->setMode(KGPG::VerifyMode);
-    } else {
-        kgpg->setMode(KGPG::EncryptMode);
     }
 
     kgpg->show();
