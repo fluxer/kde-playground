@@ -20,47 +20,14 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout_3">
-    <item row="3" column="0" colspan="3">
-     <layout class="QGridLayout" name="gridLayout_2">
-      <item row="0" column="1">
-       <widget class="KComboBox" name="keysbox">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="0">
-       <widget class="QLabel" name="label">
-        <property name="text">
-         <string>Select key:</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2">
-       <widget class="KPushButton" name="generatebutton">
-        <property name="text">
-         <string>Generate key</string>
-        </property>
-        <property name="icon">
-         <iconset theme="list-add">
-          <normaloff/>
-         </iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="9" column="0" colspan="3">
+    <item row="8" column="0" colspan="3">
      <widget class="QProgressBar" name="progressbar">
       <property name="value">
        <number>24</number>
       </property>
      </widget>
     </item>
-    <item row="6" column="0" colspan="3">
+    <item row="5" column="0" colspan="3">
      <widget class="QFrame" name="frame">
       <property name="sizePolicy">
        <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
@@ -207,7 +174,7 @@
       </layout>
      </widget>
     </item>
-    <item row="7" column="1">
+    <item row="6" column="1">
      <widget class="KPushButton" name="startbutton">
       <property name="text">
        <string>Start</string>
@@ -219,7 +186,7 @@
       </property>
      </widget>
     </item>
-    <item row="7" column="0">
+    <item row="6" column="0">
      <spacer name="horizontalSpacer">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -232,7 +199,7 @@
       </property>
      </spacer>
     </item>
-    <item row="7" column="2">
+    <item row="6" column="2">
      <spacer name="horizontalSpacer_2">
       <property name="orientation">
        <enum>Qt::Horizontal</enum>
@@ -247,6 +214,9 @@
     </item>
     <item row="0" column="0" colspan="3">
      <layout class="QGridLayout" name="gridLayout_4">
+      <item row="0" column="1">
+       <widget class="KUrlRequester" name="sourcerequester"/>
+      </item>
       <item row="0" column="0">
        <widget class="QLabel" name="label_9">
         <property name="text">
@@ -267,13 +237,30 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1">
-       <widget class="KUrlRequester" name="sourcerequester"/>
-      </item>
       <item row="1" column="1">
        <widget class="KUrlRequester" name="destinationrequester">
         <property name="mode">
          <set>KFile::File|KFile::LocalOnly</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="KComboBox" name="keysbox">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLabel" name="label">
+        <property name="text">
+         <string>Select key:</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
         </property>
        </widget>
       </item>
@@ -305,6 +292,14 @@
     <addaction name="actionSign"/>
     <addaction name="actionVerify"/>
    </widget>
+   <widget class="QMenu" name="menuKey">
+    <property name="title">
+     <string>Key</string>
+    </property>
+    <addaction name="actionGenerate"/>
+    <addaction name="actionExport"/>
+    <addaction name="actionImport"/>
+   </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
      <string>About</string>
@@ -312,6 +307,7 @@
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuMode"/>
+   <addaction name="menuKey"/>
    <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -350,6 +346,21 @@
    </property>
    <property name="text">
     <string>Verify</string>
+   </property>
+  </action>
+  <action name="actionGenerate">
+   <property name="text">
+    <string>Generate</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="text">
+    <string>Export</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="text">
+    <string>Import</string>
    </property>
   </action>
  </widget>

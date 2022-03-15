@@ -53,7 +53,6 @@ KGPG::KGPG(QWidget *parent)
     gpgme_set_progress_cb(m_gpgctx, KGPG::gpgProgressCallback, this);
 
     connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
-    connect(m_ui.generatebutton, SIGNAL(clicked()), this, SLOT(slotGenerateKey()));
     connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
 
     connect(m_ui.actionQuit, SIGNAL(triggered()), this, SLOT(slotQuit()));
@@ -454,12 +453,6 @@ void KGPG::slotKeysBox(const int index)
     m_ui.expiredled->setState(kgpgkey.expired ? KLed::On : KLed::Off);
     m_ui.canencryptled->setState(kgpgkey.canencrypt ? KLed::On : KLed::Off);
     m_ui.cansignled->setState(kgpgkey.cansign ? KLed::On : KLed::Off);
-}
-
-void KGPG::slotGenerateKey()
-{
-    // TODO: implement
-    setError("Not implemented");
 }
 
 void KGPG::slotStart()

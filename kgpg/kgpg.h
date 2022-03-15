@@ -70,7 +70,6 @@ public:
 
 private Q_SLOTS:
     void slotKeysBox(const int index);
-    void slotGenerateKey();
     void slotStart();
     void slotEncryptMode();
     void slotDecryptMode();
