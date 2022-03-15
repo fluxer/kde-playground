@@ -55,7 +55,7 @@ public:
     ~KGPG();
 
     void setMode(const KGPGMode mode);
-    void setSource(const QString &source);
+    void setSource(const KUrl &source);
     void setError(const char* const error);
     void setError(const QString &error);
     void setProgress(const int gpgcurrent, const int gpgtotal);

@@ -48,6 +48,7 @@ KGPG::KGPG(QWidget *parent)
     }
     m_release = true;
 
+    gpgme_set_armor(m_gpgctx, 1); // if set at any point later (e.g. from setMode()) it has no effect
     gpgme_set_offline(m_gpgctx, 1);
     gpgme_set_pinentry_mode(m_gpgctx, GPGME_PINENTRY_MODE_LOOPBACK); // for password callback
     gpgme_set_passphrase_cb(m_gpgctx, KGPG::gpgPasswordCallback, this);
@@ -143,44 +144,35 @@ void KGPG::setMode(const KGPGMode mode)
     
 }
 
-void KGPG::setSource(const QString &source)
+void KGPG::setSource(const KUrl &source)
 {
-    const KUrl sourceurl(source);
     // TODO: invalid source or destination URL should disable start button
     switch (m_mode) {
         case KGPG::EncryptMode: {
-            gpgme_set_armor(m_gpgctx, 0);
-
-            QString destinationstring = sourceurl.prettyUrl();
+            QString destinationstring = source.prettyUrl();
             destinationstring.append(QLatin1String(".gpg"));
-            m_ui.sourcerequester->setUrl(sourceurl);
+            m_ui.sourcerequester->setUrl(source);
             m_ui.destinationrequester->setUrl(KUrl(destinationstring));
             break;
         }
         case KGPG::DecryptMode: {
-            gpgme_set_armor(m_gpgctx, 0);
-
-            QString destinationstring = sourceurl.prettyUrl();
+            QString destinationstring = source.prettyUrl();
             if (destinationstring.endsWith(QLatin1String(".gpg"))) {
                 destinationstring.chop(4);
             }
-            m_ui.sourcerequester->setUrl(sourceurl);
+            m_ui.sourcerequester->setUrl(source);
             m_ui.destinationrequester->setUrl(KUrl(destinationstring));
             break;
         }
         case KGPG::SignMode: {
-            gpgme_set_armor(m_gpgctx, 1);
-
-            QString destinationstring = sourceurl.prettyUrl();
+            QString destinationstring = source.prettyUrl();
             destinationstring.append(QLatin1String(".asc"));
-            m_ui.sourcerequester->setUrl(sourceurl);
+            m_ui.sourcerequester->setUrl(source);
             m_ui.destinationrequester->setUrl(KUrl(destinationstring));
             break;
         }
         case KGPG::VerifyMode: {
-            gpgme_set_armor(m_gpgctx, 1);
-
-            m_ui.sourcerequester->setUrl(sourceurl);
+            m_ui.sourcerequester->setUrl(source);
             break;
         }
         default: {
@@ -603,28 +595,37 @@ int main(int argc, char **argv)
     KApplication app;
 
     KGPG* kgpg = new KGPG();
-    kgpg->setMode(KGPG::EncryptMode);
 
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    for (int pos = 0; pos < args->count(); ++pos) {
-        const KUrl argurl = args->url(pos);
-        const KMimeType::Ptr argmime = KMimeType::findByUrl(argurl);
-        if (argmime && argmime->is(QString::fromLatin1("application/pgp-encrypted"))) {
-            kgpg->setMode(KGPG::DecryptMode);
-        } else if (argmime && argmime->is(QString::fromLatin1("application/pgp-signature"))) {
-            kgpg->setMode(KGPG::VerifyMode);
-        }
-        kgpg->setSource(argurl.prettyUrl());
-    }
-
+    bool detectmode = true;
     if (args->isSet("encrypt")) {
         kgpg->setMode(KGPG::EncryptMode);
+        detectmode = false;
     } else if (args->isSet("decrypt")) {
         kgpg->setMode(KGPG::DecryptMode);
+        detectmode = false;
     } else if (args->isSet("sign")) {
         kgpg->setMode(KGPG::SignMode);
+        detectmode = false;
     } else if (args->isSet("verify")) {
         kgpg->setMode(KGPG::VerifyMode);
+        detectmode = false;
+    } else {
+        kgpg->setMode(KGPG::EncryptMode);
+        detectmode = true;
+    }
+
+    for (int pos = 0; pos < args->count(); ++pos) {
+        const KUrl argurl = args->url(pos);
+        if (detectmode) {
+            const KMimeType::Ptr argmime = KMimeType::findByUrl(argurl);
+            if (argmime && argmime->is(QString::fromLatin1("application/pgp-encrypted"))) {
+                kgpg->setMode(KGPG::DecryptMode);
+            } else if (argmime && argmime->is(QString::fromLatin1("application/pgp-signature"))) {
+                kgpg->setMode(KGPG::VerifyMode);
+            }
+        }
+        kgpg->setSource(argurl);
     }
 
     kgpg->show();
