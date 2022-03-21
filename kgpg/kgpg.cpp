@@ -181,6 +181,8 @@ void KGPG::setSource(const KUrl &source)
             QString destinationstring = source.prettyUrl();
             if (destinationstring.endsWith(QLatin1String(".asc"))) {
                 destinationstring.chop(4);
+            } else if (destinationstring.endsWith(QLatin1String(".sig"))) {
+                destinationstring.chop(4);
             }
             m_ui.sourcerequester->setUrl(source);
             m_ui.destinationrequester->setUrl(KUrl(destinationstring));
