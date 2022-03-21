@@ -255,18 +255,18 @@ void KGPG::start()
             const QByteArray kgpgkeyfpr = m_keys.at(m_ui.keysbox->currentIndex()).fpr;
             const QByteArray gpginputfile = m_ui.sourcerequester->url().toLocalFile().toLocal8Bit();
 
-            gpgme_data_t gpgindata;
-            gpgme_error_t gpgresult = gpgme_data_new_from_file(&gpgindata, gpginputfile.constData(), 1);
+            gpgme_key_t gpgkey;
+            gpgme_error_t gpgresult = gpgme_get_key(m_gpgctx, kgpgkeyfpr.constData(), &gpgkey, 1);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 break;
             }
 
-            gpgme_key_t gpgencryptkey;
-            gpgresult = gpgme_get_key(m_gpgctx, kgpgkeyfpr.constData(), &gpgencryptkey, 1);
+            gpgme_data_t gpgindata;
+            gpgresult = gpgme_data_new_from_file(&gpgindata, gpginputfile.constData(), 1);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
-                gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
@@ -275,15 +275,17 @@ void KGPG::start()
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
-            gpgme_key_t gpgkeys[2] = { gpgencryptkey, NULL };
+            gpgme_key_t gpgkeys[2] = { gpgkey, NULL };
             gpgresult = gpgme_op_encrypt(m_gpgctx, gpgkeys, GPGME_ENCRYPT_ALWAYS_TRUST, gpgindata, gpgoutdata);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
                 gpgme_data_release(gpgoutdata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
@@ -296,6 +298,7 @@ void KGPG::start()
                 setError(encryptedfile.errorString());
                 gpgme_free(gpgbuffer);
                 gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
@@ -303,12 +306,14 @@ void KGPG::start()
                 setError(encryptedfile.errorString());
                 gpgme_free(gpgbuffer);
                 gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
             // qDebug() << Q_FUNC_INFO << "encrypt" << gpgbuffer;
 
             gpgme_free(gpgbuffer);
             gpgme_data_release(gpgindata);
+            gpgme_key_unref(gpgkey);
             break;
         }
         case KGPG::DecryptMode: {
@@ -376,18 +381,18 @@ void KGPG::start()
             const QByteArray kgpgkeyfpr = m_keys.at(m_ui.keysbox->currentIndex()).fpr;
             const QByteArray gpginputfile = m_ui.sourcerequester->url().toLocalFile().toLocal8Bit();
 
-            gpgme_data_t gpgindata;
-            gpgme_error_t gpgresult = gpgme_data_new_from_file(&gpgindata, gpginputfile.constData(), 1);
+            gpgme_key_t gpgkey;
+            gpgme_error_t gpgresult = gpgme_get_key(m_gpgctx, kgpgkeyfpr.constData(), &gpgkey, 1);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 break;
             }
 
-            gpgme_key_t gpgencryptkey;
-            gpgresult = gpgme_get_key(m_gpgctx, kgpgkeyfpr.constData(), &gpgencryptkey, 1);
+            gpgme_data_t gpgindata;
+            gpgresult = gpgme_data_new_from_file(&gpgindata, gpginputfile.constData(), 1);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
-                gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
@@ -396,16 +401,18 @@ void KGPG::start()
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
-            gpgme_key_t gpgkeys[2] = { gpgencryptkey, NULL };
+            gpgme_key_t gpgkeys[2] = { gpgkey, NULL };
             // the only important difference from the code for KGPG::EncryptMode mode is the function call bellow
             gpgresult = gpgme_op_encrypt_sign(m_gpgctx, gpgkeys, GPGME_ENCRYPT_ALWAYS_TRUST, gpgindata, gpgoutdata);
             if (gpgresult != 0) {
                 setError(gpgme_strerror(gpgresult));
                 gpgme_data_release(gpgindata);
                 gpgme_data_release(gpgoutdata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
@@ -418,6 +425,7 @@ void KGPG::start()
                 setError(encryptedfile.errorString());
                 gpgme_free(gpgbuffer);
                 gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
 
@@ -425,12 +433,14 @@ void KGPG::start()
                 setError(encryptedfile.errorString());
                 gpgme_free(gpgbuffer);
                 gpgme_data_release(gpgindata);
+                gpgme_key_unref(gpgkey);
                 break;
             }
             // qDebug() << Q_FUNC_INFO << "sign" << gpgbuffer;
 
             gpgme_free(gpgbuffer);
             gpgme_data_release(gpgindata);
+            gpgme_key_unref(gpgkey);
             break;
         }
         case KGPG::VerifyMode: {
