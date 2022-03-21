@@ -238,7 +238,7 @@
        <widget class="KUrlRequester" name="sourcerequester"/>
       </item>
       <item row="0" column="0">
-       <widget class="QLabel" name="label_9">
+       <widget class="QLabel" name="sourcelabel">
         <property name="text">
          <string>Select source:</string>
         </property>
