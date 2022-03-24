@@ -301,7 +301,6 @@
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuMode">
     <property name="title">

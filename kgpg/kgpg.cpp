@@ -21,6 +21,7 @@
 #include <kmimetype.h>
 #include <kpassworddialog.h>
 #include <kmessagebox.h>
+#include <kstandardaction.h>
 #include <khelpmenu.h>
 #include <kapplication.h>
 #include <klocale.h>
@@ -42,11 +43,13 @@ KGPG::KGPG(QWidget *parent)
     connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
     connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
 
-    connect(m_ui.actionQuit, SIGNAL(triggered()), this, SLOT(slotQuit()));
     connect(m_ui.actionEncrypt, SIGNAL(triggered()), this, SLOT(slotEncryptMode()));
     connect(m_ui.actionDecrypt, SIGNAL(triggered()), this, SLOT(slotDecryptMode()));
     connect(m_ui.actionSign, SIGNAL(triggered()), this, SLOT(slotSignMode()));
     connect(m_ui.actionVerify, SIGNAL(triggered()), this, SLOT(slotVerifyMode()));
+
+    KAction* kaction = KStandardAction::quit(this, SLOT(slotQuit()), m_ui.menuFile);
+    m_ui.menuFile->addAction((QAction*)kaction);
 
     KHelpMenu* khelpmenu = new KHelpMenu(this, KGlobal::mainComponent().aboutData());
     menuBar()->addMenu((QMenu*)khelpmenu->menu());
