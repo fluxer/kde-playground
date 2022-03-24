@@ -77,6 +77,9 @@ private Q_SLOTS:
     void slotVerifyMode();
     void slotQuit();
 
+    void slotSourceOrDestinationChanged(const QString &url);
+    void slotSourceOrDestinationChanged(const KUrl &url);
+
 private:
     void updateKeys(const gpgme_keylist_mode_t gpgmode, const bool gpgsecret);
 

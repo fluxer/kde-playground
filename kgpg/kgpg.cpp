@@ -40,6 +40,11 @@ KGPG::KGPG(QWidget *parent)
     m_ui.startbutton->setEnabled(false);
     m_ui.progressbar->setVisible(false);
 
+    connect(m_ui.sourcerequester, SIGNAL(textChanged(QString)), this, SLOT(slotSourceOrDestinationChanged(QString)));
+    connect(m_ui.sourcerequester, SIGNAL(urlSelected(KUrl)), this, SLOT(slotSourceOrDestinationChanged(KUrl)));
+    connect(m_ui.destinationrequester, SIGNAL(textChanged(QString)), this, SLOT(slotSourceOrDestinationChanged(QString)));
+    connect(m_ui.destinationrequester, SIGNAL(urlSelected(KUrl)), this, SLOT(slotSourceOrDestinationChanged(KUrl)));
+
     connect(m_ui.keysbox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotKeysBox(int)));
     connect(m_ui.startbutton, SIGNAL(clicked()), this, SLOT(slotStart()));
 
@@ -524,6 +529,31 @@ void KGPG::start()
 
             // qDebug() << Q_FUNC_INFO << "verify" << gpgbuffer;
 
+#if 0
+            const gpgme_verify_result_t gpgverify = gpgme_op_verify_result(m_gpgctx);
+            if (!gpgverify->signatures) {
+                setError(i18n("No signatures"));
+                gpgme_data_release(gpgindata);
+                gpgme_data_release(gpgsigndata);
+                break;
+            }
+
+            gpgme_signature_t gpgsignature;
+            bool breakswitch = false;
+            for (gpgsignature = gpgverify->signatures; gpgsignature; gpgsignature = gpgsignature->next) {
+                if (gpgsignature->validity_reason != 0) {
+                    setError(gpgme_strerror(gpgsignature->validity_reason));
+                    gpgme_data_release(gpgindata);
+                    gpgme_data_release(gpgsigndata);
+                    breakswitch = true;
+                    break;
+                }
+            }
+            if (breakswitch) {
+                break;
+            }
+#endif
+
             gpgme_free(gpgbuffer);
             gpgme_data_release(gpgindata);
             gpgme_data_release(gpgsigndata);
@@ -583,6 +613,20 @@ void KGPG::slotVerifyMode()
 void KGPG::slotQuit()
 {
     qApp->quit();
+}
+
+void KGPG::slotSourceOrDestinationChanged(const QString &url)
+{
+    Q_UNUSED(url);
+    const KUrl sourceurl = m_ui.sourcerequester->url();
+    const KUrl destinationurl = m_ui.destinationrequester->url();
+    m_ui.startbutton->setEnabled(sourceurl.isValid() && destinationurl.isValid());
+}
+
+void KGPG::slotSourceOrDestinationChanged(const KUrl &url)
+{
+    Q_UNUSED(url);
+    slotSourceOrDestinationChanged(QString());
 }
 
 void KGPG::updateKeys(const gpgme_keylist_mode_t gpgmode, const bool gpgsecret)
