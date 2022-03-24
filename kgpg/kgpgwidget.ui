@@ -320,15 +320,9 @@
     <addaction name="actionExport"/>
     <addaction name="actionImport"/>
    </widget>
-   <widget class="QMenu" name="menuAbout">
-    <property name="title">
-     <string>About</string>
-    </property>
-   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuMode"/>
    <addaction name="menuKey"/>
-   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionQuit">
