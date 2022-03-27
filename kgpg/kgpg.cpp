@@ -159,7 +159,6 @@ void KGPG::setMode(const KGPGMode mode)
 
 void KGPG::setSource(const KUrl &source)
 {
-    // TODO: invalid source or destination URL should disable start button
     switch (m_mode) {
         case KGPG::EncryptMode: {
             m_ui.sourcerequester->setUrl(source);
@@ -529,7 +528,6 @@ void KGPG::start()
 
             // qDebug() << Q_FUNC_INFO << "verify" << gpgbuffer;
 
-#if 0
             const gpgme_verify_result_t gpgverify = gpgme_op_verify_result(m_gpgctx);
             if (!gpgverify->signatures) {
                 setError(i18n("No signatures"));
@@ -541,8 +539,8 @@ void KGPG::start()
             gpgme_signature_t gpgsignature;
             bool breakswitch = false;
             for (gpgsignature = gpgverify->signatures; gpgsignature; gpgsignature = gpgsignature->next) {
-                if (gpgsignature->validity_reason != 0) {
-                    setError(gpgme_strerror(gpgsignature->validity_reason));
+                if (gpgsignature->status != 0) {
+                    setError(gpgme_strerror(gpgsignature->status));
                     gpgme_data_release(gpgindata);
                     gpgme_data_release(gpgsigndata);
                     breakswitch = true;
@@ -552,7 +550,6 @@ void KGPG::start()
             if (breakswitch) {
                 break;
             }
-#endif
 
             gpgme_free(gpgbuffer);
             gpgme_data_release(gpgindata);
