@@ -126,7 +126,7 @@ void KDesktopSpy::handleRequest()
         block.append("Server: KDestopSpy\r\n");
 
         QByteArray data;
-        data.append(QString("<html><img src=\"image.png\" width=\"%1\" height=\"%2\"><meta http-equiv=\"refresh\" content=\"1\"></html>").arg(desktopwidget->width()).arg(desktopwidget->height()).toAscii());
+        data.append(QString("<html><img src=\"image.png\" width=\"%1\" height=\"%2\"><meta http-equiv=\"refresh\" content=\"0.5\"></html>").arg(desktopwidget->width()).arg(desktopwidget->height()).toAscii());
 
         block.append("Content-Type: text/html; charset=UTF-8\r\n");
         block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
