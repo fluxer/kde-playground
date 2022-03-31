@@ -26,3 +26,5 @@ macro_optional_add_subdirectory (zeroconf-ioslave)
 macro_optional_add_subdirectory (kdestopspy)
 macro_optional_add_subdirectory (kvolume)
 macro_optional_add_subdirectory (ksnapshot)
+macro_optional_add_subdirectory (kgreeter)
+
