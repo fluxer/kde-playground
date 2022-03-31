@@ -3,6 +3,7 @@
 #include <QtGui>
 #include <KStyle>
 #include <KGlobalSettings>
+#include <KSharedConfig>
 #include <KLocale>
 
 #include <glib.h>
@@ -122,7 +123,7 @@ KGreeter::KGreeter(QWidget *parent)
 void KGreeter::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
-    QImage image("/home/smil3y/Pictures/1.webp");
+    QImage image("/home/smil3y/katana/kde-workspace/plasma/wallpapers/data/Auros/contents/images/1280x800.png");
     painter.drawImage(rect(), image);
 
     QImage image2("/home/smil3y/katana/kde-workspace/kdm/kfrontend/themes/ariya/rectangle.png");
@@ -265,8 +266,16 @@ void KGreeter::slotLogin()
 int main(int argc, char**argv)
 {
     QApplication app(argc, argv);
+
     app.setStyle(KStyle::defaultStyle());
-    app.setPalette(KGlobalSettings::createApplicationPalette());
+
+    QString kcolorscheme = "ObsidianCoast";
+    if (kcolorscheme.isEmpty()) {
+        app.setPalette(KGlobalSettings::createApplicationPalette());
+    } else {
+        KSharedConfigPtr kcolorschemeconfig = KSharedConfig::openConfig(QString::fromLatin1("color-schemes/%1.colors").arg(kcolorscheme), KConfig::FullConfig, "data");
+        app.setPalette(KGlobalSettings::createApplicationPalette(kcolorschemeconfig));
+    }
 
     glibloop = g_main_loop_new(NULL, false);
 
