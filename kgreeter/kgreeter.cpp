@@ -150,6 +150,8 @@ KGreeter::KGreeter(QWidget *parent)
     connect(m_ui.actionReboot, SIGNAL(triggered()), this, SLOT(slotReboot()));
 
     connect(m_ui.loginbutton, SIGNAL(pressed()), this, SLOT(slotLogin()));
+
+    m_ui.passedit->setFocus();
 }
 
 void KGreeter::paintEvent(QPaintEvent *event)

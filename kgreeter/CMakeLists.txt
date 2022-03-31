@@ -1,15 +1,17 @@
-cmake_minimum_required(VERSION 3.4 FATAL_ERROR)
+project(kgreeter)
 
-project(kgreeter CXX)
+if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+    find_package(KDE4 4.21.0 REQUIRED)
+    include(KDE4Defaults)
+    include_directories(${KDE4_INCLUDES})
+    add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+endif()
 
 set(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake/modules")
 set(CMAKE_AUTOMOC TRUE)
 set(CMAKE_AUTOUIC TRUE)
 
 include(GNUInstallDirs)
-
-find_package(Katie REQUIRED)
-find_package(KDE4 REQUIRED)
 
 find_package(LightDM)
 set_package_properties(LightDM PROPERTIES
@@ -37,8 +39,6 @@ include_directories(${CMAKE_CURRENT_BINARY_DIR})
 add_subdirectory(kcm)
 
 include_directories(
-    ${KATIE_INCLUDES}
-    ${KDE4_INCLUDES}
     ${LIGHTDM_INCLUDE_DIR}
     ${GLIB2_INCLUDE_DIR}
 )
@@ -49,9 +49,9 @@ add_definitions(
 
 add_executable(kgreeter kgreeter.cpp)
 target_link_libraries(kgreeter
-    Katie::Core
-    Katie::Gui
-    KDE4::kdeui
+    ${QT_QTCORE_LIBRARY}
+    ${QT_QTGUI_LIBRARY}
+    ${KDE4_KDEUI_LIBS}
     ${LIGHTDM_LIBRARIES}
     ${GLIB2_LIBRARIES}
     gobject-2.0
