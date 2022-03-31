@@ -46,7 +46,7 @@ KCMGreeter::KCMGreeter(QWidget* parent, const QVariantList& args)
     setupUi(this);
 
     KAboutData *about =
-        new KAboutData(I18N_NOOP("KCMGreeter"), 0,
+        new KAboutData(I18N_NOOP("kcmkgreeter"), 0,
                        ki18n("KDE Greeter Module"),
                        0, KLocalizedString(), KAboutData::License_GPL,
                        ki18n("Copyright 2022, Ivailo Monev <email>xakepa10@gmail.com</email>"
@@ -54,6 +54,9 @@ KCMGreeter::KCMGreeter(QWidget* parent, const QVariantList& args)
 
     about->addAuthor(ki18n("Ivailo Monev"), KLocalizedString(), "xakepa10@gmail.com");
     setAboutData(about);
+
+    setNeedsAuthorization(true);
+    setButtons(KCModule::Help | KCModule::Apply);
 
     load();
 
