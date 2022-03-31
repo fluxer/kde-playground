@@ -60,10 +60,11 @@ KCMGreeter::KCMGreeter(QWidget* parent, const QVariantList& args)
     stylesbox->addItems(QStyleFactory::keys());
     connect(stylesbox, SIGNAL(currentIndexChanged(QString)), this, SLOT(slotStyleChanged(QString)));
 
-    // TODO: load name from General/Name
     const QStringList kcolorschemes = KGlobal::dirs()->findAllResources("data", "color-schemes/*.colors", KStandardDirs::NoDuplicates);
     foreach (const QString &kcolorscheme, kcolorschemes) {
-        colorsbox->addItem(QFileInfo(kcolorscheme).baseName());
+        const QString kcolorschemename = QSettings(kcolorscheme, QSettings::IniFormat).value("General/Name").toString();
+        const QString kcolorschemebasename = QFileInfo(kcolorscheme).baseName();
+        colorsbox->addItem(kcolorschemename, QVariant(kcolorschemebasename));
     }
     connect(colorsbox, SIGNAL(currentIndexChanged(QString)), this, SLOT(slotColorChanged(QString)));
 
@@ -102,7 +103,7 @@ void KCMGreeter::load()
     const QString kgreetercolor = kgreetersettings.value("greeter/colorscheme").toString();
     if (!kgreetercolor.isEmpty()) {
         for (int i = 0; i < colorsbox->count(); i++) {
-            if (colorsbox->itemText(i) == kgreetercolor) {
+            if (colorsbox->itemData(i).toString() == kgreetercolor) {
                 colorsbox->setCurrentIndex(i);
                 break;
             }
@@ -123,7 +124,7 @@ void KCMGreeter::save()
     KAuth::Action kgreeteraction("org.kde.kcontrol.kcmkgreeter.save");
     kgreeteraction.setHelperID("org.kde.kcontrol.kcmkgreeter");
     kgreeteraction.addArgument("style", stylesbox->currentText());
-    kgreeteraction.addArgument("colorscheme", colorsbox->currentText());
+    kgreeteraction.addArgument("colorscheme", colorsbox->itemData(colorsbox->currentIndex()).toString());
     kgreeteraction.addArgument("background", backgroundrequester->url().path());
     kgreeteraction.addArgument("rectangle", rectanglerequester->url().path());
     KAuth::ActionReply kgreeterreply = kgreeteraction.execute();
@@ -142,9 +143,9 @@ void KCMGreeter::slotStyleChanged(const QString &style)
     emit changed(true);
 }
 
-void KCMGreeter::slotColorChanged(const QString &style)
+void KCMGreeter::slotColorChanged(const QString &color)
 {
-    Q_UNUSED(style);
+    Q_UNUSED(color);
     emit changed(true);
 }
 

@@ -24,7 +24,7 @@ class KGreeter : public QMainWindow
 {
     Q_OBJECT
 public:
-    explicit KGreeter(QWidget *parent = 0);
+    explicit KGreeter(QWidget *parent = nullptr);
 
     QByteArray getUser() const;
     QByteArray getPass() const;
@@ -36,8 +36,9 @@ public:
     static void authenticationCompleteCb(LightDMGreeter *ldmgreeter, gpointer ldmptr);
     static void showMessageCb(LightDMGreeter *ldmgreeter, const gchar *ldmtext, LightDMMessageType ldmtype, gpointer ldmptr);
 
+    // QMainWindow reimplementations
 protected:
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) final;
 
 private Q_SLOTS:
     void slotSuspend();
