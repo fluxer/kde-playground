@@ -31,7 +31,7 @@ public:
     QByteArray getPass() const;
     QByteArray getSession() const;
 
-    LightDMGreeter* getGreater() const;
+    LightDMGreeter* getGreeter() const;
 
     static void showPromptCb(LightDMGreeter *ldmgreeter, const char *ldmtext, LightDMPromptType ldmtype, gpointer ldmptr);
     static void authenticationCompleteCb(LightDMGreeter *ldmgreeter, gpointer ldmptr);
@@ -215,7 +215,7 @@ QByteArray KGreeter::getSession() const
     return m_ui.sessionsbox->itemData(m_ui.sessionsbox->currentIndex()).toString().toUtf8();
 }
 
-LightDMGreeter * KGreeter::getGreater() const
+LightDMGreeter * KGreeter::getGreeter() const
 {
     return m_ldmgreeter;
 }
@@ -394,7 +394,7 @@ int main(int argc, char**argv)
     KGreeter kgreeter;
     kgreeter.showMaximized();
 
-    LightDMGreeter *ldmgreeter = kgreeter.getGreater();
+    LightDMGreeter *ldmgreeter = kgreeter.getGreeter();
 
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_greeter_connect_to_daemon_sync(ldmgreeter, &gliberror)) {
