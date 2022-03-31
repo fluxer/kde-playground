@@ -292,11 +292,11 @@ int main(int argc, char**argv)
     }
 
     const QString kgreetercolorscheme = kgreetersettings.value("greeter/colorscheme").toString();
-    if (kgreetercolorscheme.isEmpty()) {
-        app.setPalette(KGlobalSettings::createApplicationPalette());
-    } else {
+    if (!kgreetercolorscheme.isEmpty()) {
         KSharedConfigPtr kcolorschemeconfig = KSharedConfig::openConfig(QString::fromLatin1("color-schemes/%1.colors").arg(kgreetercolorscheme), KConfig::FullConfig, "data");
         app.setPalette(KGlobalSettings::createApplicationPalette(kcolorschemeconfig));
+    } else {
+        app.setPalette(KGlobalSettings::createApplicationPalette());
     }
 
     glibloop = g_main_loop_new(NULL, false);
