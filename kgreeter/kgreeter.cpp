@@ -143,6 +143,22 @@ KGreeter::KGreeter(QWidget *parent)
         }
     }
 
+    QSettings kgreeterstate("lightdm-kgreeter-state");
+    const QString lastuser = kgreeterstate.value("state/lastuser").toString();
+    for (int i = 0; i < m_ui.usersbox->count(); i++) {
+        if (m_ui.usersbox->itemText(i) == lastuser) {
+            m_ui.usersbox->setCurrentIndex(i);
+            break;
+        }
+    }
+    const QString lastsession = kgreeterstate.value("state/lastsession").toString();
+    for (int i = 0; i < m_ui.sessionsbox->count(); i++) {
+        if (m_ui.sessionsbox->itemData(i).toString() == lastsession) {
+            m_ui.sessionsbox->setCurrentIndex(i);
+            break;
+        }
+    }
+
     m_ui.groupbox->setTitle(QString::fromUtf8(lightdm_get_hostname()));
 
     m_ui.actionSuspend->setVisible(lightdm_get_can_suspend());
@@ -322,9 +338,18 @@ void KGreeter::slotLayout()
 void KGreeter::slotLogin()
 {
     const QByteArray kgreeterusername = getUser();
+    const QByteArray kgreetersession = getSession();
+
+    // the trick is to save before lightdm_greeter_authenticate()
+    {
+        QSettings kgreeterstate("lightdm-kgreeter-state");
+        kgreeterstate.setValue("state/lastsession", kgreetersession);
+        kgreeterstate.setValue("state/lastuser", kgreeterusername);
+    }
 
     g_autoptr(GError) gliberror = NULL;
     lightdm_greeter_authenticate(m_ldmgreeter, kgreeterusername.constData(), &gliberror);
+
     g_main_loop_run(glibloop);
 }
 
