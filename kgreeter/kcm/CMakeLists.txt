@@ -22,3 +22,15 @@ install(
     FILES kcm_kgreeterconfig.desktop
     DESTINATION ${KDE4_SERVICES_INSTALL_DIR}
 )
+
+########### next target ###############
+
+add_executable(kcmkgreeterhelper kgreeterhelper.cpp)
+target_link_libraries(kcmkgreeterhelper ${KDE4_KDECORE_LIBS})
+
+install(
+    TARGETS kcmkgreeterhelper
+    DESTINATION ${KDE4_LIBEXEC_INSTALL_DIR}
+)
+
+kde4_install_auth_helper_files(kcmkgreeterhelper org.kde.kcontrol.kcmkgreeter root)

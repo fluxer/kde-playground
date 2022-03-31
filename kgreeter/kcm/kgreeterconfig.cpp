@@ -23,6 +23,7 @@
 #include <QProcess>
 #include <kdebug.h>
 #include <klocale.h>
+#include <kauthaction.h>
 #include <kimageio.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
@@ -119,6 +120,19 @@ void KCMGreeter::load()
 
 void KCMGreeter::save()
 {
+    KAuth::Action kgreeteraction("org.kde.kcontrol.kcmkgreeter.save");
+    kgreeteraction.setHelperID("org.kde.kcontrol.kcmkgreeter");
+    kgreeteraction.addArgument("style", stylesbox->currentText());
+    kgreeteraction.addArgument("colorscheme", colorsbox->currentText());
+    kgreeteraction.addArgument("background", backgroundrequester->url().path());
+    kgreeteraction.addArgument("rectangle", rectanglerequester->url().path());
+    KAuth::ActionReply kgreeterreply = kgreeteraction.execute();
+
+    // qDebug() << kgreeter.errorCode() << kgreeter.errorDescription();
+
+    if (kgreeterreply != KAuth::ActionReply::SuccessReply) {
+        KMessageBox::error(this, kgreeterreply.errorDescription());
+    }
     emit changed(false);
 }
 
