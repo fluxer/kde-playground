@@ -27,6 +27,12 @@ set_package_properties(GLIB2 PROPERTIES
     TYPE REQUIRED
 )
 
+configure_file(
+    ${CMAKE_CURRENT_SOURCE_DIR}/config-kgreeter.h.cmake
+    ${CMAKE_CURRENT_BINARY_DIR}/config-kgreeter.h
+    @ONLY
+)
+
 include_directories(
     ${KATIE_INCLUDES}
     ${KDE4_INCLUDES}
@@ -54,20 +60,20 @@ set_target_properties(kgreeter PROPERTIES
 
 install(
     TARGETS kgreeter
-    DESTINATION ${CMAKE_INSTALL_FULL_SBINDIR}
+    DESTINATION ${KDE4_SBIN_INSTALL_DIR}
 )
 
 install(
     FILES lightdm-kgreeter-greeter.conf
-    DESTINATION ${CMAKE_INSTALL_FULL_SYSCONFDIR}/lightdm
+    DESTINATION ${KDE4_SYSCONF_INSTALL_DIR}/lightdm
 )
 
 install(
     FILES 50-lightdm-kgreeter-greeter.conf
-    DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/lightdm/lightdm.conf.d
+    DESTINATION ${KDE4_SHARE_INSTALL_PREFIX}/lightdm/lightdm.conf.d
 )
 
 install(
     FILES lightdm-kgreeter-greeter.desktop
-    DESTINATION ${CMAKE_INSTALL_FULL_DATADIR}/xgreeters
+    DESTINATION ${KDE4_SHARE_INSTALL_PREFIX}/xgreeters
 )

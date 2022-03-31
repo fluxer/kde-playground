@@ -12,11 +12,12 @@
 #include <lightdm-gobject-1/lightdm.h>
 
 #include "ui_kgreeter.h"
+#include "config-kgreeter.h"
 
 // for the callbacks
 static GMainLoop *glibloop = NULL;
 
-static QSettings kgreetersettings("/etc/lightdm/lightdm-kgreeter-greeter.conf", QSettings::IniFormat);
+static QSettings kgreetersettings(SYSCONF_INSTALL_DIR "/lightdm/lightdm-kgreeter-greeter.conf", QSettings::IniFormat);
 
 class KGreeter : public QMainWindow
 {
