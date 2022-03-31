@@ -1,6 +1,7 @@
 #define QT_NO_KEYWORDS
-#include <QtCore>
-#include <QtGui>
+#include <QSettings>
+#include <QMainWindow>
+#include <QPainter>
 #include <KStyle>
 #include <KGlobalSettings>
 #include <KSharedConfig>
@@ -15,6 +16,8 @@ QT_USE_NAMESPACE
 
 // For the callbacks
 static GMainLoop *glibloop = NULL;
+
+static QSettings kgreetersettings("/etc/lightdm/lightdm-kgreeter-greeter.conf", QSettings::IniFormat);
 
 class KGreeter : public QMainWindow
 {
@@ -48,6 +51,8 @@ private Q_SLOTS:
 private:
     Ui::KGreeter m_ui;
     LightDMGreeter *m_ldmgreeter;
+    QString m_background;
+    QString m_rectangle;
 };
 
 KGreeter::KGreeter(QWidget *parent)
@@ -59,6 +64,9 @@ KGreeter::KGreeter(QWidget *parent)
 #endif
 
     m_ui.setupUi(this);
+
+    m_background = kgreetersettings.value("greeter/background").toString();
+    m_rectangle = kgreetersettings.value("greeter/rectangle").toString();
 
     m_ldmgreeter = lightdm_greeter_new();
 
@@ -91,6 +99,7 @@ KGreeter::KGreeter(QWidget *parent)
         }
     }
 
+    // TODO: sort and then add
     GList *ldmsessions = lightdm_get_sessions();
     for (GList* ldmitem = ldmsessions; ldmitem; ldmitem = ldmitem->next) {
        LightDMSession *ldmsession = static_cast<LightDMSession*>(ldmitem->data);
@@ -122,15 +131,23 @@ KGreeter::KGreeter(QWidget *parent)
 
 void KGreeter::paintEvent(QPaintEvent *event)
 {
-    QPainter painter(this);
-    QImage image("/home/smil3y/katana/kde-workspace/plasma/wallpapers/data/Auros/contents/images/1280x800.png");
-    painter.drawImage(rect(), image);
+    if (!m_background.isEmpty()) {
+        QPainter painter(this);
+        QImage kgreeterbackground(m_background);
+        painter.drawImage(rect(), kgreeterbackground);
+    }
 
-    QImage image2("/home/smil3y/katana/kde-workspace/kdm/kfrontend/themes/ariya/rectangle.png");
-    QSize image2size(m_ui.groupbox->size());
-    image2size.rwidth() = image2size.width() * 1.04;
-    image2size.rheight() = image2size.height() * 1.6;
-    painter.drawImage(m_ui.groupbox->pos(), image2.scaled(image2size));
+    if (!m_rectangle.isEmpty()) {
+        m_ui.groupbox->setFlat(true);
+        QPainter painter(this);
+        QImage kgreeterrectangleimage(m_rectangle);
+        QSize kgreeterrectanglesize(m_ui.groupbox->size());
+        kgreeterrectanglesize.rwidth() = kgreeterrectanglesize.width() * 1.04;
+        kgreeterrectanglesize.rheight() = kgreeterrectanglesize.height() * 1.6;
+        painter.drawImage(m_ui.groupbox->pos(), kgreeterrectangleimage.scaled(kgreeterrectanglesize));
+    } else {
+        m_ui.groupbox->setFlat(false);
+    }
 
     QMainWindow::paintEvent(event);
 }
@@ -267,13 +284,18 @@ int main(int argc, char**argv)
 {
     QApplication app(argc, argv);
 
-    app.setStyle(KStyle::defaultStyle());
+    const QString kgreeterstyle = kgreetersettings.value("greeter/style").toString();
+    if (!kgreeterstyle.isEmpty()) {
+        app.setStyle(kgreeterstyle);
+    } else {
+        app.setStyle(KStyle::defaultStyle());
+    }
 
-    QString kcolorscheme = "ObsidianCoast";
-    if (kcolorscheme.isEmpty()) {
+    const QString kgreetercolorscheme = kgreetersettings.value("greeter/colorscheme").toString();
+    if (kgreetercolorscheme.isEmpty()) {
         app.setPalette(KGlobalSettings::createApplicationPalette());
     } else {
-        KSharedConfigPtr kcolorschemeconfig = KSharedConfig::openConfig(QString::fromLatin1("color-schemes/%1.colors").arg(kcolorscheme), KConfig::FullConfig, "data");
+        KSharedConfigPtr kcolorschemeconfig = KSharedConfig::openConfig(QString::fromLatin1("color-schemes/%1.colors").arg(kgreetercolorscheme), KConfig::FullConfig, "data");
         app.setPalette(KGlobalSettings::createApplicationPalette(kcolorschemeconfig));
     }
 
@@ -286,8 +308,8 @@ int main(int argc, char**argv)
 
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_greeter_connect_to_daemon_sync(ldmgreeter, &gliberror)) {
-        fprintf(stderr, "%s\n", "Could not connect to daemon");
-        return EXIT_FAILURE;
+        ::fprintf(stderr, "%s\n", "Could not connect to daemon");
+        return 1;
     }
 
     return app.exec();
