@@ -52,8 +52,8 @@ private Q_SLOTS:
 private:
     Ui::KGreeter m_ui;
     LightDMGreeter *m_ldmgreeter;
-    QString m_background;
-    QString m_rectangle;
+    QImage m_background;
+    QImage m_rectangle;
 };
 
 KGreeter::KGreeter(QWidget *parent)
@@ -66,8 +66,8 @@ KGreeter::KGreeter(QWidget *parent)
 
     m_ui.setupUi(this);
 
-    m_background = kgreetersettings.value("greeter/background").toString();
-    m_rectangle = kgreetersettings.value("greeter/rectangle").toString();
+    m_background = QImage(kgreetersettings.value("greeter/background").toString());
+    m_rectangle = QImage(kgreetersettings.value("greeter/rectangle").toString());
 
     m_ldmgreeter = lightdm_greeter_new();
 
@@ -161,20 +161,18 @@ KGreeter::KGreeter(QWidget *parent)
 
 void KGreeter::paintEvent(QPaintEvent *event)
 {
-    if (!m_background.isEmpty()) {
+    if (!m_background.isNull()) {
         QPainter painter(this);
-        QImage kgreeterbackground(m_background);
-        painter.drawImage(rect(), kgreeterbackground);
+        painter.drawImage(rect(), m_background);
     }
 
-    if (!m_rectangle.isEmpty()) {
+    if (!m_rectangle.isNull()) {
         m_ui.groupbox->setFlat(true);
         QPainter painter(this);
-        QImage kgreeterrectangleimage(m_rectangle);
         QSize kgreeterrectanglesize(m_ui.groupbox->size());
         kgreeterrectanglesize.rwidth() = kgreeterrectanglesize.width() * 1.04;
         kgreeterrectanglesize.rheight() = kgreeterrectanglesize.height() * 1.6;
-        painter.drawImage(m_ui.groupbox->pos(), kgreeterrectangleimage.scaled(kgreeterrectanglesize));
+        painter.drawImage(m_ui.groupbox->pos(), m_rectangle.scaled(kgreeterrectanglesize));
     } else {
         m_ui.groupbox->setFlat(false);
     }
