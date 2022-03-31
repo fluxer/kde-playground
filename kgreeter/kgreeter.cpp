@@ -206,7 +206,9 @@ void KGreeter::showPromptCb(LightDMGreeter *ldmgreeter, const char *ldmtext, Lig
         const QByteArray kgreeterpass = kgreeter->getPass();
 
         g_autoptr(GError) gliberror = NULL;
-        lightdm_greeter_respond(ldmgreeter, kgreeterpass.constData(), &gliberror);
+        if (!lightdm_greeter_respond(ldmgreeter, kgreeterpass.constData(), &gliberror)) {
+            kgreeter->statusBar()->showMessage(i18n("Failed to repsond: %1", gliberror->message));
+        }
     }
 }
 
@@ -223,7 +225,7 @@ void KGreeter::authenticationCompleteCb(LightDMGreeter *ldmgreeter, gpointer ldm
     if (!lightdm_greeter_get_is_authenticated(ldmgreeter) ||
         !lightdm_greeter_start_session_sync(ldmgreeter, kgreetersession.constData(), &gliberror))
     {
-        kgreeter->statusBar()->showMessage(i18n("Failed to authenticate or start session"));
+        kgreeter->statusBar()->showMessage(i18n("Failed to authenticate or start session: %1", gliberror->message));
         g_main_loop_quit(glibloop);
     } else {
         g_main_loop_quit(glibloop);
@@ -245,7 +247,7 @@ void KGreeter::slotSuspend()
 {
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_suspend(&gliberror)) {
-        statusBar()->showMessage(i18n("Could not suspend"));
+        statusBar()->showMessage(i18n("Could not suspend: %1", gliberror->message));
     }
 }
 
@@ -253,7 +255,7 @@ void KGreeter::slotHibernate()
 {
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_hibernate(&gliberror)) {
-        statusBar()->showMessage(i18n("Could not hibernate"));
+        statusBar()->showMessage(i18n("Could not hibernate: %1", gliberror->message));
     }
 }
 
@@ -261,7 +263,7 @@ void KGreeter::slotPoweroff()
 {
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_shutdown(&gliberror)) {
-        statusBar()->showMessage(i18n("Could not poweroff"));
+        statusBar()->showMessage(i18n("Could not poweroff: %1", gliberror->message));
     }
 }
 
@@ -269,7 +271,7 @@ void KGreeter::slotReboot()
 {
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_restart(&gliberror)) {
-        statusBar()->showMessage(i18n("Could not reboot"));
+        statusBar()->showMessage(i18n("Could not reboot: %1", gliberror->message));
     }
 }
 
@@ -329,7 +331,7 @@ int main(int argc, char**argv)
 
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_greeter_connect_to_daemon_sync(ldmgreeter, &gliberror)) {
-        ::fprintf(stderr, "%s\n", "Could not connect to daemon");
+        ::fprintf(stderr, "%s: %s\n", "Could not connect to daemon", gliberror->message);
         return 1;
     }
 
