@@ -18,13 +18,17 @@
 
 #include "kgreeterconfig.h"
 
+#include <QSettings>
+#include <QProcess>
 #include <kdebug.h>
 #include <klocale.h>
+#include <kstandarddirs.h>
+#include <kmessagebox.h>
 #include <kaboutdata.h>
-#include <kconfig.h>
-#include <kconfiggroup.h>
 #include <kpluginfactory.h>
 #include <kpluginloader.h>
+
+#include "config-kgreeter.h"
 
 K_PLUGIN_FACTORY(KCMGreeterFactory, registerPlugin<KCMGreeter>();)
 K_EXPORT_PLUGIN(KCMGreeterFactory("kcmgreeterconfig", "kcm_greeterconfig"))
@@ -49,9 +53,11 @@ KCMGreeter::KCMGreeter(QWidget* parent, const QVariantList& args)
     about->addAuthor(ki18n("Ivailo Monev"), KLocalizedString(), "xakepa10@gmail.com");
     setAboutData(about);
 
-    layout()->setContentsMargins(0, 0, 0, 0);
-
     load();
+
+    m_lightdmexe = KStandardDirs::findRootExe("lightdm");
+    testbutton->setEnabled(!m_lightdmexe.isEmpty());
+    connect(testbutton, SIGNAL(pressed()), this, SLOT(slotTest()));
 }
 
 KCMGreeter::~KCMGreeter()
@@ -60,12 +66,25 @@ KCMGreeter::~KCMGreeter()
 
 void KCMGreeter::load()
 {
+    QSettings kgreetersettings(SYSCONF_INSTALL_DIR "/lightdm/lightdm-kgreeter-greeter.conf", QSettings::IniFormat);
+    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/style").toString();
+    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/colorscheme").toString();
+    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/background").toString();
+    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/rectangle").toString();
+
     emit changed(false);
 }
 
 void KCMGreeter::save()
 {
     emit changed(false);
+}
+
+void KCMGreeter::slotTest()
+{
+    if (!QProcess::startDetached(m_lightdmexe, QStringList() << QString::fromLatin1("--test-mode"))) {
+        KMessageBox::error(this, i18n("Could not start LightDM"));
+    }
 }
 
 #include "moc_kgreeterconfig.cpp"

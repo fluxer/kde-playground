@@ -31,13 +31,19 @@
 class KCMGreeter : public KCModule, public Ui_KGreeterDialog
 {
     Q_OBJECT
-
 public:
+    // KCModule reimplementations
     KCMGreeter(QWidget* parent, const QVariantList&);
     ~KCMGreeter();
 
-    virtual void load();
-    virtual void save();
+    void load() final;
+    void save() final;
+
+private Q_SLOTS:
+    void slotTest();
+
+private:
+    QString m_lightdmexe;
 };
 
 #endif // KGREETERCONFIG_H
