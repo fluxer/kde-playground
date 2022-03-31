@@ -83,6 +83,7 @@ KGreeter::KGreeter(QWidget *parent)
         G_CALLBACK(KGreeter::showMessageCb), this
     );
 
+    // TODO: sort and then add
     GList *ldmlayouts = lightdm_get_layouts();
     for (GList *ldmitem = ldmlayouts; ldmitem; ldmitem = ldmitem->next) {
         LightDMLayout *ldmlayout = static_cast<LightDMLayout*>(ldmitem->data);
@@ -108,7 +109,6 @@ KGreeter::KGreeter(QWidget *parent)
         }
     }
 
-    // TODO: sort and then add
     GList *ldmsessions = lightdm_get_sessions();
     for (GList* ldmitem = ldmsessions; ldmitem; ldmitem = ldmitem->next) {
         LightDMSession *ldmsession = static_cast<LightDMSession*>(ldmitem->data);

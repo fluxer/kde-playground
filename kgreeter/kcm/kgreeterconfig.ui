@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="System"?>
+<ui version="4.0">
+ <class>KGreeterDialog</class>
+ <widget class="QWidget" name="KGreeterDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>481</width>
+    <height>466</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" name="gridLayout"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

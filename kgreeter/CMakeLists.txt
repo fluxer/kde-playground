@@ -27,6 +27,8 @@ set_package_properties(GLIB2 PROPERTIES
     TYPE REQUIRED
 )
 
+add_subdirectory(kcm)
+
 configure_file(
     ${CMAKE_CURRENT_SOURCE_DIR}/config-kgreeter.h.cmake
     ${CMAKE_CURRENT_BINARY_DIR}/config-kgreeter.h
