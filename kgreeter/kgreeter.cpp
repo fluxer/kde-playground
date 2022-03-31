@@ -228,8 +228,7 @@ void KGreeter::authenticationCompleteCb(LightDMGreeter *ldmgreeter, gpointer ldm
 
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_greeter_get_is_authenticated(ldmgreeter) ||
-        !lightdm_greeter_start_session_sync(ldmgreeter, kgreetersession.constData(), &gliberror))
-    {
+        !lightdm_greeter_start_session_sync(ldmgreeter, kgreetersession.constData(), &gliberror)) {
         kgreeter->statusBar()->showMessage(i18n("Failed to authenticate or start session: %1", gliberror->message));
         g_main_loop_quit(glibloop);
     } else {

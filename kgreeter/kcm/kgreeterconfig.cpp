@@ -41,8 +41,7 @@ KCMGreeter::KCMGreeter(QWidget* parent, const QVariantList& args)
 {
     Q_UNUSED(args);
 
-    setQuickHelp(i18n("<h1>KGreeter</h1>"
-            "This module allows you to change KDE greeter options."));
+    setQuickHelp(i18n("<h1>KGreeter</h1> This module allows you to change KDE greeter options."));
 
     setupUi(this);
 
@@ -78,6 +77,7 @@ KCMGreeter::KCMGreeter(QWidget* parent, const QVariantList& args)
 
     m_lightdmexe = KStandardDirs::findRootExe("lightdm");
     testbutton->setEnabled(!m_lightdmexe.isEmpty());
+    testbutton->setIcon(KIcon("debug-run"));
     connect(testbutton, SIGNAL(pressed()), this, SLOT(slotTest()));
 }
 
