@@ -3,6 +3,7 @@
 #include <QSettings>
 #include <QMainWindow>
 #include <QPainter>
+#include <KIcon>
 #include <KStyle>
 #include <KGlobalSettings>
 #include <KSharedConfig>
@@ -141,9 +142,13 @@ KGreeter::KGreeter(QWidget *parent)
     m_ui.groupbox->setTitle(QString::fromUtf8(lightdm_get_hostname()));
 
     m_ui.actionSuspend->setVisible(lightdm_get_can_suspend());
+    m_ui.actionSuspend->setIcon(KIcon("system-suspend"));
     m_ui.actionHibernate->setVisible(lightdm_get_can_hibernate());
+    m_ui.actionHibernate->setIcon(KIcon("system-suspend-hibernate"));
     m_ui.actionPoweroff->setVisible(lightdm_get_can_shutdown());
+    m_ui.actionPoweroff->setIcon(KIcon("system-shutdown"));
     m_ui.actionReboot->setVisible(lightdm_get_can_restart());
+    m_ui.actionReboot->setIcon(KIcon("system-reboot"));
     connect(m_ui.actionSuspend, SIGNAL(triggered()), this, SLOT(slotSuspend()));
     connect(m_ui.actionHibernate, SIGNAL(triggered()), this, SLOT(slotHibernate()));
     connect(m_ui.actionPoweroff, SIGNAL(triggered()), this, SLOT(slotPoweroff()));
