@@ -13,14 +13,10 @@
 
 #include "ui_kgreeter.h"
 
-QT_USE_NAMESPACE
-
-// For the callbacks
+// for the callbacks
 static GMainLoop *glibloop = NULL;
 
 static QSettings kgreetersettings("/etc/lightdm/lightdm-kgreeter-greeter.conf", QSettings::IniFormat);
-// TODO: where to save it? /var/lib/lightdm/ is not writable
-static QSettings kgreeterstate("/tmp/lightdm-kgreeter-greeter.ini", QSettings::IniFormat);
 
 class KGreeter : public QMainWindow
 {
@@ -34,9 +30,9 @@ public:
 
     LightDMGreeter* getGreater() const;
 
-    static void show_prompt_cb(LightDMGreeter *ldmgreeter, const char *ldmtext, LightDMPromptType ldmtype, gpointer ldmptr);
-    static void authentication_complete_cb(LightDMGreeter *ldmgreeter, gpointer ldmptr);
-    static void show_message_cb(LightDMGreeter *ldmgreeter, const gchar *ldmtext, LightDMMessageType ldmtype, gpointer ldmptr);
+    static void showPromptCb(LightDMGreeter *ldmgreeter, const char *ldmtext, LightDMPromptType ldmtype, gpointer ldmptr);
+    static void authenticationCompleteCb(LightDMGreeter *ldmgreeter, gpointer ldmptr);
+    static void showMessageCb(LightDMGreeter *ldmgreeter, const gchar *ldmtext, LightDMMessageType ldmtype, gpointer ldmptr);
 
 protected:
     void paintEvent(QPaintEvent *event);
@@ -73,9 +69,18 @@ KGreeter::KGreeter(QWidget *parent)
 
     m_ldmgreeter = lightdm_greeter_new();
 
-    g_signal_connect(m_ldmgreeter, LIGHTDM_GREETER_SIGNAL_SHOW_PROMPT, G_CALLBACK(KGreeter::show_prompt_cb), this);
-    g_signal_connect(m_ldmgreeter, LIGHTDM_GREETER_SIGNAL_AUTHENTICATION_COMPLETE, G_CALLBACK(KGreeter::authentication_complete_cb), this);
-    g_signal_connect(m_ldmgreeter, LIGHTDM_GREETER_SIGNAL_SHOW_MESSAGE, G_CALLBACK(KGreeter::show_message_cb), this);
+    g_signal_connect(
+        m_ldmgreeter, LIGHTDM_GREETER_SIGNAL_SHOW_PROMPT,
+        G_CALLBACK(KGreeter::showPromptCb), this
+    );
+    g_signal_connect(
+        m_ldmgreeter, LIGHTDM_GREETER_SIGNAL_AUTHENTICATION_COMPLETE,
+        G_CALLBACK(KGreeter::authenticationCompleteCb), this
+    );
+    g_signal_connect(
+        m_ldmgreeter, LIGHTDM_GREETER_SIGNAL_SHOW_MESSAGE,
+        G_CALLBACK(KGreeter::showMessageCb), this
+    );
 
     GList *ldmlayouts = lightdm_get_layouts();
     for (GList *ldmitem = ldmlayouts; ldmitem; ldmitem = ldmitem->next) {
@@ -122,19 +127,13 @@ KGreeter::KGreeter(QWidget *parent)
             }
         }
     }
-    // qDebug() << Q_FUNC_INFO << kgreeterstate.fileName() << kgreeterstate.map() << kgreeterstate.status();
-    const QString lastuser = kgreeterstate.value("state/lastuser").toString();
-    for (int i = 0; i < m_ui.usersbox->count(); i++) {
-        if (m_ui.usersbox->itemText(i) == lastuser) {
-            m_ui.usersbox->setCurrentIndex(i);
-            break;
-        }
-    }
-    const QString lastsession = kgreeterstate.value("state/lastsession").toString();
-    for (int i = 0; i < m_ui.sessionsbox->count(); i++) {
-        if (m_ui.sessionsbox->itemData(i).toString() == lastuser) {
-            m_ui.sessionsbox->setCurrentIndex(i);
-            break;
+    const QString ldmdefaultsession = QString::fromUtf8(lightdm_greeter_get_default_session_hint(m_ldmgreeter));
+    if (!ldmdefaultsession.isEmpty()) {
+        for (int i = 0; i < m_ui.sessionsbox->count(); i++) {
+            if (m_ui.sessionsbox->itemData(i).toString() == ldmdefaultsession) {
+                m_ui.sessionsbox->setCurrentIndex(i);
+                break;
+            }
         }
     }
 
@@ -177,12 +176,12 @@ void KGreeter::paintEvent(QPaintEvent *event)
 
 QByteArray KGreeter::getUser() const
 {
-    return m_ui.usersbox->currentText().toLocal8Bit();
+    return m_ui.usersbox->currentText().toUtf8();
 }
 
 QByteArray KGreeter::getPass() const
 {
-    return m_ui.passedit->text().toLocal8Bit();
+    return m_ui.passedit->text().toUtf8();
 }
 
 QByteArray KGreeter::getSession() const
@@ -195,7 +194,7 @@ LightDMGreeter * KGreeter::getGreater() const
     return m_ldmgreeter;
 }
 
-void KGreeter::show_prompt_cb(LightDMGreeter *ldmgreeter, const char *ldmtext, LightDMPromptType ldmtype, gpointer ldmptr)
+void KGreeter::showPromptCb(LightDMGreeter *ldmgreeter, const char *ldmtext, LightDMPromptType ldmtype, gpointer ldmptr)
 {
     // qDebug() << Q_FUNC_INFO;
 
@@ -210,7 +209,7 @@ void KGreeter::show_prompt_cb(LightDMGreeter *ldmgreeter, const char *ldmtext, L
     }
 }
 
-void KGreeter::authentication_complete_cb(LightDMGreeter *ldmgreeter, gpointer ldmptr)
+void KGreeter::authenticationCompleteCb(LightDMGreeter *ldmgreeter, gpointer ldmptr)
 {
     // qDebug() << Q_FUNC_INFO;
 
@@ -219,10 +218,6 @@ void KGreeter::authentication_complete_cb(LightDMGreeter *ldmgreeter, gpointer l
 
     const QByteArray kgreetersession = kgreeter->getSession();
 
-    kgreeterstate.setValue("state/lastsession", kgreetersession);
-    // qDebug() << Q_FUNC_INFO << kgreeterstate.fileName() << kgreeterstate.map() << kgreeterstate.status();
-
-    // Start the session
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_greeter_get_is_authenticated(ldmgreeter) ||
         !lightdm_greeter_start_session_sync(ldmgreeter, kgreetersession.constData(), &gliberror))
@@ -235,18 +230,14 @@ void KGreeter::authentication_complete_cb(LightDMGreeter *ldmgreeter, gpointer l
     }
 }
 
-void KGreeter::show_message_cb(LightDMGreeter *ldmgreeter, const gchar *ldmtext, LightDMMessageType ldmtype, gpointer ldmptr)
+void KGreeter::showMessageCb(LightDMGreeter *ldmgreeter, const gchar *ldmtext, LightDMMessageType ldmtype, gpointer ldmptr)
 {
     // qDebug() << Q_FUNC_INFO;
 
     KGreeter* kgreeter = static_cast<KGreeter*>(ldmptr);
     Q_ASSERT(kgreeter);
 
-    if (ldmtype == LIGHTDM_MESSAGE_TYPE_INFO) {
-        kgreeter->statusBar()->showMessage(QString::fromUtf8(ldmtext));
-    } else {
-        kgreeter->statusBar()->showMessage(QString::fromUtf8(ldmtext));
-    }
+    kgreeter->statusBar()->showMessage(QString::fromUtf8(ldmtext));
 }
 
 void KGreeter::slotSuspend()
@@ -303,7 +294,6 @@ void KGreeter::slotLogin()
 
     g_autoptr(GError) gliberror = NULL;
     lightdm_greeter_authenticate(m_ldmgreeter, kgreeterusername.constData(), &gliberror);
-    kgreeterstate.setValue("state/lastuser", kgreeterusername);
     g_main_loop_run(glibloop);
 }
 
@@ -320,7 +310,10 @@ int main(int argc, char**argv)
 
     const QString kgreetercolorscheme = kgreetersettings.value("greeter/colorscheme").toString();
     if (!kgreetercolorscheme.isEmpty()) {
-        KSharedConfigPtr kcolorschemeconfig = KSharedConfig::openConfig(QString::fromLatin1("color-schemes/%1.colors").arg(kgreetercolorscheme), KConfig::FullConfig, "data");
+        KSharedConfigPtr kcolorschemeconfig = KSharedConfig::openConfig(
+            QString::fromLatin1("color-schemes/%1.colors").arg(kgreetercolorscheme),
+            KConfig::FullConfig, "data"
+        );
         app.setPalette(KGlobalSettings::createApplicationPalette(kcolorschemeconfig));
     } else {
         app.setPalette(KGlobalSettings::createApplicationPalette());
