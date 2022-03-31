@@ -3,6 +3,7 @@
 #include <QSettings>
 #include <QMainWindow>
 #include <QPainter>
+#include <KMessageBox>
 #include <KIcon>
 #include <KStyle>
 #include <KGlobalSettings>
@@ -51,6 +52,8 @@ private Q_SLOTS:
     void slotLogin();
 
 private:
+    bool isUserLogged() const;
+
     Ui::KGreeter m_ui;
     LightDMGreeter *m_ldmgreeter;
     QImage m_background;
@@ -266,6 +269,16 @@ void KGreeter::slotHibernate()
 
 void KGreeter::slotPoweroff()
 {
+    if (isUserLogged()) {
+        const int kmessageresult = KMessageBox::questionYesNo(
+            this,
+            i18n("There is user logged in, are you sure you want to poweroff?")
+        );
+        if (kmessageresult != KMessageBox::Yes) {
+            return;
+        }
+    }
+
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_shutdown(&gliberror)) {
         statusBar()->showMessage(i18n("Could not poweroff: %1", gliberror->message));
@@ -274,6 +287,16 @@ void KGreeter::slotPoweroff()
 
 void KGreeter::slotReboot()
 {
+    if (isUserLogged()) {
+        const int kmessageresult = KMessageBox::questionYesNo(
+            this,
+            i18n("There is user logged in, are you sure you want to reboot?")
+        );
+        if (kmessageresult != KMessageBox::Yes) {
+            return;
+        }
+    }
+
     g_autoptr(GError) gliberror = NULL;
     if (!lightdm_restart(&gliberror)) {
         statusBar()->showMessage(i18n("Could not reboot: %1", gliberror->message));
@@ -303,6 +326,20 @@ void KGreeter::slotLogin()
     g_autoptr(GError) gliberror = NULL;
     lightdm_greeter_authenticate(m_ldmgreeter, kgreeterusername.constData(), &gliberror);
     g_main_loop_run(glibloop);
+}
+
+bool KGreeter::isUserLogged() const
+{
+    GList *ldmusers = lightdm_user_list_get_users(lightdm_user_list_get_instance());
+    for (GList *ldmitem = ldmusers; ldmitem; ldmitem = ldmitem->next) {
+        LightDMUser *ldmuser = static_cast<LightDMUser*>(ldmitem->data);
+        Q_ASSERT(ldmuser);
+
+        if (lightdm_user_get_logged_in(ldmuser)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 int main(int argc, char**argv)
