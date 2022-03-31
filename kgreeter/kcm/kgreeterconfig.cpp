@@ -19,9 +19,11 @@
 #include "kgreeterconfig.h"
 
 #include <QSettings>
+#include <QStyleFactory>
 #include <QProcess>
 #include <kdebug.h>
 #include <klocale.h>
+#include <kimageio.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
 #include <kaboutdata.h>
@@ -55,6 +57,24 @@ KCMGreeter::KCMGreeter(QWidget* parent, const QVariantList& args)
 
     load();
 
+    stylesbox->addItems(QStyleFactory::keys());
+    connect(stylesbox, SIGNAL(currentIndexChanged(QString)), this, SLOT(slotStyleChanged(QString)));
+
+    // TODO: load name from General/Name
+    const QStringList kcolorschemes = KGlobal::dirs()->findAllResources("data", "color-schemes/*.colors", KStandardDirs::NoDuplicates);
+    foreach (const QString &kcolorscheme, kcolorschemes) {
+        colorsbox->addItem(QFileInfo(kcolorscheme).baseName());
+    }
+    connect(colorsbox, SIGNAL(currentIndexChanged(QString)), this, SLOT(slotColorChanged(QString)));
+
+    backgroundrequester->setFilter(KImageIO::pattern(KImageIO::Reading));
+    connect(backgroundrequester, SIGNAL(textChanged(QString)), this, SLOT(slotURLChanged(QString)));
+    connect(backgroundrequester, SIGNAL(urlSelected(KUrl)), this, SLOT(slotURLChanged(KUrl)));
+
+    rectanglerequester->setFilter(KImageIO::pattern(KImageIO::Reading));
+    connect(rectanglerequester, SIGNAL(textChanged(QString)), this, SLOT(slotURLChanged(QString)));
+    connect(rectanglerequester, SIGNAL(urlSelected(KUrl)), this, SLOT(slotURLChanged(KUrl)));
+
     m_lightdmexe = KStandardDirs::findRootExe("lightdm");
     testbutton->setEnabled(!m_lightdmexe.isEmpty());
     connect(testbutton, SIGNAL(pressed()), this, SLOT(slotTest()));
@@ -67,10 +87,32 @@ KCMGreeter::~KCMGreeter()
 void KCMGreeter::load()
 {
     QSettings kgreetersettings(SYSCONF_INSTALL_DIR "/lightdm/lightdm-kgreeter-greeter.conf", QSettings::IniFormat);
-    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/style").toString();
-    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/colorscheme").toString();
-    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/background").toString();
-    qDebug() << Q_FUNC_INFO << kgreetersettings.value("greeter/rectangle").toString();
+
+    const QString kgreeterstyle = kgreetersettings.value("greeter/style").toString();
+    if (!kgreeterstyle.isEmpty()) {
+        for (int i = 0; i < stylesbox->count(); i++) {
+            if (stylesbox->itemText(i) == kgreeterstyle) {
+                stylesbox->setCurrentIndex(i);
+                break;
+            }
+        }
+    }
+
+    const QString kgreetercolor = kgreetersettings.value("greeter/colorscheme").toString();
+    if (!kgreetercolor.isEmpty()) {
+        for (int i = 0; i < colorsbox->count(); i++) {
+            if (colorsbox->itemText(i) == kgreetercolor) {
+                colorsbox->setCurrentIndex(i);
+                break;
+            }
+        }
+    }
+
+    const QString kgreeterbackground = kgreetersettings.value("greeter/background").toString();
+    backgroundrequester->setUrl(KUrl(kgreeterbackground));
+
+    const QString kgreeterrectangle = kgreetersettings.value("greeter/rectangle").toString();
+    rectanglerequester->setUrl(KUrl(kgreeterrectangle));
 
     emit changed(false);
 }
@@ -78,6 +120,30 @@ void KCMGreeter::load()
 void KCMGreeter::save()
 {
     emit changed(false);
+}
+
+void KCMGreeter::slotStyleChanged(const QString &style)
+{
+    Q_UNUSED(style);
+    emit changed(true);
+}
+
+void KCMGreeter::slotColorChanged(const QString &style)
+{
+    Q_UNUSED(style);
+    emit changed(true);
+}
+
+void KCMGreeter::slotURLChanged(const QString &url)
+{
+    Q_UNUSED(url);
+    emit changed(true);
+}
+
+void KCMGreeter::slotURLChanged(const KUrl &url)
+{
+    Q_UNUSED(url);
+    emit changed(true);
 }
 
 void KCMGreeter::slotTest()

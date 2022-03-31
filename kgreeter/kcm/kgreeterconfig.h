@@ -40,6 +40,11 @@ public:
     void save() final;
 
 private Q_SLOTS:
+    void slotStyleChanged(const QString &style);
+    void slotColorChanged(const QString &style);
+    void slotURLChanged(const QString &url);
+    void slotURLChanged(const KUrl &url);
+
     void slotTest();
 
 private:
