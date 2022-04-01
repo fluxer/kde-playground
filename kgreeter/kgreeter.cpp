@@ -158,6 +158,18 @@ KGreeter::KGreeter(QWidget *parent)
         setSession(lastsession);
     }
 
+    // if no default session is specified and no last session is saved use the first
+    bool sessionchecked = false;
+    Q_FOREACH (QAction *sessionaction, m_sessionactions) {
+        if (sessionaction->isChecked()) {
+            sessionchecked = true;
+            break;
+        }
+    }
+    if (!sessionchecked && !m_sessionactions.isEmpty()) {
+        m_sessionactions.first()->setChecked(true);
+    }
+
     m_ui.groupbox->setTitle(QString::fromUtf8(lightdm_get_hostname()));
 
     m_ui.actionSuspend->setVisible(lightdm_get_can_suspend());
