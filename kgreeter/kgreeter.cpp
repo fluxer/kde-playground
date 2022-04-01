@@ -133,6 +133,7 @@ KGreeter::KGreeter(QWidget *parent)
             }
         }
     }
+    m_ui.useredit->setText(ldmdefaultuser);
     const QString ldmdefaultsession = QString::fromUtf8(lightdm_greeter_get_default_session_hint(m_ldmgreeter));
     if (!ldmdefaultsession.isEmpty()) {
         for (int i = 0; i < m_ui.sessionsbox->count(); i++) {
@@ -151,6 +152,7 @@ KGreeter::KGreeter(QWidget *parent)
             break;
         }
     }
+    m_ui.useredit->setText(lastuser);
     const QString lastsession = kgreeterstate.value("state/lastsession").toString();
     for (int i = 0; i < m_ui.sessionsbox->count(); i++) {
         if (m_ui.sessionsbox->itemData(i).toString() == lastsession) {
@@ -176,7 +178,16 @@ KGreeter::KGreeter(QWidget *parent)
 
     connect(m_ui.loginbutton, SIGNAL(pressed()), this, SLOT(slotLogin()));
 
-    m_ui.passedit->setFocus();
+    if (lightdm_greeter_get_hide_users_hint(m_ldmgreeter)
+        || lightdm_greeter_get_show_manual_login_hint(m_ldmgreeter)) {
+        m_ui.userlabel->setVisible(false);
+        m_ui.usersbox->setVisible(false);
+        m_ui.useredit->setFocus();
+    } else {
+        m_ui.userlabel2->setVisible(false);
+        m_ui.useredit->setVisible(false);
+        m_ui.passedit->setFocus();
+    }
 }
 
 void KGreeter::paintEvent(QPaintEvent *event)
@@ -202,6 +213,9 @@ void KGreeter::paintEvent(QPaintEvent *event)
 
 QByteArray KGreeter::getUser() const
 {
+    if (m_ui.useredit->isVisible()) {
+        return m_ui.useredit->text().toUtf8();
+    }
     return m_ui.usersbox->currentText().toUtf8();
 }
 
