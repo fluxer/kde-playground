@@ -54,6 +54,7 @@ private Q_SLOTS:
     void slotLogin();
 
 private:
+    void setUser(const QString &user);
     void setSession(const QString &session);
     bool isUserLogged() const;
 
@@ -140,14 +141,8 @@ KGreeter::KGreeter(QWidget *parent)
 
     const QString ldmdefaultuser = QString::fromUtf8(lightdm_greeter_get_select_user_hint(m_ldmgreeter));
     if (!ldmdefaultuser.isEmpty()) {
-        for (int i = 0; i < m_ui.usersbox->count(); i++) {
-            if (m_ui.usersbox->itemText(i) == ldmdefaultuser) {
-                m_ui.usersbox->setCurrentIndex(i);
-                break;
-            }
-        }
+        setUser(ldmdefaultuser);
     }
-    m_ui.useredit->setText(ldmdefaultuser);
     const QString ldmdefaultsession = QString::fromUtf8(lightdm_greeter_get_default_session_hint(m_ldmgreeter));
     if (!ldmdefaultsession.isEmpty()) {
         setSession(ldmdefaultsession);
@@ -155,13 +150,9 @@ KGreeter::KGreeter(QWidget *parent)
 
     QSettings kgreeterstate("lightdm-kgreeter-state");
     const QString lastuser = kgreeterstate.value("state/lastuser").toString();
-    for (int i = 0; i < m_ui.usersbox->count(); i++) {
-        if (m_ui.usersbox->itemText(i) == lastuser) {
-            m_ui.usersbox->setCurrentIndex(i);
-            break;
-        }
+    if (!lastuser.isEmpty()) {
+        setUser(lastuser);
     }
-    m_ui.useredit->setText(lastuser);
     const QString lastsession = kgreeterstate.value("state/lastsession").toString();
     if (!lastsession.isEmpty()) {
         setSession(lastsession);
@@ -207,7 +198,7 @@ void KGreeter::paintEvent(QPaintEvent *event)
         m_ui.groupbox->setFlat(true);
         QPainter painter(this);
         QSize kgreeterrectanglesize(m_ui.groupbox->size());
-        kgreeterrectanglesize.rwidth() = kgreeterrectanglesize.width() * 1.1;
+        kgreeterrectanglesize.rwidth() = kgreeterrectanglesize.width() * 1.04;
         kgreeterrectanglesize.rheight() = kgreeterrectanglesize.height() * 1.8;
         painter.drawImage(m_ui.groupbox->pos(), m_rectangle.scaled(kgreeterrectanglesize));
     } else {
@@ -405,6 +396,17 @@ void KGreeter::slotLogin()
     lightdm_greeter_authenticate(m_ldmgreeter, kgreeterusername.constData(), &gliberror);
 
     g_main_loop_run(glibloop);
+}
+
+void KGreeter::setUser(const QString &user)
+{
+    for (int i = 0; i < m_ui.usersbox->count(); i++) {
+        if (m_ui.usersbox->itemText(i) == user) {
+            m_ui.usersbox->setCurrentIndex(i);
+            break;
+        }
+    }
+    m_ui.useredit->setText(user);
 }
 
 void KGreeter::setSession(const QString &session)
