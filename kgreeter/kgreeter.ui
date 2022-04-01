@@ -106,15 +106,15 @@
         <layout class="QGridLayout" name="gridLayout_2">
          <item row="0" column="0" colspan="3">
           <layout class="QGridLayout" name="gridLayout_3">
-           <item row="0" column="1">
-            <widget class="QComboBox" name="usersbox"/>
-           </item>
            <item row="3" column="0">
             <widget class="QLabel" name="label_2">
              <property name="text">
               <string>Password:</string>
              </property>
             </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="usersbox"/>
            </item>
            <item row="0" column="0">
             <widget class="QLabel" name="userlabel">
@@ -127,16 +127,6 @@
             <widget class="QLineEdit" name="passedit">
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QComboBox" name="sessionsbox"/>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="label_3">
-             <property name="text">
-              <string>Session:</string>
              </property>
             </widget>
            </item>
@@ -195,7 +185,13 @@
      <string>Keyboard</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuSessions">
+    <property name="title">
+     <string>Sessions</string>
+    </property>
+   </widget>
    <addaction name="menuSystem"/>
+   <addaction name="menuSessions"/>
    <addaction name="menuKeyboard"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>

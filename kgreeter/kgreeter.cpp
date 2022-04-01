@@ -47,15 +47,20 @@ private Q_SLOTS:
     void slotPoweroff();
     void slotReboot();
 
+    void slotSession();
+
     void slotLayout();
 
     void slotLogin();
 
 private:
+    void setSession(const QString &session);
     bool isUserLogged() const;
 
     Ui::KGreeter m_ui;
     LightDMGreeter *m_ldmgreeter;
+    QList<QAction*> m_sessionactions;
+    QList<QAction*> m_layoutactions;
     QImage m_background;
     QImage m_rectangle;
 };
@@ -95,10 +100,12 @@ KGreeter::KGreeter(QWidget *parent)
         Q_ASSERT(ldmlayout);
 
         QAction* layoutaction = new QAction(m_ui.menuKeyboard);
+        layoutaction->setCheckable(true);
         layoutaction->setText(QString::fromUtf8(lightdm_layout_get_description(ldmlayout)));
         layoutaction->setData(QVariant(QString::fromUtf8(lightdm_layout_get_name(ldmlayout))));
         connect(layoutaction, SIGNAL(triggered()), this, SLOT(slotLayout()));
         m_ui.menuKeyboard->addAction(layoutaction);
+        m_layoutactions.append(layoutaction);
     }
 
     GList *ldmusers = lightdm_user_list_get_users(lightdm_user_list_get_instance());
@@ -121,7 +128,14 @@ KGreeter::KGreeter(QWidget *parent)
 
         const QString ldmsessionname = QString::fromUtf8(lightdm_session_get_name(ldmsession));
         const QString ldmsessionkey = QString::fromUtf8(lightdm_session_get_key(ldmsession));
-        m_ui.sessionsbox->addItem(ldmsessionname, QVariant(ldmsessionkey));
+
+        QAction* sessionaction = new QAction(m_ui.menuSessions);
+        sessionaction->setCheckable(true);
+        sessionaction->setText(ldmsessionname);
+        sessionaction->setData(QVariant(ldmsessionkey));
+        connect(sessionaction, SIGNAL(triggered()), this, SLOT(slotSession()));
+        m_ui.menuSessions->addAction(sessionaction);
+        m_sessionactions.append(sessionaction);
     }
 
     const QString ldmdefaultuser = QString::fromUtf8(lightdm_greeter_get_select_user_hint(m_ldmgreeter));
@@ -136,12 +150,7 @@ KGreeter::KGreeter(QWidget *parent)
     m_ui.useredit->setText(ldmdefaultuser);
     const QString ldmdefaultsession = QString::fromUtf8(lightdm_greeter_get_default_session_hint(m_ldmgreeter));
     if (!ldmdefaultsession.isEmpty()) {
-        for (int i = 0; i < m_ui.sessionsbox->count(); i++) {
-            if (m_ui.sessionsbox->itemData(i).toString() == ldmdefaultsession) {
-                m_ui.sessionsbox->setCurrentIndex(i);
-                break;
-            }
-        }
+        setSession(ldmdefaultsession);
     }
 
     QSettings kgreeterstate("lightdm-kgreeter-state");
@@ -154,11 +163,8 @@ KGreeter::KGreeter(QWidget *parent)
     }
     m_ui.useredit->setText(lastuser);
     const QString lastsession = kgreeterstate.value("state/lastsession").toString();
-    for (int i = 0; i < m_ui.sessionsbox->count(); i++) {
-        if (m_ui.sessionsbox->itemData(i).toString() == lastsession) {
-            m_ui.sessionsbox->setCurrentIndex(i);
-            break;
-        }
+    if (!lastsession.isEmpty()) {
+        setSession(lastsession);
     }
 
     m_ui.groupbox->setTitle(QString::fromUtf8(lightdm_get_hostname()));
@@ -201,8 +207,8 @@ void KGreeter::paintEvent(QPaintEvent *event)
         m_ui.groupbox->setFlat(true);
         QPainter painter(this);
         QSize kgreeterrectanglesize(m_ui.groupbox->size());
-        kgreeterrectanglesize.rwidth() = kgreeterrectanglesize.width() * 1.04;
-        kgreeterrectanglesize.rheight() = kgreeterrectanglesize.height() * 1.6;
+        kgreeterrectanglesize.rwidth() = kgreeterrectanglesize.width() * 1.1;
+        kgreeterrectanglesize.rheight() = kgreeterrectanglesize.height() * 1.8;
         painter.drawImage(m_ui.groupbox->pos(), m_rectangle.scaled(kgreeterrectanglesize));
     } else {
         m_ui.groupbox->setFlat(false);
@@ -226,7 +232,13 @@ QByteArray KGreeter::getPass() const
 
 QByteArray KGreeter::getSession() const
 {
-    return m_ui.sessionsbox->itemData(m_ui.sessionsbox->currentIndex()).toString().toUtf8();
+    Q_FOREACH (const QAction *sessionaction, m_sessionactions) {
+        if (sessionaction->isChecked()) {
+            return sessionaction->data().toByteArray();
+        }
+    }
+    Q_ASSERT(false);
+    return QByteArray();
 }
 
 LightDMGreeter * KGreeter::getGreeter() const
@@ -333,8 +345,23 @@ void KGreeter::slotReboot()
     }
 }
 
+void KGreeter::slotSession()
+{
+    const QAction* sessionaction = qobject_cast<QAction*>(sender());
+    const QString sessionname = sessionaction->data().toString();
+
+    Q_FOREACH (QAction *sessionaction, m_sessionactions) {
+        sessionaction->setChecked(false);
+        if (sessionaction->data().toString() == sessionname) {
+            sessionaction->setChecked(true);
+        }
+    }
+}
+
 void KGreeter::slotLayout()
 {
+    QString ldmlayoutname;
+
     const QAction* layoutaction = qobject_cast<QAction*>(sender());
     const QString layoutname = layoutaction->data().toString();
     GList *ldmlayouts = lightdm_get_layouts();
@@ -342,9 +369,22 @@ void KGreeter::slotLayout()
         LightDMLayout *ldmlayout = static_cast<LightDMLayout*>(ldmitem->data);
         Q_ASSERT(ldmlayout);
 
-        if (layoutname == QString::fromUtf8(lightdm_layout_get_name(ldmlayout))) {
+        ldmlayoutname = QString::fromUtf8(lightdm_layout_get_name(ldmlayout));
+        if (layoutname == ldmlayoutname) {
             lightdm_set_layout(ldmlayout);
             break;
+        }
+    }
+
+    if (ldmlayoutname.isEmpty()) {
+        Q_ASSERT(false);
+        return;
+    }
+
+    Q_FOREACH (QAction *layoutaction, m_layoutactions) {
+        layoutaction->setChecked(false);
+        if (layoutaction->data().toString() == ldmlayoutname) {
+            layoutaction->setChecked(true);
         }
     }
 }
@@ -365,6 +405,16 @@ void KGreeter::slotLogin()
     lightdm_greeter_authenticate(m_ldmgreeter, kgreeterusername.constData(), &gliberror);
 
     g_main_loop_run(glibloop);
+}
+
+void KGreeter::setSession(const QString &session)
+{
+    Q_FOREACH (QAction *sessionaction, m_sessionactions) {
+        sessionaction->setChecked(false);
+        if (sessionaction->data().toString() == session) {
+            sessionaction->setChecked(true);
+        }
+    }
 }
 
 bool KGreeter::isUserLogged() const
