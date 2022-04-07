@@ -28,20 +28,33 @@
 #define PACKAGEKIT_SERVICE "org.freedesktop.PackageKit"
 #define PACKAGEKIT_PATH "/org/freedesktop/PackageKit"
 #define PACKAGEKIT_IFACE "org.freedesktop.PackageKit"
+#define PACKAGEKIT_TRANSACTION_IFACE "org.freedesktop.PackageKit.Transaction"
 
 class KUpdateNotifier : public KStatusNotifierItem
 {
     Q_OBJECT
 public:
+    // UpdatesChanged() can be emited multiple times from single cache refresh
+    // so tracking the state manually
+    enum UpdateNotifierState {
+        PassiveState = 0,
+        UpdatesAvaiableState = 1,
+        RebootScheduledState = 2
+    };
+
     KUpdateNotifier(QObject* parent = nullptr);
     ~KUpdateNotifier();
 
 private Q_SLOTS:
     void slotGotIt();
+    void slotRefreshCache();
     void slotUpdatesChanged();
     void slotRestartSchedule();
 
 private:
+    void refreshCache();
+
+    UpdateNotifierState m_state;
     KAction* m_gotitaction;
     KMenu* m_menu;
     KHelpMenu* m_helpmenu;

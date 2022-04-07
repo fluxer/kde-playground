@@ -31,6 +31,7 @@
 
 KUpdateNotifier::KUpdateNotifier(QObject* parent)
     : KStatusNotifierItem(parent),
+    m_state(KUpdateNotifier::PassiveState),
     m_gotitaction(nullptr),
     m_menu(nullptr),
     m_helpmenu(nullptr),
@@ -53,15 +54,26 @@ KUpdateNotifier::KUpdateNotifier(QObject* parent)
 
     m_menu->addSeparator();
 
+    if (m_interface.isValid()) {
+        KAction* refreshcacheaction = actionCollection()->addAction(QLatin1String("refresh_cache"));
+        refreshcacheaction->setText(i18n("&Refresh cache"));
+        refreshcacheaction->setIcon(KIcon(QLatin1String("view-refresh")));
+        connect(refreshcacheaction, SIGNAL(triggered()), this, SLOT(slotRefreshCache()));
+        m_menu->addAction(refreshcacheaction);
+
+        m_menu->addSeparator();
+    }
+
     m_helpmenu = new KHelpMenu(associatedWidget(), KGlobal::mainComponent().aboutData());
     m_menu->addMenu(m_helpmenu->menu());
 
     if (m_interface.isValid()) {
         connect(&m_interface, SIGNAL(UpdatesChanged()), this, SLOT(slotUpdatesChanged()));
         connect(&m_interface, SIGNAL(RestartSchedule()), this, SLOT(slotRestartSchedule()));
+
         // qDebug() << Q_FUNC_INFO << m_interface.property("NetworkState");
-        QDBusReply<uint> reply = m_interface.call("CanAuthorize", "org.freedesktop.packagekit.system-sources-refresh");
-        // qDebug() << Q_FUNC_INFO << reply.value();
+
+        refreshCache();
     } else {
         setOverlayIconByName("dialog-error");
         showMessage(i18n("Update notifier"), i18n("PackageKit interface is not valid"), "dialog-error");
@@ -72,16 +84,49 @@ KUpdateNotifier::~KUpdateNotifier()
 {
 }
 
+void KUpdateNotifier::refreshCache()
+{
+    QDBusReply<QDBusObjectPath> transactionreply = m_interface.call("CreateTransaction");
+    QDBusInterface transactioniface(
+        PACKAGEKIT_SERVICE,
+        transactionreply.value().path(),
+        PACKAGEKIT_TRANSACTION_IFACE,
+        QDBusConnection::systemBus(), this
+    );
+
+    if (transactioniface.isValid()) {
+        transactioniface.asyncCall("RefreshCache", true);
+        qDebug() << transactioniface.property("Status") << transactioniface.property("Uid");
+    } else {
+        kWarning() << "transaction interface is not valid";
+    }
+}
+
 void KUpdateNotifier::slotGotIt()
 {
     // qDebug() << Q_FUNC_INFO;
+
+    m_state = KUpdateNotifier::PassiveState;
     setStatus(KStatusNotifierItem::Passive);
     m_gotitaction->setVisible(false);
+}
+
+void KUpdateNotifier::slotRefreshCache()
+{
+    // qDebug() << Q_FUNC_INFO;
+
+    refreshCache();
 }
 
 void KUpdateNotifier::slotUpdatesChanged()
 {
     // qDebug() << Q_FUNC_INFO;
+
+    if (m_state == KUpdateNotifier::UpdatesAvaiableState) {
+        return;
+    }
+
+    m_state = KUpdateNotifier::UpdatesAvaiableState;
     setStatus(KStatusNotifierItem::NeedsAttention);
     m_gotitaction->setVisible(true);
     setOverlayIconByName("vcs-update-required");
@@ -91,6 +136,12 @@ void KUpdateNotifier::slotUpdatesChanged()
 void KUpdateNotifier::slotRestartSchedule()
 {
     // qDebug() << Q_FUNC_INFO;
+
+    if (m_state == KUpdateNotifier::RebootScheduledState) {
+        return;
+    }
+
+    m_state = KUpdateNotifier::RebootScheduledState;
     setStatus(KStatusNotifierItem::NeedsAttention);
     m_gotitaction->setVisible(true);
     setOverlayIconByName("system-reboot");
