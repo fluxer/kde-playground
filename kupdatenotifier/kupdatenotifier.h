@@ -39,6 +39,7 @@ public:
 private Q_SLOTS:
     void slotGotIt();
     void slotUpdatesChanged();
+    void slotRestartSchedule();
 
 private:
     KAction* m_gotitaction;

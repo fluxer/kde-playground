@@ -18,6 +18,7 @@
 
 #include "kupdatenotifier.h"
 
+#include <QDBusReply>
 #include <kactioncollection.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
@@ -57,7 +58,10 @@ KUpdateNotifier::KUpdateNotifier(QObject* parent)
 
     if (m_interface.isValid()) {
         connect(&m_interface, SIGNAL(UpdatesChanged()), this, SLOT(slotUpdatesChanged()));
+        connect(&m_interface, SIGNAL(RestartSchedule()), this, SLOT(slotRestartSchedule()));
         // qDebug() << Q_FUNC_INFO << m_interface.property("NetworkState");
+        QDBusReply<uint> reply = m_interface.call("CanAuthorize", "org.freedesktop.packagekit.system-sources-refresh");
+        // qDebug() << Q_FUNC_INFO << reply.value();
     } else {
         setOverlayIconByName("dialog-error");
         showMessage(i18n("Update notifier"), i18n("PackageKit interface is not valid"), "dialog-error");
@@ -82,4 +86,13 @@ void KUpdateNotifier::slotUpdatesChanged()
     m_gotitaction->setVisible(true);
     setOverlayIconByName("vcs-update-required");
     showMessage(i18n("Update notifier"), i18n("Updates available"), "vcs-update-required");
+}
+
+void KUpdateNotifier::slotRestartSchedule()
+{
+    // qDebug() << Q_FUNC_INFO;
+    setStatus(KStatusNotifierItem::NeedsAttention);
+    m_gotitaction->setVisible(true);
+    setOverlayIconByName("system-reboot");
+    showMessage(i18n("Update notifier"), i18n("System restart has been sceduled"), "system-reboot");
 }
