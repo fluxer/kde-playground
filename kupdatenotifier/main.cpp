@@ -16,6 +16,7 @@
     Boston, MA 02110-1301, USA.
 */
 
+#include <QDBusConnectionInterface>
 #include <kuniqueapplication.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
@@ -48,8 +49,14 @@ int main(int argc, char** argv)
     KUniqueApplication kupdatenotifierapp;
     kupdatenotifierapp.setQuitOnLastWindowClosed(false);
     if (!KUniqueApplication::start()) {
-        kWarning() << "kupdatenotifier is already running!";
+        kDebug() << "kupdatenotifier is already running!";
         return 0;
+    }
+
+    QDBusConnectionInterface* systembusiface = QDBusConnection::systemBus().interface();
+    if (!systembusiface->isServiceRegistered(PACKAGEKIT_SERVICE)) {
+        kDebug() << "activating" << PACKAGEKIT_SERVICE;
+        systembusiface->startService(PACKAGEKIT_SERVICE);
     }
 
     KUpdateNotifier kupdatenotifier(&kupdatenotifierapp);

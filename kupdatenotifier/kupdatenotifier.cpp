@@ -27,9 +27,6 @@
 
 // for reference:
 // https://www.freedesktop.org/software/PackageKit/gtk-doc/PackageKit.html
-#define PACKAGEKIT_SERVICE "org.freedesktop.PackageKit"
-#define PACKAGEKIT_PATH "/org/freedesktop/PackageKit"
-#define PACKAGEKIT_IFACE "org.freedesktop.PackageKit"
 
 KUpdateNotifier::KUpdateNotifier(QObject* parent)
     : KStatusNotifierItem(parent),

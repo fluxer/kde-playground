@@ -25,6 +25,10 @@
 #include <kmenu.h>
 #include <khelpmenu.h>
 
+#define PACKAGEKIT_SERVICE "org.freedesktop.PackageKit"
+#define PACKAGEKIT_PATH "/org/freedesktop/PackageKit"
+#define PACKAGEKIT_IFACE "org.freedesktop.PackageKit"
+
 class KUpdateNotifier : public KStatusNotifierItem
 {
     Q_OBJECT
