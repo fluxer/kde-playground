@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=KUpdateNotifier
+GenericName=Update notifier
+Comment=A panel applet for software updates notification.
+Exec=kupdatenotifier --icon '%i' --caption '%c'
+Icon=system-software-update
+Type=Application
+OnlyShowIn=KDE;
+Categories=Qt;KDE;System;
