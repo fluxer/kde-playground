@@ -96,7 +96,7 @@ void KUpdateNotifier::refreshCache()
 
     if (transactioniface.isValid()) {
         transactioniface.asyncCall("RefreshCache", true);
-        qDebug() << transactioniface.property("Status") << transactioniface.property("Uid");
+        kDebug() << transactioniface.property("Status");
     } else {
         kWarning() << "transaction interface is not valid";
     }
@@ -114,6 +114,11 @@ void KUpdateNotifier::slotGotIt()
 void KUpdateNotifier::slotRefreshCache()
 {
     // qDebug() << Q_FUNC_INFO;
+
+    if (m_state == KUpdateNotifier::UpdatesAvaiableState) {
+        setOverlayIconByName(QString());
+        slotGotIt();
+    }
 
     refreshCache();
 }
