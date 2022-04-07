@@ -22,6 +22,7 @@
 #include <kcomponentdata.h>
 #include <klocale.h>
 #include <kglobal.h>
+#include <kicon.h>
 #include <kdebug.h>
 
 // for reference:
@@ -32,6 +33,7 @@
 
 KUpdateNotifier::KUpdateNotifier(QObject* parent)
     : KStatusNotifierItem(parent),
+    m_gotitaction(nullptr),
     m_menu(nullptr),
     m_helpmenu(nullptr),
     m_interface(PACKAGEKIT_SERVICE, PACKAGEKIT_PATH, PACKAGEKIT_IFACE, QDBusConnection::systemBus(), this)
@@ -43,6 +45,15 @@ KUpdateNotifier::KUpdateNotifier(QObject* parent)
 
     m_menu = new KMenu(associatedWidget());
     setContextMenu(m_menu);
+
+    m_gotitaction = actionCollection()->addAction(QLatin1String("gotit"));
+    m_gotitaction->setText(i18n("&Got it"));
+    m_gotitaction->setIcon(KIcon(QLatin1String("dialog-ok")));
+    m_gotitaction->setVisible(false);
+    connect(m_gotitaction, SIGNAL(triggered()), this, SLOT(slotGotIt()));
+    m_menu->addAction(m_gotitaction);
+
+    m_menu->addSeparator();
 
     m_helpmenu = new KHelpMenu(associatedWidget(), KGlobal::mainComponent().aboutData());
     m_menu->addMenu(m_helpmenu->menu());
@@ -60,9 +71,18 @@ KUpdateNotifier::~KUpdateNotifier()
 {
 }
 
+void KUpdateNotifier::slotGotIt()
+{
+    // qDebug() << Q_FUNC_INFO;
+    setStatus(KStatusNotifierItem::Passive);
+    m_gotitaction->setVisible(false);
+}
+
 void KUpdateNotifier::slotUpdatesChanged()
 {
     // qDebug() << Q_FUNC_INFO;
     setStatus(KStatusNotifierItem::NeedsAttention);
+    m_gotitaction->setVisible(true);
+    setOverlayIconByName("vcs-update-required");
     showMessage(i18n("Update notifier"), i18n("Updates available"), "vcs-update-required");
 }

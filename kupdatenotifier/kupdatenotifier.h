@@ -21,6 +21,7 @@
 
 #include <QDBusInterface>
 #include <kstatusnotifieritem.h>
+#include <kaction.h>
 #include <kmenu.h>
 #include <khelpmenu.h>
 
@@ -32,9 +33,11 @@ public:
     ~KUpdateNotifier();
 
 private Q_SLOTS:
+    void slotGotIt();
     void slotUpdatesChanged();
 
 private:
+    KAction* m_gotitaction;
     KMenu* m_menu;
     KHelpMenu* m_helpmenu;
     QDBusInterface m_interface;
