@@ -18,6 +18,7 @@
 
 #include "kupdatenotifier.h"
 
+#include <QApplication>
 #include <QDBusReply>
 #include <kactioncollection.h>
 #include <kcomponentdata.h>
@@ -35,7 +36,8 @@ KUpdateNotifier::KUpdateNotifier(QObject* parent)
     m_gotitaction(nullptr),
     m_menu(nullptr),
     m_helpmenu(nullptr),
-    m_interface(PACKAGEKIT_SERVICE, PACKAGEKIT_PATH, PACKAGEKIT_IFACE, QDBusConnection::systemBus(), this)
+    m_interface(PACKAGEKIT_SERVICE, PACKAGEKIT_PATH, PACKAGEKIT_IFACE, QDBusConnection::systemBus(), this),
+    m_finished(false)
 {
     setTitle(i18n("Update notifier"));
     setCategory(KStatusNotifierItem::SystemServices);
@@ -95,11 +97,50 @@ void KUpdateNotifier::refreshCache()
     );
 
     if (transactioniface.isValid()) {
-        transactioniface.asyncCall("RefreshCache", true);
+        m_finished = false;
+        connect(&transactioniface, SIGNAL(ErrorCode(uint,QString)), this, SLOT(slotErrorCode(uint,QString)));
+        connect(&transactioniface, SIGNAL(Finished(uint,uint)), this, SLOT(slotFinished(uint,uint)));
+        transactioniface.call("RefreshCache", true); // force
+        while (!m_finished) {
+            QApplication::processEvents();
+        }
         kDebug() << transactioniface.property("Status");
     } else {
         kWarning() << "transaction interface is not valid";
     }
+}
+
+QStringList KUpdateNotifier::getUpdates()
+{
+    QStringList result;
+
+    QDBusReply<QDBusObjectPath> transactionreply = m_interface.call("CreateTransaction");
+    QDBusInterface transactioniface(
+        PACKAGEKIT_SERVICE,
+        transactionreply.value().path(),
+        PACKAGEKIT_TRANSACTION_IFACE,
+        QDBusConnection::systemBus(), this
+    );
+
+    m_packages.clear();
+    if (transactioniface.isValid()) {
+        m_finished = false;
+        connect(&transactioniface, SIGNAL(Package(uint,QString,QString)), this, SLOT(slotPackage(uint,QString,QString)));
+        connect(&transactioniface, SIGNAL(ErrorCode(uint,QString)), this, SLOT(slotErrorCode(uint,QString)));
+        connect(&transactioniface, SIGNAL(Finished(uint,uint)), this, SLOT(slotFinished(uint,uint)));
+        transactioniface.call("GetUpdates", qulonglong(1)); // PK_FILTER_ENUM_NONE filter
+        while (!m_finished) {
+            QApplication::processEvents();
+        }
+        foreach (const KPackageKitPackage &package, m_packages) {
+            result.append(package.package_id);
+        }
+        kDebug() << transactioniface.property("Status");
+    } else {
+        kWarning() << "transaction interface is not valid";
+    }
+
+    return result;
 }
 
 void KUpdateNotifier::slotGotIt()
@@ -131,11 +172,18 @@ void KUpdateNotifier::slotUpdatesChanged()
         return;
     }
 
-    m_state = KUpdateNotifier::UpdatesAvaiableState;
-    setStatus(KStatusNotifierItem::NeedsAttention);
-    m_gotitaction->setVisible(true);
-    setOverlayIconByName("vcs-update-required");
-    showMessage(i18n("Update notifier"), i18n("Updates available"), "vcs-update-required");
+    const QStringList updates = getUpdates();
+    if (!updates.isEmpty()) {
+        m_state = KUpdateNotifier::UpdatesAvaiableState;
+        setStatus(KStatusNotifierItem::NeedsAttention);
+        m_gotitaction->setVisible(true);
+        setOverlayIconByName("vcs-update-required");
+        QString message = i18n("1 update available");
+        if (updates.size() > 1) {
+            message = i18n("%1 updates available", updates.size());
+        }
+        showMessage(i18n("Update notifier"), message, "vcs-update-required");
+    }
 }
 
 void KUpdateNotifier::slotRestartSchedule()
@@ -151,4 +199,25 @@ void KUpdateNotifier::slotRestartSchedule()
     m_gotitaction->setVisible(true);
     setOverlayIconByName("system-reboot");
     showMessage(i18n("Update notifier"), i18n("System restart has been sceduled"), "system-reboot");
+}
+
+void KUpdateNotifier::slotPackage(const uint info, const QString &package_id, const QString &summary)
+{
+    // qDebug() << Q_FUNC_INFO << info << package_id << summary;
+    KPackageKitPackage package;
+    package.info = info;
+    package.package_id = package_id;
+    package.summary = summary;
+    m_packages.append(package);
+}
+
+void KUpdateNotifier::slotErrorCode(const uint code, const QString &details)
+{
+    kWarning() << code << details;
+}
+
+void KUpdateNotifier::slotFinished(const uint exit, const uint runtime)
+{
+    // qDebug() << Q_FUNC_INFO << exit << runtime;
+    m_finished = true;
 }

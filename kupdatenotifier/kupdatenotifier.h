@@ -30,6 +30,13 @@
 #define PACKAGEKIT_IFACE "org.freedesktop.PackageKit"
 #define PACKAGEKIT_TRANSACTION_IFACE "org.freedesktop.PackageKit.Transaction"
 
+struct KPackageKitPackage
+{
+    uint info;
+    QString package_id;
+    QString summary;
+};
+
 class KUpdateNotifier : public KStatusNotifierItem
 {
     Q_OBJECT
@@ -51,14 +58,20 @@ private Q_SLOTS:
     void slotUpdatesChanged();
     void slotRestartSchedule();
 
+    void slotPackage(const uint info, const QString &package_id, const QString &summary);
+    void slotErrorCode(const uint code, const QString &details);
+    void slotFinished(const uint exit, const uint runtime);
 private:
     void refreshCache();
+    QStringList getUpdates();
 
     UpdateNotifierState m_state;
     KAction* m_gotitaction;
     KMenu* m_menu;
     KHelpMenu* m_helpmenu;
     QDBusInterface m_interface;
+    bool m_finished;
+    QList<KPackageKitPackage> m_packages;
 };
 
 #endif // KUPDATENOTIFIER_H
