@@ -204,6 +204,7 @@ void KUpdateNotifier::slotRestartSchedule()
 void KUpdateNotifier::slotPackage(const uint info, const QString &package_id, const QString &summary)
 {
     // qDebug() << Q_FUNC_INFO << info << package_id << summary;
+
     KPackageKitPackage package;
     package.info = info;
     package.package_id = package_id;
@@ -219,5 +220,6 @@ void KUpdateNotifier::slotErrorCode(const uint code, const QString &details)
 void KUpdateNotifier::slotFinished(const uint exit, const uint runtime)
 {
     // qDebug() << Q_FUNC_INFO << exit << runtime;
+
     m_finished = true;
 }

@@ -41,7 +41,7 @@ class KUpdateNotifier : public KStatusNotifierItem
 {
     Q_OBJECT
 public:
-    // UpdatesChanged() can be emited multiple times from single cache refresh
+    // UpdatesChanged() can be emited multiple times after single cache refresh
     // so tracking the state manually
     enum UpdateNotifierState {
         PassiveState = 0,
@@ -61,6 +61,7 @@ private Q_SLOTS:
     void slotPackage(const uint info, const QString &package_id, const QString &summary);
     void slotErrorCode(const uint code, const QString &details);
     void slotFinished(const uint exit, const uint runtime);
+
 private:
     void refreshCache();
     QStringList getUpdates();
