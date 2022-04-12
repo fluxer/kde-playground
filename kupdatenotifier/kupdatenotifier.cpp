@@ -198,7 +198,7 @@ void KUpdateNotifier::slotRestartSchedule()
     setStatus(KStatusNotifierItem::NeedsAttention);
     m_gotitaction->setVisible(true);
     setOverlayIconByName("system-reboot");
-    showMessage(i18n("Update notifier"), i18n("System restart has been sceduled"), "system-reboot");
+    showMessage(i18n("Update notifier"), i18n("System restart has been scheduled"), "system-reboot");
 }
 
 void KUpdateNotifier::slotPackage(const uint info, const QString &package_id, const QString &summary)
