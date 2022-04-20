@@ -1,0 +1,10 @@
+[Desktop Entry]
+Icon=preferences-system-power-management
+Name=KPowerControl
+GenericName=Power management
+Comment=A panel applet for power management
+Exec=kpowercontrol --icon '%i' --caption '%c'
+Terminal=false
+Type=Application
+Categories=Qt;KDE;System;
+X-KDE-StartupNotify=false
