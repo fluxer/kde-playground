@@ -43,21 +43,29 @@ KPowerControl::KPowerControl(QObject* parent)
 
     QDBusConnectionInterface* sessionbusiface = QDBusConnection::sessionBus().interface();
     if (sessionbusiface->isServiceRegistered("org.freedesktop.PowerManagement")) {
-        connect(
-            &m_powermanager, SIGNAL(profileChanged(QString)),
-            this, SLOT(slotProfileChanged(QString))
-        );
+        if (!KPowerManager::isSupported()) {
+            setOverlayIconByName("dialog-error");
+            showMessage(i18n("Power management"), i18n("Power manager is not supported on this system"), "dialog-error");
+        } else if (!KPowerManager::isEnabled()) {
+            setOverlayIconByName("dialog-error");
+            showMessage(i18n("Power management"), i18n("Power manager is disabled"), "dialog-information");
+        } else {
+            connect(
+                &m_powermanager, SIGNAL(profileChanged(QString)),
+                this, SLOT(slotProfileChanged(QString))
+            );
 
-        foreach (const QString &profile, m_powermanager.profiles()) {
-            KAction* profileaction = actionCollection()->addAction(QString::fromLatin1("profile_%1").arg(profile));
-            profileaction->setText(profile);
-            profileaction->setCheckable(true);
-            profileaction->setChecked(profile == m_powermanager.profile());
-            connect(profileaction, SIGNAL(triggered()), this, SLOT(slotChangeProfile()));
-            m_menu->addAction(profileaction);
+            foreach (const QString &profile, m_powermanager.profiles()) {
+                KAction* profileaction = actionCollection()->addAction(QString::fromLatin1("profile_%1").arg(profile));
+                profileaction->setText(profile);
+                profileaction->setCheckable(true);
+                profileaction->setChecked(profile == m_powermanager.profile());
+                connect(profileaction, SIGNAL(triggered()), this, SLOT(slotChangeProfile()));
+                m_menu->addAction(profileaction);
+            }
+
+            m_menu->addSeparator();
         }
-
-        m_menu->addSeparator();
     } else {
         setOverlayIconByName("dialog-error");
         showMessage(i18n("Power management"), i18n("Power manager is not active"), "dialog-error");
