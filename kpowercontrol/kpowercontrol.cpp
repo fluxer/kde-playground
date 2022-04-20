@@ -60,7 +60,7 @@ KPowerControl::KPowerControl(QObject* parent)
         m_menu->addSeparator();
     } else {
         setOverlayIconByName("dialog-error");
-        showMessage(i18n("Power management"), i18n("Power manager is not activer"), "dialog-error");
+        showMessage(i18n("Power management"), i18n("Power manager is not active"), "dialog-error");
     }
 
     m_helpmenu = new KHelpMenu(associatedWidget(), KGlobal::mainComponent().aboutData());
@@ -75,6 +75,7 @@ void KPowerControl::slotChangeProfile()
 {
     KAction* profileaction = qobject_cast<KAction*>(sender());
     if (m_powermanager.setProfile(profileaction->iconText())) {
+        setOverlayIconByName(QString());
         // do not wait for the signal to be emited
         slotProfileChanged(profileaction->iconText());
     } else {
@@ -85,11 +86,11 @@ void KPowerControl::slotChangeProfile()
 
 void KPowerControl::slotProfileChanged(const QString &profile)
 {
-    const QString profile_objectname = QString::fromLatin1("profile_%1").arg(profile);
+    const QString profileobjectname = QString::fromLatin1("profile_%1").arg(profile);
     foreach (QAction* qaction, actionCollection()->actions()) {
         const QString qactionobjectname = qaction->objectName();
         if (qactionobjectname.startsWith(QLatin1String("profile_"))) {
-            qaction->setChecked(qactionobjectname == profile_objectname);
+            qaction->setChecked(qactionobjectname == profileobjectname);
         }
     }
 }
