@@ -40,6 +40,9 @@ private Q_SLOTS:
     void slotPowerSupplyStateChanged(const bool newstate, const QString &solidudi);
     void slotPlugStateChanged(const bool newstate, const QString &solidudi);
 
+    void slotDeviceAdded(const QString &solidudi);
+    void slotDeviceRemoved(const QString &solidudi);
+
 private:
     void setBattery(const QString &solidudi);
     bool isSelectedBattery(const QString &solidudi) const;

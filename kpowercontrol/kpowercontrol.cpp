@@ -20,6 +20,7 @@
 
 #include <solid/device.h>
 #include <solid/battery.h>
+#include <solid/devicenotifier.h>
 #include <kactioncollection.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
@@ -136,9 +137,17 @@ KPowerControl::KPowerControl(QObject* parent)
             }
         }
         setBattery(batteryudi);
-
-        m_menu->addSeparator();
     }
+    m_menu->addSeparator();
+
+    connect(
+        Solid::DeviceNotifier::instance(), SIGNAL(deviceAdded(QString)),
+        this, SLOT(slotDeviceAdded(QString))
+    );
+    connect(
+        Solid::DeviceNotifier::instance(), SIGNAL(deviceRemoved(QString)),
+        this, SLOT(slotDeviceRemoved(QString))
+    );
 
     m_helpmenu = new KHelpMenu(associatedWidget(), KGlobal::mainComponent().aboutData());
     m_menu->addMenu(m_helpmenu->menu());
@@ -191,8 +200,13 @@ void KPowerControl::setBattery(const QString &solidudi)
 
     Solid::Device soliddevice(solidudi);
     const Solid::Battery* solidbattery = soliddevice.as<Solid::Battery>();
-    if (!solidbattery) {
-        kWarning() << "Null battery device pointer";
+    if (!soliddevice.isValid() || !solidbattery) {
+        setIconByName("preferences-system-power-management");
+        setStatus(KStatusNotifierItem::Passive);
+        setToolTip(KIcon("preferences-system-power-management"), QString(), QString());
+        if (!solidbattery) {
+            kWarning() << "Null battery device pointer";
+        }
         return;
     }
 
@@ -221,7 +235,7 @@ bool KPowerControl::isSelectedBattery(const QString &solidudi) const
         const QString qactionobjectname = qaction->objectName();
         if (qactionobjectname.startsWith(QLatin1String("battery_"))) {
             const QString qactiondata = qaction->data().toString();
-            if (qactiondata == solidudi) {
+            if (qactiondata == solidudi && qaction->isChecked()) {
                 return true;
             }
         }
@@ -231,7 +245,7 @@ bool KPowerControl::isSelectedBattery(const QString &solidudi) const
 
 void KPowerControl::slotChargeStateChanged(const int newstate, const QString &solidudi)
 {
-    qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
+    // qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
     if (isSelectedBattery(solidudi)) {
         setBattery(solidudi);
     }
@@ -239,7 +253,7 @@ void KPowerControl::slotChargeStateChanged(const int newstate, const QString &so
 
 void KPowerControl::slotPowerSupplyStateChanged(const bool newstate, const QString &solidudi)
 {
-    qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
+    // qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
     if (isSelectedBattery(solidudi)) {
         setBattery(solidudi);
     }
@@ -259,6 +273,30 @@ void KPowerControl::slotPlugStateChanged(const bool newstate, const QString &sol
                     actionCollection()->removeAction(qaction);
                     break;
                 }
+            }
+        }
+    }
+}
+
+void KPowerControl::slotDeviceAdded(const QString &solidudi)
+{
+    // qDebug() << Q_FUNC_INFO << solidudi;
+    Solid::Device soliddevice(solidudi);
+    if (soliddevice.is<Solid::Battery>()) {
+        slotPlugStateChanged(true, solidudi);
+    }
+}
+
+void KPowerControl::slotDeviceRemoved(const QString &solidudi)
+{
+    // qDebug() << Q_FUNC_INFO << solidudi;
+    foreach (QAction* qaction, actionCollection()->actions()) {
+        const QString qactionobjectname = qaction->objectName();
+        if (qactionobjectname.startsWith(QLatin1String("battery_"))) {
+            const QString qactiondata = qaction->data().toString();
+            if (qactiondata == solidudi) {
+                slotPlugStateChanged(false, solidudi);
+                break;
             }
         }
     }
