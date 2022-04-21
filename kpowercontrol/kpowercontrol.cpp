@@ -110,6 +110,10 @@ KPowerControl::KPowerControl(QObject* parent)
             const Solid::Battery* solidbattery = soliddevice.as<Solid::Battery>();
             // qDebug() << Q_FUNC_INFO << soliddevice.udi() << solidbattery->chargePercent();
             connect(
+                solidbattery, SIGNAL(chargePercentChanged(int,QString)),
+                this, SLOT(slotChargePercentChanged(int,QString))
+            );
+            connect(
                 solidbattery, SIGNAL(chargeStateChanged(int,QString)),
                 this, SLOT(slotChargeStateChanged(int,QString))
             );
@@ -241,6 +245,14 @@ bool KPowerControl::isSelectedBattery(const QString &solidudi) const
         }
     }
     return false;
+}
+
+void KPowerControl::slotChargePercentChanged(const int newstate, const QString &solidudi)
+{
+    // qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
+    if (isSelectedBattery(solidudi)) {
+        setBattery(solidudi);
+    }
 }
 
 void KPowerControl::slotChargeStateChanged(const int newstate, const QString &solidudi)

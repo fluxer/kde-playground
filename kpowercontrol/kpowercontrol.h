@@ -36,6 +36,7 @@ private Q_SLOTS:
     void slotChangeBattery();
     void slotProfileChanged(const QString &profile);
 
+    void slotChargePercentChanged(const int newstate, const QString &solidudi);
     void slotChargeStateChanged(const int newstate, const QString &solidudi);
     void slotPowerSupplyStateChanged(const bool newstate, const QString &solidudi);
     void slotPlugStateChanged(const bool newstate, const QString &solidudi);
