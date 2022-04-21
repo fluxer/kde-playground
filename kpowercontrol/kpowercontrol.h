@@ -33,9 +33,16 @@ public:
 
 private Q_SLOTS:
     void slotChangeProfile();
+    void slotChangeBattery();
     void slotProfileChanged(const QString &profile);
 
+    void slotChargeStateChanged(const int newstate, const QString &solidudi);
+    void slotPowerSupplyStateChanged(const bool newstate, const QString &solidudi);
+    void slotPlugStateChanged(const bool newstate, const QString &solidudi);
+
 private:
+    void setBattery(const QString &solidudi);
+
     KMenu* m_menu;
     KHelpMenu* m_helpmenu;
     KPowerManager m_powermanager;

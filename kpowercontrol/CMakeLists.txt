@@ -19,6 +19,7 @@ add_executable(kpowercontrol ${kpowercontrol_SRCS})
 target_link_libraries(kpowercontrol
     ${KDE4_KDEUI_LIBS}
     ${KDE4_KPOWERMANAGER_LIBS}
+    ${KDE4_SOLID_LIBS}
 )
 
 install(TARGETS kpowercontrol ${INSTALL_TARGETS_DEFAULT_ARGS})

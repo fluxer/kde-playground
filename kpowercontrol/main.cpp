@@ -16,7 +16,6 @@
     Boston, MA 02110-1301, USA.
 */
 
-#include <QDBusConnectionInterface>
 #include <kuniqueapplication.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
@@ -51,12 +50,6 @@ int main(int argc, char** argv)
     if (!KUniqueApplication::start()) {
         kDebug() << "kpowercontrol is already running!";
         return 0;
-    }
-
-    QDBusConnectionInterface* sessionbusiface = QDBusConnection::sessionBus().interface();
-    if (!sessionbusiface->isServiceRegistered("org.freedesktop.PowerManagement")) {
-        kDebug() << "Activating org.freedesktop.PowerManagement";
-        sessionbusiface->startService("org.freedesktop.PowerManagement");
     }
 
     KPowerControl kpowercontrol(&kpowercontrolapp);
