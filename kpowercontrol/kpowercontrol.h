@@ -42,6 +42,7 @@ private Q_SLOTS:
 
 private:
     void setBattery(const QString &solidudi);
+    bool isSelectedBattery(const QString &solidudi) const;
 
     KMenu* m_menu;
     KHelpMenu* m_helpmenu;

@@ -49,7 +49,9 @@ static inline QString batteryState(const Solid::Battery::ChargeState solidstate)
 {
     switch (solidstate) {
         case Solid::Battery::NoCharge: {
-            return i18n("Unknown");
+            // it is either full or unknown
+            // TODO: Solid::Battery::ChargeState::FullCharge enum
+            return i18n("No Charge");
         }
         case Solid::Battery::Charging: {
             return i18n("Charging");
@@ -102,7 +104,6 @@ KPowerControl::KPowerControl(QObject* parent)
     const QList<Solid::Device> solidbatteries = Solid::Device::listFromType(Solid::DeviceInterface::Battery);
     // qDebug() << Q_FUNC_INFO << solidbatteries.size();
     if (!solidbatteries.isEmpty()) {
-        bool isfirst = true;
         QString batteryudi;
         foreach (const Solid::Device &soliddevice, solidbatteries) {
             const Solid::Battery* solidbattery = soliddevice.as<Solid::Battery>();
@@ -120,13 +121,12 @@ KPowerControl::KPowerControl(QObject* parent)
                 this, SLOT(slotPlugStateChanged(bool,QString))
             );
             
-
             KAction* batteryaction = actionCollection()->addAction(
                 QString::fromLatin1("battery_%1").arg(normalizeUDI(soliddevice.udi()))
             );
             batteryaction->setText(deviceProduct(soliddevice));
             batteryaction->setCheckable(true);
-            batteryaction->setChecked(isfirst);
+            batteryaction->setChecked(false);
             batteryaction->setData(soliddevice.udi());
             connect(batteryaction, SIGNAL(triggered()), this, SLOT(slotChangeBattery()));
             m_menu->addAction(batteryaction);
@@ -134,7 +134,6 @@ KPowerControl::KPowerControl(QObject* parent)
             if (batteryudi.isEmpty() || solidbattery->isPowerSupply()) {
                 batteryudi = soliddevice.udi();
             }
-            isfirst = false;
         }
         setBattery(batteryudi);
 
@@ -192,6 +191,11 @@ void KPowerControl::setBattery(const QString &solidudi)
 
     Solid::Device soliddevice(solidudi);
     const Solid::Battery* solidbattery = soliddevice.as<Solid::Battery>();
+    if (!solidbattery) {
+        kWarning() << "Null battery device pointer";
+        return;
+    }
+
     if (solidbattery->isPowerSupply()) {
         setIconByName(soliddevice.icon());
         setStatus(KStatusNotifierItem::Active);
@@ -211,20 +215,51 @@ void KPowerControl::setBattery(const QString &solidudi)
     setToolTip(KIcon(soliddevice.icon()), i18n("Battery details"), batterytooltip); 
 }
 
+bool KPowerControl::isSelectedBattery(const QString &solidudi) const
+{
+    foreach (QAction* qaction, actionCollection()->actions()) {
+        const QString qactionobjectname = qaction->objectName();
+        if (qactionobjectname.startsWith(QLatin1String("battery_"))) {
+            const QString qactiondata = qaction->data().toString();
+            if (qactiondata == solidudi) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 void KPowerControl::slotChargeStateChanged(const int newstate, const QString &solidudi)
 {
-    qDebug() << Q_FUNC_INFO << newstate << solidudi;
-    // TODO:
+    qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
+    if (isSelectedBattery(solidudi)) {
+        setBattery(solidudi);
+    }
 }
 
 void KPowerControl::slotPowerSupplyStateChanged(const bool newstate, const QString &solidudi)
 {
-    qDebug() << Q_FUNC_INFO << newstate << solidudi;
-    // TODO:
+    qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
+    if (isSelectedBattery(solidudi)) {
+        setBattery(solidudi);
+    }
 }
 
 void KPowerControl::slotPlugStateChanged(const bool newstate, const QString &solidudi)
 {
-    qDebug() << Q_FUNC_INFO << newstate << solidudi;
-    // TODO:
+    qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
+    if (newstate) {
+        // TODO:
+    } else {
+        foreach (QAction* qaction, actionCollection()->actions()) {
+            const QString qactionobjectname = qaction->objectName();
+            if (qactionobjectname.startsWith(QLatin1String("battery_"))) {
+                const QString qactiondata = qaction->data().toString();
+                if (qactiondata == solidudi) {
+                    actionCollection()->removeAction(qaction);
+                    break;
+                }
+            }
+        }
+    }
 }
