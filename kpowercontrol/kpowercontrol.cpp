@@ -70,7 +70,8 @@ static inline QString batteryState(const Solid::Battery::ChargeState solidstate)
 KPowerControl::KPowerControl(QObject* parent)
     : KStatusNotifierItem(parent),
     m_menu(nullptr),
-    m_helpmenu(nullptr)
+    m_helpmenu(nullptr),
+    m_notifybatterylow(true)
 {
     setTitle(i18n("Power management"));
     setCategory(KStatusNotifierItem::Hardware);
@@ -195,6 +196,7 @@ void KPowerControl::slotChangeProfile()
 void KPowerControl::slotChangeBattery()
 {
     KAction* batteryaction = qobject_cast<KAction*>(sender());
+    m_notifybatterylow = true;
     setBattery(batteryaction->data().toString());
 }
 
@@ -229,6 +231,7 @@ void KPowerControl::setBattery(const QString &solidudi)
         if (!solidbattery) {
             kWarning() << "Null battery device pointer";
         }
+        kWarning() << "Invalid battery device";
         return;
     }
 
@@ -251,12 +254,13 @@ void KPowerControl::setBattery(const QString &solidudi)
     );
     setToolTip(KIcon(soliddevice.icon()), i18n("Battery details"), batterytooltip);
 
-    if (solidbattery->isPowerSupply() && solidbattery->chargePercent() <= 20) {
+    if (m_notifybatterylow && solidbattery->isPowerSupply() && solidbattery->chargePercent() <= 20) {
         KNotification *knotification = new KNotification("BatteryLow");
         knotification->setComponentData(KComponentData("kpowercontrol"));
         knotification->setTitle(i18n("Battery status"));
         knotification->setText(i18n("Battery charge is low"));
         knotification->sendEvent();
+        m_notifybatterylow = false;
     }
 }
 
@@ -294,6 +298,7 @@ void KPowerControl::slotPowerSupplyStateChanged(const bool newstate, const QStri
 {
     // qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
     if (isSelectedBattery(solidudi)) {
+        m_notifybatterylow = true;
         setBattery(solidudi);
 
         KNotification *knotification = nullptr;

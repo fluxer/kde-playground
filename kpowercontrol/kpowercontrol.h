@@ -51,6 +51,7 @@ private:
     KMenu* m_menu;
     KHelpMenu* m_helpmenu;
     KPowerManager m_powermanager;
+    bool m_notifybatterylow;
 };
 
 #endif // KPOWERCONTROL_H
