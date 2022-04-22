@@ -30,3 +30,8 @@ install(
     PROGRAMS kpowercontrol.desktop
     DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR}
 )
+
+install(
+    FILES kpowercontrol.notifyrc
+    DESTINATION ${KDE4_DATA_INSTALL_DIR}/kpowercontrol
+)

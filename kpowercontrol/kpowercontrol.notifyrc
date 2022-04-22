@@ -1,0 +1,22 @@
+[Global]
+Name=kpowercontrol
+Comment=Power management
+IconName=preferences-system-power-management
+
+[Event/BatteryLow]
+Name=Battery charge is low
+Action=Sound|Popup
+Sound=KDE-Sys-Special.ogg
+IconName=battery-low
+
+[Event/Unconnected]
+Name=Disonnected from external power source, switching profile to PowerSave
+Action=Sound|Popup
+Sound=KDE-Im-Contact-Out.ogg
+IconName=battery
+
+[Event/Connected]
+Name=Connected to external power source, switching profile to Performance
+Action=Sound|Popup
+Sound=KDE-Im-Contact-In.ogg
+IconName=preferences-system-power-management

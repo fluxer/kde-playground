@@ -21,6 +21,7 @@
 #include <solid/device.h>
 #include <solid/battery.h>
 #include <solid/devicenotifier.h>
+#include <knotification.h>
 #include <kactioncollection.h>
 #include <kcomponentdata.h>
 #include <klocale.h>
@@ -80,10 +81,18 @@ KPowerControl::KPowerControl(QObject* parent)
 
     if (!KPowerManager::isSupported()) {
         setOverlayIconByName("dialog-error");
-        showMessage(i18n("Power management"), i18n("Power management is not supported on this system"), "dialog-error");
+        showMessage(
+            i18n("Power management"),
+            i18n("Power management is not supported on this system"),
+            "dialog-error"
+        );
     } else if (!KPowerManager::isEnabled()) {
         setOverlayIconByName("dialog-error");
-        showMessage(i18n("Power management"), i18n("Power manager is disabled"), "dialog-information");
+        showMessage(
+            i18n("Power management"),
+            i18n("Power manager is disabled"),
+            "dialog-information"
+        );
     } else {
         connect(
             &m_powermanager, SIGNAL(profileChanged(QString)),
@@ -91,7 +100,9 @@ KPowerControl::KPowerControl(QObject* parent)
         );
 
         foreach (const QString &profile, m_powermanager.profiles()) {
-            KAction* profileaction = actionCollection()->addAction(QString::fromLatin1("profile_%1").arg(profile));
+            KAction* profileaction = actionCollection()->addAction(
+                QString::fromLatin1("profile_%1").arg(profile)
+            );
             profileaction->setText(profile);
             profileaction->setCheckable(true);
             profileaction->setChecked(profile == m_powermanager.profile());
@@ -102,7 +113,9 @@ KPowerControl::KPowerControl(QObject* parent)
         m_menu->addSeparator();
     }
 
-    const QList<Solid::Device> solidbatteries = Solid::Device::listFromType(Solid::DeviceInterface::Battery);
+    const QList<Solid::Device> solidbatteries = Solid::Device::listFromType(
+        Solid::DeviceInterface::Battery
+    );
     // qDebug() << Q_FUNC_INFO << solidbatteries.size();
     if (!solidbatteries.isEmpty()) {
         QString batteryudi;
@@ -170,7 +183,11 @@ void KPowerControl::slotChangeProfile()
         slotProfileChanged(profileaction->iconText());
     } else {
         setOverlayIconByName("dialog-error");
-        showMessage(i18n("Power management"), i18n("Could not change power manager profile"), "dialog-error");
+        showMessage(
+            i18n("Power management"),
+            i18n("Could not change power manager profile"),
+            "dialog-error"
+        );
     }
 }
 
@@ -230,7 +247,15 @@ void KPowerControl::setBattery(const QString &solidudi)
         batteryState(solidbattery->chargeState()),
         solidbattery->chargePercent()
     );
-    setToolTip(KIcon(soliddevice.icon()), i18n("Battery details"), batterytooltip); 
+    setToolTip(KIcon(soliddevice.icon()), i18n("Battery details"), batterytooltip);
+
+    if (solidbattery->chargePercent() <= 20) {
+        KNotification *knotification = new KNotification("BatteryLow");
+        knotification->setComponentData(KComponentData("kpowercontrol"));
+        knotification->setTitle(i18n("Battery status"));
+        knotification->setText(i18n("Battery charge is low"));
+        knotification->sendEvent();
+    }
 }
 
 bool KPowerControl::isSelectedBattery(const QString &solidudi) const
@@ -268,6 +293,24 @@ void KPowerControl::slotPowerSupplyStateChanged(const bool newstate, const QStri
     // qDebug() << Q_FUNC_INFO << newstate << solidudi << isSelectedBattery(solidudi);
     if (isSelectedBattery(solidudi)) {
         setBattery(solidudi);
+
+        KNotification *knotification = nullptr;
+        if (newstate) {
+            knotification = new KNotification("Unconnected");
+            knotification->setComponentData(KComponentData("kpowercontrol"));
+            knotification->setTitle(i18n("Power profile status"));
+            knotification->setText(
+                i18n("Disonnected from external power source, switching profile to PowerSave")
+            );
+        } else {
+            knotification = new KNotification("Connected");
+            knotification->setComponentData(KComponentData("kpowercontrol"));
+            knotification->setTitle(i18n("Power profile status"));
+            knotification->setText(
+                i18n("Connected to external power source, switching profile to Performance")
+            );
+        }
+        knotification->sendEvent();
     }
 }
 
