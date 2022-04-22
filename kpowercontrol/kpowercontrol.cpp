@@ -50,16 +50,17 @@ static inline QString deviceProduct(const Solid::Device &soliddevice)
 static inline QString batteryState(const Solid::Battery::ChargeState solidstate)
 {
     switch (solidstate) {
-        case Solid::Battery::NoCharge: {
-            // it is either full or unknown
-            // TODO: Solid::Battery::ChargeState::FullCharge enum
-            return i18n("No Charge");
+        case Solid::Battery::UnknownCharge: {
+            return i18n("Unknown");
         }
         case Solid::Battery::Charging: {
             return i18n("Charging");
         }
         case Solid::Battery::Discharging: {
             return i18n("Discharging");
+        }
+        case Solid::Battery::FullyCharged: {
+            return i18n("Fully charged");
         }
     }
     Q_ASSERT(false);
