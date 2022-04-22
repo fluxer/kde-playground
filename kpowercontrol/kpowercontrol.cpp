@@ -242,15 +242,16 @@ void KPowerControl::setBattery(const QString &solidudi)
     // qDebug() << Q_FUNC_INFO << soliddevice.icon();
 
     QString batterytooltip = i18n(
-        "Product: %1<br>Is power supply: %2<br>Charge state: %3<br>Charge percent:%4",
+        "Product: %1<br>Is power supply: %2<br>Is plugged: %3<br>Charge state: %4<br>Charge percent:%5",
         deviceProduct(soliddevice),
         solidbattery->isPowerSupply() ? i18n("Yes") : i18n("No"),
+        solidbattery->isPlugged() ? i18n("Yes") : i18n("No"),
         batteryState(solidbattery->chargeState()),
         solidbattery->chargePercent()
     );
     setToolTip(KIcon(soliddevice.icon()), i18n("Battery details"), batterytooltip);
 
-    if (solidbattery->chargePercent() <= 20) {
+    if (solidbattery->isPowerSupply() && solidbattery->chargePercent() <= 20) {
         KNotification *knotification = new KNotification("BatteryLow");
         knotification->setComponentData(KComponentData("kpowercontrol"));
         knotification->setTitle(i18n("Battery status"));
