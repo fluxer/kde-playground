@@ -80,7 +80,7 @@ KNetPkg::KNetPkg(QWidget *parent)
                 knetpkginfo.contents.append('\n');
             }
         } else {
-            kWarning() << "No comment for" << netpkginfo.filePath();
+            kWarning() << "No contents for" << netpkginfo.filePath();
         }
         m_packages.append(knetpkginfo);
     }
@@ -132,9 +132,11 @@ void KNetPkg::slotLinkActivated(const QString &link)
 
 int main(int argc, char **argv)
 {
-    KAboutData aboutData("knetpkg", 0, ki18n("KNetPkg"),
+    KAboutData aboutData(
+        "knetpkg", 0, ki18n("KNetPkg"),
         "1.0.0", ki18n("NetBSD package information utility"), KAboutData::License_GPL,
-        ki18n("(c) 2022 Ivailo Monev"));
+        ki18n("(c) 2022 Ivailo Monev")
+    );
     aboutData.addAuthor(ki18n("Ivailo Monev"), KLocalizedString(), "xakepa10@gmail.com");
 
     KCmdLineArgs::init(argc, argv, &aboutData);
