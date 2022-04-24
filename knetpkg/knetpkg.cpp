@@ -25,6 +25,11 @@
 
 #include "knetpkg.h"
 
+static QByteArray pkgLink(const QByteArray &netpkg)
+{
+    return QString::fromLatin1("<a href=\"%1\">%1</a>").arg(netpkg.constData()).toLatin1();
+}
+
 KNetPkg::KNetPkg(QWidget *parent)
     : KMainWindow(parent)
 {
@@ -46,10 +51,10 @@ KNetPkg::KNetPkg(QWidget *parent)
             const QList<QByteArray> requiredbylist = knetpkginfo.requiredby.split('\n');
             for (int i = 0; i < requiredbylist.size(); i++) {
                 if (i == 0) {
-                    knetpkginfo.requiredby = requiredbylist.at(i);
+                    knetpkginfo.requiredby = pkgLink(requiredbylist.at(i));
                 } else {
                     knetpkginfo.requiredby.append(", ");
-                    knetpkginfo.requiredby.append(requiredbylist.at(i));
+                    knetpkginfo.requiredby.append(pkgLink(requiredbylist.at(i)));
                 }
             }
         } else {
@@ -69,18 +74,25 @@ KNetPkg::KNetPkg(QWidget *parent)
     }
 
     m_ui.klistwidgetsearchline->setListWidget(m_ui.klistwidget);
-    connect(m_ui.klistwidget, SIGNAL(itemActivated(QListWidgetItem*)), this, SLOT(slotItemChanged(QListWidgetItem*)));
+    connect(
+        m_ui.klistwidget, SIGNAL(currentTextChanged(QString)),
+        this, SLOT(slotCurrentTextChanged(QString))
+    );
+    connect(
+        m_ui.requiredbylabel, SIGNAL(linkActivated(QString)),
+        this, SLOT(slotLinkActivated(QString))
+    );
 }
 
 KNetPkg::~KNetPkg()
 {
 }
 
-void KNetPkg::slotItemChanged(QListWidgetItem *knetpkgitem)
+void KNetPkg::slotCurrentTextChanged(const QString &netpkg)
 {
-    // qDebug() << Q_FUNC_INFO << knetpkgitem->text();
+    // qDebug() << Q_FUNC_INFO << netpkg;
     foreach (const KNetPkgInfo &knetpkginfo, m_packages) {
-        if (knetpkginfo.name == knetpkgitem->text()) {
+        if (knetpkginfo.name == netpkg) {
             m_ui.requiredbylabel->setText(knetpkginfo.requiredby);
             m_ui.sizelabel->setText(KGlobal::locale()->formatByteSize(knetpkginfo.size.toDouble(), 1));
             m_ui.descriptionwidget->setText(knetpkginfo.description);
@@ -88,6 +100,17 @@ void KNetPkg::slotItemChanged(QListWidgetItem *knetpkgitem)
         }
     }
     Q_ASSERT(false);
+}
+
+void KNetPkg::slotLinkActivated(const QString &link)
+{
+    // qDebug() << Q_FUNC_INFO << link;
+    for (int i = 0; i < m_ui.klistwidget->count(); i++) {
+        if (m_ui.klistwidget->item(i)->text() == link) {
+            m_ui.klistwidget->setCurrentRow(i);
+            break;
+        }
+    }
 }
 
 int main(int argc, char **argv)

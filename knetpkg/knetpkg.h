@@ -38,7 +38,8 @@ public:
     ~KNetPkg();
 
 public Q_SLOTS:
-    void slotItemChanged(QListWidgetItem *knetpkgitem);
+    void slotCurrentTextChanged(const QString &netpkg);
+    void slotLinkActivated(const QString &link);
 
 private:
     Ui_KNetPkgWindow m_ui;
