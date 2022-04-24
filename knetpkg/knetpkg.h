@@ -25,9 +25,10 @@
 
 struct KNetPkgInfo {
     QByteArray name;
-    QByteArray description;
+    QByteArray comment;
     QByteArray requiredby;
     QByteArray size;
+    QByteArray contents;
 };
 
 class KNetPkg : public KMainWindow

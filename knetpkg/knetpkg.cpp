@@ -39,11 +39,11 @@ KNetPkg::KNetPkg(QWidget *parent)
     foreach (const QFileInfo &netpkginfo, netpkgdir.entryInfoList(QDir::NoDotAndDotDot | QDir::AllDirs)) {
         KNetPkgInfo knetpkginfo;
         knetpkginfo.name = netpkginfo.fileName().toLocal8Bit();
-        QFile netpkgdesc(netpkginfo.filePath() + QLatin1String("/+DESC"));
-        if (netpkgdesc.open(QFile::ReadOnly)) {
-            knetpkginfo.description = netpkgdesc.readAll();
+        QFile netpkgcomment(netpkginfo.filePath() + QLatin1String("/+COMMENT"));
+        if (netpkgcomment.open(QFile::ReadOnly)) {
+            knetpkginfo.comment = netpkgcomment.readAll().trimmed();
         } else {
-            kWarning() << "No description for" << netpkginfo.filePath();
+            kWarning() << "No comment for" << netpkginfo.filePath();
         }
         QFile netpkgrequiredby(netpkginfo.filePath() + QLatin1String("/+REQUIRED_BY"));
         if (netpkgrequiredby.open(QFile::ReadOnly)) {
@@ -65,6 +65,22 @@ KNetPkg::KNetPkg(QWidget *parent)
             knetpkginfo.size = netpkgsize.readAll().trimmed();
         } else {
             kWarning() << "No size for" << netpkginfo.filePath();
+        }
+        QFile netpkgcontents(netpkginfo.filePath() + QLatin1String("/+CONTENTS"));
+        if (netpkgcontents.open(QFile::ReadOnly)) {
+            knetpkginfo.contents = netpkgcontents.readAll().trimmed();
+            const QList<QByteArray> contentslist = knetpkginfo.contents.split('\n');
+            knetpkginfo.contents.clear();
+            for (int i = 0; i < contentslist.size(); i++) {
+                const QByteArray contentsline = contentslist.at(i);
+                if (contentsline.isEmpty() || contentsline.startsWith('@') || contentsline.startsWith('+')) {
+                    continue;
+                }
+                knetpkginfo.contents.append(contentsline);
+                knetpkginfo.contents.append('\n');
+            }
+        } else {
+            kWarning() << "No comment for" << netpkginfo.filePath();
         }
         m_packages.append(knetpkginfo);
     }
@@ -93,9 +109,10 @@ void KNetPkg::slotCurrentTextChanged(const QString &netpkg)
     // qDebug() << Q_FUNC_INFO << netpkg;
     foreach (const KNetPkgInfo &knetpkginfo, m_packages) {
         if (knetpkginfo.name == netpkg) {
+            m_ui.commentlabel->setText(knetpkginfo.comment);
             m_ui.requiredbylabel->setText(knetpkginfo.requiredby);
             m_ui.sizelabel->setText(KGlobal::locale()->formatByteSize(knetpkginfo.size.toDouble(), 1));
-            m_ui.descriptionwidget->setText(knetpkginfo.description);
+            m_ui.contentswidget->setText(knetpkginfo.contents);
             return;
         }
     }
