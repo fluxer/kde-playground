@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=KNetPkg
+GenericName=NetBSD package information utility
+Exec=knetpkg --icon '%i' --caption '%c' %U
+Icon=package-x-generic
+Type=Application
+Terminal=false
+StartupNotify=false
+X-DocPath=knetpkg/index.html
+X-KDE-StartupNotify=true
+X-DBUS-StartupType=Multi
+Categories=Qt;KDE;Utility;
