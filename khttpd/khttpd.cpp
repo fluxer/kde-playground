@@ -211,7 +211,7 @@ void KHTTPD::handleRequest()
 int main(int argc, char** argv)
 {
     KAboutData aboutData("khttpd", 0, ki18n("KHTTPD"),
-                         "1.0.0", ki18n("Spy desktop over network."),
+                         "1.0.0", ki18n("Serve directory and publish it on service discovery."),
                          KAboutData::License_GPL_V2,
                          ki18n("(c) 2022 Ivailo Monev"),
                          KLocalizedString(),
@@ -221,7 +221,7 @@ int main(int argc, char** argv)
     aboutData.addAuthor(ki18n("Ivailo Monev"),
                         ki18n("Maintainer"),
                         "xakepa10@gmail.com");
-    aboutData.setProgramIconName(QLatin1String("krfb"));
+    aboutData.setProgramIconName(QLatin1String("network-server"));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
     KCmdLineOptions option;
