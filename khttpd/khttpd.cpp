@@ -21,34 +21,68 @@
 #include <KCmdLineArgs>
 #include <KApplication>
 #include <KUrl>
+#include <KIcon>
+#include <KMimeType>
 #include <KDebug>
+#include <QBuffer>
 #include <QDir>
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QHostInfo>
 #include <DNSSD/PublicService>
 
-static QByteArray bodyForPath(const QString &path, const QString &basedir)
+static QByteArray contentForDirectory(const QString &path, const QString &basedir)
 {
     QByteArray data;
     data.append("<html>");
-    QDir::Filters dirfilter = (QDir::Files | QDir::AllDirs | QDir::NoDot);
+    data.append("<table>");
+    data.append("  <tr>");
+    data.append("    <th></th>"); // icon
+    data.append("    <th>Filename</th>");
+    data.append("    <th>MIME</th>");
+    data.append("    <th>Size</th>");
+    data.append("  </tr>");
+    QDir::Filters dirfilters = (QDir::Files | QDir::AllDirs | QDir::NoDot);
     if (path == basedir) {
-        dirfilter = (QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot);
+        dirfilters = (QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot);
     }
+    QDir::SortFlags dirsortflags = (QDir::Name | QDir::DirsFirst);
     QDir dir(path);
-    foreach (const QFileInfo &fileinfo, dir.entryInfoList(dirfilter)) {
+    foreach (const QFileInfo &fileinfo, dir.entryInfoList(dirfilters, dirsortflags)) {
         const QString fullpath = path.toLocal8Bit() + QLatin1Char('/') + fileinfo.fileName();
         // chromium does weird stuff if the link starts with two slashes - removes, the host and
         // port part of the link and converts the first directory to lower-case
         const QString cleanpath = QDir::cleanPath(fullpath.mid(basedir.size()));
+
+        data.append("  <tr>");
+
+        const QString fileicon = QString::fromLatin1("<img src=\"/khttpd_icons/%1\" width=\"20\" height=\"20\">").arg(KMimeType::iconNameForUrl(KUrl(fullpath)));
+        data.append("<td>");
+        data.append(fileicon.toAscii());
+        data.append("</td>");
+
         // qDebug() << Q_FUNC_INFO << fullpath << basedir << cleanpath;
-        data.append("<a href=\"");
+        data.append("<td><a href=\"");
         data.append(cleanpath.toLocal8Bit());
         data.append("\">");
         data.append(fileinfo.fileName().toLocal8Bit());
-        data.append("</a><br>");
+        data.append("</a><br></td>");
+
+        const QString filemime = KMimeType::findByPath(fullpath)->name();
+        data.append("<td>");
+        data.append(filemime.toAscii());
+        data.append("</td>");
+
+        data.append("<td>");
+        if (fileinfo.isFile()) {
+            const QString filesize = KGlobal::locale()->formatByteSize(fileinfo.size(), 1);
+            data.append(filesize.toAscii());
+        }
+        data.append("</td>");
+
+        data.append("  </tr>");
     }
+    data.append("</table>");
     data.append("</html>");
     return data;
 }
@@ -159,15 +193,21 @@ void KHTTPD::handleRequest()
     const bool isdirectory = pathinfo.isDir();
     const bool isfile = pathinfo.isFile();
     QByteArray block;
-    if (headerparser.path() == "/") {
+    if (headerparser.path().startsWith(QLatin1String("/khttpd_icons/"))) {
         block.append("HTTP/1.1 200 OK\r\n");
         block.append(QString("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
                                                     .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
         block.append("Server: KHTTPD\r\n");
 
-        QByteArray data = bodyForPath(m_directory, m_directory);
+        const QPixmap iconpixmap = KIcon(headerparser.path().mid(14)).pixmap(20);
+        QBuffer iconbuffer;
+        iconbuffer.open(QBuffer::ReadWrite);
+        if (!iconpixmap.save(&iconbuffer, "PNG")) {
+            kWarning() << "could not save image";
+        }
+        const QByteArray data = iconbuffer.data();
 
-        block.append("Content-Type: text/html; charset=UTF-8\r\n");
+        block.append("Content-Type: image/png\r\n");
         block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
         block.append(data);
     } else if (isdirectory) {
@@ -176,7 +216,7 @@ void KHTTPD::handleRequest()
                                                     .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
         block.append("Server: KHTTPD\r\n");
 
-        QByteArray data = bodyForPath(pathinfo.filePath(), m_directory);
+        QByteArray data = contentForDirectory(pathinfo.filePath(), m_directory);
 
         block.append("Content-Type: text/html; charset=UTF-8\r\n");
         block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
@@ -214,17 +254,16 @@ void KHTTPD::handleRequest()
 
 int main(int argc, char** argv)
 {
-    KAboutData aboutData("khttpd", 0, ki18n("KHTTPD"),
-                         "1.0.0", ki18n("Serve directory and publish it on service discovery."),
-                         KAboutData::License_GPL_V2,
-                         ki18n("(c) 2022 Ivailo Monev"),
-                         KLocalizedString(),
-                        "http://github.com/fluxer/katana"
-                        );
+    KAboutData aboutData(
+        "khttpd", 0, ki18n("KHTTPD"),
+        "1.0.0", ki18n("Serve directory and publish it on service discovery."),
+        KAboutData::License_GPL_V2,
+        ki18n("(c) 2022 Ivailo Monev"),
+        KLocalizedString(),
+        "http://github.com/fluxer/katana"
+    );
 
-    aboutData.addAuthor(ki18n("Ivailo Monev"),
-                        ki18n("Maintainer"),
-                        "xakepa10@gmail.com");
+    aboutData.addAuthor(ki18n("Ivailo Monev"), ki18n("Maintainer"), "xakepa10@gmail.com");
     aboutData.setProgramIconName(QLatin1String("network-server"));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
