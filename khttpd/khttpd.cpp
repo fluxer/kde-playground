@@ -43,7 +43,7 @@ static QByteArray contentForDirectory(const QString &path, const QString &basedi
     data.append("    <th>Size</th>");
     data.append("  </tr>");
     QDir::Filters dirfilters = (QDir::Files | QDir::AllDirs | QDir::NoDot);
-    if (path == basedir) {
+    if (QDir::cleanPath(path) == QDir::cleanPath(basedir)) {
         dirfilters = (QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot);
     }
     QDir::SortFlags dirsortflags = (QDir::Name | QDir::DirsFirst);
@@ -56,10 +56,18 @@ static QByteArray contentForDirectory(const QString &path, const QString &basedi
 
         data.append("  <tr>");
 
-        const QString fileicon = QString::fromLatin1("<img src=\"/khttpd_icons/%1\" width=\"20\" height=\"20\">").arg(KMimeType::iconNameForUrl(KUrl(fullpath)));
-        data.append("<td>");
-        data.append(fileicon.toAscii());
-        data.append("</td>");
+        const bool isdotdot = (fileinfo.fileName() == QLatin1String(".."));
+        if (isdotdot) {
+            const QString fileicon = QString::fromLatin1("<img src=\"/khttpd_icons/go-previous\" width=\"20\" height=\"20\">");
+            data.append("<td>");
+            data.append(fileicon.toAscii());
+            data.append("</td>");
+        } else {
+            const QString fileicon = QString::fromLatin1("<img src=\"/khttpd_icons/%1\" width=\"20\" height=\"20\">").arg(KMimeType::iconNameForUrl(KUrl(fullpath)));
+            data.append("<td>");
+            data.append(fileicon.toAscii());
+            data.append("</td>");
+        }
 
         // qDebug() << Q_FUNC_INFO << fullpath << basedir << cleanpath;
         data.append("<td><a href=\"");
@@ -68,9 +76,11 @@ static QByteArray contentForDirectory(const QString &path, const QString &basedi
         data.append(fileinfo.fileName().toLocal8Bit());
         data.append("</a><br></td>");
 
-        const QString filemime = KMimeType::findByPath(fullpath)->name();
         data.append("<td>");
-        data.append(filemime.toAscii());
+        if (!isdotdot) {
+            const QString filemime = KMimeType::findByPath(fullpath)->name();
+            data.append(filemime.toAscii());
+        }
         data.append("</td>");
 
         data.append("<td>");
