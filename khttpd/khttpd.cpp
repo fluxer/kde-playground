@@ -32,18 +32,22 @@ static QByteArray bodyForPath(const QString &path, const QString &basedir)
 {
     QByteArray data;
     data.append("<html>");
+    QDir::Filters dirfilter = (QDir::Files | QDir::AllDirs | QDir::NoDot);
+    if (path == basedir) {
+        dirfilter = (QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot);
+    }
     QDir dir(path);
-    foreach (const QFileInfo &fileinfo, dir.entryInfoList(QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot)) {
+    foreach (const QFileInfo &fileinfo, dir.entryInfoList(dirfilter)) {
         const QString fullpath = path.toLocal8Bit() + QLatin1Char('/') + fileinfo.fileName();
         // chromium does weird stuff if the link starts with two slashes - removes, the host and
-        // port part of the link and converts the first path to lower-case
+        // port part of the link and converts the first directory to lower-case
         const QString cleanpath = QDir::cleanPath(fullpath.mid(basedir.size()));
         // qDebug() << Q_FUNC_INFO << fullpath << basedir << cleanpath;
-        data.append("<p><a href=\"");
+        data.append("<a href=\"");
         data.append(cleanpath.toLocal8Bit());
         data.append("\">");
         data.append(fileinfo.fileName().toLocal8Bit());
-        data.append("</a></p>");
+        data.append("</a><br>");
     }
     data.append("</html>");
     return data;
