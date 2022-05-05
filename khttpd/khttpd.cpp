@@ -198,7 +198,8 @@ void KHTTPD::handleRequest()
     HttpHeaderParser headerparser;
     headerparser.parseHeader(request);
 
-    QFileInfo pathinfo(m_directory + QLatin1Char('/') + headerparser.path());
+    const QString normalizedpath = QUrl::fromPercentEncoding(headerparser.path().toAscii());
+    QFileInfo pathinfo(m_directory + QLatin1Char('/') + normalizedpath);
     // qDebug() << Q_FUNC_INFO << headerparser.path() << pathinfo.filePath();
     const bool isdirectory = pathinfo.isDir();
     const bool isfile = pathinfo.isFile();
