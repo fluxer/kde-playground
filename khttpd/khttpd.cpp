@@ -205,7 +205,7 @@ void KHTTPD::handleRequest()
     QByteArray block;
     if (headerparser.path().startsWith(QLatin1String("/khttpd_icons/"))) {
         block.append("HTTP/1.1 200 OK\r\n");
-        block.append(QString("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
+        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
                                                     .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
         block.append("Server: KHTTPD\r\n");
 
@@ -218,22 +218,22 @@ void KHTTPD::handleRequest()
         const QByteArray data = iconbuffer.data();
 
         block.append("Content-Type: image/png\r\n");
-        block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
+        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
         block.append(data);
     } else if (isdirectory) {
         block.append("HTTP/1.1 200 OK\r\n");
-        block.append(QString("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
+        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
                                                     .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
         block.append("Server: KHTTPD\r\n");
 
         QByteArray data = contentForDirectory(pathinfo.filePath(), m_directory);
 
         block.append("Content-Type: text/html; charset=UTF-8\r\n");
-        block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
+        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
         block.append(data);
     } else if (isfile) {
         block.append("HTTP/1.1 200 OK\r\n");
-        block.append(QString("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
+        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
                                                     .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
         block.append("Server: KHTTPD\r\n");
 
@@ -241,19 +241,20 @@ void KHTTPD::handleRequest()
         datafile.open(QFile::ReadOnly);
         const QByteArray data = datafile.readAll();
 
-        block.append("Content-Type: text/plain; charset=UTF-8\r\n");
-        block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
+        const QString filemime = KMimeType::findByPath(pathinfo.filePath())->name();
+        block.append(QString::fromLatin1("Content-Type: %1; charset=UTF-8\r\n").arg(filemime).toAscii());
+        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
         block.append(data);
     } else {
         block.append("HTTP/1.1 404 Not Found\r\n");
-        block.append(QString("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
+        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
                                                     .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
         block.append("Server: KHTTPD\r\n");
 
         const QByteArray data("<html>404 Not Found</html>");
 
         block.append("Content-Type: text/html; charset=UTF-8\r\n");
-        block.append(QString("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
+        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
         block.append(data);
     }
 
