@@ -16,7 +16,7 @@
     Boston, MA 02110-1301, USA.
 */
 
-
+#include <kdnssd.h>
 #include <KAboutData>
 #include <KCmdLineArgs>
 #include <KApplication>
@@ -29,7 +29,6 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QHostInfo>
-#include <DNSSD/PublicService>
 
 static QByteArray contentForDirectory(const QString &path, const QString &basedir)
 {
@@ -46,12 +45,13 @@ static QByteArray contentForDirectory(const QString &path, const QString &basedi
     if (QDir::cleanPath(path) == QDir::cleanPath(basedir)) {
         dirfilters = (QDir::Files | QDir::AllDirs | QDir::NoDotAndDotDot);
     }
-    QDir::SortFlags dirsortflags = (QDir::Name | QDir::DirsFirst);
+    const QDir::SortFlags dirsortflags = (QDir::Name | QDir::DirsFirst);
     QDir dir(path);
     foreach (const QFileInfo &fileinfo, dir.entryInfoList(dirfilters, dirsortflags)) {
         const QString fullpath = path.toLocal8Bit() + QLatin1Char('/') + fileinfo.fileName();
         // chromium does weird stuff if the link starts with two slashes - removes, the host and
-        // port part of the link and converts the first directory to lower-case
+        // port part of the link (or rather does not prepend them) and converts the first directory
+        // to lower-case
         const QString cleanpath = QDir::cleanPath(fullpath.mid(basedir.size()));
 
         data.append("  <tr>");
@@ -144,31 +144,26 @@ public Q_SLOTS:
 private:
     QTcpServer m_tcpserver;
     QString m_directory;
-    DNSSD::PublicService *m_publicservice;
+    KDNSSD m_kdnssd;
 };
 
 KHTTPD::KHTTPD(QObject *parent)
-    : QObject(parent),
-    m_publicservice(nullptr)
+    : QObject(parent)
 {
     connect(&m_tcpserver, SIGNAL(newConnection()), this, SLOT(handleRequest()));
 }
 
 KHTTPD::~KHTTPD()
 {
-    if (m_publicservice) {
-        m_publicservice->stop();
-        delete m_publicservice;
-    }
+    m_kdnssd.unpublishService();
 }
 
 bool KHTTPD::start(const QString &host, int port, const QString &directory)
 {
-    m_publicservice = new DNSSD::PublicService(
-        i18n("KHTTPD@%1", QHostInfo::localHostName()),
-        "_http._tcp", port
+    m_kdnssd.publishService(
+        "_http._tcp", port,
+        i18n("KHTTPD@%1", QHostInfo::localHostName())
     );
-    m_publicservice->publishAsync();
     m_directory = directory;
     QHostAddress address;
     address.setAddress(host);
