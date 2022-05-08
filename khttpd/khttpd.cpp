@@ -24,6 +24,7 @@
 #include <KIcon>
 #include <KMimeType>
 #include <KDebug>
+#include <khttp.h>
 #include <QBuffer>
 #include <QDir>
 #include <QTcpServer>
@@ -97,34 +98,76 @@ static QByteArray contentForDirectory(const QString &path, const QString &basedi
     return data;
 }
 
-class HttpHeaderParser
+class HttpServer : public KHTTP
 {
+    Q_OBJECT
 public:
-    void parseHeader(const QByteArray &header);
+    HttpServer(QObject *parent = nullptr);
 
-    QString path() const { return m_path; }
-
-private:
-    QString m_path;
+protected:
+    void respond(const QByteArray &url, QByteArray *outdata, ushort *httpstatus, KHTTPHeaders *outheaders) final;
 };
 
-void HttpHeaderParser::parseHeader(const QByteArray &header)
+HttpServer::HttpServer(QObject *parent)
+    : KHTTP(parent)
 {
-    bool firstline = true;
-    foreach (const QByteArray &line, header.split('\n')) {
-        if (line.isEmpty()) {
-            firstline = false;
-            continue;
+}
+
+void HttpServer::respond(const QByteArray &url, QByteArray *outdata, ushort *httpstatus, KHTTPHeaders *outheaders)
+{
+    qDebug() << Q_FUNC_INFO << url;
+
+    static const QString m_directory = QDir::currentPath();
+    const QString normalizedpath = QUrl::fromPercentEncoding(url);
+    QFileInfo pathinfo(m_directory + QLatin1Char('/') + normalizedpath);
+    // qDebug() << Q_FUNC_INFO << normalizedpath << pathinfo.filePath();
+    const bool isdirectory = pathinfo.isDir();
+    const bool isfile = pathinfo.isFile();
+    QByteArray block;
+    if (normalizedpath.startsWith(QLatin1String("/khttpd_icons/"))) {
+        const QPixmap iconpixmap = KIcon(normalizedpath.mid(14)).pixmap(20);
+        QBuffer iconbuffer;
+        iconbuffer.open(QBuffer::ReadWrite);
+        if (!iconpixmap.save(&iconbuffer, "PNG")) {
+            kWarning() << "could not save image";
         }
-        if (firstline) {
-            const QList<QByteArray> splitline = line.split(' ');
-            if (splitline.size() == 3) {
-                m_path = splitline.at(1).trimmed();
-            }
-        }
-        firstline = false;
+        const QByteArray data = iconbuffer.data();
+
+        *httpstatus = 200;
+        outheaders->insert("Server", "KHTTPD");
+        outheaders->insert("Content-Type", "image/png");
+
+        block.append(data);
+    } else if (isdirectory) {
+        const QByteArray data = contentForDirectory(pathinfo.filePath(), m_directory);
+
+        *httpstatus = 200;
+        outheaders->insert("Server", "KHTTPD");
+        outheaders->insert("Content-Type", "text/html; charset=UTF-8");
+
+        block.append(data);
+    } else if (isfile) {
+        QFile datafile(pathinfo.filePath());
+        datafile.open(QFile::ReadOnly);
+        const QByteArray data = datafile.readAll();
+
+        const QString filemime = KMimeType::findByPath(pathinfo.filePath())->name();
+        *httpstatus = 200;
+        outheaders->insert("Server", "KHTTPD");
+        outheaders->insert("Content-Type", QString::fromLatin1("%1; charset=UTF-8").arg(filemime).toAscii());
+
+        block.append(data);
+    } else {
+        const QByteArray data("<html>404 Not Found</html>");
+
+        *httpstatus = 404;
+        outheaders->insert("Server", "KHTTPD");
+        outheaders->insert("Content-Type", "text/html; charset=UTF-8");
+        block.append(data);
     }
-    // qDebug() << Q_FUNC_INFO << m_path;
+
+    outdata->clear();
+    outdata->append(block);
 }
 
 
@@ -138,11 +181,8 @@ public:
     bool start(const QString &host, int port, const QString &directory);
     QString errorString() const;
 
-public Q_SLOTS:
-    void handleRequest();
-
 private:
-    QTcpServer m_tcpserver;
+    HttpServer m_httpserver;
     QString m_directory;
     KDNSSD m_kdnssd;
 };
@@ -150,7 +190,6 @@ private:
 KHTTPD::KHTTPD(QObject *parent)
     : QObject(parent)
 {
-    connect(&m_tcpserver, SIGNAL(newConnection()), this, SLOT(handleRequest()));
 }
 
 KHTTPD::~KHTTPD()
@@ -160,6 +199,30 @@ KHTTPD::~KHTTPD()
 
 bool KHTTPD::start(const QString &host, int port, const QString &directory)
 {
+#if 1
+    QFile keyfile("/home/smil3y/katana/kdelibs/kutils/khttp/example.com+5-key.pem");
+    // QFile keyfile("/etc/ssl/private/ssl-cert-snakeoil.key");
+    if (!keyfile.open(QFile::ReadOnly)) {
+        kWarning() << "Could not open key file";
+        return false;
+    }
+    const QByteArray keydata = keyfile.readAll();
+    QFile certfile("/home/smil3y/katana/kdelibs/kutils/khttp/example.com+5.pem");
+    // QFile certfile("/etc/ssl/certs/ssl-cert-snakeoil.pem");
+    if (!certfile.open(QFile::ReadOnly)) {
+        kWarning() << "Could not open cert file";
+        return false;
+    }
+    const QByteArray certdata = certfile.readAll();
+    if (!m_httpserver.setCertificate(keydata, certdata)) {
+        kWarning() << "Could not set certificate";
+        return false;
+    }
+#endif
+#if 0
+    m_httpserver.setAuthenticate("asd", "123", "Not authorized");
+#endif
+
     m_kdnssd.publishService(
         "_http._tcp", port,
         i18n("KHTTPD@%1", QHostInfo::localHostName())
@@ -167,96 +230,13 @@ bool KHTTPD::start(const QString &host, int port, const QString &directory)
     m_directory = directory;
     QHostAddress address;
     address.setAddress(host);
-    return m_tcpserver.listen(address, port);
+    return m_httpserver.start(address, port);
 }
 
 
 QString KHTTPD::errorString() const
 {
-    return m_tcpserver.errorString();
-}
-
-void KHTTPD::handleRequest()
-{
-    QTcpSocket *clientConnection = m_tcpserver.nextPendingConnection();
-
-    connect(clientConnection, SIGNAL(disconnected()),
-            clientConnection, SLOT(deleteLater()));
-
-    if (!clientConnection->waitForReadyRead()) {
-        clientConnection->disconnectFromHost();
-    }
-
-    const QByteArray request(clientConnection->readAll());
-    // qDebug() << Q_FUNC_INFO << "request" << request;
-
-    HttpHeaderParser headerparser;
-    headerparser.parseHeader(request);
-
-    const QString normalizedpath = QUrl::fromPercentEncoding(headerparser.path().toAscii());
-    QFileInfo pathinfo(m_directory + QLatin1Char('/') + normalizedpath);
-    // qDebug() << Q_FUNC_INFO << headerparser.path() << pathinfo.filePath();
-    const bool isdirectory = pathinfo.isDir();
-    const bool isfile = pathinfo.isFile();
-    QByteArray block;
-    if (headerparser.path().startsWith(QLatin1String("/khttpd_icons/"))) {
-        block.append("HTTP/1.1 200 OK\r\n");
-        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
-                                                    .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
-        block.append("Server: KHTTPD\r\n");
-
-        const QPixmap iconpixmap = KIcon(headerparser.path().mid(14)).pixmap(20);
-        QBuffer iconbuffer;
-        iconbuffer.open(QBuffer::ReadWrite);
-        if (!iconpixmap.save(&iconbuffer, "PNG")) {
-            kWarning() << "could not save image";
-        }
-        const QByteArray data = iconbuffer.data();
-
-        block.append("Content-Type: image/png\r\n");
-        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
-        block.append(data);
-    } else if (isdirectory) {
-        block.append("HTTP/1.1 200 OK\r\n");
-        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
-                                                    .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
-        block.append("Server: KHTTPD\r\n");
-
-        QByteArray data = contentForDirectory(pathinfo.filePath(), m_directory);
-
-        block.append("Content-Type: text/html; charset=UTF-8\r\n");
-        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
-        block.append(data);
-    } else if (isfile) {
-        block.append("HTTP/1.1 200 OK\r\n");
-        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
-                                                    .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
-        block.append("Server: KHTTPD\r\n");
-
-        QFile datafile(pathinfo.filePath());
-        datafile.open(QFile::ReadOnly);
-        const QByteArray data = datafile.readAll();
-
-        const QString filemime = KMimeType::findByPath(pathinfo.filePath())->name();
-        block.append(QString::fromLatin1("Content-Type: %1; charset=UTF-8\r\n").arg(filemime).toAscii());
-        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
-        block.append(data);
-    } else {
-        block.append("HTTP/1.1 404 Not Found\r\n");
-        block.append(QString::fromLatin1("Date: %1 GMT\r\n").arg(QDateTime(QDateTime::currentDateTime())
-                                                    .toString("ddd, dd MMM yyyy hh:mm:ss")).toAscii());
-        block.append("Server: KHTTPD\r\n");
-
-        const QByteArray data("<html>404 Not Found</html>");
-
-        block.append("Content-Type: text/html; charset=UTF-8\r\n");
-        block.append(QString::fromLatin1("Content-Length: %1\r\n\r\n").arg(data.length()).toAscii());
-        block.append(data);
-    }
-
-    clientConnection->write(block);
-    clientConnection->disconnectFromHost();
-
+    return m_httpserver.errorString();
 }
 
 int main(int argc, char** argv)

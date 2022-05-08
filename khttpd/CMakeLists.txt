@@ -15,6 +15,7 @@ add_executable(khttpd ${khttpd_sources})
 target_link_libraries(khttpd
     ${KDE4_KDEUI_LIBS}
     ${KDE4_KDNSSD_LIBS}
+    ${KDE4_KHTTP_LIBS}
 )
 
 install(TARGETS khttpd DESTINATION ${KDE4_BIN_INSTALL_DIR})
