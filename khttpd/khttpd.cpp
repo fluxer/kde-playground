@@ -104,6 +104,7 @@ class HttpServer : public KHTTP
 public:
     HttpServer(QObject *parent = nullptr);
 
+    QString directory;
 protected:
     void respond(const QByteArray &url, QByteArray *outdata, ushort *httpstatus, KHTTPHeaders *outheaders) final;
 };
@@ -111,15 +112,15 @@ protected:
 HttpServer::HttpServer(QObject *parent)
     : KHTTP(parent)
 {
+    directory = QDir::currentPath();
 }
 
-void HttpServer::respond(const QByteArray &url, QByteArray *outdata, ushort *httpstatus, KHTTPHeaders *outheaders)
+void HttpServer::respond(const QByteArray &url, QByteArray *outdata, ushort *outhttpstatus, KHTTPHeaders *outheaders)
 {
     qDebug() << Q_FUNC_INFO << url;
 
-    static const QString m_directory = QDir::currentPath();
     const QString normalizedpath = QUrl::fromPercentEncoding(url);
-    QFileInfo pathinfo(m_directory + QLatin1Char('/') + normalizedpath);
+    QFileInfo pathinfo(directory + QLatin1Char('/') + normalizedpath);
     // qDebug() << Q_FUNC_INFO << normalizedpath << pathinfo.filePath();
     const bool isdirectory = pathinfo.isDir();
     const bool isfile = pathinfo.isFile();
@@ -133,15 +134,15 @@ void HttpServer::respond(const QByteArray &url, QByteArray *outdata, ushort *htt
         }
         const QByteArray data = iconbuffer.data();
 
-        *httpstatus = 200;
+        *outhttpstatus = 200;
         outheaders->insert("Server", "KHTTPD");
         outheaders->insert("Content-Type", "image/png");
 
         block.append(data);
     } else if (isdirectory) {
-        const QByteArray data = contentForDirectory(pathinfo.filePath(), m_directory);
+        const QByteArray data = contentForDirectory(pathinfo.filePath(), directory);
 
-        *httpstatus = 200;
+        *outhttpstatus = 200;
         outheaders->insert("Server", "KHTTPD");
         outheaders->insert("Content-Type", "text/html; charset=UTF-8");
 
@@ -152,7 +153,7 @@ void HttpServer::respond(const QByteArray &url, QByteArray *outdata, ushort *htt
         const QByteArray data = datafile.readAll();
 
         const QString filemime = KMimeType::findByPath(pathinfo.filePath())->name();
-        *httpstatus = 200;
+        *outhttpstatus = 200;
         outheaders->insert("Server", "KHTTPD");
         outheaders->insert("Content-Type", QString::fromLatin1("%1; charset=UTF-8").arg(filemime).toAscii());
 
@@ -160,7 +161,7 @@ void HttpServer::respond(const QByteArray &url, QByteArray *outdata, ushort *htt
     } else {
         const QByteArray data("<html>404 Not Found</html>");
 
-        *httpstatus = 404;
+        *outhttpstatus = 404;
         outheaders->insert("Server", "KHTTPD");
         outheaders->insert("Content-Type", "text/html; charset=UTF-8");
         block.append(data);
@@ -183,7 +184,6 @@ public:
 
 private:
     HttpServer m_httpserver;
-    QString m_directory;
     KDNSSD m_kdnssd;
 };
 
@@ -227,7 +227,7 @@ bool KHTTPD::start(const QString &host, int port, const QString &directory)
         "_http._tcp", port,
         i18n("KHTTPD@%1", QHostInfo::localHostName())
     );
-    m_directory = directory;
+    m_httpserver.directory = directory;
     QHostAddress address;
     address.setAddress(host);
     return m_httpserver.start(address, port);
