@@ -27,8 +27,6 @@
 #include <khttp.h>
 #include <QBuffer>
 #include <QDir>
-#include <QTcpServer>
-#include <QTcpSocket>
 #include <QHostInfo>
 
 static QByteArray contentForDirectory(const QString &path, const QString &basedir)
@@ -106,7 +104,10 @@ public:
 
     QString directory;
 protected:
-    void respond(const QByteArray &url, QByteArray *outdata, ushort *httpstatus, KHTTPHeaders *outheaders) final;
+    void respond(
+        const QByteArray &url,
+        QByteArray *outdata, ushort *httpstatus, KHTTPHeaders *outheaders, QString *outfilepath
+    ) final;
 };
 
 HttpServer::HttpServer(QObject *parent)
@@ -115,8 +116,11 @@ HttpServer::HttpServer(QObject *parent)
     directory = QDir::currentPath();
 }
 
-void HttpServer::respond(const QByteArray &url, QByteArray *outdata, ushort *outhttpstatus, KHTTPHeaders *outheaders)
+void HttpServer::respond(const QByteArray &url,
+                         QByteArray *outdata, ushort *outhttpstatus,
+                         KHTTPHeaders *outheaders, QString *outfilepath)
 {
+    Q_UNUSED(outfilepath);
     qDebug() << Q_FUNC_INFO << url;
 
     const QString normalizedpath = QUrl::fromPercentEncoding(url);
