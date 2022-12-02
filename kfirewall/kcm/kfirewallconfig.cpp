@@ -26,7 +26,7 @@
 #include <kuser.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <kauthaction.h>
+#include <kauthorization.h>
 #include <kaboutdata.h>
 #include <kpluginfactory.h>
 #include <kpluginloader.h>
@@ -69,7 +69,8 @@ KCMFirewall::KCMFirewall(QWidget* parent, const QVariantList& args)
     about->addAuthor(ki18n("Ivailo Monev"), KLocalizedString(), "xakepa10@gmail.com");
     setAboutData(about);
 
-    setNeedsAuthorization(true);
+    // TODO:
+    // setNeedsAuthorization(true);
 
     load();
 

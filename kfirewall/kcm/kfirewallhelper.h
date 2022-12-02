@@ -19,17 +19,14 @@
 #ifndef KFIREWALLHELPER_H
 #define KFIREWALLHELPER_H
 
-#include <kauthactionreply.h>
+#include <kauthorization.h>
 
-// methods return type must be ActionReply otherwise QMetaObject::invokeMethod() fails
-using namespace KAuth;
-
-class KFirewallHelper : public QObject
+class KFirewallHelper : public KAuthorization
 {
     Q_OBJECT
 public slots:
-    ActionReply apply(const QVariantMap &parameters);
-    ActionReply revert(const QVariantMap &parameters);
+    int apply(const QVariantMap &parameters);
+    int revert(const QVariantMap &parameters);
 };
 
 #endif // KFIREWALLHELPER_H

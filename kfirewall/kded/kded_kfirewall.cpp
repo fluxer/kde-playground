@@ -21,7 +21,7 @@
 #include <QJsonDocument>
 #include <QFile>
 #include <kstandarddirs.h>
-#include <kauthaction.h>
+#include <kauthorization.h>
 #include <kpluginfactory.h>
 #include <kdebug.h>
 
@@ -69,14 +69,13 @@ bool KFirewallModule::enable()
         return true;
     }
 
-    KAuth::Action kfirewallaction("org.kde.kcontrol.kcmkfirewall.apply");
-    kfirewallaction.setHelperID("org.kde.kcontrol.kcmkfirewall");
-    kfirewallaction.setArguments(m_kfirewallsettingsmap);
-    KAuth::ActionReply kfirewallreply = kfirewallaction.execute();
-    // qDebug() << Q_FUNC_INFO << kfirewallreply.errorCode() << kfirewallreply.errorDescription();
-
-    if (kfirewallreply != KAuth::ActionReply::SuccessReply) {
-        kWarning() << kfirewallreply.errorCode() << kfirewallreply.errorDescription();
+    const int kfirewallreply = KAuthorization::execute(
+        "org.kde.kcontrol.kcmkfirewall",
+        "apply",
+        m_kfirewallsettingsmap
+    );
+    if (kfirewallreply != KAuthorization::NoError) {
+        kWarning() << kfirewallreply;
         return false;
     }
 
@@ -90,14 +89,13 @@ bool KFirewallModule::disable()
         return true;
     }
 
-    KAuth::Action kfirewallaction("org.kde.kcontrol.kcmkfirewall.revert");
-    kfirewallaction.setHelperID("org.kde.kcontrol.kcmkfirewall");
-    kfirewallaction.setArguments(m_kfirewallsettingsmap);
-    KAuth::ActionReply kfirewallreply = kfirewallaction.execute();
-    // qDebug() << Q_FUNC_INFO << kfirewallreply.errorCode() << kfirewallreply.errorDescription();
-
-    if (kfirewallreply != KAuth::ActionReply::SuccessReply) {
-        kWarning() << kfirewallreply.errorCode() << kfirewallreply.errorDescription();
+    const int kfirewallreply = KAuthorization::execute(
+        "org.kde.kcontrol.kcmkfirewall",
+        "revert",
+        m_kfirewallsettingsmap
+    );
+    if (kfirewallreply != KAuthorization::NoError) {
+        kWarning() << kfirewallreply;
         return false;
     }
 

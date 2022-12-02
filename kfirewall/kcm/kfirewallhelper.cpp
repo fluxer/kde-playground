@@ -20,7 +20,6 @@
 
 #include <QProcess>
 #include <kstandarddirs.h>
-#include <kauthhelpersupport.h>
 #include <kdebug.h>
 
 static QByteArray ruleForSettings(const QByteArray &uservalue, const QByteArray &trafficvalue,
@@ -102,22 +101,18 @@ static QByteArray rulesForParameters(const QVariantMap &parameters, const bool a
     return iptablesruledata;
 }
 
-static ActionReply applyRules(KFirewallHelper *helper, const QString &iptablesexe,
+static int applyRules(KFirewallHelper *helper, const QString &iptablesexe,
                               const QByteArray &iptablesruledata)
 {
     QProcess iptablesproc(helper);
     iptablesproc.start(iptablesexe);
     if (!iptablesproc.waitForStarted()) {
-        KAuth::ActionReply errorreply(KAuth::ActionReply::HelperError);
-        errorreply.setErrorDescription("Could not start iptables-restore");
-        errorreply.setErrorCode(3);
-        return errorreply;
+        kWarning() << "Could not start iptables-restore";
+        return KAuthorization::HelperError;
     }
     if (iptablesproc.write(iptablesruledata) != iptablesruledata.size()) {
-        KAuth::ActionReply errorreply(KAuth::ActionReply::HelperError);
-        errorreply.setErrorDescription("Could not write rules");
-        errorreply.setErrorCode(4);
-        return errorreply;
+        kWarning() << "Could not write rules";
+        return KAuthorization::HelperError;
     }
     iptablesproc.closeWriteChannel();
     iptablesproc.waitForFinished();
@@ -126,55 +121,45 @@ static ActionReply applyRules(KFirewallHelper *helper, const QString &iptablesex
         if (errorstring.isEmpty()) {
             errorstring = QString::fromLatin1("Could not apply rules");
         }
-        KAuth::ActionReply errorreply(KAuth::ActionReply::HelperError);
-        errorreply.setErrorDescription(errorstring);
-        errorreply.setErrorCode(5);
-        return errorreply;
+        kWarning() << errorstring;
+        return KAuthorization::HelperError;
     }
 
-    return KAuth::ActionReply::SuccessReply;
+    return KAuthorization::NoError;
 }
 
-ActionReply KFirewallHelper::apply(const QVariantMap &parameters)
+int KFirewallHelper::apply(const QVariantMap &parameters)
 {
     if (parameters.isEmpty()) {
-        KAuth::ActionReply errorreply(KAuth::ActionReply::HelperError);
-        errorreply.setErrorDescription("Empty rules");
-        errorreply.setErrorCode(1);
-        return errorreply;
+        kWarning() << "Empty rules";
+        return KAuthorization::HelperError;
     }
 
     const QString iptablesexe = KStandardDirs::findRootExe("iptables-restore");
     if (iptablesexe.isEmpty()) {
-        KAuth::ActionReply errorreply(KAuth::ActionReply::HelperError);
-        errorreply.setErrorDescription("Could not find iptables-restore");
-        errorreply.setErrorCode(2);
-        return errorreply;
+        kWarning() << "Could not find iptables-restore";
+        return KAuthorization::HelperError;
     }
 
     return applyRules(this, iptablesexe, rulesForParameters(parameters, true));
 }
 
-ActionReply KFirewallHelper::revert(const QVariantMap &parameters)
+int KFirewallHelper::revert(const QVariantMap &parameters)
 {
     //qDebug() << Q_FUNC_INFO << parameters;
 
     if (parameters.isEmpty()) {
-        KAuth::ActionReply errorreply(KAuth::ActionReply::HelperError);
-        errorreply.setErrorDescription("Empty rules");
-        errorreply.setErrorCode(1);
-        return errorreply;
+        kWarning() << "Empty rules";
+        return KAuthorization::HelperError;
     }
 
     const QString iptablesexe = KStandardDirs::findRootExe("iptables-restore");
     if (iptablesexe.isEmpty()) {
-        KAuth::ActionReply errorreply(KAuth::ActionReply::HelperError);
-        errorreply.setErrorDescription("Could not find iptables-restore");
-        errorreply.setErrorCode(2);
-        return errorreply;
+        kWarning() << "Could not find iptables-restore";
+        return KAuthorization::HelperError;
     }
 
     return applyRules(this, iptablesexe, rulesForParameters(parameters, false));
 }
 
-KDE4_AUTH_HELPER_MAIN("org.kde.kcontrol.kcmkfirewall", KFirewallHelper)
+K_AUTH_MAIN("org.kde.kcontrol.kcmkfirewall", KFirewallHelper)
