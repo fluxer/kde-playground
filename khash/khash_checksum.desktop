@@ -1,0 +1,38 @@
+[Desktop Entry]
+Actions=KHashChecksumMD5;KHashChecksumSHA1;KHashChecksumSHA256;KHashChecksumSHA512;KHashChecksumKAT;
+Type=Service
+X-KDE-ServiceTypes=KonqPopupMenu/Plugin,all/allfiles
+X-KDE-Protocol=file
+X-KDE-Priority=TopLevel
+X-KDE-StartupNotify=false
+X-KDE-Submenu=Checksum
+
+[Desktop Action KHashChecksumMD5]
+Exec=khash --algorithm=md5 %U
+Icon=security-low
+Name=Calculate MD5 checksum
+Name[x-test]=xxCalculate MD5 checksumxx
+
+[Desktop Action KHashChecksumSHA1]
+Exec=khash --algorithm=sha1 %U
+Icon=security-low
+Name=Calculate SHA-1 checksum
+Name[x-test]=xxCalculate SHA-1 checksumxx
+
+[Desktop Action KHashChecksumSHA256]
+Exec=khash --algorithm=sha256 %U
+Icon=security-medium
+Name=Calculate SHA-256 checksum
+Name[x-test]=xxCalculate SHA-256 checksumxx
+
+[Desktop Action KHashChecksumSHA512]
+Exec=khash --algorithm=sha512 %U
+Icon=security-high
+Name=Calculate SHA-512 checksum
+Name[x-test]=xxCalculate SHA-512 checksumxx
+
+[Desktop Action KHashChecksumKAT]
+Exec=khash --algorithm=kat %U
+Icon=security-medium
+Name=Calculate KAT checksum
+Name[x-test]=xxCalculate KAT checksumxx
