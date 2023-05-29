@@ -465,7 +465,6 @@
   <tabstop>buttonBox</tabstop>
   <tabstop>dirList</tabstop>
  </tabstops>
- <resources/>
  <connections>
   <connection>
    <sender>classCheck</sender>

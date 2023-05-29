@@ -13,7 +13,7 @@ set(kman_sources
 )
 
 add_executable(kman ${kman_sources})
-target_link_libraries(kman ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS})
+target_link_libraries(kman ${KDE4_KDEUI_LIBS} ${KDE4_KFILE_LIBS} ${KDE4_KARCHIVE_LIBS})
 
 install(TARGETS kman DESTINATION ${KDE4_BIN_INSTALL_DIR})
 install(FILES kmanui.rc DESTINATION ${KDE4_DATA_INSTALL_DIR}/kman)

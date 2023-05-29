@@ -4,7 +4,6 @@ project(kcachegrind)
 
 find_package(KDE4 4.14.3 REQUIRED)
 include(KDE4Defaults)
-include(MacroLibrary)
 
 set( CMAKE_REQUIRED_DEFINITIONS ${_KDE4_PLATFORM_DEFINITIONS} -DQT_STRICT_ITERATORS )
 add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})

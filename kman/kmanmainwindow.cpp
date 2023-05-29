@@ -23,7 +23,7 @@
 #include <KDebug>
 #include <KStatusBar>
 #include <KFileDialog>
-#include <KFilterDev>
+#include <KDecompressor>
 #include <QThread>
 #include <QFileSystemWatcher>
 #include <QFileInfo>
@@ -369,12 +369,14 @@ QString KManMainWindow::manContent(const QString &path) {
 
     QByteArray content;
     if (path.endsWith(".gz") || path.endsWith(".bz2") || path.endsWith(".xz")) {
-        QIODevice *archivedevice = KFilterDev::deviceForFile(path);
-        if (archivedevice) {
-            if (archivedevice->open(QFile::ReadOnly)) {
-                content = archivedevice->readAll();
+        if (pathfile.open(QFile::ReadOnly)) {
+            QByteArray compressedcontent = pathfile.readAll();
+            KDecompressor kdecompressor;
+            kdecompressor.setType(KDecompressor::typeForFile(path));
+            if (!kdecompressor.process(compressedcontent)) {
+                kWarning() << kdecompressor.errorString();
             }
-            archivedevice->deleteLater();
+            content = kdecompressor.result();
         }
     } else {
         if (pathfile.open(QFile::ReadOnly)) {
