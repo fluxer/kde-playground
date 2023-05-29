@@ -32,6 +32,7 @@
 #include <QCryptographicHash>
 #include <QGridLayout>
 #include <QLabel>
+#include <QGroupBox>
 
 class KHashDialog : public KDialog
 {
@@ -41,37 +42,29 @@ public:
     ~KHashDialog();
 
     void setAlgorithm(const QCryptographicHash::Algorithm algorithm);
-    void setSource(const KUrl &source);
+    void addSource(const KUrl &source);
 
     void start();
 
 private:
     QCryptographicHash::Algorithm m_algorithm;
-    KUrl m_source;
-    QGridLayout* m_dialoglayout;
-    KLineEdit* m_checksumedit;
+    QList<KUrl> m_sources;
+    QWidget* m_dialogwidget;
+    QVBoxLayout* m_dialoglayout;
+    QList<KLineEdit*> m_checksumedits;
 };
 
 
 KHashDialog::KHashDialog(QWidget *parent)
     : KDialog(parent),
     m_algorithm(QCryptographicHash::Sha1),
-    m_dialoglayout(nullptr),
-    m_checksumedit(nullptr)
+    m_dialogwidget(nullptr),
+    m_dialoglayout(nullptr)
 {
-    QWidget* dialogwidget = new QWidget(this);
-    m_dialoglayout = new QGridLayout(dialogwidget);
+    m_dialogwidget = new QWidget(this);
+    m_dialoglayout = new QVBoxLayout(m_dialogwidget);
 
-    QLabel* checksumlabel = new QLabel(i18n("Checksum:"), dialogwidget);
-    m_dialoglayout->addWidget(checksumlabel, 0, 0);
-
-    m_checksumedit = new KLineEdit(dialogwidget);
-    m_checksumedit->setReadOnly(true);
-    m_dialoglayout->addWidget(m_checksumedit, 0, 1);
-
-    // TODO: progress bar and threading
-
-    setMainWidget(dialogwidget);
+    setMainWidget(m_dialogwidget);
 }
 
 KHashDialog::~KHashDialog()
@@ -81,52 +74,53 @@ KHashDialog::~KHashDialog()
 void KHashDialog::setAlgorithm(const QCryptographicHash::Algorithm algorithm)
 {
     m_algorithm = algorithm;
-    QFontMetrics dialoglinemetric(m_checksumedit->font());
-    switch (algorithm) {
-        case QCryptographicHash::Md5: {
-            m_dialoglayout->setColumnMinimumWidth(1, 32 * dialoglinemetric.width('x'));
-            break;
-        }
-        case QCryptographicHash::Sha1: {
-            m_dialoglayout->setColumnMinimumWidth(1, 40 * dialoglinemetric.width('x'));
-            break;
-        }
-        case QCryptographicHash::Sha256: {
-            m_dialoglayout->setColumnMinimumWidth(1, 64 * dialoglinemetric.width('x'));
-            break;
-        }
-        case QCryptographicHash::Sha512: {
-            // NOTE: it is 128 long but don't want it to extend too much (small screens)
-            m_dialoglayout->setColumnMinimumWidth(1, 64 * dialoglinemetric.width('x'));
-            break;
-        }
-        case QCryptographicHash::KAT: {
-            m_dialoglayout->setColumnMinimumWidth(1, 64 * dialoglinemetric.width('x'));
-            break;
-        }
-    }
 }
 
-void KHashDialog::setSource(const KUrl &source)
+void KHashDialog::addSource(const KUrl &source)
 {
-    m_source = source;
-    setCaption(KDialog::makeStandardCaption(QFileInfo(source.prettyUrl()).fileName(), this));
+    m_sources.append(source);
+    const QString sourcefilename = QFileInfo(source.prettyUrl()).fileName();
+    setCaption(KDialog::makeStandardCaption(sourcefilename, this));
+
+    QGroupBox* checksumgroup = new QGroupBox(m_dialogwidget);
+    QGridLayout* checksumlayout = new QGridLayout(checksumgroup);
+
+    checksumgroup->setTitle(sourcefilename);
+    QLabel* checksumlabel = new QLabel(i18n("Checksum:"), checksumgroup);
+    checksumlayout->addWidget(checksumlabel, 0, 0);
+
+    KLineEdit* checksumedit = new KLineEdit(checksumgroup);
+    checksumedit->setReadOnly(true);
+    checksumedit->setText(i18n("Queued.."));
+    checksumlayout->addWidget(checksumedit, 0, 1);
+    m_checksumedits.append(checksumedit);
+
+    m_dialoglayout->addWidget(checksumgroup);
 }
 
 void KHashDialog::start()
 {
-    QFile checksumfile(m_source.toLocalFile());
-    if (!checksumfile.open(QFile::ReadOnly)) {
-        m_checksumedit->setText(checksumfile.errorString());
-        return;
+    int sourcerow = 0;
+    foreach (const KUrl &source, m_sources) {
+        KLineEdit* checksumedit = m_checksumedits.at(sourcerow);
+        checksumedit->setText(i18n("Calculating.."));
+        // TODO: threading
+        QFile checksumfile(source.toLocalFile());
+        if (!checksumfile.open(QFile::ReadOnly)) {
+            checksumedit->setText(checksumfile.errorString());
+            sourcerow++;
+            continue;
+        }
+        QCryptographicHash checksumer(m_algorithm);
+        if (!checksumer.addData(&checksumfile)) {
+            checksumedit->setText(i18n("Checksumer error"));
+            sourcerow++;
+            continue;
+        }
+        const QByteArray checksumhex = checksumer.result().toHex();
+        checksumedit->setText(checksumhex);
+        sourcerow++;
     }
-    QCryptographicHash checksumer(m_algorithm);
-    if (!checksumer.addData(&checksumfile)) {
-        m_checksumedit->setText(i18n("Checksummer error"));
-        return;
-    }
-    const QByteArray checksumhex = checksumer.result().toHex();
-    m_checksumedit->setText(checksumhex);
 }
 
 
@@ -168,12 +162,12 @@ int main(int argc, char **argv)
 
     bool shouldstart = false;
     for (int pos = 0; pos < args->count(); ++pos) {
-        khashdialog.setSource(args->url(pos));
+        khashdialog.addSource(args->url(pos));
         shouldstart = true;
     }
 
     khashdialog.show();
-    khashdialog.setButtons(KDialog::Ok | KDialog::Close | KDialog::Help);
+    khashdialog.setButtons(KDialog::Close | KDialog::Help);
     KHelpMenu khelpmenu(&khashdialog, &aboutData, true);
     khashdialog.setButtonMenu(KDialog::Help, (QMenu*)khelpmenu.menu());
 

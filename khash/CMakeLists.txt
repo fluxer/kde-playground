@@ -26,11 +26,6 @@ install(TARGETS khash ${INSTALL_TARGETS_DEFAULT_ARGS})
 ########### install files ###############
 
 install(
-    PROGRAMS khash.desktop
-    DESTINATION ${KDE4_XDG_APPS_INSTALL_DIR}
-)
-
-install(
     FILES khash_checksum.desktop DESTINATION
     ${KDE4_SERVICES_INSTALL_DIR}/ServiceMenus
 )
