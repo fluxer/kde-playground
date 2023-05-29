@@ -20,7 +20,7 @@
 #include <kapplication.h>
 #include <kdialog.h>
 #include <khelpmenu.h>
-#include <klineedit.h>
+#include <kpushbutton.h>
 #include <kurl.h>
 #include <klocale.h>
 #include <kcmdlineargs.h>
@@ -30,9 +30,77 @@
 #include <QFile>
 #include <QFileInfo>
 #include <QCryptographicHash>
+#include <QRunnable>
+#include <QThreadPool>
 #include <QGridLayout>
 #include <QLabel>
 #include <QGroupBox>
+#include <QClipboard>
+
+#define KHASH_TIMEOUT 100
+#define KHASH_SLEEPTIME 50
+#define KHASH_BUFFSIZE 1024 * 1000 // 1MB
+
+class KHashRunnable : public QRunnable
+{
+public:
+    KHashRunnable(const QCryptographicHash::Algorithm algorithm, const QString &source, QLabel *label, KPushButton* button, QAtomicInt *interrupt);
+
+protected:
+    void run() final;
+
+private:
+    QCryptographicHash::Algorithm m_algorithm;
+    QString m_source;
+    QLabel *m_label;
+    KPushButton *m_button;
+    QAtomicInt* m_interrupt;
+};
+
+
+KHashRunnable::KHashRunnable(const QCryptographicHash::Algorithm algorithm, const QString &source, QLabel *label, KPushButton* button, QAtomicInt *interrupt)
+    : QRunnable(),
+    m_algorithm(algorithm),
+    m_source(source),
+    m_label(label),
+    m_button(button),
+    m_interrupt(interrupt)
+{
+}
+
+void KHashRunnable::run()
+{
+    m_label->setText(i18n("Calculating.."));
+    m_button->setEnabled(false);
+
+    QFile checksumfile(m_source);
+    if (!checksumfile.open(QFile::ReadOnly)) {
+        m_label->setText(checksumfile.errorString());
+        return;
+    }
+
+    QCryptographicHash checksumer(m_algorithm);
+    QByteArray checksumbuffer(KHASH_BUFFSIZE, '\0');
+    qint64 checksumfileresult = checksumfile.read(checksumbuffer.data(), checksumbuffer.size());
+    while (checksumfileresult > 0) {
+        if (m_interrupt->load() != 0) {
+            kDebug() << "Checksuming interrupted" << m_source;
+            break;
+        }
+
+        checksumer.addData(checksumbuffer.constData(), checksumfileresult);
+
+        QCoreApplication::processEvents(QEventLoop::AllEvents, KHASH_TIMEOUT);
+        QThread::msleep(KHASH_SLEEPTIME);
+
+        checksumfileresult = checksumfile.read(checksumbuffer.data(), checksumbuffer.size());
+    }
+
+    const QByteArray checksumhex = checksumer.result().toHex();
+    m_label->setText(QString::fromLatin1(checksumhex.constData(), checksumhex.size()));
+    m_button->setEnabled(true);
+}
+
 
 class KHashDialog : public KDialog
 {
@@ -46,12 +114,19 @@ public:
 
     void start();
 
+private Q_SLOTS:
+    void stop();
+    void slotCopyToClipboard();
+
 private:
     QCryptographicHash::Algorithm m_algorithm;
     QList<KUrl> m_sources;
     QWidget* m_dialogwidget;
     QVBoxLayout* m_dialoglayout;
-    QList<KLineEdit*> m_checksumedits;
+    QList<QLabel*> m_checksumlabels;
+    QList<KPushButton*> m_checksumbuttons;
+    QThreadPool *m_threadpool;
+    QAtomicInt m_interrupt;
 };
 
 
@@ -59,16 +134,24 @@ KHashDialog::KHashDialog(QWidget *parent)
     : KDialog(parent),
     m_algorithm(QCryptographicHash::Sha1),
     m_dialogwidget(nullptr),
-    m_dialoglayout(nullptr)
+    m_dialoglayout(nullptr),
+    m_threadpool(nullptr),
+    m_interrupt(0)
 {
     m_dialogwidget = new QWidget(this);
     m_dialoglayout = new QVBoxLayout(m_dialogwidget);
+    m_dialoglayout->setSpacing(KDialog::spacingHint());
 
     setMainWidget(m_dialogwidget);
+
+    m_threadpool = new QThreadPool(this);
+
+    connect(this, SIGNAL(closeClicked()), this, SLOT(stop()));
 }
 
 KHashDialog::~KHashDialog()
 {
+    stop();
 }
 
 void KHashDialog::setAlgorithm(const QCryptographicHash::Algorithm algorithm)
@@ -84,45 +167,58 @@ void KHashDialog::addSource(const KUrl &source)
 
     QGroupBox* checksumgroup = new QGroupBox(m_dialogwidget);
     QGridLayout* checksumlayout = new QGridLayout(checksumgroup);
+    checksumlayout->setSpacing(KDialog::spacingHint());
 
     checksumgroup->setTitle(sourcefilename);
-    QLabel* checksumlabel = new QLabel(i18n("Checksum:"), checksumgroup);
+    QLabel* checksumlabel = new QLabel(i18n("Queued.."), checksumgroup);
     checksumlayout->addWidget(checksumlabel, 0, 0);
+    m_checksumlabels.append(checksumlabel);
 
-    KLineEdit* checksumedit = new KLineEdit(checksumgroup);
-    checksumedit->setReadOnly(true);
-    checksumedit->setText(i18n("Queued.."));
-    checksumlayout->addWidget(checksumedit, 0, 1);
-    m_checksumedits.append(checksumedit);
+    checksumlayout->addItem(new QSpacerItem(KDialog::marginHint(), 1, QSizePolicy::Expanding, QSizePolicy::Expanding), 0, 1);
+
+    KPushButton* checksumbutton = new KPushButton(checksumgroup);
+    checksumbutton->setIcon(KIcon("edit-copy"));
+    checksumbutton->setToolTip(i18n("Copy to clipboard"));
+    connect(checksumbutton, SIGNAL(pressed()), this, SLOT(slotCopyToClipboard()));
+    checksumlayout->addWidget(checksumbutton, 0, 2);
+    m_checksumbuttons.append(checksumbutton);
 
     m_dialoglayout->addWidget(checksumgroup);
 }
 
 void KHashDialog::start()
 {
+    m_interrupt.store(0);
     int sourcerow = 0;
     foreach (const KUrl &source, m_sources) {
-        KLineEdit* checksumedit = m_checksumedits.at(sourcerow);
-        checksumedit->setText(i18n("Calculating.."));
-        // TODO: threading
-        QFile checksumfile(source.toLocalFile());
-        if (!checksumfile.open(QFile::ReadOnly)) {
-            checksumedit->setText(checksumfile.errorString());
-            sourcerow++;
-            continue;
-        }
-        QCryptographicHash checksumer(m_algorithm);
-        if (!checksumer.addData(&checksumfile)) {
-            checksumedit->setText(i18n("Checksumer error"));
-            sourcerow++;
-            continue;
-        }
-        const QByteArray checksumhex = checksumer.result().toHex();
-        checksumedit->setText(checksumhex);
+        QLabel* checksumlabel = m_checksumlabels.at(sourcerow);
+        KPushButton* checksumbutton = m_checksumbuttons.at(sourcerow);
+        m_threadpool->start(new KHashRunnable(m_algorithm, source.toLocalFile(), checksumlabel, checksumbutton, &m_interrupt));
         sourcerow++;
     }
 }
 
+void KHashDialog::stop()
+{
+    m_interrupt.store(1);
+    m_threadpool->waitForDone();
+}
+
+void KHashDialog::slotCopyToClipboard()
+{
+    KPushButton* checksumbutton = qobject_cast<KPushButton*>(sender());
+    Q_ASSERT(checksumbutton);
+    int itcounter = 0;
+    foreach (const KPushButton* it, m_checksumbuttons) {
+        if (it == checksumbutton) {
+            const QString checksumtext = m_checksumlabels.at(itcounter)->text();
+            QApplication::clipboard()->setText(checksumtext, QClipboard::Clipboard);
+            return;
+        }
+        itcounter++;
+    }
+    kWarning() << "Could not find the button";
+}
 
 int main(int argc, char **argv)
 {
