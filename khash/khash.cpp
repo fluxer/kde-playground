@@ -188,6 +188,14 @@ void KHashDialog::addSource(const KUrl &source)
 
 void KHashDialog::start()
 {
+    if (m_sources.size() <= 0) {
+        // NOTE: if restart is implemented the label has to be removed
+        QLabel* errorlabel = new QLabel(i18n("No source added"), m_dialogwidget);
+        errorlabel->setAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
+        m_dialoglayout->addWidget(errorlabel);
+        return;
+    }
+
     m_interrupt.store(0);
     int sourcerow = 0;
     foreach (const KUrl &source, m_sources) {
@@ -256,10 +264,8 @@ int main(int argc, char **argv)
         return 1;
     }
 
-    bool shouldstart = false;
     for (int pos = 0; pos < args->count(); ++pos) {
         khashdialog.addSource(args->url(pos));
-        shouldstart = true;
     }
 
     khashdialog.show();
@@ -267,9 +273,7 @@ int main(int argc, char **argv)
     KHelpMenu khelpmenu(&khashdialog, &aboutData, true);
     khashdialog.setButtonMenu(KDialog::Help, (QMenu*)khelpmenu.menu());
 
-    if (shouldstart) {
-        khashdialog.start();
-    }
+    khashdialog.start();
 
     return app.exec();
 }
