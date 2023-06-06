@@ -1,0 +1,11 @@
+[Desktop Entry]
+Icon=document-print
+Name=Print Jobs
+Comment=Notifies about and allows to control print jobs
+Type=Service
+X-KDE-ServiceTypes=KDEDModule
+X-KDE-Library=kprintjobs
+X-KDE-DBus-ModuleName=kprintjobs
+X-KDE-Kded-autoload=true
+X-KDE-Kded-load-on-demand=true
+OnlyShowIn=KDE;
