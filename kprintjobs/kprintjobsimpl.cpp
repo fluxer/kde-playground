@@ -51,11 +51,6 @@ void KPrintJobsImpl::start()
     m_statetimer.start(500);
 }
 
-int KPrintJobsImpl::printState() const
-{
-    return m_cupsjobstate;
-}
-
 bool KPrintJobsImpl::doKill()
 {
     const int cupsresult = cupsCancelJob(m_cupsjobdestination.constData(), m_cupsjobid);

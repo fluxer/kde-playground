@@ -31,8 +31,6 @@ public:
 
     void start() final;
 
-    int printState() const;
-
 protected:
     bool doKill() final;
 

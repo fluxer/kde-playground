@@ -36,6 +36,7 @@ public:
 
 private Q_SLOTS:
     void slotCheckState();
+    void slotJobDestroyed(QObject *kprintjobsimpl);
 
 private:
     QTimer m_statetimer;

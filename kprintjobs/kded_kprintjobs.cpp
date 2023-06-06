@@ -58,12 +58,25 @@ void KPrintJobsModule::slotCheckState()
         if (!m_printjobstracker) {
             m_printjobstracker = new KUiServerJobTracker(this);
         }
-        // TODO: connect to destroyed() and update m_printjobs
+        connect(kprintjobsimpl, SIGNAL(destroyed(QObject*)), this, SLOT(slotJobDestroyed(QObject*)));
         m_printjobs.insert(cupsjobid, kprintjobsimpl);
         m_printjobstracker->registerJob(kprintjobsimpl);
         kprintjobsimpl->start();
     }
     cupsFreeJobs(cupsjobscount, cupsjobs);
+}
+
+void KPrintJobsModule::slotJobDestroyed(QObject *kprintjobsimpl)
+{
+    QMutableMapIterator<int, KPrintJobsImpl*> it(m_printjobs);
+    while (it.hasNext()) {
+        it.next();
+        KPrintJobsImpl* itvalue = it.value();
+        if (itvalue == kprintjobsimpl) {
+            it.remove();
+            break;
+        }
+    }
 }
 
 #include "moc_kded_kprintjobs.cpp"
