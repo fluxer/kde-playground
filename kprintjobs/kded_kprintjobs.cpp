@@ -56,7 +56,7 @@ void KPrintJobsModule::slotCheckState()
         }
         kprintjobsimpl = new KPrintJobsImpl(this, cupsjobid, cupsjobstate, cupsjobs[i].dest);
         if (!m_printjobstracker) {
-            m_printjobstracker = new KUiServerJobTracker(this);
+            m_printjobstracker = new KDynamicJobTracker(this);
         }
         connect(kprintjobsimpl, SIGNAL(destroyed(QObject*)), this, SLOT(slotJobDestroyed(QObject*)));
         m_printjobs.insert(cupsjobid, kprintjobsimpl);

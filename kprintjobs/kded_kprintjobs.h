@@ -24,7 +24,7 @@
 
 #include <QTimer>
 #include <QMap>
-#include <kuiserverjobtracker.h>
+#include <KDynamicJobTracker>
 
 class KPrintJobsModule: public KDEDModule
 {
@@ -41,7 +41,7 @@ private Q_SLOTS:
 private:
     QTimer m_statetimer;
     QMap<int, KPrintJobsImpl*> m_printjobs;
-    KUiServerJobTracker *m_printjobstracker;
+    KDynamicJobTracker *m_printjobstracker;
 };
 
 #endif // KPRINTJOBS_KDED_H
