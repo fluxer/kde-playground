@@ -71,7 +71,7 @@ void KPrintJobsModule::slotJobDestroyed(QObject *kprintjobsimpl)
     QMutableMapIterator<int, KPrintJobsImpl*> it(m_printjobs);
     while (it.hasNext()) {
         it.next();
-        KPrintJobsImpl* itvalue = it.value();
+        const KPrintJobsImpl* itvalue = it.value();
         if (itvalue == kprintjobsimpl) {
             it.remove();
             break;

@@ -42,6 +42,7 @@ private:
     int m_cupsjobstate;
     QByteArray m_cupsjobdestination;
     bool m_emitdescription;
+    bool m_emittotalamount;
     QTimer m_statetimer;
 };
 

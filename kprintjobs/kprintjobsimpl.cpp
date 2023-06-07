@@ -29,6 +29,7 @@ KPrintJobsImpl::KPrintJobsImpl(QObject *parent, const int cupsjobid, const int c
     m_cupsjobstate(cupsjobstate),
     m_cupsjobdestination(cupsjobdest),
     m_emitdescription(true),
+    m_emittotalamount(true),
     m_statetimer(this)
 {
     setProperty("appName", QString::fromLatin1("kprintjobs"));
@@ -75,6 +76,11 @@ void KPrintJobsImpl::slotCheckState()
                 QString::fromLocal8Bit(cupsjobs[i].title),
                 qMakePair(i18nc("The destination of a print operation", "Destination"), QFile::decodeName(cupsjobs[i].dest))
             );
+        }
+        // NOTE: no usefull info about the progress
+        if (m_emittotalamount && cupsjobs[i].size > 0) {
+            m_emittotalamount = false;
+            setTotalAmount(KJob::Bytes, cupsjobs[i].size * 1024);
         }
         if (cupsjobstate == static_cast<int>(IPP_JSTATE_HELD) && cupsjobstate != m_cupsjobstate) {
             kDebug() << "Print job suspended" << m_cupsjobid;
