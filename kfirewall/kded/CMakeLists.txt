@@ -9,7 +9,7 @@ qt4_generate_dbus_interface(kded_kfirewall.h org.kde.kfirewall.xml )
 
 kde4_add_plugin(kded_kfirewall ${kded_kfirewall_SRCS})
 target_link_libraries(kded_kfirewall PRIVATE
-    ${KDE4_KDECORE_LIBS}
+    KDE4::kdecore
 )
 
 install(

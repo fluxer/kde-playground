@@ -8,8 +8,8 @@ set(kfirewallconfig_SRCS
 kde4_add_plugin(kcm_kfirewallconfig ${kfirewallconfig_SRCS})
 
 target_link_libraries(kcm_kfirewallconfig
-    ${KDE4_KDEUI_LIBS}
-    ${KDE4_KCMUTILS_LIBS}
+    KDE4::kdeui
+    KDE4::kcmutils
 )
 
 install(
@@ -26,7 +26,7 @@ install(
 
 add_executable(kcmkfirewallhelper kfirewallhelper.cpp)
 target_link_libraries(kcmkfirewallhelper
-    ${KDE4_KDECORE_LIBS}
+    KDE4::kdecore
 )
 
 install(

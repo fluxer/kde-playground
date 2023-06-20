@@ -24,6 +24,8 @@
 class KFirewallHelper : public KAuthorization
 {
     Q_OBJECT
+public:
+    KFirewallHelper(const char* const helper, QObject *parent);
 public slots:
     int apply(const QVariantMap &parameters);
     int revert(const QVariantMap &parameters);

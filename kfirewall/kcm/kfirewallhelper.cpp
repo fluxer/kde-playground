@@ -128,6 +128,12 @@ static int applyRules(KFirewallHelper *helper, const QString &iptablesexe,
     return KAuthorization::NoError;
 }
 
+KFirewallHelper::KFirewallHelper(const char* const helper, QObject *parent)
+    : KAuthorization(helper, parent)
+{
+}
+
+
 int KFirewallHelper::apply(const QVariantMap &parameters)
 {
     if (parameters.isEmpty()) {
