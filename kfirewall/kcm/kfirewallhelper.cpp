@@ -133,7 +133,6 @@ KFirewallHelper::KFirewallHelper(const char* const helper, QObject *parent)
 {
 }
 
-
 int KFirewallHelper::apply(const QVariantMap &parameters)
 {
     if (parameters.isEmpty()) {

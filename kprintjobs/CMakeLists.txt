@@ -3,8 +3,8 @@ project(kprintjobs)
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
     include(FeatureSummary)
 
-    find_package(KDE4 4.23.0 REQUIRED)
-    include(KDE4Defaults)
+    find_package(KDELibs4 4.23.0 REQUIRED)
+
     include_directories(${KDE4_INCLUDES})
     add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 endif()
@@ -21,7 +21,7 @@ qt4_generate_dbus_interface(kded_kprintjobs.h org.kde.kprintjobs.xml)
 
 kde4_add_plugin(kded_kprintjobs ${kded_kprintjobs_SRCS})
 target_link_libraries(kded_kprintjobs PRIVATE
-    ${KDE4_KDECORE_LIBS}
+    KDE4::kdecore
     ${QT_QTDBUS_LIBRARY}
     cups
 )
