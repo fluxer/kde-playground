@@ -88,13 +88,6 @@ KPowerControl::KPowerControl(QObject* parent)
             i18n("Power management is not supported on this system"),
             "dialog-error"
         );
-    } else if (!KPowerManager::isEnabled()) {
-        setOverlayIconByName("dialog-error");
-        showMessage(
-            i18n("Power management"),
-            i18n("Power manager is disabled"),
-            "dialog-information"
-        );
     } else {
         connect(
             &m_powermanager, SIGNAL(profileChanged(QString)),
