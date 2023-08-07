@@ -43,7 +43,6 @@ int main(int argc, char** argv)
     aboutData.setProgramIconName(QLatin1String("preferences-system-power-management"));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
-    KUniqueApplication::addCmdLineOptions();
 
     KUniqueApplication kpowercontrolapp;
     kpowercontrolapp.setQuitOnLastWindowClosed(false);

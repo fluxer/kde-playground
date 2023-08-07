@@ -22,7 +22,10 @@ target_link_libraries(kpowercontrol
     KDE4::solid
 )
 
-install(TARGETS kpowercontrol ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(
+    TARGETS kpowercontrol
+    DESTINATION ${KDE4_BIN_INSTALL_DIR}
+)
 
 ########### next target ###############
 
