@@ -21,7 +21,10 @@ target_link_libraries(khash
     ${QT_QTNETWORK_LIBRARY}
 )
 
-install(TARGETS khash ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(
+    TARGETS khash
+    DESTINATION ${KDE4_BIN_INSTALL_DIR}
+)
 
 ########### install files ###############
 
