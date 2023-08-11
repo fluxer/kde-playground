@@ -1,0 +1,17 @@
+[Desktop Entry]
+Name=XScreensaver as wallpaper
+Comment=XScreensaver as wallpaper
+Type=Service
+Icon=xorg
+ServiceTypes=Plasma/Wallpaper
+
+X-KDE-Library=plasma_wallpaper_xwallpaper
+X-KDE-PluginInfo-Author=Ivailo Monev
+X-KDE-PluginInfo-Email=xakepa10@gmail.com
+X-KDE-PluginInfo-Name=org.kde.xwallpaper
+X-KDE-PluginInfo-Version=0.1
+X-KDE-PluginInfo-Website=
+X-KDE-PluginInfo-Depends=
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-EnabledByDefault=true
+
