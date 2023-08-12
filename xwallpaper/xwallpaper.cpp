@@ -34,7 +34,7 @@ XWallpaper::XWallpaper(QObject *parent, const QVariantList &args)
 {
     m_widget = new QWidget(nullptr, Qt::X11BypassWindowManagerHint);
     // move it outside the screen space, should the resolution change the widget may be visible but
-    // neither rendering nor grabbing the window works without the winodow being visible
+    // neither rendering nor grabbing the window works without the window being visible
     const QRect trect = QApplication::desktop()->geometry();
     m_widget->move(trect.bottom(), trect.right());
     m_widget->show();
@@ -67,8 +67,8 @@ XWallpaper::~XWallpaper()
 
 void XWallpaper::paint(QPainter *painter, const QRectF &exposedRect)
 {
-    kDebug() << "Rendering" << s_xscreensaver << targetSizeHint().toSize();
     const QSize tsize = targetSizeHint().toSize();
+    kDebug() << "Rendering" << s_xscreensaver << tsize;
     m_widget->resize(tsize.width(), tsize.height());
     painter->drawPixmap(QPoint(), QPixmap::grabWindow(m_widget->winId()));
 }
