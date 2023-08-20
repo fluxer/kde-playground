@@ -31,9 +31,7 @@ int main(int argc, char** argv)
         "kupdatenotifier", 0, ki18n("KUpdateNotifier"),
         "1.0.0", ki18n("A panel applet for software updates notification."),
         KAboutData::License_GPL_V2,
-        ki18n("(c) 2022 Ivailo Monev"),
-        KLocalizedString(),
-        "http://github.com/fluxer/katana"
+        ki18n("(c) 2022 Ivailo Monev")
     );
 
     aboutData.addAuthor(
@@ -44,7 +42,6 @@ int main(int argc, char** argv)
     aboutData.setProgramIconName(QLatin1String("system-software-update"));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
-    KUniqueApplication::addCmdLineOptions();
 
     KUniqueApplication kupdatenotifierapp;
     kupdatenotifierapp.setQuitOnLastWindowClosed(false);

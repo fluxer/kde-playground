@@ -27,13 +27,12 @@ int main(int argc, char** argv)
 {
     QApplication::setAttribute(Qt::AA_X11InitThreads, true);
 
-    KAboutData aboutData("karchivemanager", 0, ki18n("Archive Manager"),
-                         "1.0.0", ki18n("Simple archive manager for KDE."),
-                         KAboutData::License_GPL_V2,
-                         ki18n("(c) 2018 Ivailo Monev"),
-                         KLocalizedString(),
-                        "http://github.com/fluxer/katana"
-                        );
+    KAboutData aboutData(
+        "karchivemanager", 0, ki18n("Archive Manager"),
+        "1.0.0", ki18n("Simple archive manager for KDE."),
+        KAboutData::License_GPL_V2,
+        ki18n("(c) 2018 Ivailo Monev")
+    );
 
     aboutData.addAuthor(ki18n("Ivailo Monev"),
                         ki18n("Maintainer"),

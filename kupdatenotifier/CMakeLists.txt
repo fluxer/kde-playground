@@ -1,8 +1,10 @@
 project(kupdatenotifier)
 
 if(${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
-    find_package(KDE4 4.21.0 REQUIRED)
-    include(KDE4Defaults)
+    include(FeatureSummary)
+
+    find_package(KDELibs4 4.23.0 REQUIRED)
+
     include_directories(${KDE4_INCLUDES})
     add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
 endif()
@@ -16,9 +18,12 @@ set(kupdatenotifier_SRCS
 
 add_executable(kupdatenotifier ${kupdatenotifier_SRCS})
 
-target_link_libraries(kupdatenotifier ${KDE4_KDEUI_LIBS})
+target_link_libraries(kupdatenotifier KDE4::kdeui)
 
-install(TARGETS kupdatenotifier ${INSTALL_TARGETS_DEFAULT_ARGS})
+install(
+    TARGETS kupdatenotifier
+    DESTINATION ${KDE4_BIN_INSTALL_DIR}
+)
 
 ########### next target ###############
 
