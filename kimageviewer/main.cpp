@@ -32,13 +32,12 @@
 #include <KMainWindow>
 
 int main(int argc, char **argv) {
-    KAboutData aboutData("kimageviewer", 0, ki18n("KImageViewer"),
-                         "1.0.0", ki18n("Simple image viewer for KDE."),
-                         KAboutData::License_GPL_V2,
-                         ki18n("(c) 2016 Ivailo Monev"),
-                         KLocalizedString(),
-                        "http://github.com/fluxer/kde-playground"
-                        );
+    KAboutData aboutData(
+        "kimageviewer", 0, ki18n("KImageViewer"),
+        "1.0.0", ki18n("Simple image viewer for KDE."),
+        KAboutData::License_GPL_V2,
+        ki18n("(c) 2016 Ivailo Monev")
+    );
 
     aboutData.addAuthor(ki18n("Ivailo Monev"),
                         ki18n("Maintainer"),
